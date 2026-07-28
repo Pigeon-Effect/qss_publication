@@ -1,0 +1,28 @@
+INTRUSION DETECTION TEST RESULTS (DEBUG)
+Model: deepseek-chat
+Tests: 10
+Accuracy: 40.0%
+Total cost: $0.000411
+
+Test   1 | Home: 422 | Intruder from: 420 | True: 2 | Predicted: 3 | ✗
+Test   2 | Home: 250 | Intruder from: 242 | True: 2 | Predicted: 4 | ✗
+Test   3 | Home: 411 | Intruder from: 220 | True: 1 | Predicted: 2 | ✗
+Test   4 | Home: 221 | Intruder from: 020 | True: 2 | Predicted: 3 | ✗
+Test   5 | Home: 101 | Intruder from: 430 | True: 5 | Predicted: 5 | ✓
+Test   6 | Home: 342 | Intruder from: 413 | True: 5 | Predicted: 5 | ✓
+Test   7 | Home: 330 | Intruder from: 030 | True: 3 | Predicted: 3 | ✓
+Test   8 | Home: 242 | Intruder from: 004 | True: 5 | Predicted: 4 | ✗
+Test   9 | Home: 232 | Intruder from: 100 | True: 5 | Predicted: 3 | ✗
+Test  10 | Home: 332 | Intruder from: 442 | True: 4 | Predicted: 4 | ✓
+
+
+============================================================
+FINAL RESULTS
+============================================================
+Total tests: 10
+Correct: 4
+Accuracy: 40.0%
+Total cost: $0.000411
+Model: deepseek-chat
+Max words per abstract: 200
+============================================================

@@ -1,0 +1,1027 @@
+INTRUSION DETECTION - deepseek-v4-pro (concise reasoning forced)
+Tests: 30
+Accuracy: 0.0%
+Total cost: $0.035127
+
+======================================================================
+
+Test 1
+Home cluster: 351
+Intruder cluster: 102
+True intruder position: 3
+Predicted: None
+Correct: False
+Cost: $0.001166
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4322776108
+      Title: Tuberculosis Classification Using Deep Learning and FPGA Inferencing
+      Abstract: Among the top 10 leading causes of mortality, tuberculosis (TB) is a chronic lung illness caused by a bacterial infection. Due to its efficiency and performance, using deep learning technology with FPGA as an accelerator has become a standard application in this work. However, considering the vast amount of data collected for medical diagnosis, the average inference speed is inadequate. In this scenario, the FPGA speeds the deep learning inference process enabling the real-time deployment of TB 
+
+  [2] ID=https://openalex.org/W4320522310
+      Title: FPGA based CNN accelerator for high-speed biomedical application
+      Abstract: The rise in visual dataset generation has necessitated the recent advancements in the field of Deep Neural Networks (DNNs). Application domains like biomedical imaging require a high level of precision which is suitably achieved using convolutional neural networks (CNNs) at the expense of increased computation, hardware, and power resources. The implementation of such CNN architectures is constrained by currently available resource limited embedded and application-specific integrated circuit (AS
+
+  [3] ID=https://openalex.org/W3179104234 *** INTRUDER ***
+      Title: The Power of Proxy Data and Proxy Networks for Hyper-Parameter Optimization in Medical Image Segmentation
+      Abstract: Deep learning models for medical image segmentation are primarily data-driven. Models trained with more data lead to improved performance and generalizability. However, training is a computationally expensive process because multiple hyper-parameters need to be tested to find the optimal setting for best performance. In this work, we focus on accelerating the estimation of hyper-parameters by proposing two novel methodologies: proxy data and proxy networks. Both can be useful for estimating hype
+
+  [4] ID=https://openalex.org/W3048414096
+      Title: Approximate Arithmetic Circuits: A Survey, Characterization, and Recent Applications
+      Abstract: Approximate computing has emerged as a new paradigm for high-performance and energy-efficient design of circuits and systems. For the many approximate arithmetic circuits proposed, it has become critical to understand a design or approximation technique for a specific application to improve performance and energy efficiency with a minimal loss in accuracy. This article aims to provide a comprehensive survey and a comparative evaluation of recently developed approximate arithmetic circuits under 
+
+  [5] ID=https://openalex.org/W4387086060
+      Title: E3D
+      Abstract: The increase of distributed embedded systems has enabled pervasive sensing, actuation, and information displays across buildings and surrounding environments, yet also entreats huge cost expenditure for energy and human labor for maintenance. Our daily interactions, from opening a window to closing a drawer to twisting a doorknob, are great potential sources of energy but are often neglected. Existing commercial devices to harvest energy from these ambient sources are unaffordable, and DIY solut
+
+----------------------------------------------------------------------
+
+Test 2
+Home cluster: 332
+Intruder cluster: 151
+True intruder position: 5
+Predicted: None
+Correct: False
+Cost: $0.001110
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4398139856
+      Title: Intelligent crop management system for improving yield in maize production: evidence from India
+      Abstract: Purpose Managing weeds and pests in cropland is one of the major concerns in agriculture that greatly affects the quantity and quality of the produce. While the success of preventing potential weeds and pests is not guaranteed, early detection and diagnosis help manage them effectively to ensure crops’ growth and health Design/methodology/approach We propose a diagnostic framework for crop management with automatic weed and pest detection and identification in maize crops using residual neural n
+
+  [2] ID=https://openalex.org/W4386087619
+      Title: Multi Detection and Segmentation Coconut Shell for Charcoal Briquette Using Mask R-CNN
+      Abstract: Coconut shell are the raw material for making high-quality charcoal briquettes, and their quality dramatically affects the quality of the final product. Therefore, assessing and determining the quality of coconut shells is very important in production. This research uses the Mask R-CNN instance segmentation algorithm with ResNet 101 to detect and classify coconut shell quality as a raw material for charcoal briquettes. Our model consists of four object classes: clean and dry coconut shell, fibro
+
+  [3] ID=https://openalex.org/W3138678565
+      Title: Microfluidic Approach for Measurements of pH, O2, and CO2 in Saliva
+      Abstract: In this paper, we propose a microfluidic approach for measuring pH, dissolved oxygen (O 2 ), and carbon dioxide (CO 2 ) in human saliva.The proposed innovative method combines the advantages of a microfluidic approach, i.e., small amounts of samples and reagents and precise control of the experimental conditions, with rapid measurements of significant parameters of saliva.The novel design of a microfluidic chip with integrated commercially available PreSens sensors was used for examining the eff
+
+  [4] ID=https://openalex.org/W3207007328
+      Title: Plant Diseases Identification through a Discount Momentum Optimizer in Deep Learning
+      Abstract: Deep learning proves its promising results in various domains. The automatic identification of plant diseases with deep convolutional neural networks attracts a lot of attention at present. This article extends stochastic gradient descent momentum optimizer and presents a discount momentum (DM) deep learning optimizer for plant diseases identification. To examine the recognition and generalization capability of the DM optimizer, we discuss the hyper-parameter tuning and convolutional neural netw
+
+  [5] ID=https://openalex.org/W4404552701 *** INTRUDER ***
+      Title: Machine Learning‐Based Estimation of Experimental Artifacts and Image Quality in Fluorescence Microscopy
+      Abstract: Reliable characterization of image data is fundamental for imaging applications, FAIR data management, and an objective evaluation of image acquisition, processing, and analysis steps in an image‐based investigation of biological samples. Image quality assessment (IQA) often relies on human visual perception, which is not objective, or reference ground truth images, which are not often available. This study presents a method for a comprehensive IQA of microscopic images, which solves these issue
+
+----------------------------------------------------------------------
+
+Test 3
+Home cluster: 261
+Intruder cluster: 245
+True intruder position: 1
+Predicted: None
+Correct: False
+Cost: $0.001080
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W3125055770 *** INTRUDER ***
+      Title: Identifying and describing information seeking tasks
+      Abstract: A software developer works on many tasks per day, frequently switching between these tasks back and forth. This constant churn of tasks makes it difficult for a developer to know the specifics of when they worked on what task, complicating task resumption, planning, retrospection, and reporting activities. In a first step towards an automated aid to this issue, we introduce a new approach to help identify the topic of work during an information seeking task --- one of the most common types of ta
+
+  [2] ID=https://openalex.org/W3032722882
+      Title: An Online Community Applying CNN Technology for ICH Craftsmanship Inheritance and Preservation
+      Abstract: In recent years, artificial intelligence technology, especially image recognition technology, has made great progress. In this paper, we will apply the image recognition technology, which based on convolutional neural networks (CNN) to the digital preservation of Intangible Cultural Heritage (ICH) craftsmanship. A novel online ICH craftsmanship inheritance community has been established, which includes a sequentially updated ICH craftsmanship database, a Search-system based on image recognition,
+
+  [3] ID=https://openalex.org/W4401894606
+      Title: Exploring the Influence of Object, Subject, and Context on Aesthetic Evaluation through Computational Aesthetics and Neuroaesthetics
+      Abstract: Background: In recent years, computational aesthetics and neuroaesthetics have provided novel insights into understanding beauty. Building upon the findings of traditional aesthetics, this study aims to combine these two research methods to explore an interdisciplinary approach to studying aesthetics. Method: Abstract artworks were used as experimental materials. Based on traditional aesthetics and in combination, features of composition, tone, and texture were selected. Computational aesthetic 
+
+  [4] ID=https://openalex.org/W4250433351
+      Title: Using Technology To Enrich The Students Creative Expression
+      Abstract: Technology plays a great role in contemporary arts, where it provides artists with another set of tools to express their creative vision and make it easily accessible to huge audience.Trough teaching art at faculty of Specific Education, Art Education department the researcher has noticed that students attend painting and drawing courses which often required to work by using traditional mediums and techniques such as watercolor painting or oil painting, and teaching only with transitional medium
+
+  [5] ID=https://openalex.org/W4402028096
+      Title: “[N]o branch, no leaf, no fruit”: Writing about Infertility and Assisted Reproduction in the Poetry of Monica Youn’s <i>Blackacre</i> (2016) and Allison Cobb’s <i>Green-Wood</i> (2010)
+      Abstract: Abstract Barren, sterile, infertile. How does a female poet navigate these culturally inherited metaphors and descriptions of their bodies and experiences? This essay argues that the upswell in contemporary poetry exploring the many facets of infertility and assisted reproductive technologies (ART) demands consideration as a new strand of writing. This new strand creates new linguistic, poetic, and infertile subjectivities by adapting, challenging, rejecting, and co-opting inherited cultural lin
+
+----------------------------------------------------------------------
+
+Test 4
+Home cluster: 045
+Intruder cluster: 402
+True intruder position: 3
+Predicted: None
+Correct: False
+Cost: $0.001166
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4206120852
+      Title: MTSC-GE: A Novel Graph based Method for Multivariate Time Series Clustering
+      Abstract: Few clustering methods show good performance on multivariate time series (MTS) data. Traditional methods rely too much on similarity measures and perform poorly on the MTS data with complex structures. This paper proposes an MTS clustering algorithm based on graph embedding called MTSC-GE to improve the performance of MTS clustering. MTSC-GE can map MTS samples to the feature representations in a low-dimensional space and then cluster them. While mining the information of the samples themselves,
+
+  [2] ID=https://openalex.org/W4224253435
+      Title: A traffic flow-forecasting model based on multi-head spatio–temporal attention and adaptive graph convolutional networks
+      Abstract: Accurate traffic flow forecasting is a prerequisite guarantee for the realization of intelligent transportation, but it is a challenging task due to the complex spatial-temporal dependence and uncertainty of traffic flow. In most existing approaches, spatial correlation is captured using graph convolution networks in a pre-determined graph structure. However, some nodes in such a graph structure have spatial correlations between them but are missing a connection, so the hidden spatial correlatio
+
+  [3] ID=https://openalex.org/W4293812913 *** INTRUDER ***
+      Title: Safe couplings: coupled refinement types
+      Abstract: We enhance refinement types with mechanisms to reason about relational properties of probabilistic computations. Our mechanisms, which are inspired from probabilistic couplings, are applicable to a rich set of probabilistic properties, including expected sensitivity, which ensures that the distance between outputs of two probabilistic computations can be controlled from the distance between their inputs. We implement our mechanisms in the type system of Liquid Haskell and we use them to formally
+
+  [4] ID=https://openalex.org/W4382318469
+      Title: Cluster-Guided Contrastive Graph Clustering Network
+      Abstract: Benefiting from the intrinsic supervision information exploitation capability, contrastive learning has achieved promising performance in the field of deep graph clustering recently. However, we observe that two drawbacks of the positive and negative sample construction mechanisms limit the performance of existing algorithms from further improvement. 1) The quality of positive samples heavily depends on the carefully designed data augmentations, while inappropriate data augmentations would easil
+
+  [5] ID=https://openalex.org/W4400280618
+      Title: SGK-Net: A Novel Navigation Scene Graph Generation Network
+      Abstract: Scene graphs can enhance the understanding capability of intelligent ships in navigation scenes. However, the complex entity relationships and the presence of significant noise in contextual information within navigation scenes pose challenges for navigation scene graph generation (NSGG). To address these issues, this paper proposes a novel NSGG network named SGK-Net. This network comprises three innovative modules. The Semantic-Guided Multimodal Fusion (SGMF) module utilizes prior information o
+
+----------------------------------------------------------------------
+
+Test 5
+Home cluster: 042
+Intruder cluster: 452
+True intruder position: 2
+Predicted: None
+Correct: False
+Cost: $0.001038
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W3173909631
+      Title: МЕТОД КЛАСИФІКАЦІЇ ЗАДАЧ ОПТИКИ ТА ЛАЗЕРНОЇ ФІЗИКИ
+      Abstract: In recent decades, due to the use of computer technology, the results of research in a particular area of science and technique are accumulated very quickly. In the process of creating a database of optical images and knowledge base is appeared the task of classification method absence. Without such a method the creating the structure of data warehouse is difficult to solve. The classification of the tasks and the obtained results requires considerable attention in order to ensure their rapid an
+
+  [2] ID=https://openalex.org/W4368755539 *** INTRUDER ***
+      Title: CALM: Conditional Adversarial Latent Models for Directable Virtual Characters
+      Abstract: In this work, we present Conditional Adversarial Latent Models (CALM), an approach for generating diverse and directable behaviors for user-controlled interactive virtual characters. Using imitation learning, CALM learns a representation of movement that captures the complexity and diversity of human motion, and enables direct control over character movements. The approach jointly learns a control policy and a motion encoder that reconstructs key characteristics of a given motion without merely 
+
+  [3] ID=https://openalex.org/W4211071659
+      Title: Predictive Creditworthiness Modeling in Energy-Saving Finance: Machine Learning Logit and Neural Network
+      Abstract: Customer's creditworthiness was becoming more crucial for ESCO. Machine learning was used to predict the creditworthiness of clients in retrofit financing processes. Machine learning was used to predict the creditworthiness of clients in ESCO financing processes. This research aimed to develop a retrofitting scoring model to leverage a machine learning and life cycle cost analysis (LCCA) to evaluate alternative financing for Energy Efficiency Saving in Indonesia. The model was built on the Logis
+
+  [4] ID=https://openalex.org/W4311461830
+      Title: Feature identification and classification of hand based biometrics through ensemble learning approach
+      Abstract: In the last decade identification using biometric system has been growing rapidly. This research shows the new technique based on biometric recognition using hand structure. A database with 200 sample of human having both sides of hand is used. The technique used according to the human comfort while taking pictures and gives segmentation of fingers and hands with high efficiency. Almost, 94 features have been extracted from the given datasets and various classification and techniques have been a
+
+  [5] ID=https://openalex.org/W4387010571
+      Title: A New Prediction of Cesarean Delivery Using Artificial Intelligence
+      Abstract: Artificial intelligence (AI) techniques are used to extract crucial information. Data from cases of caesarean birth were analysed in this study. A caesarean section is typically performed when a normal delivery would be difficult for a variety of reasons or if a normal delivery could lead to future difficulties. With the use of actual instances obtained from a Tabriz health centre, this chapter investigated a number of AI approaches in this research to determine which delivery method is the safe
+
+----------------------------------------------------------------------
+
+Test 6
+Home cluster: 241
+Intruder cluster: 433
+True intruder position: 3
+Predicted: None
+Correct: False
+Cost: $0.001040
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4387250285
+      Title: Robust Procedural Learning for Anomaly Detection and Observability in 5G RAN
+      Abstract: Most existing large distributed systems have poor observability and cannot use the full potential of machine learning-based behavior analysis. The system logs, which contain the primary source of information, are unstructured and lack the context needed to track procedures and learn the system's behavior. This work presents a new trace guideline that enables a component-and procedure-based split of the system logs for the future 5G Radio Access Network (RAN). As the system can be broken into sma
+
+  [2] ID=https://openalex.org/W3214692865
+      Title: Visual servo guided cyber-physical robotic assembly cell
+      Abstract: Advanced robotic assembly systems are promising great benefits to the manufacturing sector, once the shortcomings of the current technologies are overcome. One of the biggest obstacles to introducing flexible robotic systems is the ability of robots to sense and perceive the semi-structured or unstructured environment. This paper presents a cyber-physical system based framework of a robotic assembly cell that is capable of recognizing resources of assembly processes, based on information from va
+
+  [3] ID=https://openalex.org/W3171043537 *** INTRUDER ***
+      Title: Forecasting Solar Energy Consumption Using A Fractional Discrete Grey Model With Time Power Term
+      Abstract: Abstract Accurate prediction of energy consumption is an important basis for policymakers to formulate and improve energy policies and measures. In this paper, a new grey prediction model FDGM(1,1, t α ) is proposed. The grey wolf optimizer (GWO) is used to optimize the fractional-order r and the time power α in the model. A numerical example and four sets of solar energy consumption data (France, South Korea, OECD, and Asia Pacific region) are used to establish the FDGM(1,1, t α ) model. Based 
+
+  [4] ID=https://openalex.org/W4309228407
+      Title: Health Factor Prediction Of Power Drive Components Based On GWO-LSTM
+      Abstract: The power drive device is a crucial component of both weapons and equipment, and its failure due to degradation will have a significant impact on the system's ability to function normally and have major repercussions. Online real-time prediction is an effective means to monitor the rapid degradation and failure of intact weapons and equipment. First, the power drive device's failure mechanism is examined. Then, two typical characteristic parameters that can describe the power drive device's dete
+
+  [5] ID=https://openalex.org/W3101528348
+      Title: Toward a Big Data-Based Approach: A Review on Degradation Models for Prognosis of Critical Infrastructure
+      Abstract: Abstract Safety and reliability of large critical infrastructure such as long-span bridges, high-rise buildings, nuclear power plants, high-voltage transmission towers, rotating machinery, and so on, are important for a modern society. Research on reliability and safety analysis started with a “small data” problem dealing with relative scarce lifetime or failure data. Later, degradation modeling that uses performance deterioration, or, condition data collected from in-service inspections or onli
+
+----------------------------------------------------------------------
+
+Test 7
+Home cluster: 203
+Intruder cluster: 230
+True intruder position: 3
+Predicted: None
+Correct: False
+Cost: $0.001132
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4386187589
+      Title: Entrepreneurial capacity, teaching delivery mode, and entrepreneurial learning: Basis for entrepreneurship program development framework
+      Abstract: This paper describes the students' existing entrepreneurial ability from three aspects of knowledge basis, cognitive ability and professional skills, and the teaching transmission mode of teachers from three aspects: professional innovation, practical innovation and the cultivation of creative thinking.the management practice of entrepreneurial learning is described in the aspects of promoting learning, promoting innovation and the integration of professional knowledge and creativity.The study a
+
+  [2] ID=https://openalex.org/W4322623062
+      Title: Secondary School Students’ Cognitive Structures Regarding Educational Games
+      Abstract: To employ educational games in education as intended, it is required to show students’ cognitive structures for this concept. As a result, the purpose of this research was to reveal the cognitive structures of secondary school students regarding educational games. The research was a survey-based descriptive study. A total of 340 secondary school students were included for this research, which included fifth graders (n=80), sixth graders (n=95), seventh graders (n=69), and eighth graders (n=96). 
+
+  [3] ID=https://openalex.org/W3123846673 *** INTRUDER ***
+      Title: The origins and effects of macroeconomic uncertainty
+      Abstract: We estimate a production‐based general equilibrium model featuring demand‐ and supply‐side uncertainty and an endogenous term premium. Using term structure and macroeconomic data, we find sizable effects of uncertainty on risk premia and business cycle fluctuations. Both demand‐ and supply‐side uncertainty imply large contractions in real activity and an increase in term premia, but supply‐side uncertainty has larger effects on inflation and investment. We introduce a novel analytical decomposit
+
+  [4] ID=https://openalex.org/W4310497545
+      Title: Statistical Analysis of Gender Difference in Online Learning Effectiveness
+      Abstract: This study examines gender differences in a web-based training program by discovering the impact of using a web-based training program on trainees' learning outcomes.The researchers utilized a mixed-methods approach that consisted of an experimental study and qualitative data collection.The sample population of the experiment was composed of 25 female and 25 male participants.However, the qualitative data were gathered through interviews with 8 female and 8 males from these trainees.The study is
+
+  [5] ID=https://openalex.org/W2989451438
+      Title: Out-of-Class Impacts of Flexible Classroom Spaces
+      Abstract: Abstract This student-led research project analyzes the impact that the conversion of a computer lab to a flexible classroom space had on informal use of the space not during class time. Studies have been conducted on the benefits of informal learning settings, but there are few studies on how the physical space itself can support the informal learning process. Research surrounding learning spaces in libraries have emphasized use of collaboration and flexible spaces, but all studies were conduct
+
+----------------------------------------------------------------------
+
+Test 8
+Home cluster: 123
+Intruder cluster: 101
+True intruder position: 5
+Predicted: None
+Correct: False
+Cost: $0.001265
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4281874720
+      Title: Automatic identification of oncology patients with unsupervised phenotyping and AutoML.
+      Abstract: e13547 Background: Recent studies suggest ICD codes often cannot characterise patients with specific diseases like oncology accurately in real-world clinical practice due to a high probability of miscoding, while manual inspection of millions of patients is not feasible as it is highly costly and slow. Therefore, we present an AI driven workflow, which leverages structured discrete values and unstructured textual data from Electronic Health Records (EHRs), to automatically identify cancer patien
+
+  [2] ID=https://openalex.org/W4389371807
+      Title: OntDM: An Ontology for Disaster Management and Response Mitigation
+      Abstract: Emergency and crisis management is a constantly changing field that needs a lot of attention. In order to save lives and lessen the effects of crises, numerous response organizations work together to ensure the successful execution of various phases. Organizations and managers must act quickly and wisely due to the urgency of the situation. The gathered data and available expertise play a major role in how well these decisions turn out. The quality and applicability of the information gathered, 
+
+  [3] ID=https://openalex.org/W4321233923
+      Title: Providing A Personalized Healthcare Service To The Patients Using AIOPs Monitoring
+      Abstract: We see the critical role technology plays in healthcare in the midst of a continuous worldwide health crisis. To combat the epidemic, South Korea, for example, used smart city' technology and government-developed applications that follow individuals in quarantine. A biosensor that can identify the virus in saliva samples has just been created by India's National Institute of Animal Biotechnology, Hyderabad. These developments are made feasible by the usage of certain biosensors that have printed
+
+  [4] ID=https://openalex.org/W3133975583
+      Title: The Effect of Simulation-Based Training About Emergencies and Approaches to Delivery Given to Emergency Personel
+      Abstract: Objective: This study was carried out to determine the effect of the medium level simulation-based training about “Emergencies in and Approaches to Delivery” given to the personnel working in emergency health services on the change in their current knowledge about emergency interventions in delivery.Methods: The study used a quasi-experimental design. It was carried out with 232 personnel working in emergency health services. Data were collected using “Information Form” and “Knowledge Test for E
+
+  [5] ID=https://openalex.org/W4403909466 *** INTRUDER ***
+      Title: Survey on the distribution of medical imaging frequencies and dose levels for CT examinations in a comprehensive hospital in Shanghai
+      Abstract: Abstract With the continuous advancement and clinical application of CT technology, the increasing collective dose burden from CT scans and associated potential health risks have become significant concerns in radiation protection. Current research increasingly focuses on the cumulative effective dose (CED) resulting from multiple CT scans, often revealing patients with high CEDs, even exceeding 100 mSv. However, reports on CEDs from multiple CT scans in China are scarce. Therefore, we investiga
+
+----------------------------------------------------------------------
+
+Test 9
+Home cluster: 222
+Intruder cluster: 301
+True intruder position: 2
+Predicted: None
+Correct: False
+Cost: $0.001229
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4307367398
+      Title: Desperation and inequality increase stealing: evidence from experimental microsocieties
+      Abstract: People facing material deprivation are more likely to turn to acquisitive crime, but it is not clear why. Recent theory suggests that people should be more willing to steal if they are on the wrong side of a ‘desperation threshold’; that is, a level of resources critical to wellbeing. Below such a threshold, people should pursue any risky behaviour that offers the possibility of a short route back above, and should be insensitive to the severity of possible punishments, since they have little le
+
+  [2] ID=https://openalex.org/W3185261009 *** INTRUDER ***
+      Title: Spectral-Spatial Hyperspectral Image Classification Using Robust Dual-Stage Spatial Embedding
+      Abstract: Recently, many spectral-special classification models have emerged one after another in the remote sensing community. These models aim to introduce the spatial information of the pixel to improve the accuracy of the class attribute of the pixel. However, for the spectral-spatial classification algorithms, not all pixels need to introduce the corresponding spatial information since the use of a large amount of spatial information has a costly time. To solve this problem, this paper proposes a rob
+
+  [3] ID=https://openalex.org/W3144845068
+      Title: Resource Trading in Edge Computing-Enabled IoV: An Efficient Futures-Based Approach
+      Abstract: Mobile edge computing (MEC) has become a promising solution to utilize distributed computing resources for supporting computation-intensive vehicular applications in dynamic driving environments. To facilitate this paradigm, onsite resource trading serves as a critical enabler. However, dynamic communications and resource conditions could lead unpredictable trading latency, trading failure, and unfair pricing to the conventional resource trading process. To overcome these challenges, we introduc
+
+  [4] ID=https://openalex.org/W4387132645
+      Title: Implementing a Hierarchical Deep Learning Approach for Simulating multilevel Auction Data
+      Abstract: We present a deep learning solution to address the challenges of simulating realistic synthetic first-price sealed-bid auction data. The complexities encountered in this type of auction data include high-cardinality discrete feature spaces and a multilevel structure arising from multiple bids associated with a single auction instance. Our methodology combines deep generative modeling (DGM) with an artificial learner that predicts the conditional bid distribution based on auction characteristics,
+
+  [5] ID=https://openalex.org/W4401657716
+      Title: Eye-Tracking-Based Hidden Markov Modeling for Revealing Within-Item Cognitive Strategy Switching
+      Abstract: Identifying cognitive strategies in problem-solving helps researchers understand advanced cognitive processes and the contexts in which each strategy is applicable. Current methods typically identify strategies for each item, allowing only for the observation of between-item cognitive strategy switching (CSS). Although within-item CSS is recognized, methods to dynamically identify and reveal it are lacking. This study introduces the concept of an eye movement snippet, a basic unit for studying w
+
+----------------------------------------------------------------------
+
+Test 10
+Home cluster: 000
+Intruder cluster: 410
+True intruder position: 1
+Predicted: None
+Correct: False
+Cost: $0.001108
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W3046247091 *** INTRUDER ***
+      Title: Improved Polar Decoder Utilizing Neural Network in Fast Simplified Successive-Cancellation Decoding
+      Abstract: Polar codes using successive-cancellation decoding always suffer from high latency for its serial nature. Fast simplified successive-cancellation decoding algorithm improves the situation in theoretically but not performs well as expected in practical for the workload of nodes identification and the existence of many short blocks. Meanwhile, Neural network (NN) based decoders have appeared as potential candidates to replace conventional decoders for polar codes. But the exponentially increasing 
+
+  [2] ID=https://openalex.org/W4399884939
+      Title: Region-adaptive superpixel segmentation algorithm based on density clustering
+      Abstract: In addressing the issue of unstable boundary adherence in traditional superpixel segmentation algorithms, this paper proposes a novel region-adaptive superpixel segmentation algorithm based on density clustering for computer vision research. Firstly, during the initialization of superpixels, a region-adaptive initialization method is employed based on the complexity of image content. This method takes into consideration the diversity of image content, thereby reducing redundancy in the initializ
+
+  [3] ID=https://openalex.org/W4319320142
+      Title: Pixel-Domain Just Noticeable Difference Modeling with Heterogeneous Color Features
+      Abstract: With the rapidly emerging user-generated images, perception compression for color image is an inevitable mission. Whilst in existing just noticeable difference (JND) models, color-oriented features are not fully taken into account for coinciding with HVS perception characteristics, such as sensitivity, attention, and masking. To fully imitate the color perception process, we extract color-related feature parameters as local features, including color edge intensity and color complexity, as well a
+
+  [4] ID=https://openalex.org/W3161795970
+      Title: Advanced Image Processing Systems
+      Abstract: Image processing is a subset of digital signal processing that has different applications and benefits in different fields. Digital processing is in fact the digital image processing that can be performed with the help of computer science, programming and artificial intelligence. Image processing is one of the applications and subsets of artificial intelligence that, as its name suggests, processes digital images and displays a certain output with specific information based on predefined trainin
+
+  [5] ID=https://openalex.org/W3106916146
+      Title: Dirichlet Tessellation’s technique to compress a true color image using a Lossy compression
+      Abstract: Abstract In this paper, we show how to use the concept of Dirichlet Tessellations to compress, store and reconstruct an image without affecting on its dimensions and represent it with an acceptable quality, where a true color image has compressed by 60.05% with mean square error (MSE) = 9.6081 which represents the error between the restored image and the original image, and peak signal-to-noise ratio (PSNR) =38.3044 dB which represents the similarity between the restored image and the original i
+
+----------------------------------------------------------------------
+
+Test 11
+Home cluster: 001
+Intruder cluster: 310
+True intruder position: 1
+Predicted: None
+Correct: False
+Cost: $0.001153
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4317584117 *** INTRUDER ***
+      Title: Detecting Missing Flow Separation using Supervised Machine Learning
+      Abstract: The accuracy of flow simulations is a major concern in Computational Fluid Dynamics (CFD) applications. A possible outcome of inaccuracy in CFD results is missing a major feature in the flow field. Many methods have been proposed to reduce numerical errors and increase overall accuracy, but these are not always efficient or even feasible. In this study, Principal Component Analysis (PCA) has been performed on compressible flow simulations around an airfoil to map the high-dimensional CFD data to
+
+  [2] ID=https://openalex.org/W3048891513
+      Title: BioMetricNet: deep unconstrained face verification through learning of metrics regularized onto Gaussian distributions
+      Abstract: We present BioMetricNet: a novel framework for deep unconstrained face verification which learns a regularized metric to compare facial features. Differently from popular methods such as FaceNet, the proposed approach does not impose any specific metric on facial features; instead, it shapes the decision space by learning a latent representation in which matching and non-matching pairs are mapped onto clearly separated and well-behaved target distributions. In particular, the network jointly lea
+
+  [3] ID=https://openalex.org/W4388191803
+      Title: Face Recognition of Live-Feed Imagery Using the Viola-Jones Algorithm
+      Abstract: This paper proposes the design, execution and testing of a live facial detection and recognition system. The system is intended to detect a face from live footage as an implementation of the famous and successful Viola-Jones (VJ) algorithm and recognize the face via an implementation based on Python libraries. This implementation uses pictures of a handful of people as training data and attempts to recognize the same people when they appear in front of the web camera. Testing of this system conf
+
+  [4] ID=https://openalex.org/W3036416802
+      Title: Simple and Accurate Border Detection Algorithm for Melanoma Computer Aided Diagnosis
+      Abstract: The interest of the scientific community for computer aided skin lesion analysis and characterization has been increased during the last years for the growing incidence of melanoma among cancerous pathologies. The detection of melanoma in its early stage is essential for prognosis improvement and for guaranteeing a high five-year relative survival rate of patients. The clinical diagnosis of skin lesions is challenging and not trivial since it depends on human vision and physician experience and 
+
+  [5] ID=https://openalex.org/W4318602938
+      Title: Is Facial Recognition Biased at Near-Infrared Spectrum as Well?
+      Abstract: Published academic research and media articles suggest face recognition is biased across demographics. Specifically, unequal performance is obtained for women, dark-skinned people, and older adults. However, these published studies have examined the bias of facial recognition in the visible spectrum (VIS). Factors such as facial makeup, facial hair, skin color, and illumination variation have been attributed to the bias of this technology at VIS. The near-infrared (NIR) spectrum offers an advant
+
+----------------------------------------------------------------------
+
+Test 12
+Home cluster: 411
+Intruder cluster: 261
+True intruder position: 4
+Predicted: None
+Correct: False
+Cost: $0.001273
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4387496205
+      Title: <scp>Strega</scp> : An HTTP Server for FPGAs
+      Abstract: The computer architecture landscape is being reshaped by the new opportunities, challenges, and constraints brought by the cloud. On the one hand, high-level applications profit from specialised hardware to boost their performance and reduce deployment costs. On the other hand, cloud providers maximise the CPU time allocated to client applications by offloading infrastructure tasks to hardware accelerators. While it is well understood how to do this for, e.g., network function virtualisation and
+
+  [2] ID=https://openalex.org/W3096249913
+      Title: ViCrypt to the Rescue: Real-Time, Machine-Learning-Driven Video-QoE Monitoring for Encrypted Streaming Traffic
+      Abstract: Video streaming is the killer application of the Internet today. In this article, we address the problem of real-time, passive Quality-of-Experience (QoE) monitoring of HTTP Adaptive Video Streaming (HAS), from the Internet-Service-Provider (ISP) perspective - i.e., relying exclusively on in-network traffic measurements. Given the wide adoption of end-to-end encryption, we resort to machine-learning (ML) models to estimate multiple key video-QoE indicators (KQIs) from the analysis of the encrypt
+
+  [3] ID=https://openalex.org/W4285101082
+      Title: Computation Offloading Based on Game Theory in Multi-access Edge Computing for 6G Network
+      Abstract: Multi-access Edge Computing (MEC) can provide efficient computation offloading service for mobile devices (MDs) in the sixth-generation (6G) network. Owing to ubiquitous connectivity of 6G, dense base stations (BSs) need to be deployed globally. However, it will emerge massive overlapping coverage of BSs, which brings great offloading challenges for MDs in overlapping areas. In this paper, we focus on the computation offloading problem in a 6G-supported MEC system with multiple BSs and multiple 
+
+  [4] ID=https://openalex.org/W4405895539 *** INTRUDER ***
+      Title: PPerceptual differences between AI and human compositions: the impact of musical factors and cultural background
+      Abstract: The issues of what Artificial Intelligence (AI) can and cannot do in the field of music are among the important topics that both music researchers and AI experts are curious about. This study offers a significant analysis within the context of the growing role of AI technologies in music composition and their impact on creative processes. It contributes to the literature by positioning AI as a complementary tool to the composer’s creativity and by enhancing the understanding of cultural adaptati
+
+  [5] ID=https://openalex.org/W4286566965
+      Title: Privacy-preserving incentive mechanism for platoon assisted vehicular edge computing with deep reinforcement learning
+      Abstract: Platoon assisted vehicular edge computing has been envisioned as a promising paradigm of implementing offloading services through platoon cooperation. In a platoon, a vehicle could play as a requester that employs another vehicles as performers for workload processing. An incentive mechanism is necessitated to stimulate the performers and enable decentralized decision making, which avoids the information collection from the performers and preserves their privacy. We model the interactions among 
+
+----------------------------------------------------------------------
+
+Test 13
+Home cluster: 030
+Intruder cluster: 021
+True intruder position: 4
+Predicted: None
+Correct: False
+Cost: $0.001302
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4237496913
+      Title: Analysis and Synthesis of Electrocardiogram (ECG) using Fourier and Wavelet Transform
+      Abstract: Electrocardiogram (ECG) is the study of the electrical signals of the human heart that are generated by the pumping action of the heart caused by the polarization and depolarization of the nodes of the heart. These signals must be interpreted with great accuracy and efficiency as they are paramount in prognosis and subsequent diagnosis of the condition of the patient. The goal of this project is to analyze the ECG signals following Fourier and Wavelet transforms, and to highlight and demonstrate
+
+  [2] ID=https://openalex.org/W3160526930
+      Title: Pneumatic Training Glove Based on Electromyographic Signal Control
+      Abstract: In modern society, much public attention is paid to the rights and interests of the disabled, which become a social problem. In order to satisfy the pursuit of disabled for a better quality of life, it is necessary to give them a normal life. For example, people with degeneration or atrophy of hand muscles caused by accidents or other reasons need an auxiliary system to help them recover their hand muscles. However, after consulting a large amount of data, I found that most hospitals in the mark
+
+  [3] ID=https://openalex.org/W3146116282
+      Title: Artificial intelligence meets traditional Chinese medicine: a bridge to opening the magic box of sphygmopalpation for pulse pattern recognition
+      Abstract: <title/> Artificial intelligence (AI) aims to mimic human cognitive functions and execute intellectual activities like that performed by humans dealing with an uncertain environment. The rapid development of AI technology provides powerful tools to analyze massive amounts of data, facilitating physicians to make better clinical decisions or even replace human judgment in healthcare. Advanced AI technology also creates novel opportunities for exploring the scientific basis of traditional Chinese 
+
+  [4] ID=https://openalex.org/W4399705945 *** INTRUDER ***
+      Title: Assessing inclusion and representativeness on digital platforms for health education: Evidence from YouTube
+      Abstract: Studies confirm that significant biases exist in online recommendation platforms, exacerbating pre-existing disparities and leading to less-than-optimal outcomes for underrepresented demographics. We study issues of bias in inclusion and representativeness in the context of healthcare information disseminated via videos on the YouTube social media platform, a widely used online channel for multi-media rich information. With one in three US adults using the Internet to learn about a health concer
+
+  [5] ID=https://openalex.org/W4401076581
+      Title: Research note: A method for recognizing and evaluating typical behaviors of laying hens in a thermal environment
+      Abstract: Automatically identifying abnormal behaviors of caged laying hens in a thermal environment improves manual management efficiency. It also provides reference indicators for breeding heat-tolerant hens. In this study, we propose a deep learning-based method for automatic recognition and evaluation of typical heat stress behaviors in hens. We developed a lightweight object detection algorithm, YOLO-HGP, based on the YOLOv8n as the baseline model. YOLO-HGP achieves Precision (P), Recall (R), and mea
+
+----------------------------------------------------------------------
+
+Test 14
+Home cluster: 420
+Intruder cluster: 430
+True intruder position: 3
+Predicted: None
+Correct: False
+Cost: $0.001197
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W3207525744
+      Title: Structural Health Monitoring of Microreactor Safety Systems Using Convolutional Neural Networks
+      Abstract: Microreactors, a class of modular reactors with net power output of less than 20 MWth, have innovative applications in nuclear and nonnuclear industries due to their portability, reliability, resilience, and high capacity factors. In order to operate microreactors on a wider scale, it is essential to bring down maintenance life-cycle costs while ensuring the integrity of operating such systems. Autonomous operations in microreactors using augmented digital-twin (DT) technology can serve as a cos
+
+  [2] ID=https://openalex.org/W4365454003
+      Title: Classifying and clustering noisy images using subset learning based on convolutional neural networks
+      Abstract: Abstract A high yield rate is a key factor related to success in the competitive global semiconductor manufacturing business market. Wafer bin maps (WBMs) can be used as one measure of the output quality of a semiconductor manufacturing process. A WBM is the image results from a number of circuit probe (CP) tests on a wafer after the completion of a manufacturing process. The specific defect patterns on WBMs provide crucial information for engineers to trace the causes of defects in the complica
+
+  [3] ID=https://openalex.org/W4393033448 *** INTRUDER ***
+      Title: Comprehensive Review of Machine Learning, Deep Learning, and Digital Twin Data-Driven Approaches in Battery Health Prediction of Electric Vehicles
+      Abstract: This paper presents a comprehensive survey of machine learning, deep learning, and digital twin technology methods for predicting and managing the battery state of health in electric vehicles. Battery state of health estimation is essential for optimizing the battery usage, performance, safety, and cost-effectiveness of electric vehicles. Estimating the state of health of a battery is a complex undertaking due to its dependency on multiple factors. These factors include battery characteristics s
+
+  [4] ID=https://openalex.org/W3192468791
+      Title: Prediction of defects using machine learning techniques in order to improve quality management system – A case study
+      Abstract: According to ISO 9000, a quality management system is part of a set of related or interacting elements of an organization that sets policies and objectives, as well as the processes necessary to achieve the quality objectives. Quality is the extent to which a set of intrinsic characteristics of an object meets the requirements. Based on these definitions, the factory, considered in this paper, S.C. APULUM S.A.,decided to implement a quality management system since 1998. Subsequently, the organiz
+
+  [5] ID=https://openalex.org/W3012374719
+      Title: Deep Metallic Surface Defect Detection: The New Benchmark and Detection Network
+      Abstract: Metallic surface defect detection is an essential and necessary process to control the qualities of industrial products. However, due to the limited data scale and defect categories, existing defect datasets are generally unavailable for the deployment of the detection model. To address this problem, we contribute a new dataset called GC10-DET for large-scale metallic surface defect detection. The GC10-DET dataset has great challenges on defect categories, image number, and data scale. Besides, 
+
+----------------------------------------------------------------------
+
+Test 15
+Home cluster: 245
+Intruder cluster: 222
+True intruder position: 5
+Predicted: None
+Correct: False
+Cost: $0.001021
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4386595420
+      Title: Design of personalized movie and TV recommendation algorithm based on movie and TV big data
+      Abstract: With the popularity of the Internet and mobile terminals, the amount of movie entertainment information on the Internet has increased dramatically, and users' demand for personalized movie services is growing. Personalized recommendation service can be used to mine the hidden correlation between user's historical information, movie project information, user's historical operation log and data, and recommend the obtained video resources that users may be interested in to users, so as to better se
+
+  [2] ID=https://openalex.org/W4391142187
+      Title: Understanding the effects of socialness and color complexity in listing images on crowdfunding behavior
+      Abstract: Purpose Color psychology theory reveals that complex images with very varied palettes and many different colors are likely to be considered unattractive by individuals. Notwithstanding, web content containing social signals may be more attractive via the initiation of a social connection. This research investigates a predictive model blending variables from these theoretical perspectives to determine crowdfunding success. Design/methodology/approach The research is based on data from 176,614 Kic
+
+  [3] ID=https://openalex.org/W4387954097
+      Title: Fashion-GPT: Integrating LLMs with Fashion Retrieval System
+      Abstract: Customers on a fashion e-commerce platform although expressing their clothing preferences through combined imagery and textual information, they are limited to retrieve with single-round fixed inputs. At the same time, large language models (LLMs) have been gaining attention across various fields. ChatGPT is a remarkable example of an LLM, known for its user-friendly language interface, impressive conversational proficiency, and reasoning abilities. To this end, we propose Fashion-GPT, a system 
+
+  [4] ID=https://openalex.org/W3038619515
+      Title: Designing Information Provision Experiments
+      Abstract: Information provision experiments allow researchers to test economic theories and answer policy-relevant questions by varying the information set available to respondents. We survey the emerging literature using information provision experiments in economics and discuss applications in macroeconomics, finance, political economy, public economics, labor economics, and health economics. We also discuss design considerations and provide best-practice recommendations on how to (i) measure beliefs; (
+
+  [5] ID=https://openalex.org/W4308426109 *** INTRUDER ***
+      Title: The Components of Trust for Collaborating With AI Colleagues
+      Abstract: AI technologies are capable of improving the performance and productivity of teams in a variety of work contexts. These advantages may be optimized when the AI agent is considered a full team member. A vital component of the agent's acceptance as a team member or colleague is the degree to which its human coworkers feel they can trust it. To explore what factors affect the perceptions of an AI agent as a trustworthy team member and a legitimate colleague, we interviewed twenty-two professionals 
+
+----------------------------------------------------------------------
+
+Test 16
+Home cluster: 100
+Intruder cluster: 230
+True intruder position: 1
+Predicted: None
+Correct: False
+Cost: $0.001229
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W3111816658 *** INTRUDER ***
+      Title: INFORMATION FLOW BETWEEN THE US DOLLAR-RUPIAH EXCHANGE RATES
+      Abstract: This study investigates the information flow between non-deliverable forward (NDF), spot, and forward US dollar–rupiah exchange rates during the post-Quantitative Easing (QE) period. Our results show a unidirectional information flow from NDF to the spot and forward rates in the post-QE period. We also find that the Indonesian government securities (IGS) played a vital role during the QE period, while international reserves preceded the US dollar–rupiah spot, forward, and NDF exchange rates post
+
+  [2] ID=https://openalex.org/W4313149690
+      Title: Evaluation of Hand-Scaling Skills of Dental Hygienist Students: Identification of Contact Between Hand-Scaler Blade Tip and Tooth Surface
+      Abstract: Dental hygienist students require a self-learning simulator to learn the correctness of hand-scaling techniques. An essential technique in hand scaling is the maintenance of contact between the tip of the hand-scaler blade and the tooth. However, imaging-based methods cannot effectively reveal this contact because the gingiva and buccal mucosa conceal the blade. Therefore, this study aimed to propose a method to identify the appropriate contact state of the blade with the tooth by using an inert
+
+  [3] ID=https://openalex.org/W3203975494
+      Title: Improved standardisation of training needed to achieve the potential of handheld echocardiography
+      Abstract: There remains no doubt that handheld echocardiography has a place among tools used to improve the diagnosis of structural heart disease. The last decade has seen advances in image quality, battery life, portability, file formats and available features, all with increasingly lower costs.1 Handheld ultrasound devices (HUD) have now been used in a wide variety of settings, from emergency departments in the USA to primary healthcare clinics in remote parts of sub-Saharan Africa. Users have been just
+
+  [4] ID=https://openalex.org/W3041361214
+      Title: Whole-body MRI in the diagnosis of paediatric CNO/CRMO
+      Abstract: Abstract Chronic recurrent multifocal osteomyelitis (CRMO) is an auto-inflammatory disorder affecting the skeleton of children and adolescents. Whole-body MRI (WBMRI) is key in the diagnosis and follow-up of CRMO. Imaging protocols should include sagittal short Tau inversion recovery of the spine, imaging of the hands and feet, and T1 images for distinguishing normal bone marrow. CRMO lesions can be metaphyseal, epiphyseal and physeal—potentially causing growth disturbance and deformity. Spinal 
+
+  [5] ID=https://openalex.org/W3186058148
+      Title: Deep Learning for Detection of Colonic Polyps from Computed Tomography Colonoscopy Images Combined with Colonoscopy
+      Abstract: The objective of this study was to investigate the diagnosis of colonic polyps (CP) through the computed tomography (CT) images combined with colonoscopy based on Fourier central slice theorem algorithm. In this study, 86 patients with CP admitted to hospital were selected as research objects. CT imaging and colonoscopy were applied to diagnose the patients based on the algorithm of Fourier central slice theorem. The results showed that the diagnostic detection rates of CP and colon cancer (CC) 
+
+----------------------------------------------------------------------
+
+Test 17
+Home cluster: 300
+Intruder cluster: 303
+True intruder position: 2
+Predicted: None
+Correct: False
+Cost: $0.001232
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4387986386
+      Title: A PHYSICS-INFORMED NEURAL NETWORK SURROGATE MODEL FOR TIDAL SIMULATIONS
+      Abstract: Notable advancements in computational power has facilitated the utilization of intricate numerical methods in flood modeling in recent years.Hydrodynamic modelling approaches to predict flood inundation are robust compared to empirical approaches, which are solely based on the statistical patterns of hydrological variables obtained from observed data.Despite the benefits of numerical flood modelling tools, significant computational costs of implementing such models at high spatio-temporal resolu
+
+  [2] ID=https://openalex.org/W4391693204 *** INTRUDER ***
+      Title: Estimating blue mussel (Mytilus edulis) connectivity and settlement capacity in mid-latitude fjord regions
+      Abstract: Abstract The mussel industry faces challenges such as low and inconsistent levels of larvae settlement and poor-quality spat, leading to variable production. However, mussel farming remains a vital sustainable and environmentally responsible method for producing protein, fostering ecological responsibility in the aquaculture sector. We investigate the population connectivity and larval dispersion of blue mussels ( Mytilus edulis ) in Scottish waters, as a case study, using a multidisciplinary ap
+
+  [3] ID=https://openalex.org/W4401814117
+      Title: Comparative Analysis of Deep Learning and Traditional Airborne Electromagnetic Data Processing: A Case Study
+      Abstract: State-of-the-art airborne electromagnetic (AEM) systems conduct large-scale surveys and produce thousands of line kilometers of data. These large volumes of AEM data are generally subjected to manual inspection for identifying and culling data corrupted by couplings from various sources, such as fences and power lines, as well as the assessment for late-time noise. Although effective, this traditional AEM data processing is subjective and time consuming. This study evaluates the efficacy of a re
+
+  [4] ID=https://openalex.org/W4378231067
+      Title: Plug-and-Play Stein variational gradient descent for Bayesian post-stack seismic inversion
+      Abstract: Summary Sampling from a target posterior distribution provides a fundamental approach to quantifying uncertainties in geophysical inverse problems. However, selecting appropriate prior information in probabilistic inversion is crucial (yet non-trivial) as it influences the ability of a sampling-based inference algorithm to provide geological realism in the posterior samples. To tackle such a challenge, we present a novel algorithm, called the Plug-and-Play Stein Variational Gradient Descent (PnP
+
+  [5] ID=https://openalex.org/W4392579110
+      Title: A detailed earthquake catalog using Machine Learning-based methods for Tuscany, Italy
+      Abstract: Seismic activity in Tuscany, Italy, is driven by the interplay between complex tectonics and local geological processes. Fluid-driven seismic sequences may occur in high-enthalpy geothermal regions, such as the Larderello-Travale Geothermal Field (LTGF), the oldest and among the most productive geothermal systems of the world. To better understand the regional tectonic setting, we build a detailed seismic catalog of earthquake hypocenters and magnitudes from a composite seismic network consistin
+
+----------------------------------------------------------------------
+
+Test 18
+Home cluster: 213
+Intruder cluster: 220
+True intruder position: 3
+Predicted: None
+Correct: False
+Cost: $0.001080
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4387414068
+      Title: Automated Caption Generation for Video Call with Language Translation
+      Abstract: In the modern era, virtual communication between individuals is common. Many people’s lives have been made simpler in a number of circumstances by providing subtitles, generating automated captions for social media videos, and language translation from a source language to a targeted language. Both are included, which offers face-to-face translated captions during video conversations. React is used for application development. To send the data, socket programming is utilized. Context is understo
+
+  [2] ID=https://openalex.org/W3168231646
+      Title: Development of a Positive Body Image Chatbot (KIT) With Young People and Parents/Carers: Qualitative Focus Group Study
+      Abstract: Background Body image and eating disorders represent a significant public health concern; however, many affected individuals never access appropriate treatment. Conversational agents or chatbots reflect a unique opportunity to target those affected online by providing psychoeducation and coping skills, thus filling the gap in service provision. Objective A world-first body image chatbot called “KIT” was designed. The aim of this study was to assess preliminary acceptability and feasibility via t
+
+  [3] ID=https://openalex.org/W4386947837 *** INTRUDER ***
+      Title: The Future of Corruption’s Handling in the Regions and The Application of Restorative Justice
+      Abstract: Corruption is the biggest obstacle in implementing the development process, and until now, it has yet to be appropriately resolved although various models of retributive punishment have been applied. As a result, tThe losses suffered by the state continue to increase, and as a consequence, people cannot enjoy public facilities as they should. Cooperation between the Police, the Attorney General’s Office, and the Ministry of Home Affairs, which forms coordination between Aparat Pengawas Intern Pe
+
+  [4] ID=https://openalex.org/W4395039028
+      Title: Ergonomic LLM or LLM for Ergonomics? Prompt engineering insights for an interventional case study
+      Abstract: Abstract Background With the arrival of new technologies associated with the fourth industrial revolution (IR 4.0), the way humans interact with technology has undergone fundamental changes. In the last two years, a new generation of technology, large language models (LLMs), and with the leader position of ChatGPT from OpenAI has gained a lot of attention. Objective In the current study, prompt engineering technique usefulness regards to Human-Chat GPT interaction is discussed. Methods Three typ
+
+  [5] ID=https://openalex.org/W3201162576
+      Title: Perspective-taking and Pragmatics for Generating Empathetic Responses Focused on Emotion Causes
+      Abstract: Empathy is a complex cognitive ability based on the reasoning of others’ affective states. In order to better understand others and express stronger empathy in dialogues, we argue that two issues must be tackled at the same time: (i) identifying which word is the cause for the other’s emotion from his or her utterance and (ii) reflecting those specific words in the response generation. However, previous approaches for recognizing emotion cause words in text require sub-utterance level annotation
+
+----------------------------------------------------------------------
+
+Test 19
+Home cluster: 200
+Intruder cluster: 004
+True intruder position: 4
+Predicted: None
+Correct: False
+Cost: $0.001211
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4386233065
+      Title: EMOSTUDENT: A DATASET FOR COMPLEX STUDENT BEHAVIOUR EVALUATION
+      Abstract: This article discusses artificial intelligence based automated online proctoring systems. The practical implementation of the task of analysing students’ behaviour in the process of working with these systems and the datasets used to solve this task were considered. A general model for processing data on human activity in the process of online learning has been created, which is aimed at analysing and describing the activity and emotional state of the student. For this purpose, various features 
+
+  [2] ID=https://openalex.org/W4406001386
+      Title: AI Literacy for Young Learners: Engaging Muhibbah School Students in the Future of Technology
+      Abstract: Artificial intelligence (AI) is a set of technologies that allow computers to imitate human intelligence and perform complex tasks, such as (1) Understanding language (2) Analyzing data (3) Recognizing images (4) Writing (5) Making predictions. The presence of AI today cannot be avoided but must be wise in utilizing it in daily activities. This community service program is the first step in an effort to prepare the younger generation in Sarawak to be able to compete in the digital era. By collab
+
+  [3] ID=https://openalex.org/W4386835803
+      Title: Analysis of the Current Situation of Big Data MOOCs in the Intelligent Era Based on the Perspective of Improving the Mental Health of College Students
+      Abstract: A three-dimensional MOOC analysis framework was developed, focusing on platform design, organizational mechanisms, and course construction. This framework aims to investigate the current situation of big data MOOCs in the intelligent era, particularly from the perspective of improving the mental health of college students; moreover, the framework summarizes the construction experience and areas for improvement. The construction of 525 big data courses on 16 MOOC platforms is compared and analyze
+
+  [4] ID=https://openalex.org/W4399563848 *** INTRUDER ***
+      Title: YOLO-6D-Pose: Enhancing YOLO for Single-Stage Monocular Multi-Object 6D Pose Estimation
+      Abstract: Directly regressing 6 degrees of freedom for all the objects from a single RGB image is not well explored. Even end-to-end pose estimation approaches for a single object are inferior compared to state-of-the-art methods in terms of accuracy. Most 6D pose estimation frameworks are multi-stage relying on off-the-shelf deep networks for object and keypoint detection to establish correspondences between 3D object keypoints and 2D image locations. This is followed by applying a variant of a RANSAC-ba
+
+  [5] ID=https://openalex.org/W4390957643
+      Title: Automatic Classification of Learning Material Styles
+      Abstract: Although video lessons are often used in diverse areas, the lack of a common approach to defining and classifying their styles results in using many different models for these purposes. There is a need to build a framework through which these styles can be defined and classified. Much has been done to investigate the effects of these styles on student engagement and learning outcomes. These studies suggest that video lesson styles affect academic performance and that students learn better throug
+
+----------------------------------------------------------------------
+
+Test 20
+Home cluster: 210
+Intruder cluster: 301
+True intruder position: 2
+Predicted: None
+Correct: False
+Cost: $0.001079
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4392845517
+      Title: Tracking User Sentiment Changes on Social Networks
+      Abstract: We present a time-dependent approach for learning temporal co-variates explaining the subsequent user sentiments in social networks. In most of the existing approaches, we note that the underlying text classification setting, generally used to model user sentiments, is designed to ingest a user comment generated at time t to predict his corresponding sentiment at the same time. Under such constraint, user sentiments can only be given whenever she or he has generated a comment. Furthermore, the e
+
+  [2] ID=https://openalex.org/W3080724268 *** INTRUDER ***
+      Title: Efficient Graph Convolutional Self-Representation for Band Selection of Hyperspectral Image
+      Abstract: Hyperspectral image (HSI) band selection (BS) is an important task for HSI dimensionality reduction, whose goal is to select an informative band subset containing less redundancy. However, traditional BS methods basically work in the Euclidean domain, and thus, often neglect to consider the structural information of spectral bands. In this article, to make full use of the structural information, a novel BS method termed as efficient graph convolutional self-representation (EGCSR) is proposed by 
+
+  [3] ID=https://openalex.org/W4394994739
+      Title: Identifying Sponsored Content and Misleading Information in Native Advertising
+      Abstract: Local advertising has become a popular form of online advertising, blurring the lines between traditional commercials and editorial content. This type of advertising is often presented in the same format as the surrounding content, making it difficult for readers to distinguish between sponsored and non-sponsored content. Moreover, some native advertisements may intentionally mislead readers by presenting biased or false information. To address this issue, researchers have developed strategies t
+
+  [4] ID=https://openalex.org/W4384823130
+      Title: BDI-Sen: A Sentence Dataset for Clinical Symptoms of Depression
+      Abstract: People tend to consider social platforms as convenient media for expressing their concerns and emotional struggles. With their widespread use, researchers could access and analyze user-generated content related to mental states. Computational models that exploit that data show promising results in detecting at-risk users based on engineered features or deep learning models. However, recent works revealed that these approaches have a limited capacity for generalization and interpretation when con
+
+  [5] ID=https://openalex.org/W4392188731
+      Title: “Detecting Email Spam with Precision: A Logistic Regression Approach”
+      Abstract: With the increasing popularity of email communication, the problem of spam is growing, causing problems and security threats to users because email-id is fundamental for account creation on every other platform on the internet… Naive Bayes algorithm is a simple and effective text classification algorithm and this paper has been extensively analyzed to evaluate its performance in classifying email as spam or non-spam. The paper presents the details of the algorithm, data preprocessing technique, 
+
+----------------------------------------------------------------------
+
+Test 21
+Home cluster: 412
+Intruder cluster: 421
+True intruder position: 5
+Predicted: None
+Correct: False
+Cost: $0.001169
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W3080950018
+      Title: Profiling and optimizing deep learning inference on mobile GPUs
+      Abstract: Mobile GPU, as the ubiquitous computing hardware on almost every smartphone, is being exploited for the deep learning inference. In this paper, we present our measurements on the inference performance with mobile GPUs. Our observations suggest that mobile GPUs are underutilized. We study the inefficient issue in depth and find that one of root causes is the improper partition of compute workload. To solve this, we propose a heuristics-based workload partitioning approach, considering both perfor
+
+  [2] ID=https://openalex.org/W4390483416
+      Title: A Load Balancing Aware Task Scheduling using Hybrid Firefly Salp Swarm Algorithm in Cloud Computing
+      Abstract: Cloud computing is an evolutionary computational model which provides on-demand scalable and flexible resources by the pay-per-use concept.Due to the flexibility of cloud, several organizations are setting up more data centers and switching their businesses to the cloud technology.These industries need a proper load balancing to ensure the efficient resources utilization, which reduces resource wastage and helps to optimize costs.Optimal resource allocation can be achieved through efficient task
+
+  [3] ID=https://openalex.org/W4396817368
+      Title: Cross-Edge Orchestration of Serverless Functions With Probabilistic Caching
+      Abstract: Serverless edge computing adopts an event-based paradigm that provides back-end services and dynamically provisions resources as needed, resulting in efficient resource utilization. To improve the end-to-end latency and revenue, service providers need to optimize the number and placement of serverless containers while considering the system cost (i.e., latency cost and container running cost) incurred by the provisioning. The particular reason for this circumstance is that frequently creating an
+
+  [4] ID=https://openalex.org/W4388426846
+      Title: Efficient Container Image Updating in Low-bandwidth Networks with Delta Encoding
+      Abstract: Containers are the technology for Linux to isolate execution environments. By distributing a container image, which is a collection of files contained in the container, users can use an execution environment that includes the necessary files and libraries. However, container images are tens to hundreds of megabytes in size and require many network resources to be transferred. Especially in low-bandwidth network environments like edge computing, frequent image updating can be difficult and affect
+
+  [5] ID=https://openalex.org/W3094353319 *** INTRUDER ***
+      Title: TopoScope
+      Abstract: Knowledge of the Internet topology and the business relationships between Autonomous Systems (ASes) is the basis for studying many aspects of the Internet. Despite the significant progress achieved by latest inference algorithms, their inference results still suffer from errors on some critical links due to limited data, thus hindering many applications that rely on the inferred relationships. We take an in-depth analysis on the challenges inherent in the data, especially the limited coverage an
+
+----------------------------------------------------------------------
+
+Test 22
+Home cluster: 320
+Intruder cluster: 212
+True intruder position: 3
+Predicted: None
+Correct: False
+Cost: $0.001257
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W3124098131
+      Title: Technology Focus: EOR Modeling (January 2021)
+      Abstract: The enhanced-oil-recovery (EOR) literature produced in the past several months was dominated by reservoir modeling and characterization; flood enhancements; machine learning; and, more notably, relative permeability estimation. This last one needs to be under-stood further. Relative permeability characterizes flow in porous media, the understanding and manipulating of which is key to the success of EOR. Our fascination with the topic during the last 75 years, therefore, is understandable. Starti
+
+  [2] ID=https://openalex.org/W3171238598
+      Title: Full-Field Optimization of Offshore Squeeze Campaigns in Total Gulf of Guinea Fields
+      Abstract: Summary Scale inhibitor (SI) squeeze treatments are one of the most common techniques to prevent downhole scale formation. In this paper, we present the optimization of treatment design for multiple wells included in offshore campaigns. Two offshore fields with 8 and 12 production wells in west Africa were considered that are separately treated via yearly squeeze campaigns. The wells included in each campaign are treated in a single trip of the supply vessel. Based on the storage capacity of the
+
+  [3] ID=https://openalex.org/W3089442425 *** INTRUDER ***
+      Title: Granger Causality Analysis based on Neural Networks Architectures for bivariate cases
+      Abstract: This work deals with an analysis of Granger Causality computation based on artificial neural networks, including a nonlinear relation between the involved variables. Information about the training parameters are exhibited in order to visualize how the conditions of the chosen model to obtain the connectivity information depend on the architecture of network. Three chaotic maps with a bivariate case built from two time series were employed to see the effect of training parameters of the models. N
+
+  [4] ID=https://openalex.org/W4291752943
+      Title: The digital revolution in mudlogging: An innovative workflow for advanced analysis and classification of drill cuttings using computer vision and machine-learning
+      Abstract: PreviousNext No AccessSecond International Meeting for Applied Geoscience & EnergyThe digital revolution in mudlogging: An innovative workflow for advanced analysis and classification of drill cuttings using computer vision and machine-learningAuthors: Simone Di SantoTetsushi YamadaKarim BondabouMahdi AmmarSimone Di SantoSchlumberger, Tetsushi YamadaSchlumberger, Karim BondabouSchlumberger, and Mahdi AmmarSchlumbergerhttps://doi.org/10.1190/image2022-3750340.1 SectionsAboutPDF/ePub ToolsAdd to f
+
+  [5] ID=https://openalex.org/W4401450216
+      Title: Sand Production Prediction with Machine Learning using Input Variables from Geological and Operational Conditions in the Karazhanbas Oilfield, Kazakhstan
+      Abstract: Abstract This paper describes a comprehensive approach to predict sand production in the Karazhanbas oilfield using machine learning (ML) techniques. By analyzing data from 2000 wells, the research uncovered the complex dynamics of sand production and emphasized the critical need for accurately predicting the peak sand mass and its occurrence time. ML techniques can have a significant impact on prediction of sand production and on the optimization of oilfield operation, which can be improved wit
+
+----------------------------------------------------------------------
+
+Test 23
+Home cluster: 262
+Intruder cluster: 010
+True intruder position: 4
+Predicted: None
+Correct: False
+Cost: $0.001168
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4389049828
+      Title: Application of a 3D Talking Head as Part of Telecommunication AR, VR, MR System: Systematic Review
+      Abstract: In today’s digital era, the realms of virtual reality (VR), augmented reality (AR), and mixed reality (MR) collectively referred to as extended reality (XR) are reshaping human–computer interactions. XR technologies are poised to overcome geographical barriers, offering innovative solutions for enhancing emotional and social engagement in telecommunications and remote collaboration. This paper delves into the integration of (AI)-powered 3D talking heads within XR-based telecommunication systems.
+
+  [2] ID=https://openalex.org/W4296805935
+      Title: 3D optical illusion as visualisation tools in spatial planning and development
+      Abstract: Abstract Spatial planning and development use various visualisation methods. Technological advancements in visualisation techniques have allowed imaging to shift from 2 to 3D dimensions. 3D optical illusion, which converts information recorded in the digital form into a three-dimensional presentation, can be a new tool for presenting spatial development solutions. Since a optical illusion is a direct spatial presentation, it requires neither specialist preparation nor spatial imagination. For th
+
+  [3] ID=https://openalex.org/W3211151880
+      Title: <i>Zoom‐fwd</i>: Efficient technique for 3D gestual interaction with distant and occluded objects in virtual reality
+      Abstract: Abstract In the last decade, there has been an extraordinary acceleration in immersive technologies, including virtual reality (VR) and augmented reality (AR). The VR interfaces have widely explored various 3D interaction‐based approaches. 3D interaction is one of the main features of any VR system. However, the problems while selecting and manipulating distant and occluded 3D virtual objects in VR are still unresolved and suffer from a lack of precision and accuracy. To interact with VR/AR syst
+
+  [4] ID=https://openalex.org/W4226156658 *** INTRUDER ***
+      Title: Asymmetric Proxy Loss for Multi-View Acoustic Word Embeddings
+      Abstract: Acoustic word embeddings (AWEs) are discriminative representations of speech segments, and learned embedding space reflects the phonetic similarity between words.With multi-view learning, where text labels are considered as supplementary input, AWEs are jointly trained with acoustically grounded word embeddings (AGWEs).In this paper, we expand the multiview approach into a proxy-based framework for deep metric learning by equating AGWEs with proxies.A simple modification in computing the similar
+
+  [5] ID=https://openalex.org/W934935151
+      Title: Blending Sustainable Design, Systems Thinking, and Engineering Science Concepts in an Introductory Engineering Course
+      Abstract: Abstract Blending Sustainable Design, Systems Thinking, and Engineering Science Concepts in an Introductory Engineering CourseOur relatively new engineering program has been designed based on the Engineer of 2020. Totrain this engineer, the program blends engineering science fundamentals with sustainableengineering design and systems thinking while maintaining the university wide liberal arts core.This program, which has recently completed its fourth year, emphasizes problem based learningthroug
+
+----------------------------------------------------------------------
+
+Test 24
+Home cluster: 211
+Intruder cluster: 030
+True intruder position: 5
+Predicted: None
+Correct: False
+Cost: $0.001224
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4394888516
+      Title: Communicating Europe: a computational analysis of the evolution of the European Commission’s communication on Twitter
+      Abstract: Abstract Social media is an important means of communication for political agencies, which makes it possible to engage with large sectors of the public. For institutions which are not directly elected by voters, such as the European Commission (EC), social media can be a strategic tool for increasing perceived legitimacy and citizen engagement, especially in contexts of high politicization. In this paper, we use natural language processing techniques to provide a comprehensive overview of how EC
+
+  [2] ID=https://openalex.org/W3088434931
+      Title: Gradient Boosting and Language Model Ensemble for Tweet Recommendation
+      Abstract: In this paper, we describe the approach used on the RecSys Challenge 20201 which focuses on a real-world task of tweet engagement prediction. A large database of ∼ 160M public tweets, obtained by subsampling within 2 weeks, is used with the goal to predict the probability for different types of engagement (Like, Reply, Retweet and Retweet with comment) of a target user for a set of tweets. The proposed approach, uses the power of Gradient Boosting Trees to combine features from users and tweet t
+
+  [3] ID=https://openalex.org/W4316193516
+      Title: Algorithms against Corruption: A Conjoint Study on Designing Automated Twitter Posts to Encourage Collective Action
+      Abstract: Digital technologies offer new communicative affordances to fight corruption. Bottom-up efforts increasingly use algorithmic tools, i.e., bots, to automate corruption reporting on social media platforms. This study investigates how to design a bot to effectively and responsibly mobilize people for collective action against corruption. In a large (n=1,331) pre-registered choice-based conjoint survey, we test six message design features: type of injustice, degree of injustice, anger, political par
+
+  [4] ID=https://openalex.org/W4391455009
+      Title: The Methodological Machinery of Wargaming: A Path toward Discovering Wargaming’s Epistemological Foundations
+      Abstract: Abstract This paper proposes a comprehensive research program for determining the epistemological foundations of analytic wargaming. Wargaming has been used in military, government, and private sectors for decades, with tens of millions of dollars spent annually on it. In light of the changing strategic circumstances of the twenty-first century, it has only become more popular. However, the epistemological foundations of the method are poorly understood. Many professional wargamers contend that 
+
+  [5] ID=https://openalex.org/W4319069038 *** INTRUDER ***
+      Title: Optimized Rational Dilation Wavelet Transform for Automatic Imagined Speech Recognition
+      Abstract: Imagined speech is a process in which a person imagines words without saying them. Electroencephalogram (EEG)-based brain–computer interface (BCI) systems help in automatically identifying imagined speech to facilitate persons with severe brain disorders. Extracting meaningful information from the raw EEG signal is a challenging task due to the nonstationary nature of EEG signals. Decomposing a signal into several sub-bands (SBs) using rational dilation wavelet transform (RADWT) requires selecti
+
+----------------------------------------------------------------------
+
+Test 25
+Home cluster: 453
+Intruder cluster: 150
+True intruder position: 2
+Predicted: None
+Correct: False
+Cost: $0.001103
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4283767019
+      Title: Model-based vs Data-driven Estimation of Vehicle Sideslip Angle and Benefits of Tyre Force Measurements
+      Abstract: This paper provides a comprehensive comparison of model-based and data-driven approaches and analyses the benefits of using measured tyre forces for vehicle sideslip angle estimation. The model-based approaches are based on an extended Kalman filter and an unscented Kalman filter, in which the measured tyre forces are utilised in the observation model. An adaptive covariance matrix is introduced to minimise the tyre model mismatch during evasive manoeuvres. For data-driven approaches, feed forwa
+
+  [2] ID=https://openalex.org/W3207377845 *** INTRUDER ***
+      Title: Reproducible, high-dimensional imaging in archival human tissue by Multiplexed Ion Beam Imaging by Time-of-Flight (MIBI-TOF)
+      Abstract: Abstract Multiplexed ion beam imaging by time-of-flight (MIBI-TOF) is a form of mass spectrometry imaging that uses metal labeled antibodies and secondary ion mass spectrometry to image dozens of proteins simultaneously in the same tissue section. Working with the National Cancer Institute’s (NCI) Cancer Immune Monitoring and Analysis Centers (CIMAC), we undertook a validation study, assessing concordance across a dozen serial sections of a tissue microarray of 21 samples that were independently
+
+  [3] ID=https://openalex.org/W4285814481
+      Title: Research on a Control Method of DC Speed Regulating Electric Energy Vehicle Based on Neural Network
+      Abstract: With the aggravation of the global shortage of petroleum resources, the problem of optimizing the motor efficiency of new energy vehicles is imminent. Considering that it is difficult to set the speed controller parameters in the traditional brushless DC motor speed system control, and the traditional control has the disadvantages of lag and low-speed prediction accuracy due to the current state feedback signal, a control algorithm based on fuzzy BP neural network is proposed for the energy vehi
+
+  [4] ID=https://openalex.org/W3153958196
+      Title: Hybrid intelligent controller based torque ripple minimization in switched reluctance motor drive
+      Abstract: An inherent torque ripple characterizes switched reluctance technology from conventional technology. The ultimate aim of this paper is to reduce the torque ripple of the switched reluctance motor drive using genetic neural network controller based direct torque scheme. In the proposed controller network appropriate bits of data are chosen for training and testing. The proper selection of the learning rate and momentum will help in weight adjustment. Here the error is reduced which proves that th
+
+  [5] ID=https://openalex.org/W4384338641
+      Title: Almost Sure Exponential Stability of Uncertain Stochastic Hopfield Neural Networks Based on Subadditive Measures
+      Abstract: For this paper, we consider the almost sure exponential stability of uncertain stochastic Hopfield neural networks based on subadditive measures. Firstly, we deduce two corollaries, using the Itô–Liu formula. Then, we introduce the concept of almost sure exponential stability for uncertain stochastic Hopfield neural networks. Next, we investigate the almost sure exponential stability of uncertain stochastic Hopfield neural networks, using the Lyapunov method, Liu inequality, the Liu lemma, and e
+
+----------------------------------------------------------------------
+
+Test 26
+Home cluster: 100
+Intruder cluster: 360
+True intruder position: 2
+Predicted: None
+Correct: False
+Cost: $0.001239
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4389154939
+      Title: Infrared Thermal Imaging Analysis for Diagnosing Toddler’s Fractures
+      Abstract: The purpose of this study was to explore and develop high-resolution infrared thermal (HRIT) imaging for screening toddler’s fracture. A Toddler’s fracture is a common tibial fracture of children younger than 6 years old. Initial x-ray radiographs may not show the fracture and another x-ray during a follow-on visit is usually required. The study included 39 participants admitted to an emergency department with a suspected toddler’s fracture. X-ray confirmed 8 cases with a toddler’s fracture (20.
+
+  [2] ID=https://openalex.org/W4242081494 *** INTRUDER ***
+      Title: Data-based Modeling of Building Consumption Profile for Optimal Flexibility: Application to Energy Intensive Industry
+      Abstract: Despite the vast research on the flexibility of buildings consumption, current literature is more about predicting the impacts of energy flexibility than focusing on its modeling. In this paper, a methodology is provided to go from data-driven modeling of the load consumption to an optimization problem with a Mixed-Integer Linear Programming (MILP) formulation. Illustrated on an Energy Intensive Industries (EII) with an economic point of view, the methodology is suitable for any consumption site
+
+  [3] ID=https://openalex.org/W4394911989
+      Title: Predicting non-muscle invasive bladder cancer outcomes using artificial intelligence: a systematic review using APPRAISE-AI
+      Abstract: Abstract Accurate prediction of recurrence and progression in non-muscle invasive bladder cancer (NMIBC) is essential to inform management and eligibility for clinical trials. Despite substantial interest in developing artificial intelligence (AI) applications in NMIBC, their clinical readiness remains unclear. This systematic review aimed to critically appraise AI studies predicting NMIBC outcomes, and to identify common methodological and reporting pitfalls. MEDLINE, EMBASE, Web of Science, an
+
+  [4] ID=https://openalex.org/W3169910570
+      Title: ST-V-Net: incorporating shape prior into convolutional neural networks for proximal femur segmentation
+      Abstract: Abstract We aim to develop a deep-learning-based method for automatic proximal femur segmentation in quantitative computed tomography (QCT) images. We proposed a spatial transformation V-Net (ST-V-Net), which contains a V-Net and a spatial transform network (STN) to extract the proximal femur from QCT images. The STN incorporates a shape prior into the segmentation network as a constraint and guidance for model training, which improves model performance and accelerates model convergence. Meanwhi
+
+  [5] ID=https://openalex.org/W3122283607
+      Title: Fístula portobiliar como complicación mayor de biopsia hepática transpercutánea bajo marcación ecográfica
+      Abstract: Woman of 71 years, in study of chronic liver disease, Child-Pugh A, computed tomography (CT) suggestive of cirrhosis, autoimmune hepatitis score probable. It was decided to perform a liver percutaneous biopsy for diagnosis and treatment. After the procedure, the patient presented a self-limited episode of hematemesis. Upper digestive endoscopy without blood or other injury, abdominal ultrasound without free liquid. The patient was hospitalized, evolving hemodynamically stable without new bleedin
+
+----------------------------------------------------------------------
+
+Test 27
+Home cluster: 123
+Intruder cluster: 442
+True intruder position: 3
+Predicted: None
+Correct: False
+Cost: $0.001298
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4378806737
+      Title: THE EFFECT OF COMPETENCE, FACILITIES, AND INTERPERSONAL COMMUNICATION ON PATIENT SATISFACTION THROUGH QUALITY OF SERVICE AS INTERVENING VARIABLES IN NATUNA HOSPITAL
+      Abstract: The purpose of this study was to analyze patient satisfaction at the Natuna Hospital. This study uses the variables of competence, facilities and interpersonal communication on the effect of patient satisfaction through service quality. The population in this study were patients at the Natuna General Hospital. While the samples taken in this study were 121 people taken from the population. Data were collected using the questionnaire method, namely by providing a list of questions or questionnair
+
+  [2] ID=https://openalex.org/W3089442582
+      Title: The Price of Quota-based Diversity in Assignment Problems
+      Abstract: We introduce and analyze an extension to the matching problem on a weighted bipartite graph: Assignment with Type Constraints. The two parts of the graph are partitioned into subsets called types and blocks; we seek a matching with the largest sum of weights under the constraint that there is a pre-specified cap on the number of vertices matched in every type-block pair. Our primary motivation stems from the public housing program of Singapore, accounting for over 70% of its residential real est
+
+  [3] ID=https://openalex.org/W4320713335 *** INTRUDER ***
+      Title: The Impact of Considering State of Charge Dependent Maximum Charging Powers on the Optimal Electric Vehicle Charging Scheduling
+      Abstract: Intelligent charging solutions facilitate mobility electrification. Mathematically, electric vehicle (EV) charging scheduling formulations are constrained optimization problems. Therefore, accurate constraint modeling is theoretically and practically relevant for scheduling. However, the current scheduling literature lacks an accurate problem formulation, including the joint modeling of the nonlinear battery charging profile and minimum charging power constraints. The minimum charging power cons
+
+  [4] ID=https://openalex.org/W4308821815
+      Title: Initial Development of Tools to Identify Child Abuse and Neglect in Pediatric Primary Care
+      Abstract: Abstract Background : Child abuse and neglect (CAN) is prevalent, associated with long-term adversities, and often undetected. Primary care settings offer a unique opportunity to identify CAN and facilitate referrals, when warranted. Electronic health records (EHR) contain extensive information to support healthcare decisions, yet time constraints preclude most providers from extensive EHR reviews that could indicate CAN. Strategies that summarize EHR data to identify CAN and convey this to prov
+
+  [5] ID=https://openalex.org/W4377021482
+      Title: What is the future of artificial intelligence in obstetrics? A qualitative study among healthcare professionals
+      Abstract: Objective This work explores the perceptions of obstetric clinicians about Artificial Intelligence (AI) in order to bridge the gap in uptake of AI between research and medical practice. Identifying potential areas where AI can contribute to clinical practice, enables AI research to align with the needs of clinicians and ultimately patients. Design Qualitative interview study. Setting A national study conducted in the Netherlands. Sample Dutch clinicians working in obstetrics with varying relevan
+
+----------------------------------------------------------------------
+
+Test 28
+Home cluster: 045
+Intruder cluster: 431
+True intruder position: 1
+Predicted: None
+Correct: False
+Cost: $0.001125
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4306694133 *** INTRUDER ***
+      Title: A data‐driven fault detection and fault‐tolerant control scheme for large‐scale systems and its application on multi‐area interconnected power systems
+      Abstract: Stimulated by the enhancing requirements for system safety as well as process reliability in complex industrial processes, this paper investigates a data-driven fault detection and fault-tolerant control scheme for large-scale systems. To this end, a pair-wise decomposition approach is first presented based on the inclusion principle, which expands the original large-scale system into a set of disjointed pair-wise subsystems. Then, for the pair-wise subsystems, the observer-based residual genera
+
+  [2] ID=https://openalex.org/W4386896750
+      Title: FedEgo: Privacy-preserving Personalized Federated Graph Learning with Ego-graphs
+      Abstract: As special information carriers containing both structure and feature information, graphs are widely used in graph mining, e.g., Graph Neural Networks (GNNs). However, graph data are stored separately in multiple distributed parties in some practical scenarios, which may not be directly shared due to conflicts of interest. Hence, federated graph neural networks are proposed to address such data silo issues while preserving each party’s privacy (or client). Nevertheless, different graph data dist
+
+  [3] ID=https://openalex.org/W2978200109
+      Title: On the Duality Between Network Flows and Network Lasso
+      Abstract: Many applications generate data with an intrinsic network structure such as time series data, image data or social network data. The network Lasso (nLasso) has been proposed recently as a method for joint clustering and optimization of machine learning models for networked data. The nLasso extends the Lasso from sparse linear models to clustered graph signals. This paper explores the duality of nLasso and network flow optimization. We show that, in a very precise sense, nLasso is equivalent to a
+
+  [4] ID=https://openalex.org/W4396680521
+      Title: RS-DGC: Exploring Neighborhood Statistics for Dynamic Gradient Compression on Remote Sensing Image Interpretation
+      Abstract: Distributed deep learning has recently been attracting more attention in remote sensing (RS) applications due to the challenges posed by the increased amount of open data that are produced daily by Earth observation programs. However, the high communication costs of sending model updates among multiple nodes are a significant bottleneck for scalable distributed learning. Gradient sparsification has been validated as an effective gradient compression (GC) technique for reducing communication cost
+
+  [5] ID=https://openalex.org/W3174799381
+      Title: On the Role of Micro-categories to Characterize Event Popularity in Meetup
+      Abstract: Event-based social networking platforms such as Meetup have recently witnessed a huge growth. However, with the rise in the volume of groups and events, making individual events attractive has become increasingly challenging for its organizers. As a result, we find that events hosted by groups of same category at similar venues and similar times, also widely differ in their popularity. Data study reveals that the topics specified in textual descriptions of events may be key to their popularity. 
+
+----------------------------------------------------------------------
+
+Test 29
+Home cluster: 351
+Intruder cluster: 000
+True intruder position: 1
+Predicted: None
+Correct: False
+Cost: $0.001279
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4240087815 *** INTRUDER ***
+      Title: Performance evaluation of de-noised medical images after removing speckled noise by wavelet transform
+      Abstract: In the healthcare community, the quality of the medical image is of prime concern to make accurate observations for diagnosis. Different types of noise such as Gaussian noise, impulse noise and speckle noise, etc., have been observed as a main cause for the quality degradation of the medical image. This degradation may further lead to the inconsistent information for the diagnosis, which will directly affect the patient's life. The removal of the noise from the medical image to maintain its qual
+
+  [2] ID=https://openalex.org/W3128155691
+      Title: A 0.57-GOPS/DSP Object Detection PIM Accelerator on FPGA
+      Abstract: The paper presents an object detection accelerator featuring a processing-in-memory (PIM) architecture on FPGAs. PIM architectures are well known for their energy efficiency and avoidance of the memory wall. In the accelerator, a PIM unit is developed using BRAM and LUT based counters, which also helps to improve the DSP performance density. The overall architecture consists of 64 PIM units and three memory buffers to store inter-layer results. A shrunk and quantized Tiny-YOLO network is mapped 
+
+  [3] ID=https://openalex.org/W3108982836
+      Title: A Novel Highly Linear Voltage-To-Time Converter (VTC) Circuit for Time-Based Analog-To-Digital Converters (ADC) Using Body Biasing
+      Abstract: Time-based analog-to-digital converter is considered a crucial part in the design of software-defined radio receivers for its higher performance than other analog-to-digital converters in terms of operation speed, input dynamic range and power consumption. In this paper, two novel voltage-to-time converters are proposed at which the input voltage signal is connected to the body terminal of the starving transistor rather than its gate terminal. These novel converters exhibit better linearity, whi
+
+  [4] ID=https://openalex.org/W4387951816
+      Title: Sparsity-Oriented MRAM-Centric Computing for Efficient Neural Network Inference
+      Abstract: Near-memory computing (NMC) and in-memory computing (IMC) paradigms show great importance in non-von Neumann architecture. Spin-transfer torque magnetic random access memory (STT-MRAM) is considered as a promising candidate to realize both NMC and IMC for resource-constrained applications. In this work, two MRAM-centric computing frameworks are proposed: triple-skipping NMC (TS-NMC) and analog-multi-bit-sparsity IMC (AMS-IMC). The TS-NMC exploits the sparsity of activations and weights to implem
+
+  [5] ID=https://openalex.org/W4312646647
+      Title: DepFiN: A 12-nm Depth-First, High-Resolution CNN Processor for IO-Efficient Inference
+      Abstract: Applying convolutional neural networks (CNNs) on high-resolution images leads to very large intermediate feature maps (FMs), which dominate the memory traffic. Processing in the classical layer-by-layer order creates the requirement to store the complete FMs at once, when moving from one layer to the next. As the size of these FMs only realistically allows this in off-chip memory, this leads to high off-chip bandwidth, which comes at great energy costs. The DepFiN processor chip, presented in th
+
+----------------------------------------------------------------------
+
+Test 30
+Home cluster: 031
+Intruder cluster: 453
+True intruder position: 3
+Predicted: None
+Correct: False
+Cost: $0.001155
+
+Model output:
+
+
+Panel details:
+  [1] ID=https://openalex.org/W4308711695
+      Title: Using Machine Learning to Explore the Crucial Factors of Assistive Technology Assessments: Cases of Wheelchairs
+      Abstract: The global population is gradually entering an aging society; chronic diseases and functional disabilities have increased, thereby increasing the number of people with limitations. Therefore, the demand for assistive devices has increased substantially. Due to numerous and complex types of assistive devices, an assessment by a professional therapist is required to help the individual find a suitable assistive device. According to actual site data, the assessment needs of "wheelchairs" accounted 
+
+  [2] ID=https://openalex.org/W4404151377
+      Title: Machine learning analysis for predicting performance in female volleyball players in India
+      Abstract: Talent identification and player development are crucial aspects of sports management, particularly in volleyball, where understanding players' performance predictors is essential. The primary objective is to investigate the relationships between players' demographic and physical attributes and their on-court performance, providing valuable insights for talent identification and player development strategies. The dataset comprises demographic and physical attributes alongside performance metrics
+
+  [3] ID=https://openalex.org/W3200202666 *** INTRUDER ***
+      Title: Artificial Neural Network Hysteresis Operators for the Identification of Hammerstein Hysteretic Systems
+      Abstract: This paper introduces explicit neural representations of fundamental hysteresis operators such as the play and stop operators. The hysteresis neurons are represented by recurrent artificial neural networks (ANN) using classical activation functions and are trained with gradient-based learning algorithms. The hysteresis neurons are combined into a single ANN hysteretic layer which, from a mathematical point of view, is equivalent to a classical Prandtl-Ishlinskii model expression, but has all the
+
+  [4] ID=https://openalex.org/W4206016361
+      Title: A Video-Based Taiwan Sign Language Recognition System Using Deep Learning Techniques
+      Abstract: Past research on sign language recognition has mostly been based on physical information obtained via wearable devices or depth cameras. However, both types of devices are costly and inconvenient to carry, making it difficult to gain widespread acceptance by potential users. The goal of this research is to use sophisticated and recently developed deep learning technology to build a recognition model for a Taiwanese version of sign language, with a limited focus on RGB images for training and rec
+
+  [5] ID=https://openalex.org/W4405489338
+      Title: Random Channel Ablation for Robust Hand Gesture Classification with Multimodal Biosignals
+      Abstract: Biosignal-based hand gesture classification is an important component of effective human-machine interaction. For multimodal biosignal sensing, the modalities often face data loss due to missing channels in the data which can adversely affect the gesture classification performance. To make the classifiers robust to missing channels in the data, this paper proposes using Random Channel Ablation (RChA) during the training process. Ultrasound and force myography (FMG) data were acquired from the fo
+
+----------------------------------------------------------------------
+

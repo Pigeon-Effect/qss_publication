@@ -1,0 +1,371 @@
+INTRUSION DETECTION - deepseek-chat (DEBUG)
+Tests: 10
+Accuracy: 90.0%
+Total cost: $0.011052
+
+======================================================================
+
+Test 1
+Home cluster: 452
+Intruder cluster: 433
+True intruder position: 1
+Predicted: 1
+Correct: True
+Cost: $0.001068
+
+Model output (raw):
+Home cluster topic: Multi-agent coordination and reinforcement learning for cooperative or adversarial tasks.
+
+Intruder topic: Multivariate time series imputation for energy data using neural networks.
+
+Final verdict: 1
+
+Panel details:
+  [1] ID=https://openalex.org/W4319870708 *** INTRUDER ***
+      Title: Multivariate time series imputation for energy data using neural networks
+      Abstract: Multivariate time series with missing values are common in a wide range of applications, including energy data. Existing imputation methods often fail to focus on the temporal dynamics and the cross-dimensional correlation simultaneously. In this paper we propose a two-step method based on an attention model to impute missing values in multivariate energy time series. First, the underlying distribution of the missing values in the data is learned. This information is then further used to train a
+
+  [2] ID=https://openalex.org/W4395029599
+      Title: Interception of Multiple Drone Targets by Heterogeneous Chasers using Heuristic Task Allocations with DQN-GNN Guidance Model
+      Abstract: This paper investigates the problem of air-to-air drone interception for counter-UAS operations. The fleet of interceptors (agents) are assigned to intercept the intruders (targets) mid air at designated area. There is requirement for heuristic task allocation algorithm to assign each of the agent to track and look for specific target, for better chasing (intervention) effectiveness and better use of resources, especially in cases of heterogeneous (non-identical) chasing agents. The task allocat
+
+  [3] ID=https://openalex.org/W3036855130
+      Title: Fortified Network Security Perception: A Decentralized Multiagent Coordination Perspective
+      Abstract: The essence of network security is the asymmetric online confrontation with the partial observable cyber threats, which requires the defense ability against unexpected security incidents. The existing network intrusion detection systems are mostly static centralized structure, and usually faced with problems such as high pressure of central processing node, low fault tolerance, low damage resistance and high construction cost. In this paper, exploiting the advantage of collaborative decision-mak
+
+  [4] ID=https://openalex.org/W4311080307
+      Title: Emergent Cooperation from Mutual Acknowledgment Exchange in Multi-Agent Reinforcement Learning
+      Abstract: Abstract Peer incentivization (PI) is a recent approach, where all agents learn to reward or to penalize each other in a distributed fashion which often leads to emergent cooperation. Current PI mechanisms implicitly assume a flawless communication channel in order to exchange rewards. These rewards are directly integrated into the learning process without any chance to respond with feedback. Furthermore, most PI approaches rely on global information which limits scalability and applicability to
+
+  [5] ID=https://openalex.org/W4366680618
+      Title: Evolutionary Reinforcement Learning: A Survey
+      Abstract: Reinforcement learning (RL) is a machine learning approach that trains agents to maximize cumulative rewards through interactions with environments. The integration of RL with deep learning has recently resulted in impressive achievements in a wide range of challenging tasks, including board games, arcade games, and robot control. Despite these successes, several critical challenges remain, such as brittle convergence properties caused by sensitive hyperparameters, difficulties in temporal credi
+
+----------------------------------------------------------------------
+
+Test 2
+Home cluster: 361
+Intruder cluster: 010
+True intruder position: 5
+Predicted: 5
+Correct: True
+Cost: $0.001035
+
+Model output (raw):
+Home cluster topic: Research on spatial-temporal analysis and geographic patterns, particularly in urban or environmental contexts.  
+Intruder topic: Study of cognitive resources and language predictability in reading comprehension.  
+Final verdict: 5
+
+Panel details:
+  [1] ID=https://openalex.org/W4313430848
+      Title: Network-Based Space-Time Scan Statistics for Detecting Micro-Scale Hotspots
+      Abstract: Events recorded in urban areas are often confined by the micro-scale geography of street networks, yet existing spatial–analytical methods do not usually account for the shortest-path distance of street networks. We propose space–time NetScan, a new spatial–temporal analytical method with improved accuracy for detecting patterns of concentrations across space and time. It extends the notion of a scan-statistic-type search window by measuring space-time patterns along street networks in order to 
+
+  [2] ID=https://openalex.org/W4320065753
+      Title: Street-View Greenspace Exposure and Childhood Asthma-Related Outcomes: Analyses in Project Viva
+      Abstract: Background and Aim: While higher levels of greenspace can mitigate air pollution, reduce stress, and increase physical activity, its role in childhood asthma is unclear. The aim of this study is to examine the associations of neighborhood greenspace based on Google street view (GS) images with asthma-related measures among children in Project Viva, a cohort in eastern Massachusetts participating in the Environmental influences on Child Health Outcomes (ECHO) consortium. Methods: We leveraged GSV
+
+  [3] ID=https://openalex.org/W4379806003
+      Title: Towards Impactful Applications of AI4EO in the Global South
+      Abstract: Advances in artificial intelligence (AI) and earth observation (EO) have led to promising new opportunities for promoting sustainable development in the Global South. However, adapting AI for EO (AI4EO) solutions to real-world problems in these contexts are not without risks and challenges. In this paper, we discuss the barriers to successful adoption of AI4EO in developing countries and propose a roadmap for more impactful applications of future AI4EO research. The recommendations emerge from t
+
+  [4] ID=https://openalex.org/W3014925810
+      Title: Identifying drivers of spatio‐temporal dynamics in barley yellow dwarf virus epidemiology as a critical factor in disease control
+      Abstract: Abstract Barley yellow dwarf virus (BYDV) is one of the most important viral diseases of small grains worldwide. An understanding of its epidemiology is crucial to control this disease in a sustainable way. The virus moves through the agricultural landscape via cereal aphids as vectors. Understanding movement of these aphids in space and time is of key importance and in doing so, the spatial and temporal variables that influence BYDV epidemiology can be identified. The presence of summer hosts, 
+
+  [5] ID=https://openalex.org/W4396809487 *** INTRUDER ***
+      Title: Limited cognitive resources reduce the language predictability benefit across the adult lifespan
+      Abstract: ABSTRACT Humans predict upcoming language effortlessly, but the cognitive costs of these predictions remain debated. In this study, we demonstrate that limiting executive resources through a concurrent task reduces the effect of language predictability on reading times. Participants (N=175, replication N=96) read short articles presented word-by-word while completing a secondary font colour n-back task, thus varying cognitive demand. Language predictability was indexed by word surprisal as deriv
+
+----------------------------------------------------------------------
+
+Test 3
+Home cluster: 302
+Intruder cluster: 321
+True intruder position: 2
+Predicted: 2
+Correct: True
+Cost: $0.001178
+
+Model output (raw):
+Home cluster topic: Landslide susceptibility mapping and ecological capability modeling using GIS-based methods and statistical models.  
+Intruder topic: Sorption of heavy metals onto clay minerals in aqueous solution.  
+Final verdict: 2
+
+Panel details:
+  [1] ID=https://openalex.org/W4285203812
+      Title: GIS-based landslide susceptibility mapping using frequency ratio and index of entropy models for She County of Anhui Province, China
+      Abstract: Abstract Landslides caused countless economic and casualty losses in China, especially in mountainous and hilly areas. Landslide susceptibility mapping is an important approach and tool for landslide disaster prevention and control. This study presents a landslide susceptibility assessment using frequency ratio (FR) and index of entropy (IOE) models within a geographical information system for She County in the mountainous region of South Anhui, China. First, the landslide locations were ascerta
+
+  [2] ID=https://openalex.org/W4308214633 *** INTRUDER ***
+      Title: Sorption studies of Pb(II) onto montmorillonite clay
+      Abstract: Abstract In this research, the lead (Pb(II)) removal rate of montmorillonite (Mt) was studied in aqueous solution. The adsorption conditions (contact time, pH, and temperature) were adjusted to study the effect of those factors on the removal rate of Pb(II) adsorption by Mt. The results indicated that the effect of temperature on the Pb(II) removal rate of Mt was not significant. The Pb(II) removal rate was found to be pH-dependent, improving with increasing pH in the range of 3 to 7. The equili
+
+  [3] ID=https://openalex.org/W4285225511
+      Title: Modelling Vegetation Condition using a Water Balance Model and Long Short-Term Memory Networks on a Floodplain Receiving Environmental Water
+      Abstract: Environmental water is delivered to floodplains to maintain environmental health in terms of vegetation health and animal populations in arid and semi-arid areas.When and how much environmental water is required to restore or maintain vegetation health requires robust predictions of vegetation response.We used Normalized Differences Vegetation Index (NDVI) derived from 30-year Landsat dataset to represent vegetation condition.A lake water balance model and long short-term memory networks (LSTMs)
+
+  [4] ID=https://openalex.org/W4220980505
+      Title: A Global-Scale Analysis of Hydrologic Extremes using Hidden Climate Indices
+      Abstract: &amp;lt;p&amp;gt;Hydrologic extremes (floods and intense precipitations) are among Earth&amp;amp;#8217;s most common natural hazards and cause considerable loss of life and economic damage. Describing their space-time variability in relation to climate is hence important for scientific and operational purposes. This presentation describes the use of an innovative probabilistic framework to jointly analyze global datasets of floods and extreme precipitations. This framework is based on the idea t
+
+  [5] ID=https://openalex.org/W3021801536
+      Title: Fuzzy and Boolean operation based modelling for evaluation of ecological capability in the Hyrcanian Forests
+      Abstract: Over the past four decades, management plan based on the Boolean Ecological Capability model has caused major problems in the management of the Hyrcanian Forests. The aim of this study is to evaluate ecological capability of five proposed sites including Golestan National Park, Afra Takhteh Yew Forest, Kojoor Forest, Cypress Woodland of Hassanabad-e Chalous, Lomer forest along the Hyrcanian region from east to west, using both Boolean and fuzzy logic and to compare these two models. A total of 1
+
+----------------------------------------------------------------------
+
+Test 4
+Home cluster: 030
+Intruder cluster: 240
+True intruder position: 4
+Predicted: 4
+Correct: True
+Cost: $0.001138
+
+Model output (raw):
+Home cluster topic: Research on machine learning and signal processing for sleep, EEG, and brain-computer interfaces.
+Intruder topic: Logistics and truck loading optimization in the United States.
+Final verdict: 4
+
+Panel details:
+  [1] ID=https://openalex.org/W3157139277
+      Title: A Novel Sleep Scoring Algorithm-Based Framework and Sleep Pattern Analysis Using Machine Learning Techniques
+      Abstract: Maintaining the suited amount of sleep is considered the prime component for maintaining a proper and adequate health condition. Often it has been observed that people having sleep inconsistency tend to jeopardize the health and appeal to many physiological and psychological disorders. To overcome such difficulties, it is often required to keep a requisite note of the duration and quality of sleep that one is having. This work defines an algorithm that can be utilized in smart wearables or mobil
+
+  [2] ID=https://openalex.org/W3170334044
+      Title: Decoding continuous variables from event-related potential (ERP) data with linear support vector regression (SVR) using the Decision Decoding Toolbox (DDTBOX)
+      Abstract: Abstract Background Multivariate classification analysis for event-related potential (ERP) data is a powerful tool for predicting cognitive variables. However, classification is often restricted to categorical variables and under-utilises continuous data, such as response times, response force, or subjective ratings. An alternative approach is Support Vector Regression (SVR), which uses single-trial data to predict continuous variables of interest. New Method In this tutorial-style paper, we dem
+
+  [3] ID=https://openalex.org/W3023395733
+      Title: A mouse bio-electronic nose for sensitive and versatile chemical detection
+      Abstract: Abstract When it comes to simultaneous versatility, speed, and specificity in detecting volatile chemicals, biological olfactory systems far outperform all artificial chemical detection devices. Consequently, the use of trained animals for chemical detection in security, defense, healthcare, agriculture, and other applications has grown astronomically. However, the use of animals in this capacity requires extensive training and behavior-based communication. Here we propose an alternative strateg
+
+  [4] ID=https://openalex.org/W4389246273 *** INTRUDER ***
+      Title: CHALLENGES AND OPTIMISATION ISSUES IN LOGISTICS AND TRUCK LOADING IN THE CONNECTED STATES
+      Abstract: The article is dedicated to an exploration of the logistics and truck loading challenges in the USA. The research aims to identify and analyse the key challenges in the logistics and truckload sector and develop solutions to optimise them. Key findings include that the industry is actively working to mitigate challenges such as rising fuel prices by investing in energy-efficient technologies and addressing the driver shortage through comprehensive training programmes and incentive structures. Th
+
+  [5] ID=https://openalex.org/W4313584541
+      Title: EEG Authentication System Based on One- and Multi-Class Machine Learning Classifiers
+      Abstract: In the current Information Age, it is usual to access our personal and professional information, such as bank account data or private documents, in a telematic manner. To ensure the privacy of this information, user authentication systems should be accurately developed. In this work, we focus on biometric authentication, as it depends on the user's inherent characteristics and, therefore, offers personalized authentication systems. Specifically, we propose an electrocardiogram (EEG)-based user a
+
+----------------------------------------------------------------------
+
+Test 5
+Home cluster: 410
+Intruder cluster: 200
+True intruder position: 2
+Predicted: 2
+Correct: True
+Cost: $0.001219
+
+Model output (raw):
+Home cluster topic: Wireless communication and signal processing for cognitive radio, LTE, and channel estimation.  
+Intruder topic: Implementation of human-machine friendship learning in online education during the COVID-19 pandemic.  
+Final verdict: 2
+
+Panel details:
+  [1] ID=https://openalex.org/W3213803736
+      Title: A two‐fold optimization framework using hybrid B<sup>2</sup> algorithm for resource allocation in long‐term evolution based cognitive radio networks system
+      Abstract: Summary Cognitive radio networks (CRNs) have allowed efficient spectrum sharing while also presenting new challenges to the conventional problems of resource allocation and wireless network interference management. The aim is to provide wireless connectivity to secondary stations on a best‐effort basis while preserving the primary station's service quality. In order to achieve this objective, we have developed a model using hybrid B 2 optimization. This method is used for resource allocation in 
+
+  [2] ID=https://openalex.org/W3164721435 *** INTRUDER ***
+      Title: Implementation of human-machine friendship learning in the new-normal era
+      Abstract: The 2019 coronavirus disease (COVID-19) pandemic outbreak has changed the conventional learning system to an online learning system. Online learning system is an alternative that can solve this problem with the principles of human-machine friendship learning (HMFL). This research was conducted to obtain an overview of the implementation of human-machine Friendship learning at IKIP PGRI Pontianak, Indonesia. Lecturers and students become research subjects, especially those in the History Educatio
+
+  [3] ID=https://openalex.org/W4327661958
+      Title: Design and Analysis of Convolutional Neural Layers: A Signal Processing Perspective
+      Abstract: Convolutional layers (CLs) are ubiquitous in contemporary deep neural network (DNN) models, commonly used for automatic feature extraction. A CL performs cross-correlation between the input to the layer and a set of learnable kernels to produce the layer output. Typically, kernel weights are randomly initialized and automatically learned during model training using the backpropagation and gradient descent algorithms to minimize a specific loss function. Modern DNN models comprise deep hierarchic
+
+  [4] ID=https://openalex.org/W3042772760
+      Title: An Intelligent Channel Estimation Method for Future Mobile Generation
+      Abstract: The challenges of the future generations of mobile telephony operators are based on the use of previous generation's connectivity.The signal reconstruction is a technique that requires in most of the cases, the insertion of Pilot Symbols (PS) to ensure identification data reception.The PS are sent through the network and are known by the receiver and the transmitter.Therefore, they occupy bandwidth but contain no information.For Channel Estimation (C.E.), the LTE-A standard adopts inserting a pi
+
+  [5] ID=https://openalex.org/W3007587201
+      Title: Hardware-Compliant Compressive Image Sensor Architecture Based on Random Modulations and Permutations for Embedded Inference
+      Abstract: This work presents a compact CMOS Image Sensor (CIS) architecture enabling embedded object recognition facilitated by a dedicated end-of-column Compressive Sensing (CS), reducing on-chip memory needs. Our sensing scheme is based on a combination of random modulations and permutations leading to an implementation with very limited hardware impacts. It is designed to meet both theoretical (i.e., stable embedding, measurements incoherence) and practical requirements (i.e., silicon footprint, power 
+
+----------------------------------------------------------------------
+
+Test 6
+Home cluster: 131
+Intruder cluster: 003
+True intruder position: 4
+Predicted: 4
+Correct: True
+Cost: $0.001157
+
+Model output (raw):
+Home cluster topic: Computational chemistry and machine learning applied to molecular property prediction and spectroscopic data analysis.
+Intruder topic: Computer vision and deep learning for industrial defect detection.
+Final verdict: 4
+
+Panel details:
+  [1] ID=https://openalex.org/W4383371752
+      Title: High-throughput quantum chemistry: empowering the search for molecular candidates behind unknown spectral signatures in exoplanetary atmospheres
+      Abstract: ABSTRACT The identification of molecules in exoplanetary atmospheres is only possible thanks to the availability of high-resolution molecular spectroscopic data. However, due to its intensive and time-consuming generation process, at present, only 100 molecules have high-resolution spectroscopic data available, limiting new molecular detections. Using routine quantum chemistry calculations (i.e. scaled harmonic frequency calculations using the B97-1/def2-TZVPD model chemistry with median errors 
+
+  [2] ID=https://openalex.org/W4205972698
+      Title: Attention Neural Network for Biomedical Word Sense Disambiguation
+      Abstract: In order to improve the disambiguation accuracy of biomedical words, this paper proposes a disambiguation method based on the attention neural network. The biomedical word is viewed as the center. Morphology, part of speech, and semantic information from 4 adjacent lexical units are extracted as disambiguation features. The attention layer is used to generate a feature matrix. Average asymmetric convolutional neural networks (Av‐ACNN) and bidirectional long short‐term memory (Bi‐LSTM) networks a
+
+  [3] ID=https://openalex.org/W4393610712
+      Title: ΔG-RDKit: Solvation Free Energy Database
+      Abstract: We present the full database of the article "Explainable Supervised Machine Learning Model to Predict Solvation Free Energy". This is the database used for a ML model, containing a variety of solvent-solute pairs with known experimental solvation free energy Δ<em>G</em><sub>solv</sub> values. Data entries were collected from two separate databases. The FreeSolv library, with 642 experimental aqueous Δ<em>G</em><sub>solv </sub>determinations and the Solv@TUM database with 5597 entries for non-aqu
+
+  [4] ID=https://openalex.org/W4383502407 *** INTRUDER ***
+      Title: YOLOv5 Detection Algorithm of Steel Defects Based on Introducing Light Convolution Network and DIOU Function
+      Abstract: Surface will produce cracks, rolling scale, patches, pitting surfaces, inclusions, scratches, etc. These defects will damage the physical structure of the steel and have a great impact on the quality of the steel. Aiming at the problem that the detection accuracy of steel surface defects needs to be improved, an improved algorithm based on YOLOv5 is proposed to identify the surface defects of steel. First, the improved lightweight ShuffleNet V2 is introduced to replace the convolution layer in s
+
+  [5] ID=https://openalex.org/W4200202277
+      Title: NMR-Based Configurational Assignments of Natural Products: Gibbs Sampling and Bayesian Inference Using Floating Chirality Distance Geometry Calculations
+      Abstract: Floating chirality restrained distance geometry (fc-rDG) calculations are used to directly evolve structures from NMR data such as NOE-derived intramolecular distances or anisotropic residual dipolar couplings (RDCs). In contrast to evaluating pre-calculated structures against NMR restraints, multiple configurations (diastereomers) and conformations are generated automatically within the experimental limits. In this report, we show that the “unphysical” rDG pseudo energies defined from NMR viola
+
+----------------------------------------------------------------------
+
+Test 7
+Home cluster: 130
+Intruder cluster: 040
+True intruder position: 2
+Predicted: 2
+Correct: True
+Cost: $0.001136
+
+Model output (raw):
+Home cluster topic: Research on amino acid properties, peptide synthesis, and protein function prediction.  
+Intruder topic: Transfer learning methods for text classification.  
+Final verdict: 2
+
+Panel details:
+  [1] ID=https://openalex.org/W4386028581
+      Title: Determining the Hydrophobicity Index of Protected Amino Acids and Common Protecting Groups
+      Abstract: Peptides are in great demand in the pharmaceutical arena and a majority of these peptides contain 20 or more amino acids. They are infrequently synthesised using the fragment condensation approach. A key limitation in adopting this approach more commonly is that protected peptide fragments with high purity are often required prior to the final condensation steps. It is hypothesized that understanding the hydrophobic nature of the protected amino acids will assist with designing optimal fragment 
+
+  [2] ID=https://openalex.org/W4387452715 *** INTRUDER ***
+      Title: Multi-source combined transfer learning for text classification
+      Abstract: The objective of transfer learning is to learn well-established knowledge from label-rich training data to handle learning tasks on the target domain, where the labeled samples can be hardly collected and the data distribution is different from that of the training data. Nowadays, the label information in the target domain may exist in multiple different source domains, but none of which can cover all the information. To make use of the imperfect source domains, many novel transfer learning algo
+
+  [3] ID=https://openalex.org/W4382931096
+      Title: A Highly Sensitive Model Based on Graph Neural Networks for Enzyme Key Catalytic Residue Prediction
+      Abstract: Determining the catalytic site of enzymes is a great help for understanding the relationship between protein sequence, structure, and function, which provides the basis and targets for designing, modifying, and enhancing enzyme activity. The unique local spatial configuration bound to the substrate at the active center of the enzyme determines the catalytic ability of enzymes and plays an important role in the catalytic site prediction. As a suitable tool, the graph neural network can better und
+
+  [4] ID=https://openalex.org/W4391649514
+      Title: Rheostats, toggles, and neutrals, Oh my! A new framework for understanding how amino acid changes modulate protein function
+      Abstract: Advances in personalized medicine and protein engineering require accurately predicting outcomes of amino acid substitutions. Many algorithms correctly predict that evolutionarily-conserved positions show "toggle" substitution phenotypes, which is defined when few substitutions at that position retain function. In contrast, predictions often fail for substitutions at the less-studied "rheostat" positions, which is defined when different amino acid substitutions at a position sample at least half
+
+  [5] ID=https://openalex.org/W3103360980
+      Title: Time-Lagged t-Distributed Stochastic Neighbor Embedding (t-SNE) of Molecular Simulation Trajectories
+      Abstract: Molecular simulation trajectories represent high-dimensional data. Such data can be visualized by methods of dimensionality reduction. Non-linear dimensionality reduction methods are likely to be more efficient than linear ones due to the fact that motions of atoms are non-linear. Here we test a popular non-linear t-distributed Stochastic Neighbor Embedding (t-SNE) method on analysis of trajectories of 200 ns alanine dipeptide dynamics and 208 μs Trp-cage folding and unfolding. Furthermore, we i
+
+----------------------------------------------------------------------
+
+Test 8
+Home cluster: 240
+Intruder cluster: 151
+True intruder position: 1
+Predicted: 2
+Correct: False
+Cost: $0.001028
+
+Model output (raw):
+Home cluster topic: Research on statistical and machine learning methods for data analysis and prediction, including graph structure learning, cost estimation, and sales forecasting.  
+Intruder topic: Conflict management in Dempster-Shafer evidence theory.  
+Final verdict: 2
+
+Panel details:
+  [1] ID=https://openalex.org/W3110219854 *** INTRUDER ***
+      Title: Structure learning for zero-inflated counts with an application to single-cell RNA sequencing data
+      Abstract: The problem of estimating the structure of a graph from observed data is of growing interest in the context of high-throughput genomic data and single-cell RNA sequencing in particular. These, however, are challenging applications, since the data consist of high-dimensional counts with high variance and overabundance of zeros. Here we present a general framework for learning the structure of a graph from single-cell RNA-seq data, based on the zero-inflated negative binomial distribution. We demo
+
+  [2] ID=https://openalex.org/W3016574537
+      Title: A Modified Approach to Conflict Management From the Perspective of Non-Conflicting Element Set
+      Abstract: In Dempster-Shafer (D-S) evidence theory, how to deal with conflict is an important and open topic. Two key strategies for resolving conflicts of evidence are considered, namely information averaging and information focus. How to balance this relationship is still a question worth considering. Recently, Ma <italic xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink">et al.</i> studied evidence conflicts from the perspective of complete conflict set and propos
+
+  [3] ID=https://openalex.org/W3162112051
+      Title: Predict the required cost to develop Software Engineering projects by Using Machine Learning
+      Abstract: Abstract Software project cost prediction is a very important task during building and developing software projects. This process helps software project engineers to accurately manage and plan their resources in terms of cost estimation. However, Need for accurate cost development prediction model for a software project is not a simple procedure. Predicting the cost required while developing software engineering projects is the most difficult challenge that attracts the attention of researchers 
+
+  [4] ID=https://openalex.org/W3159642142
+      Title: Walmart Sales Forecasting using XGBoost algorithm and Feature engineering
+      Abstract: Now, with the amount of data growing exponentially, the rational use of big data has become the focus of enterprises to serve the future and make better decisions. Using machine learning algorithms to predict the sales of products and commodities has become a hot spot for researchers and companies in recent years. This paper proposes the XGBoost sale prediction model which combines XGBoost algorithm and meticulous feature engineering processing for predicting Walmart's sales problem. This paper'
+
+  [5] ID=https://openalex.org/W3135608850
+      Title: Bayes Factors for Mixed Models
+      Abstract: Abstract Although Bayesian linear mixed effects models are increasingly popular for analysis of within-subject designs in psychology and other fields, there remains considerable ambiguity on the most appropriate Bayes factor hypothesis test to quantify the degree to which the data support the presence or absence of an experimental effect. Specifically, different choices for both the null model and the alternative model are possible, and each choice constitutes a different definition of an effect
+
+----------------------------------------------------------------------
+
+Test 9
+Home cluster: 421
+Intruder cluster: 410
+True intruder position: 3
+Predicted: 3
+Correct: True
+Cost: $0.001026
+
+Model output (raw):
+Home cluster topic: Anomaly/outlier detection in data analysis and industrial applications.  
+Intruder topic: Resource allocation and interference optimization in wireless communication systems.  
+Final verdict: 3
+
+Panel details:
+  [1] ID=https://openalex.org/W3130237369
+      Title: Distance-Based Multivariate Anomaly Detection in Wire Arc Additive Manufacturing
+      Abstract: Wire Arc Additive Manufacturing (WAAM) offers the possibility to build up large-scale metal parts. Data which is obtained from a multivariate sensor system in-situ must be analyzed automatically to ensure an early and reliable detection of defects to reduce the costs due to production scrap. For that reason, a modular anomaly detector for multivariate time series in WAAM was investigated in this paper. The approach adressed major topics in real-life data sets of industrial applications such as m
+
+  [2] ID=https://openalex.org/W4285107850
+      Title: Isolation Forest Based on Minimal Spanning Tree
+      Abstract: Detecting anomalies in data sets has been one of the most studied issues in modern data analysis. Therefore, there is a plethora of applications in a very wide range of fields of science and technology. One of the most frequently used anomaly detection methods is Isolation Forest. In this study, we propose a novel efficient approach based on this technique. In order to improve the classification accuracy of the base method, we make two-fold modifications. First, we propose a change of the techni
+
+  [3] ID=https://openalex.org/W4379185529 *** INTRUDER ***
+      Title: Joint Particle Swarm Optimization of Power and Phase Shift for IRS-Aided D2D Underlaying Cellular Systems
+      Abstract: Device-to-device (D2D) communication is a promising wireless communication technology which can effectively reduce the traffic load of the base station and improve the spectral efficiency. The application of intelligent reflective surfaces (IRS) in D2D communication systems can further improve the throughput, but the problem of interference suppression becomes more complex and challenging due to the introduction of new links. Therefore, how to perform effective and low-complexity optimal radio r
+
+  [4] ID=https://openalex.org/W4377693019
+      Title: Research on abnormal detection of gas load based on LSTM-WGAN
+      Abstract: Traditional anomaly detection methods cannot take into account the influence of external factors. Therefore, it is difficult to obtain an accurate detection effect when performing gas anomaly detection. In this paper, we propose an anomaly detection model based on LSTM-WGAN. The multi-layer LSTM network captures temporal dependencies and introduces a self-attention layer to integrate embedded weather, holidays and other influencing factor data. Embed different features into the WGAN framework an
+
+  [5] ID=https://openalex.org/W4387568802
+      Title: Similarity Distribution Density: An Optimized Approach to Outlier Detection
+      Abstract: When dealing with uncertain data, traditional model construction methods often ignore or filter out noise data to improve model performance. However, this simple approach can lead to insufficient data utilization, model bias, reduced detection ability, and decreased robustness of detection models. Outliers can be considered as data that are inconsistent with other patterns at certain specific moments and are not always negative data, so their emergence is not always bad. In the process of data a
+
+----------------------------------------------------------------------
+
+Test 10
+Home cluster: 441
+Intruder cluster: 401
+True intruder position: 3
+Predicted: 3
+Correct: True
+Cost: $0.001068
+
+Model output (raw):
+Home cluster topic: Research on machine learning and deep learning methods for autonomous systems and trajectory prediction in transportation.
+
+Intruder topic: Research on AI and cloud computing in healthcare, focusing on data privacy and regulatory challenges.
+
+Final verdict: 3
+
+Panel details:
+  [1] ID=https://openalex.org/W4294672496
+      Title: Decision Making for Autonomous Driving Via Multimodal Transformer and Deep Reinforcement Learning
+      Abstract: On the basis of environmental information processed by the sensing module, the decision module in automatic driving integrates environmental and vehicle information to make the autonomous vehicle produce safe and reasonable driving behavior. Considering the complexity and variability of the driving environment of autonomous vehicles, researchers have begun to apply deep reinforcement learning (DRL) in the study of autonomous driving control strategies in recent years. In this paper, we apply an 
+
+  [2] ID=https://openalex.org/W4323914374
+      Title: Neural Networks for Aircraft Trajectory Prediction: Answering Open Questions About Their Performance
+      Abstract: The increase in air traffic in the recent years has motivated the development of technologies to monitor air space and warn about possible collisions by predicting the trajectories that will be followed by aircraft. In this field, neural networks have become prominent thanks to their potential to learn to predict maneuvers without providing aspects that are difficult to model such as atmospheric conditions, or detailed aircraft parameters. A variety of models have been proposed; however, these a
+
+  [3] ID=https://openalex.org/W4389342774 *** INTRUDER ***
+      Title: Artificial Intelligence &amp; Cloud in Healthcare: Analyzing Challenges and Solutions Within Regulatory Boundaries
+      Abstract: The confluence of Artificial Intelligence (AI) and cloud computing in the healthcare sector has opened doors to unprecedented advancements and possibilities. These technological leaps promise transformative changes that range from enhanced diagnostics and personalized patient care pathways to large-scale research and data analysis. AI, with its powerful capability to process and analyze massive datasets, offers insights that were previously inaccessible or difficult to discern. Complementing thi
+
+  [4] ID=https://openalex.org/W4361792195
+      Title: Machine Learning based Re-identification of Location Histories using Contact Information Collected from Social Networking Services
+      Abstract: Large amounts of location history information are being collected and used for various services. Although the collected location histories are anonymized, are-identification attack can be used to de-anonymize the information by combining it with certain external information. Investigation of re-identification method and measurement of the risk of privacy leakage have thus become important. Two models have been developed that supplement the small-fine, large-coarse, and time-aware re-identificati
+
+  [5] ID=https://openalex.org/W4386891668
+      Title: Prediction model for the maintenance of rail infrastructure in Java
+      Abstract: Maintenance is the most prolonged phase after constructing a railway track is completed and operated. The initial indication of the need for railway track maintenance can be seen from the track quality index (TQI) value. Maintenance of railway tracks can be based on the TQI data category, which is a track superelevation, leveling, lining, and gauge width with TQI categories ranging from very good, good, fair, and poor. In the existing condition, only one-track measurement train, the EM-120, is o
+
+----------------------------------------------------------------------
+

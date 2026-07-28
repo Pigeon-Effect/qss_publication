@@ -1,0 +1,47 @@
+INTRUSION DETECTION - REASONER vs PRO (with thinking mode)
+Tests per model: 10
+Max words: 300
+============================================================
+
+
+============================================================
+MODEL: deepseek-reasoner
+Accuracy: 0.0% (0/10)
+Cost: $0.012376
+------------------------------------------------------------
+Test  1 | True: 4 | Pred: None | ✗
+Test  2 | True: 2 | Pred: None | ✗
+Test  3 | True: 4 | Pred: None | ✗
+Test  4 | True: 3 | Pred: None | ✗
+Test  5 | True: 1 | Pred: None | ✗
+Test  6 | True: 1 | Pred: None | ✗
+Test  7 | True: 5 | Pred: None | ✗
+Test  8 | True: 5 | Pred: None | ✗
+Test  9 | True: 2 | Pred: None | ✗
+Test 10 | True: 2 | Pred: None | ✗
+
+============================================================
+MODEL: deepseek-v4-pro
+Accuracy: 0.0% (0/10)
+Cost: $0.012376
+------------------------------------------------------------
+Test  1 | True: 4 | Pred: None | ✗
+Test  2 | True: 2 | Pred: None | ✗
+Test  3 | True: 4 | Pred: None | ✗
+Test  4 | True: 3 | Pred: None | ✗
+Test  5 | True: 1 | Pred: None | ✗
+Test  6 | True: 1 | Pred: None | ✗
+Test  7 | True: 5 | Pred: None | ✗
+Test  8 | True: 5 | Pred: None | ✗
+Test  9 | True: 2 | Pred: None | ✗
+Test 10 | True: 2 | Pred: None | ✗
+
+============================================================
+SUMMARY
+============================================================
+Model                Accuracy     Correct/Total   Cost        
+------------------------------------------------------------
+deepseek-reasoner       0.0%      0/10       $0.012376
+deepseek-v4-pro         0.0%      0/10       $0.012376
+
+Best: deepseek-reasoner with 0.0%

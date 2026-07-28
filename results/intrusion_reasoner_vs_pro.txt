@@ -1,0 +1,87 @@
+INTRUSION DETECTION - REASONER vs PRO
+Tests per model: 30
+Max words: 300
+============================================================
+
+
+============================================================
+MODEL: deepseek-reasoner
+Accuracy: 0.0% (0/30)
+Cost: $0.006275
+------------------------------------------------------------
+Test  1 | True: 2 | Pred: None | ✗
+Test  2 | True: 1 | Pred: None | ✗
+Test  3 | True: 4 | Pred: None | ✗
+Test  4 | True: 1 | Pred: None | ✗
+Test  5 | True: 5 | Pred: None | ✗
+Test  6 | True: 3 | Pred: None | ✗
+Test  7 | True: 3 | Pred: None | ✗
+Test  8 | True: 3 | Pred: None | ✗
+Test  9 | True: 3 | Pred: None | ✗
+Test 10 | True: 4 | Pred: None | ✗
+Test 11 | True: 2 | Pred: None | ✗
+Test 12 | True: 1 | Pred: None | ✗
+Test 13 | True: 3 | Pred: None | ✗
+Test 14 | True: 2 | Pred: None | ✗
+Test 15 | True: 5 | Pred: None | ✗
+Test 16 | True: 5 | Pred: None | ✗
+Test 17 | True: 3 | Pred: None | ✗
+Test 18 | True: 5 | Pred: None | ✗
+Test 19 | True: 2 | Pred: None | ✗
+Test 20 | True: 1 | Pred: None | ✗
+Test 21 | True: 4 | Pred: None | ✗
+Test 22 | True: 3 | Pred: None | ✗
+Test 23 | True: 4 | Pred: None | ✗
+Test 24 | True: 5 | Pred: None | ✗
+Test 25 | True: 1 | Pred: None | ✗
+Test 26 | True: 1 | Pred: None | ✗
+Test 27 | True: 4 | Pred: None | ✗
+Test 28 | True: 5 | Pred: None | ✗
+Test 29 | True: 4 | Pred: None | ✗
+Test 30 | True: 2 | Pred: None | ✗
+
+============================================================
+MODEL: deepseek-v4-pro
+Accuracy: 0.0% (0/30)
+Cost: $0.006275
+------------------------------------------------------------
+Test  1 | True: 2 | Pred: None | ✗
+Test  2 | True: 1 | Pred: None | ✗
+Test  3 | True: 4 | Pred: None | ✗
+Test  4 | True: 1 | Pred: None | ✗
+Test  5 | True: 5 | Pred: None | ✗
+Test  6 | True: 3 | Pred: None | ✗
+Test  7 | True: 3 | Pred: None | ✗
+Test  8 | True: 3 | Pred: None | ✗
+Test  9 | True: 3 | Pred: None | ✗
+Test 10 | True: 4 | Pred: None | ✗
+Test 11 | True: 2 | Pred: None | ✗
+Test 12 | True: 1 | Pred: None | ✗
+Test 13 | True: 3 | Pred: None | ✗
+Test 14 | True: 2 | Pred: None | ✗
+Test 15 | True: 5 | Pred: None | ✗
+Test 16 | True: 5 | Pred: None | ✗
+Test 17 | True: 3 | Pred: None | ✗
+Test 18 | True: 5 | Pred: None | ✗
+Test 19 | True: 2 | Pred: None | ✗
+Test 20 | True: 1 | Pred: None | ✗
+Test 21 | True: 4 | Pred: None | ✗
+Test 22 | True: 3 | Pred: None | ✗
+Test 23 | True: 4 | Pred: None | ✗
+Test 24 | True: 5 | Pred: None | ✗
+Test 25 | True: 1 | Pred: None | ✗
+Test 26 | True: 1 | Pred: None | ✗
+Test 27 | True: 4 | Pred: None | ✗
+Test 28 | True: 5 | Pred: None | ✗
+Test 29 | True: 4 | Pred: None | ✗
+Test 30 | True: 2 | Pred: None | ✗
+
+============================================================
+SUMMARY
+============================================================
+Model                Accuracy     Correct/Total   Cost        
+------------------------------------------------------------
+deepseek-reasoner       0.0%      0/30       $0.006275
+deepseek-v4-pro         0.0%      0/30       $0.006275
+
+Best: deepseek-reasoner with 0.0%
