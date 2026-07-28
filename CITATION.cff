@@ -1,0 +1,78 @@
+cff-version: 1.2.0
+title: >-
+  Cluster validation for a hierarchical topic taxonomy of AI research
+message: >-
+  If you use this software or its results, please cite both the software and
+  the associated article.
+type: software
+version: 1.0.0
+license: MIT
+repository-code: https://github.com/Pigeon-Effect/qss_publication
+abstract: >-
+  Reference implementation of the two large-language-model validation protocols
+  used to assess a hierarchical topic taxonomy of artificial-intelligence
+  research derived from 1,986,659 OpenAlex records (2020-2025): document
+  intrusion detection, adapted from the "reading tea leaves" paradigm of Chang
+  et al. (2009), and Likert-scale cluster coherence rating following Tan and
+  D'Souza (2025).
+keywords:
+  - scientometrics
+  - topic modeling
+  - cluster validation
+  - intrusion detection
+  - large language models
+  - OpenAlex
+  - artificial intelligence
+
+authors:
+  - given-names: Julius
+    family-names: Pfundstein
+    email: julius.pfundstein@gmail.com
+    orcid: https://orcid.org/0009-0002-3717-6125
+    affiliation: >-
+      Computational Humanities, Faculty of Mathematics and Information Science,
+      University of Leipzig, Germany
+  - given-names: Thomas
+    family-names: Efer
+    orcid: https://orcid.org/0000-0002-8376-3884
+    affiliation: >-
+      Computational Humanities, Faculty of Mathematics and Information Science,
+      University of Leipzig, Germany
+  - given-names: Manuel
+    family-names: Burghardt
+    orcid: https://orcid.org/0000-0003-1354-9089
+    affiliation: >-
+      Computational Humanities, Faculty of Mathematics and Information Science,
+      University of Leipzig, Germany
+
+references:
+  - type: article
+    title: >-
+      Mapping the AI Research of China, the US and the EU: A Scientometric
+      Analysis of Citation Shares within AI Subdisciplines (2020-2025)
+    status: in-preparation
+    authors:
+      - given-names: Julius
+        family-names: Pfundstein
+        orcid: https://orcid.org/0009-0002-3717-6125
+      - given-names: Thomas
+        family-names: Efer
+        orcid: https://orcid.org/0000-0002-8376-3884
+      - given-names: Manuel
+        family-names: Burghardt
+        orcid: https://orcid.org/0000-0003-1354-9089
+  - type: conference-paper
+    title: "Reading Tea Leaves: How Humans Interpret Topic Models"
+    year: 2009
+    collection-title: Advances in Neural Information Processing Systems 22
+    authors:
+      - given-names: Jonathan
+        family-names: Chang
+      - given-names: Jordan
+        family-names: Boyd-Graber
+      - given-names: Sean
+        family-names: Gerrish
+      - given-names: Chong
+        family-names: Wang
+      - given-names: David M.
+        family-names: Blei

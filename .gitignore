@@ -3,7 +3,11 @@
 # ---------------------------------------------------------------
 # merged_works_labeled.db is a ~20 GB SQLite corpus and is not
 # distributed via git. Obtain it separately and place it in data/.
-data/
+# Ignore the directory contents but keep its README, which documents the
+# schema and how to obtain the file. `data/*` rather than `data/` so git
+# still descends into the directory and can see the negation below.
+data/*
+!data/README.md
 
 # ---------------------------------------------------------------
 # Secrets
@@ -18,10 +22,13 @@ data/
 __pycache__/
 *.py[cod]
 *.egg-info/
+build/
+dist/
 .venv/
 venv/
 env/
 .pytest_cache/
+.ruff_cache/
 .ipynb_checkpoints/
 
 # ---------------------------------------------------------------
@@ -39,8 +46,9 @@ desktop.ini
 .DS_Store
 
 # ---------------------------------------------------------------
-# LaTeX build artifacts (regenerable; .bbl is kept for submission)
+# LaTeX build artifacts (all regenerable from paper/main.tex)
 # ---------------------------------------------------------------
+*.bbl
 *.aux
 *.bcf
 *.blg

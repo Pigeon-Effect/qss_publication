@@ -1,0 +1,44 @@
+{
+  "title": "Cluster validation for a hierarchical topic taxonomy of AI research",
+  "description": "<p>Reference implementation of the two large-language-model validation protocols used to assess a hierarchical topic taxonomy of artificial-intelligence research derived from 1,986,659 OpenAlex records (2020-2025).</p><p><strong>Document intrusion detection</strong>, adapted from the &quot;reading tea leaves&quot; paradigm of Chang et al. (2009): a panel of genuine cluster members is presented to a language model together with one intruder drawn from a different cluster at the same hierarchy level, and detection accuracy is taken as the coherence signal.</p><p><strong>Coherence rating</strong>, following Tan and D'Souza (2025): a sample of documents from a single cluster is rated on a five-point Likert scale.</p><p>The repository contains the protocol implementation, the archived transcripts of all runs, and the manuscript sources. The 20 GB labelled corpus is not redistributed here; see data/README.md for how to reconstruct it from OpenAlex.</p>",
+  "upload_type": "software",
+  "language": "eng",
+  "license": "MIT",
+  "access_right": "open",
+  "version": "1.0.0",
+  "keywords": [
+    "scientometrics",
+    "topic modeling",
+    "cluster validation",
+    "intrusion detection",
+    "large language models",
+    "OpenAlex",
+    "artificial intelligence",
+    "research policy"
+  ],
+  "creators": [
+    {
+      "name": "Pfundstein, Julius",
+      "affiliation": "Computational Humanities, Faculty of Mathematics and Information Science, University of Leipzig, Germany",
+      "orcid": "0009-0002-3717-6125"
+    },
+    {
+      "name": "Efer, Thomas",
+      "affiliation": "Computational Humanities, Faculty of Mathematics and Information Science, University of Leipzig, Germany",
+      "orcid": "0000-0002-8376-3884"
+    },
+    {
+      "name": "Burghardt, Manuel",
+      "affiliation": "Computational Humanities, Faculty of Mathematics and Information Science, University of Leipzig, Germany",
+      "orcid": "0000-0003-1354-9089"
+    }
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/Pigeon-Effect/qss_publication",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ]
+}
