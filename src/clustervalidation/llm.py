@@ -11,6 +11,7 @@ import os
 import time
 from dataclasses import dataclass
 
+from dotenv import load_dotenv
 from openai import OpenAI
 
 from clustervalidation.config import DEFAULT_BASE_URL, ModelSpec
@@ -18,13 +19,15 @@ from clustervalidation.config import DEFAULT_BASE_URL, ModelSpec
 API_KEY_ENV_VAR = "DEEPSEEK_API_KEY"
 
 _MISSING_KEY_MESSAGE = f"""\
-No API key found. Set {API_KEY_ENV_VAR} before running an experiment:
+No API key found. Set {API_KEY_ENV_VAR} before running an experiment, either
+in a local .env file (copy .env.example) or in the environment directly:
 
+  .env file    {API_KEY_ENV_VAR}=sk-...
   PowerShell   $env:{API_KEY_ENV_VAR} = 'sk-...'
   bash/zsh     export {API_KEY_ENV_VAR}='sk-...'
 
-Keys are issued at https://platform.deepseek.com. Never commit a key to the
-repository - see .env.example.\
+Keys are issued at https://platform.deepseek.com. .env is gitignored; never
+commit a key to the repository - see .env.example.\
 """
 
 
@@ -51,7 +54,13 @@ class Completion:
 
 
 def resolve_api_key(explicit: str | None = None) -> str:
-    """Return the API key, preferring an explicit value over the environment."""
+    """Return the API key, preferring an explicit value over the environment.
+
+    A local ``.env`` file is loaded first, if one exists. Variables already
+    present in the real environment win, so an exported key still overrides
+    the file.
+    """
+    load_dotenv()
     key = explicit or os.environ.get(API_KEY_ENV_VAR)
     if not key:
         raise MissingAPIKeyError(_MISSING_KEY_MESSAGE)

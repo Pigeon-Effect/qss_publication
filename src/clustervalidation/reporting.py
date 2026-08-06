@@ -22,7 +22,7 @@ import os
 from datetime import datetime, timezone
 from typing import Any
 
-from clustervalidation.config import RunConfig
+from clustervalidation.config import LEVEL_DESCRIPTIONS, RunConfig
 from clustervalidation.protocols import coherence, intrusion
 
 _RULE = "=" * 70
@@ -93,11 +93,29 @@ def write_reports(
 
 
 def _intrusion_records(outcome: intrusion.Outcome) -> list[dict[str, Any]]:
+    """Build one self-describing record per trial.
+
+    Each record repeats the run identifiers (level, model, prompt, seed) rather
+    than relying on the manifest alone, so a single line remains interpretable
+    when records are concatenated across runs or shared in isolation. The
+    abstract stored is the truncated text actually sent to the model, not the
+    full source abstract, so the prompt is reconstructable from the record.
+    """
+    config = outcome.config
     records = []
     for trial in outcome.trials:
         records.append(
             {
                 "trial": trial.index,
+                "timestamp_utc": trial.timestamp_utc,
+                "level": config.level,
+                "level_description": LEVEL_DESCRIPTIONS[config.level],
+                "model": config.model.name,
+                "thinking": config.model.thinking,
+                "prompt_variant": config.prompt_variant,
+                "seed": config.seed,
+                "panel_size": config.panel_size,
+                "max_words": config.max_words,
                 "home_cluster": trial.panel.home_cluster,
                 "intruder_cluster": trial.panel.intruder_cluster,
                 "true_position": trial.panel.true_position,
@@ -114,6 +132,7 @@ def _intrusion_records(outcome: intrusion.Outcome) -> list[dict[str, Any]]:
                         "position": position,
                         "document_id": item.document.id,
                         "title": item.document.title,
+                        "abstract": item.document.abstract,
                         "is_intruder": item.is_intruder,
                     }
                     for position, item in enumerate(trial.panel.items, start=1)
@@ -174,6 +193,7 @@ def _write_intrusion_text(handle, outcome: intrusion.Outcome, manifest: dict) ->
 
     for trial in outcome.trials:
         handle.write(f"Trial {trial.index}\n")
+        handle.write(f"Timestamp: {trial.timestamp_utc}\n")
         handle.write(f"Home cluster: {trial.panel.home_cluster}\n")
         handle.write(f"Intruder cluster: {trial.panel.intruder_cluster}\n")
         handle.write(f"True intruder position: {trial.panel.true_position}\n")

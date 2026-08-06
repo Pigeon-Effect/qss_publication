@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: >-
-  Cluster validation for a hierarchical topic taxonomy of AI research
+  Code and data for "Mapping the AI Research of China, the US and the EU"
 message: >-
   If you use this software or its results, please cite both the software and
   the associated article.
@@ -9,12 +9,14 @@ version: 1.0.0
 license: MIT
 repository-code: https://github.com/Pigeon-Effect/qss_publication
 abstract: >-
-  Reference implementation of the two large-language-model validation protocols
-  used to assess a hierarchical topic taxonomy of artificial-intelligence
-  research derived from 1,986,659 OpenAlex records (2020-2025): document
-  intrusion detection, adapted from the "reading tea leaves" paradigm of Chang
-  et al. (2009), and Likert-scale cluster coherence rating following Tan and
-  D'Souza (2025).
+  Research compendium for a scientometric analysis of citation shares within
+  AI subdisciplines derived from 1,986,659 OpenAlex records (2020-2025):
+  keyword construction, OpenAlex data collection, dataset quality control,
+  a semi-supervised hierarchical topic model (SPECTER embeddings, K-Means,
+  expert consolidation), citation-impact analysis, visualization, and
+  LLM-based cluster validation via document intrusion detection (adapted from
+  the "reading tea leaves" paradigm of Chang et al. 2009) and Likert-scale
+  coherence rating (following Tan and D'Souza 2025).
 keywords:
   - scientometrics
   - topic modeling
@@ -23,6 +25,7 @@ keywords:
   - large language models
   - OpenAlex
   - artificial intelligence
+  - citation analysis
 
 authors:
   - given-names: Julius

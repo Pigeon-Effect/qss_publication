@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import random
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 
 from clustervalidation.config import RunConfig
 from clustervalidation.corpus import ClusterMap, Document, truncate_words
@@ -64,6 +65,9 @@ class Trial:
     truncated: bool = False
     cost_usd: float = 0.0
     error: str | None = None
+    # Wall-clock time the response was recorded, so a long run can be audited
+    # trial by trial rather than only through the run-level manifest.
+    timestamp_utc: str = ""
 
 
 @dataclass
@@ -93,6 +97,17 @@ class Outcome:
         """Random-guess accuracy for this panel size, in percent."""
         return 100.0 / self.config.panel_size
 
+    def extraction_rule_counts(self) -> dict[str, int]:
+        """How often each parsing rule fired, most frequent first.
+
+        Reported so that a reader can see how much of the accuracy figure rests
+        on explicit verdict lines versus the permissive fallback rules.
+        """
+        counts: dict[str, int] = {}
+        for trial in self.completed:
+            counts[trial.extraction_rule] = counts.get(trial.extraction_rule, 0) + 1
+        return dict(sorted(counts.items(), key=lambda kv: -kv[1]))
+
     def summary(self) -> dict:
         completed = self.completed
         return {
@@ -112,6 +127,7 @@ class Outcome:
             ),
             "truncated_responses": sum(1 for t in completed if t.truncated),
             "unparsed_responses": sum(1 for t in completed if t.predicted is None),
+            "extraction_rule_counts": self.extraction_rule_counts(),
             "total_cost_usd": round(sum(t.cost_usd for t in self.trials), 6),
         }
 
@@ -156,6 +172,10 @@ def _truncate(doc: Document, max_words: int) -> Document:
     return Document(doc.id, doc.title, truncate_words(doc.abstract, max_words))
 
 
+def _now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
 def run(
     clusters: ClusterMap,
     config: RunConfig,
@@ -182,6 +202,7 @@ def run(
             completion = client.complete(prompt)
         except Exception as error:  # noqa: BLE001 - recorded per trial
             trial.error = str(error)
+            trial.timestamp_utc = _now()
             outcome.trials.append(trial)
             if progress:
                 print(f"Trial {index:4d} | ERROR: {error}")
@@ -202,6 +223,7 @@ def run(
         trial.finish_reason = completion.finish_reason
         trial.truncated = completion.truncated
         trial.cost_usd = completion.cost_usd
+        trial.timestamp_utc = _now()
         outcome.trials.append(trial)
 
         if progress:

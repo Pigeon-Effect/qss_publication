@@ -1,42 +1,62 @@
-# Cluster validation for a hierarchical topic taxonomy of AI research
+# Code and data for "Mapping the AI Research of China, the US and the EU"
 
-Reference implementation and archived results for the large-language-model
-validation of the AI-research taxonomy reported in:
+Research compendium — code, archived intermediate results, and manuscript
+sources — for:
 
 > **Mapping the AI Research of China, the US and the EU: A Scientometric
 > Analysis of Citation Shares within AI Subdisciplines (2020–2025)**
 > Julius Pfundstein, Thomas Efer, Manuel Burghardt
 > Computational Humanities, University of Leipzig — *manuscript in preparation*
+> ([`paper/main.pdf`](paper/main.pdf))
 
 The study identifies AI subdisciplines in 1,986,659 OpenAlex records through a
 semi-supervised, hierarchical topic model (SPECTER embeddings → high-granularity
 K-Means → expert consolidation), yielding **5 domains, 31 fields and 106
-research fronts**. This repository holds the code and transcripts for the step
-that asks whether those clusters are semantically real rather than analytical
-artefacts.
+research fronts**, then measures each of China, the US, and the EU-27's
+citation-share footprint across that taxonomy.
 
 ---
 
 ## Scope
 
-**This repository contains the validation component only.** It does *not*
-contain OpenAlex retrieval, the topic-modeling pipeline, the citation analysis,
-or figure generation — those live in a
-[separate repository](https://github.com/Pigeon-Effect/scientometric-analysis-of-ai-research).
+**This repository is the archival deposit for the full pipeline behind the
+manuscript** — keyword construction, OpenAlex data collection, dataset
+processing, the hierarchical topic model, citation-impact analysis,
+visualization, and the LLM-based cluster validation. See
+[`code/README.md`](code/README.md) for the stage-by-stage breakdown, and each
+stage's own README for the reasoning behind its method.
 
-What is here:
+| # | Stage | Status |
+|---|---|---|
+| 01 | Keyword construction | ✅ code present; the curated 279-term list itself is not |
+| 02 | Data collection (OpenAlex retrieval) | ✅ |
+| 03 | Data processing (quality control) | ✅ |
+| 04 | Subdiscipline clustering | ✅ with three documented gaps |
+| 05 | Impact analysis (fractional citation sum) | ❌ not yet imported |
+| 06 | Visualization | ◐ Figure 2 present, Figure 1 missing |
+| 07 | LLM-based cluster validation | ✅ implemented and tested |
+
+Everything absent is listed in
+[`code/README.md`](code/README.md#what-is-not-here) rather than left to be
+discovered. Nothing has been reconstructed by guesswork.
+
+What is here today:
 
 | | |
 |---|---|
-| `src/clustervalidation/` | the two validation protocols, as an installable package |
-| `results/` | transcripts of every run, including the reported ones |
+| `code/` | the full pipeline, one numbered stage per manuscript section — see [`code/README.md`](code/README.md) |
+| `src/clustervalidation/` | stage 07 (LLM validation), as an installable package |
+| `results/` | transcripts of every validation run, including the reported ones |
 | `paper/` | manuscript sources, figures and bibliography |
 | `data/` | where the corpus is expected at runtime (not redistributed) |
-| `tests/` | test suite, runs without network access or an API key |
+| `tests/` | test suite for `clustervalidation`, runs without network access or an API key |
 
 ---
 
-## The two protocols
+## Stage 07: LLM-based cluster validation
+
+Two protocols test whether the taxonomy produced by stage 04 (topic modeling)
+captures coherent semantic units rather than analytical artefacts.
 
 ### Document intrusion detection
 
@@ -69,7 +89,9 @@ since a cluster can be methodologically tight while topically diffuse.
 
 ## Quick start
 
-Requires Python 3.10+ and a [DeepSeek](https://platform.deepseek.com) API key.
+The instructions below run stage 07 (LLM-based cluster validation), the only
+stage currently implemented. Requires Python 3.10+ and a
+[DeepSeek](https://platform.deepseek.com) API key.
 
 ```bash
 git clone https://github.com/Pigeon-Effect/qss_publication.git
@@ -80,13 +102,22 @@ source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 ```
 
-Provide the API key through the environment — never in a file that gets
-committed:
+Provide the API key through a local `.env` file or the environment — never in a
+file that gets committed. `.env` is gitignored; `.env.example` documents the
+variable name:
+
+```bash
+cp .env.example .env                      # then fill in the key
+```
+
+or, equivalently:
 
 ```bash
 export DEEPSEEK_API_KEY='sk-...'          # bash / zsh
 $env:DEEPSEEK_API_KEY = 'sk-...'          # PowerShell
 ```
+
+An exported variable takes precedence over the `.env` file.
 
 Place the corpus at `data/merged_works_labeled.db` (see
 [`data/README.md`](data/README.md)), then:
@@ -194,7 +225,17 @@ nothing in the suite spends credit.
 ## Repository layout
 
 ```
-├── src/clustervalidation/
+├── code/                          full pipeline, one stage per manuscript section
+│   ├── 01_keyword_construction/   KeyBERT term extraction from survey papers
+│   ├── 02_data_collection/        batched, resumable OpenAlex retrieval
+│   ├── 03_data_processing/        abstract reconstruction, country shares, filtering
+│   ├── 04_subdiscipline_clustering/
+│   │   ├── finding_optimal_k/     evidence that no natural k exists
+│   │   └── SPECTER/               h1 / h2 / h3: over-segment, then consolidate
+│   ├── 05_impact_analysis/        ❌ not yet imported
+│   ├── 06_visualization/          citation-share heatmap (Figure 2)
+│   └── 07_llm_validation/         ✅ implemented — see src/clustervalidation/ below
+├── src/clustervalidation/         stage 07, as an installable package
 │   ├── config.py            models, pricing, taxonomy levels, RunConfig
 │   ├── corpus.py            SQLite loading, cluster grouping, truncation
 │   ├── llm.py               API client, retries, cost accounting
@@ -214,8 +255,8 @@ nothing in the suite spends credit.
 │   ├── bibliography.bib
 │   ├── figures/
 │   └── archive/             superseded drafts and the originating thesis
-├── data/                    corpus location (gitignored)
-└── tests/
+├── data/                    corpus + intermediates (gitignored)
+└── tests/                   tests for src/clustervalidation
 ```
 
 Compile the manuscript with `latexmk -pdf main.tex` from `paper/`

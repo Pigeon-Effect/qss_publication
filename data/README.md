@@ -7,10 +7,38 @@ carry, and it is derived data that can be rebuilt from its open source.
 
 ```
 data/
-└── merged_works_labeled.db     (not in git; see below)
+├── merged_works_labeled.db     the final labelled corpus (not in git; see below)
+└── interim/                    everything the pipeline builds on the way there
 ```
 
 Everything in this directory except this README is gitignored.
+
+## `interim/`
+
+Where stages 01–06 read and write their intermediate artefacts. Nothing here is
+distributed: all of it is derived data, rebuilt by re-running the pipeline.
+Override the location with `QSS_INTERIM_DIR`.
+
+```
+data/interim/
+├── ai_discipline_surveys_txt/                      stage 01 input: survey papers as .txt
+├── openalex_raw/                                   stage 02: per-term-group results + cursors
+├── openalex_ai_works_2020-2024_raw.json            stage 02: merged, deduplicated
+├── openalex_ai_works_merged_deduplicated.db        stage 03 input (table `works`)
+├── openalex_ai_works_merged_deduplicated_cleaned.db          + cleaned_abstract
+├── openalex_ai_works_merged_deduplicated_country_with_origin.db  + country_of_origin
+├── openalex_ai_works_merged_deduplicated_cleaned_filtered.db  after the quality filter
+├── openalex_ai_works_sample_10k.db                 stage 04: finding_optimal_k
+├── openalex_ai_works_sample_100k.db                stage 04: finding_optimal_k
+├── openalex_ai_filtered_dataset_sample_100k.db     stage 04: h1 pre-clustering
+├── h1_cluster_subsets/                             stage 04: one database per macro-domain
+│   ├── <domain>_dataset.db                           full subset, labelled in place
+│   └── <domain>_sample.db                            sample used for the UMAP figures
+└── citshare_h3x4entities.csv                       stage 05 output → stage 06 input
+```
+
+`<domain>` is one of `computer_science`, `biomedical`, `social_science`,
+`natural_science`, `engineering`.
 
 ## What the file contains
 
@@ -83,13 +111,14 @@ The corpus is derived data. Three routes, in order of preference:
 1. **Zenodo data deposit.** If a dataset record accompanies the published
    article, download the database from there and place it at
    `data/merged_works_labeled.db`.
-2. **Rebuild from OpenAlex.** The retrieval and topic-modeling pipeline lives in
-   a separate repository — see the [main README](../README.md#scope). Section 2
-   of the manuscript documents the 279-term Boolean query, the filtering rules,
-   and the SPECTER + K-Means + expert-consolidation procedure in enough detail
-   to reproduce the corpus independently. Note that clustering depends on random
-   seeds, so an independent rebuild will not reproduce cluster identifiers
-   exactly.
+2. **Rebuild from OpenAlex.** The retrieval and topic-modeling pipeline is in
+   [`code/`](../code/README.md), stages 01–04, with each stage's inputs and
+   outputs documented in its own README. Note two things: the 279-term search
+   list is not currently in the repository (see
+   [stage 01](../code/01_keyword_construction/README.md#what-is-not-here)), and
+   clustering depends on random seeds and on an expert consolidation step whose
+   record is incomplete, so an independent rebuild will not reproduce cluster
+   identifiers exactly.
 3. **Contact the authors.** See `CITATION.cff` for the corresponding author.
 
 ## Using a different path
