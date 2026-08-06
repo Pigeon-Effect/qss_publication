@@ -12,6 +12,22 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   control, the semi-supervised hierarchical topic model (h1/h2/h3, plus the
   `finding_optimal_k` evidence and the parent-scoped contrastive TF-IDF term
   extraction), and the citation-share heatmap.
+- Stage 05, `code/05_impact_analysis/fractional_citation_share.py`: the
+  fractional citation sum per micro-cluster and bloc, written newly rather than
+  imported. Splits each work's citations across countries by its
+  `country_of_origin` institution shares, aggregates into China / USA / EU-27 /
+  RoW, and writes the CSV stage 06 reads plus an un-aggregated per-country
+  companion so the bloc definitions can be re-cut without a second pass.
+  Bloc membership is a set of named constants, not a buried query: "China" is
+  `CN + HK + MO + TW`, which reproduces the manuscript's reported share
+  (24.00 % computed, 24.1 % published) where mainland-only would give 21.82 %.
+  Verified against the manuscript: all five macro-domain citation totals in
+  Figure 2 reproduce exactly (22.48 / 26.91 / 15.07 / 17.99 / 17.56 %).
+- `code/05_impact_analysis/taxonomy.csv`: the display names of the 5 domains,
+  31 fields and 106 research fronts, transcribed from manuscript Figure 1. The
+  database stores only integer codes. Its structure is verified against the
+  corpus at runtime, and independently matches it (5/18, 6/19, 7/25, 7/22,
+  6/22 meso/micro per domain).
 - `data/interim/` as the documented location for every intermediate artefact
   the pipeline builds, with a per-file inventory in `data/README.md`.
 - `python-dotenv`: credentials are now read from a local `.env` file as well as
@@ -78,8 +94,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   matching the existing `paper/archive/` convention for superseded material.
 
 ### To resolve before deposit
-- Import stage 05 (fractional citation sum) and the generating code for
-  Figure 1.
+- Import the generating code for Figure 1.
 - Add the curated 279-term search list at
   `code/01_keyword_construction/search_terms.txt`.
 - Recover the record of the final h2 consolidation pass, so

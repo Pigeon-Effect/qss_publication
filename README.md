@@ -32,7 +32,7 @@ stage's own README for the reasoning behind its method.
 | 02 | Data collection (OpenAlex retrieval) | ✅ |
 | 03 | Data processing (quality control) | ✅ |
 | 04 | Subdiscipline clustering | ✅ with three documented gaps |
-| 05 | Impact analysis (fractional citation sum) | ❌ not yet imported |
+| 05 | Impact analysis (fractional citation sum) | ✅ |
 | 06 | Visualization | ◐ Figure 2 present, Figure 1 missing |
 | 07 | LLM-based cluster validation | ✅ implemented and tested |
 
@@ -232,7 +232,7 @@ nothing in the suite spends credit.
 │   ├── 04_subdiscipline_clustering/
 │   │   ├── finding_optimal_k/     evidence that no natural k exists
 │   │   └── SPECTER/               h1 / h2 / h3: over-segment, then consolidate
-│   ├── 05_impact_analysis/        ❌ not yet imported
+│   ├── 05_impact_analysis/        fractional citation sum per cluster per bloc
 │   ├── 06_visualization/          citation-share heatmap (Figure 2)
 │   └── 07_llm_validation/         ✅ implemented — see src/clustervalidation/ below
 ├── src/clustervalidation/         stage 07, as an installable package

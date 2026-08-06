@@ -1,0 +1,107 @@
+code,macro_id,macro,meso,micro
+000,0,Computer Science,Computer Vision & Image Processing,Image Generation & Segmentation
+001,0,Computer Science,Computer Vision & Image Processing,Face & Fingerprint Recognition
+002,0,Computer Science,Computer Vision & Image Processing,Multimodal Vision & Transformer
+003,0,Computer Science,Computer Vision & Image Processing,Object Detection & Classification
+004,0,Computer Science,Computer Vision & Image Processing,Mapping & Geospatial Analysis
+010,0,Computer Science,Natural Language Processing,Text to Text Transformer
+011,0,Computer Science,Natural Language Processing,Knowledge Graphs & Reasoning
+020,0,Computer Science,Speech Recognition & Audio Processing,Music & Acoustic Modeling
+021,0,Computer Science,Speech Recognition & Audio Processing,Emotion & Cognition in Audio
+022,0,Computer Science,Speech Recognition & Audio Processing,Speech Recognition
+030,0,Computer Science,Biomarkers for Health & Performance,Signal Processing & Sensing
+031,0,Computer Science,Biomarkers for Health & Performance,Human - Computer Interaction
+040,0,Computer Science,Machine Learning Foundations,Supervised Learning
+041,0,Computer Science,Machine Learning Foundations,Neural Network Architectures
+042,0,Computer Science,Machine Learning Foundations,SVM & Decision Tree
+043,0,Computer Science,Machine Learning Foundations,Probabilistic Modeling
+044,0,Computer Science,Machine Learning Foundations,Unsupervised Learning
+045,0,Computer Science,Machine Learning Foundations,Graph Learning & Network Modeling
+100,1,Health Science,Medical Imaging & Radiology,Musculoskeletal Imaging
+101,1,Health Science,Medical Imaging & Radiology,Neuroimaging & Imaging Physics
+102,1,Health Science,Medical Imaging & Radiology,Cancer Detection & Screening
+103,1,Health Science,Medical Imaging & Radiology,Disease Diagnostics
+110,1,Health Science,Neuroscience & Mental Health,Neuroscience
+111,1,Health Science,Neuroscience & Mental Health,Mental Health & Behaviorism
+120,1,Health Science,Clinical Informatics & Public Health,Cardiovascular Risk Modeling
+121,1,Health Science,Clinical Informatics & Public Health,Treatment Response & Risk Prediction
+122,1,Health Science,Clinical Informatics & Public Health,Epidemiological Forecasting & Policy
+123,1,Health Science,Clinical Informatics & Public Health,Human-Centered Medical AI Systems
+124,1,Health Science,Clinical Informatics & Public Health,Clinical Decision Support
+130,1,Health Science,Molecular Biology & Drug Discovery,Molecular Biology
+131,1,Health Science,Molecular Biology & Drug Discovery,Drug Discovery
+140,1,Health Science,Microbial and Immune Systems Biology,Infectious Disease & Immunology
+141,1,Health Science,Microbial and Immune Systems Biology,Microbial Ecosystems
+150,1,Health Science,Genetics & Genomics,Cancer Genomics
+151,1,Health Science,Genetics & Genomics,Gene Regulation
+152,1,Health Science,Genetics & Genomics,Mutation & Evolutionary Genetics
+153,1,Health Science,Genetics & Genomics,Organ Physiology
+200,2,Social Science,Education & Learning Science,Learning & Performance Analytics
+201,2,Social Science,Education & Learning Science,Teaching & Curriculum Design
+202,2,Social Science,Education & Learning Science,Learning Psychology & Motivation
+203,2,Social Science,Education & Learning Science,Digital Learning Enhancement
+210,2,Social Science,Digital Media & Communication,Content Integrity & Safety
+211,2,Social Science,Digital Media & Communication,Social Media & Public Discourse
+212,2,Social Science,Digital Media & Communication,Sentiment Mining & Analysis
+213,2,Social Science,Digital Media & Communication,Dialogue & Conversational AI
+220,2,Social Science,Politics & Governance,International Politics & Law
+221,2,Social Science,Politics & Governance,Science Policy & Knowledge Networks
+222,2,Social Science,Politics & Governance,Game Theory & Decision Making
+230,2,Social Science,Finance & Stock Market,Market Forecasting & Algorithmic Trading
+231,2,Social Science,Finance & Stock Market,Digital Financial Services
+232,2,Social Science,Finance & Stock Market,Macroeconomic Financial Policy
+240,2,Social Science,Business & Management,Risk Analytics & Decision Modeling
+241,2,Social Science,Business & Management,Smart Manufacturing
+242,2,Social Science,Business & Management,Organizational Performance
+243,2,Social Science,Business & Management,Enterprise Digitization
+244,2,Social Science,Business & Management,Digital Marketing & Consumer Behavior
+245,2,Social Science,Business & Management,Psychographic Profiling & Personalization
+250,2,Social Science,Urban Development,Sustainable Development
+251,2,Social Science,Urban Development,Tourism
+260,2,Social Science,Ethical & Creative AI,Artificial Cognition & Ethics
+261,2,Social Science,Ethical & Creative AI,Digital Art
+262,2,Social Science,Ethical & Creative AI,Virtual Reality
+300,3,Natural Science,Climate & Hydrology,Tectonics & Geology
+301,3,Natural Science,Climate & Hydrology,Topography & Earth-Observation
+302,3,Natural Science,Climate & Hydrology,Hydrology & Marine Science
+303,3,Natural Science,Climate & Hydrology,Ecosystem Ecology
+304,3,Natural Science,Climate & Hydrology,Climate & Atmospheric Prediction
+310,3,Natural Science,Material Science,"Flow, Wind & Heat Modeling"
+311,3,Natural Science,Material Science,"Material Strength, Damage & Fabrication"
+312,3,Natural Science,Material Science,"Polymers, Photonics & Biomaterials"
+320,3,Natural Science,Energy & Thermodynamics,Petroleum Mapping & Extraction
+321,3,Natural Science,Energy & Thermodynamics,Environmental Engineering
+330,3,Natural Science,Agriculture & Forestry,Forest Ecosystems
+331,3,Natural Science,Agriculture & Forestry,Soil & Microbiome Monitoring
+332,3,Natural Science,Agriculture & Forestry,Crop Disease & Species Classifier
+333,3,Natural Science,Agriculture & Forestry,Livestock & Veterinary Science
+334,3,Natural Science,Agriculture & Forestry,Digital Agriculture & Yield Optimization
+340,3,Natural Science,Astrophysics & Quantumphysics,Astrophysics
+341,3,Natural Science,Astrophysics & Quantumphysics,Computational Quantum Systems
+342,3,Natural Science,Astrophysics & Quantumphysics,Experimental Particle & Nuclear Physics
+350,3,Natural Science,Neuromorphic Hardware Accelerators,Neuromorphic Computing
+351,3,Natural Science,Neuromorphic Hardware Accelerators,Circuit Architecture for Neural Systems
+360,3,Natural Science,Construction & City Planning,Construction Technology
+361,3,Natural Science,Construction & City Planning,Mobility & City Planning
+400,4,Engineering,Cybersecurity & Privacy,Cybersecurity
+401,4,Engineering,Cybersecurity & Privacy,Blockchain & Cryptography
+402,4,Engineering,Cybersecurity & Privacy,Hardware - Software Interaction
+410,4,Engineering,IoT & Edge Computing,Wireless Communications
+411,4,Engineering,IoT & Edge Computing,Edge Computing
+412,4,Engineering,IoT & Edge Computing,Cloud & Distributed Systems
+413,4,Engineering,IoT & Edge Computing,IoT Devices & Sensors
+420,4,Engineering,Anomaly & Fault Detection,Structural Health Monitoring
+421,4,Engineering,Anomaly & Fault Detection,Anomaly Detection
+422,4,Engineering,Anomaly & Fault Detection,Fault Detection
+430,4,Engineering,Energy Technologies,NEV & Battery Health
+431,4,Engineering,Energy Technologies,Power Asset Monitoring
+432,4,Engineering,Energy Technologies,Smart Grid Analytics & Optimization
+433,4,Engineering,Energy Technologies,Energy System Modeling
+434,4,Engineering,Energy Technologies,Renewables & Grid Optimization
+440,4,Engineering,Autonomous Mobility,Autonomous Driving
+441,4,Engineering,Autonomous Mobility,Traffic Modeling
+442,4,Engineering,Autonomous Mobility,Networked Routing
+450,4,Engineering,Robotics & Mechatronics,Autonomous Navigation & Path Planning
+451,4,Engineering,Robotics & Mechatronics,Embodied Robotics
+452,4,Engineering,Robotics & Mechatronics,Task Scheduling & Decision Making
+453,4,Engineering,Robotics & Mechatronics,Control Systems & Fuzzy Logic

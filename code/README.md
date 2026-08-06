@@ -11,7 +11,7 @@ reads and writes.
 | [02](02_data_collection/) | Data collection (OpenAlex retrieval) | §2.1–2.2 | ✅ |
 | [03](03_data_processing/) | Data processing (quality control) | §2.3 Quality Control and Postprocessing | ✅ |
 | [04](04_subdiscipline_clustering/) | Subdiscipline clustering (embedding → over-segmentation → expert consolidation) | §3.1 Hierarchical Topic Modeling | ✅ with three documented gaps |
-| [05](05_impact_analysis/) | Impact analysis (fractional citation sum) | §3.2 Assessment of Research Impact | ❌ not yet imported |
+| [05](05_impact_analysis/) | Impact analysis (fractional citation sum) | §3.2 Assessment of Research Impact | ✅ |
 | [06](06_visualization/) | Visualization | §4 Findings | ◐ Figure 2 present, Figure 1 missing |
 | [07](07_llm_validation/) | LLM-based cluster validation | §4.1 External Validation via Document Intrusion | ✅ packaged as [`clustervalidation`](../src/clustervalidation/) |
 
@@ -70,7 +70,6 @@ the expert consolidated from), `output/` for regenerable products.
 Stated plainly so a reader does not go looking:
 
 - The **279-term search list** (stage 01, step 4 — manual curation).
-- **Stage 05** in its entirety, the fractional citation sum.
 - **Figure 1's** generating code (stage 06).
 - The record of the **final h2 consolidation pass** that moved three cluster
   groups between macro-domains (stage 04, "Known gaps").
