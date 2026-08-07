@@ -129,6 +129,10 @@ class RunConfig:
     min_cluster_size: int = 5
     db_path: str = DEFAULT_DB_PATH
     base_url: str = DEFAULT_BASE_URL
+    # Cheap non-reasoning model used to obtain a verdict when the primary
+    # response gave none. `None` disables the follow-up, leaving an unanswered
+    # trial to the seeded guess.
+    force_choice_model: ModelSpec | None = None
     extra: dict = field(default_factory=dict)
 
     def as_dict(self) -> dict:
@@ -147,6 +151,9 @@ class RunConfig:
             "max_words": self.max_words,
             "panel_size": self.panel_size,
             "min_cluster_size": self.min_cluster_size,
+            "force_choice_model": (
+                self.force_choice_model.name if self.force_choice_model else None
+            ),
             "package_version": _version(),
             **self.extra,
         }

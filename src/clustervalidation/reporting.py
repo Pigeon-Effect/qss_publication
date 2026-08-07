@@ -93,55 +93,60 @@ def write_reports(
 
 
 def _intrusion_records(outcome: intrusion.Outcome) -> list[dict[str, Any]]:
-    """Build one self-describing record per trial.
+    """Build one self-describing record per trial."""
+    return [intrusion_record(outcome.config, trial) for trial in outcome.trials]
+
+
+def intrusion_record(config: RunConfig, trial: intrusion.Trial) -> dict[str, Any]:
+    """Build one self-describing record for a single trial.
 
     Each record repeats the run identifiers (level, model, prompt, seed) rather
     than relying on the manifest alone, so a single line remains interpretable
     when records are concatenated across runs or shared in isolation. The
     abstract stored is the truncated text actually sent to the model, not the
     full source abstract, so the prompt is reconstructable from the record.
+
+    Exposed separately from the batch writer so a long run can checkpoint each
+    trial as it completes, rather than holding every result in memory until the
+    end and losing all of it if the process dies.
     """
-    config = outcome.config
-    records = []
-    for trial in outcome.trials:
-        records.append(
+    return {
+        "trial": trial.index,
+        "timestamp_utc": trial.timestamp_utc,
+        "level": config.level,
+        "level_description": LEVEL_DESCRIPTIONS[config.level],
+        "model": config.model.name,
+        "thinking": config.model.thinking,
+        "prompt_variant": config.prompt_variant,
+        "seed": config.seed,
+        "panel_size": config.panel_size,
+        "max_words": config.max_words,
+        "home_cluster": trial.panel.home_cluster,
+        "intruder_cluster": trial.panel.intruder_cluster,
+        "true_position": trial.panel.true_position,
+        "predicted": trial.predicted,
+        "correct": trial.correct,
+        "extraction_rule": trial.extraction_rule,
+        "recovered_from_reasoning": trial.recovered_from_reasoning,
+        "forced_choice": trial.forced_choice,
+        "forced_guess": trial.forced_guess,
+        "finish_reason": trial.finish_reason,
+        "truncated": trial.truncated,
+        "cost_usd": round(trial.cost_usd, 8),
+        "error": trial.error,
+        "panel": [
             {
-                "trial": trial.index,
-                "timestamp_utc": trial.timestamp_utc,
-                "level": config.level,
-                "level_description": LEVEL_DESCRIPTIONS[config.level],
-                "model": config.model.name,
-                "thinking": config.model.thinking,
-                "prompt_variant": config.prompt_variant,
-                "seed": config.seed,
-                "panel_size": config.panel_size,
-                "max_words": config.max_words,
-                "home_cluster": trial.panel.home_cluster,
-                "intruder_cluster": trial.panel.intruder_cluster,
-                "true_position": trial.panel.true_position,
-                "predicted": trial.predicted,
-                "correct": trial.correct,
-                "extraction_rule": trial.extraction_rule,
-                "recovered_from_reasoning": trial.recovered_from_reasoning,
-                "finish_reason": trial.finish_reason,
-                "truncated": trial.truncated,
-                "cost_usd": round(trial.cost_usd, 8),
-                "error": trial.error,
-                "panel": [
-                    {
-                        "position": position,
-                        "document_id": item.document.id,
-                        "title": item.document.title,
-                        "abstract": item.document.abstract,
-                        "is_intruder": item.is_intruder,
-                    }
-                    for position, item in enumerate(trial.panel.items, start=1)
-                ],
-                "response": trial.content,
-                "reasoning": trial.reasoning,
+                "position": position,
+                "document_id": item.document.id,
+                "title": item.document.title,
+                "abstract": item.document.abstract,
+                "is_intruder": item.is_intruder,
             }
-        )
-    return records
+            for position, item in enumerate(trial.panel.items, start=1)
+        ],
+        "response": trial.content,
+        "reasoning": trial.reasoning,
+    }
 
 
 def _coherence_records(outcome: coherence.Outcome) -> list[dict[str, Any]]:

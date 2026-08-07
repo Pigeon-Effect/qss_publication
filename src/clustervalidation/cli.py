@@ -14,6 +14,7 @@ import argparse
 import json
 import os
 import sys
+from dataclasses import replace
 
 from clustervalidation import __version__
 from clustervalidation.config import (
@@ -26,7 +27,11 @@ from clustervalidation.config import (
     RunConfig,
 )
 from clustervalidation.corpus import corpus_summary, load_clusters
-from clustervalidation.llm import ChatClient, MissingAPIKeyError
+from clustervalidation.llm import (
+    DEFAULT_OUTAGE_WAIT_SECONDS,
+    ChatClient,
+    MissingAPIKeyError,
+)
 from clustervalidation.prompts import (
     COHERENCE_PROMPTS,
     DEFAULT_COHERENCE_PROMPT,
@@ -34,7 +39,7 @@ from clustervalidation.prompts import (
     INTRUSION_PROMPTS,
 )
 from clustervalidation.protocols import coherence, intrusion
-from clustervalidation.reporting import write_reports
+from clustervalidation.reporting import default_stem, intrusion_record, write_reports
 
 DEFAULT_SEED = 20250628
 
@@ -76,6 +81,16 @@ def _add_common(parser: argparse.ArgumentParser) -> None:
         default=5,
         help="documents shown per trial (default: 5)",
     )
+    parser.add_argument(
+        "--max-tokens",
+        type=int,
+        default=None,
+        help=(
+            "output token ceiling, overriding the model default. Headroom "
+            "against a reasoning trace being severed before the verdict; it "
+            "is recorded in the run manifest"
+        ),
+    )
     parser.add_argument("--db", default=DEFAULT_DB_PATH, help="path to the corpus")
     parser.add_argument(
         "--results-dir",
@@ -83,6 +98,27 @@ def _add_common(parser: argparse.ArgumentParser) -> None:
         help="output directory (default: results/<protocol>)",
     )
     parser.add_argument("--base-url", default=DEFAULT_BASE_URL, help="API base URL")
+    parser.add_argument(
+        "--force-choice-model",
+        choices=sorted(MODELS) + ["none"],
+        default="deepseek-chat",
+        help=(
+            "cheap model asked to name a verdict when the primary response "
+            "gives none (default: deepseek-chat). 'none' disables the "
+            "follow-up and falls straight through to a seeded guess"
+        ),
+    )
+    parser.add_argument(
+        "--outage-wait",
+        type=float,
+        default=DEFAULT_OUTAGE_WAIT_SECONDS,
+        help=(
+            "seconds to wait before retrying when the API is unreachable "
+            f"(default: {DEFAULT_OUTAGE_WAIT_SECONDS:.0f}). Retried "
+            "indefinitely, so a dropped connection pauses a run instead of "
+            "losing trials"
+        ),
+    )
     parser.add_argument("--stem", default=None, help="override output filename stem")
     parser.add_argument(
         "--dry-run",
@@ -137,10 +173,22 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def _make_config(args: argparse.Namespace) -> RunConfig:
+    model = MODELS[args.model]
+    if args.max_tokens is not None:
+        # ModelSpec is frozen, so the override produces a new spec rather than
+        # mutating the shared registry entry. RunConfig.as_dict() serialises
+        # max_tokens, so the manifest records the value actually used.
+        model = replace(model, max_tokens=args.max_tokens)
+    force_choice_model = (
+        None
+        if getattr(args, "force_choice_model", "none") == "none"
+        else MODELS[args.force_choice_model]
+    )
     return RunConfig(
         protocol=args.command,
         level=args.level,
-        model=MODELS[args.model],
+        model=model,
+        force_choice_model=force_choice_model,
         prompt_variant=args.prompt,
         trials=args.trials,
         seed=args.seed,
@@ -151,7 +199,24 @@ def _make_config(args: argparse.Namespace) -> RunConfig:
     )
 
 
+def _force_utf8_stdout() -> None:
+    """Print UTF-8 regardless of the console's default codec.
+
+    Abstracts are scientific prose and contain characters outside cp1252, the
+    default on a Windows console - U+2212 MINUS SIGN, typographic dashes, Greek
+    letters. Printing one there raises UnicodeEncodeError and kills the process,
+    which took out --dry-run entirely. Reports are unaffected: they are opened
+    with an explicit encoding. `errors="replace"` keeps an unrenderable glyph
+    from ever aborting a run mid-flight.
+    """
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is not None:
+            reconfigure(encoding="utf-8", errors="replace")
+
+
 def main(argv: list[str] | None = None) -> int:
+    _force_utf8_stdout()
     args = build_parser().parse_args(argv)
 
     if args.command == "inspect":
@@ -174,7 +239,11 @@ def main(argv: list[str] | None = None) -> int:
         return _dry_run(module, clusters, config)
 
     try:
-        client = ChatClient(config.model, base_url=config.base_url)
+        client = ChatClient(
+            config.model,
+            base_url=config.base_url,
+            outage_wait_seconds=args.outage_wait,
+        )
     except MissingAPIKeyError as error:
         print(str(error), file=sys.stderr)
         return 2
@@ -184,15 +253,46 @@ def main(argv: list[str] | None = None) -> int:
         f"| model={config.model.name} | prompt={config.prompt_variant} "
         f"| trials={config.trials} | seed={config.seed}\n"
     )
-    outcome = module.run(clusters, config, client, progress=not args.quiet)
+    # Checkpoint every trial to disk as it completes. A thousand reasoning
+    # trials take hours; without this, a process killed at trial 999 leaves
+    # nothing behind. The file is rewritten in full at the end, so a completed
+    # run is byte-identical to one written in a single pass.
+    results_dir = args.results_dir or os.path.join(DEFAULT_RESULTS_DIR, args.command)
+    stem = args.stem or default_stem(config)
+    os.makedirs(results_dir, exist_ok=True)
+    checkpoint_path = os.path.join(results_dir, f"{stem}.jsonl")
+
+    on_trial = None
+    checkpoint = None
+    if args.command == "intrusion":
+        checkpoint = open(checkpoint_path, "w", encoding="utf-8")
+
+        def on_trial(trial) -> None:
+            checkpoint.write(
+                json.dumps(intrusion_record(config, trial), ensure_ascii=False) + "\n"
+            )
+            checkpoint.flush()
+
+    try:
+        outcome = module.run(
+            clusters, config, client, progress=not args.quiet, on_trial=on_trial
+        )
+    finally:
+        if checkpoint is not None:
+            checkpoint.close()
+
+    # How often the run had to sit out a network or service outage. Recorded in
+    # the manifest so a result carries evidence of the conditions it was
+    # collected under; `extra` is merged into RunConfig.as_dict().
+    config.extra["outage_waits"] = client.outage_waits
+    config.extra["outage_wait_seconds"] = client.outage_wait_seconds
 
     print(f"\n{'=' * 60}")
     for key, value in outcome.summary().items():
         print(f"{key:>28}: {value}")
     print("=" * 60)
 
-    results_dir = args.results_dir or os.path.join(DEFAULT_RESULTS_DIR, args.command)
-    paths = write_reports(outcome, results_dir, args.stem)
+    paths = write_reports(outcome, results_dir, stem)
     print("\nReports written:")
     for extension, path in paths.items():
         print(f"  {extension:>5}  {path}")

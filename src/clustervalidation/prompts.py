@@ -48,6 +48,83 @@ def _intrusion_reasoned(panel: str, panel_size: int) -> str:
     )
 
 
+def _intrusion_decisive(panel: str, panel_size: int) -> str:
+    """Bounded one-pass reasoning: label every paper once, then commit.
+
+    Written after the h3 pilot of 2026-08-06 (``intrusion_h3_n10_pilot``), which
+    showed that a long reasoning trace is a symptom of failure rather than care:
+    wrong answers reasoned 4.1x longer than correct ones (mean 6,820 vs 1,680
+    characters), and the single truncated trial spent ~3,500 tokens cycling
+    hypotheses - "Could ..." 23 times, "Maybe" 20 times, 75 re-references to a
+    numbered paper - without ever committing to an answer.
+
+    The cause is that testing "what if paper k is the intruder" for every k
+    re-reads the panel O(n^2) times, when labelling each paper once and taking
+    the minority is O(n). The constraints below forbid the re-reading and give
+    an explicit tie-break, so the model has a way out of the deadlock instead
+    of looping until the token ceiling cuts it off.
+    """
+    home = panel_size - 1
+    return (
+        f"You are a research librarian. Below are {panel_size} paper abstracts "
+        "with titles.\n"
+        f"Exactly {home} of them share one research topic. "
+        "Exactly one does not.\n\n"
+        f"{panel}\n\n"
+        "Decide in a single pass:\n"
+        f"1. Label each paper 1-{panel_size} with its topic in at most 8 words.\n"
+        "2. State the topic shared by the majority in one short phrase.\n"
+        "3. Name the one paper that does not fit it.\n\n"
+        "Constraints:\n"
+        "- Do not revisit a paper once you have labelled it.\n"
+        "- Do not test alternative answers against each other.\n"
+        "- If two papers seem equally unrelated, choose the one whose topic is "
+        "furthest from the majority phrase.\n"
+        "- Always name exactly one paper. Never decline.\n\n"
+        "End with a line exactly:\n"
+        f"Final verdict: <single digit 1-{panel_size}>"
+    )
+
+
+def _intrusion_subset(panel: str, panel_size: int) -> str:
+    """Construct the coherent majority group, then name what is left over.
+
+    Written after a blinded human check on 20 panels (2026-08-07) in which a
+    reader recovered the answer on 12 of 20 trials the model had failed - far
+    above the 20% a chance guess would give (p = 1e-4). The failures were
+    therefore not unanswerable panels, and the strategy that recovered them
+    differed from `decisive` in two specific ways, both encoded here.
+
+    First, framing. The task is posed as *finding the group of four*, not as
+    spotting the outlier. On a five-item panel these are not equivalent: the
+    subset search is constructive and uses the "exactly four" constraint as
+    evidence, whereas outlier-spotting compares each paper against a rest that
+    is never pinned down.
+
+    Second, and directly reversing `decisive`: comparing rival groupings
+    against each other is *permitted and requested*. `decisive` forbade it to
+    stop the model burning its token budget, but on hard panels weighing two
+    candidate groupings is exactly what resolves them. Suppressing that may
+    have cost accuracy rather than saved it.
+    """
+    home = panel_size - 1
+    return (
+        f"You are a research librarian. Below are {panel_size} paper abstracts "
+        "with titles.\n"
+        f"Exactly {home} of them share one research topic; exactly one does not.\n\n"
+        f"{panel}\n\n"
+        "Find the group of four first, not the outlier:\n"
+        f"1. Name each paper's specific research topic in one short phrase.\n"
+        f"2. Decide which set of {home} forms the tightest single field. If more "
+        "than one grouping is plausible, compare them directly and choose the "
+        "tightest.\n"
+        "3. The paper left out of that group is the answer.\n\n"
+        "Answer even when the choice is close; there is always exactly one.\n\n"
+        "End with a line exactly:\n"
+        f"Final verdict: <single digit 1-{panel_size}>"
+    )
+
+
 def _intrusion_minimal(panel: str, panel_size: int) -> str:
     """Digit-only answer, no reasoning. Cheapest variant."""
     return (
@@ -144,10 +221,44 @@ def _intrusion_method_only(panel: str, panel_size: int) -> str:
     )
 
 
+def force_choice(reasoning: str, panel_size: int, max_chars: int = 6000) -> str:
+    """Ask for a verdict from an analysis that never stated one.
+
+    The intrusion task always has exactly one right answer, so a trial with no
+    verdict scores 0% where even a blind guess scores 1/panel_size. Refusing to
+    answer is therefore worse than guessing, and leaving the trial unanswered
+    biases accuracy downward for a reason that has nothing to do with cluster
+    coherence.
+
+    This is deliberately an *extraction* step, not a second opinion: the model
+    is shown the original analysis and asked only to name the answer it was
+    heading towards. It sees no abstracts and does no analysis of its own.
+
+    Only the tail of the trace is passed. A trace that ran out of tokens has no
+    conclusion, but its most recent leanings are at the end, and the cap keeps
+    the follow-up cheap.
+    """
+    excerpt = reasoning[-max_chars:] if len(reasoning) > max_chars else reasoning
+    return (
+        f"An analyst was asked which one of {panel_size} papers does not belong "
+        "with the others. They wrote the notes below but never stated a final "
+        "answer.\n\n"
+        "--- NOTES ---\n"
+        f"{excerpt}\n"
+        "--- END NOTES ---\n\n"
+        "Based only on these notes, which paper were they most likely to name? "
+        "If the notes are inconclusive, choose the paper they treated with the "
+        "most suspicion.\n"
+        f"Reply with a single digit from 1 to {panel_size} and nothing else."
+    )
+
+
 IntrusionPrompt = Callable[[str, int], str]
 
 INTRUSION_PROMPTS: dict[str, IntrusionPrompt] = {
     "reasoned": _intrusion_reasoned,
+    "decisive": _intrusion_decisive,
+    "subset": _intrusion_subset,
     "minimal": _intrusion_minimal,
     "expert": _intrusion_expert,
     "narrow": _intrusion_narrow,

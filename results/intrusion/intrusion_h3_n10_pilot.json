@@ -1,0 +1,36 @@
+{
+  "generated_utc": "2026-08-06T06:29:42+00:00",
+  "configuration": {
+    "protocol": "intrusion",
+    "level": "h3",
+    "level_description": "micro level (research fronts)",
+    "model": "deepseek-v4-flash",
+    "thinking": true,
+    "temperature": null,
+    "max_tokens": 3000,
+    "prompt_variant": "reasoned",
+    "trials": 10,
+    "seed": 20250628,
+    "max_words": 200,
+    "panel_size": 5,
+    "min_cluster_size": 5,
+    "package_version": "1.0.0"
+  },
+  "summary": {
+    "trials_requested": 10,
+    "trials_completed": 10,
+    "trials_failed": 0,
+    "correct": 6,
+    "accuracy_percent": 60.0,
+    "random_baseline_percent": 20.0,
+    "recovered_from_reasoning": 1,
+    "non_explicit_verdicts": 1,
+    "truncated_responses": 1,
+    "unparsed_responses": 0,
+    "extraction_rule_counts": {
+      "final_verdict": 9,
+      "trailing_digit": 1
+    },
+    "total_cost_usd": 0.004475
+  }
+}

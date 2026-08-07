@@ -15,14 +15,15 @@ five), which is what accuracy must be compared against.
 from __future__ import annotations
 
 import random
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
 from clustervalidation.config import RunConfig
 from clustervalidation.corpus import ClusterMap, Document, truncate_words
 from clustervalidation.llm import ChatClient
-from clustervalidation.parsing import extract_verdict
-from clustervalidation.prompts import INTRUSION_PROMPTS, render_panel
+from clustervalidation.parsing import Extraction, extract_verdict
+from clustervalidation.prompts import INTRUSION_PROMPTS, force_choice, render_panel
 
 
 @dataclass(frozen=True)
@@ -58,6 +59,12 @@ class Trial:
     predicted: int | None = None
     extraction_rule: str = "none"
     recovered_from_reasoning: bool = False
+    # A verdict obtained by asking a cheap model to read the analysis and name
+    # the answer it was heading towards.
+    forced_choice: bool = False
+    # Last resort: a seeded random pick, used only when even the follow-up
+    # produced nothing. Expected accuracy 1/panel_size, not zero.
+    forced_guess: bool = False
     correct: bool = False
     content: str = ""
     reasoning: str = ""
@@ -126,6 +133,8 @@ class Outcome:
                 if t.extraction_rule in {"bare_line", "trailing_digit", "last_digit"}
             ),
             "truncated_responses": sum(1 for t in completed if t.truncated),
+            "forced_choice_calls": sum(1 for t in completed if t.forced_choice),
+            "forced_guesses": sum(1 for t in completed if t.forced_guess),
             "unparsed_responses": sum(1 for t in completed if t.predicted is None),
             "extraction_rule_counts": self.extraction_rule_counts(),
             "total_cost_usd": round(sum(t.cost_usd for t in self.trials), 6),
@@ -168,6 +177,61 @@ def build_panels(clusters: ClusterMap, config: RunConfig) -> list[Panel]:
     return panels
 
 
+def _force_verdict(
+    reasoning: str,
+    config: RunConfig,
+    client: ChatClient,
+    index: int,
+) -> tuple[Extraction, bool, bool, float]:
+    """Obtain a verdict for a trial whose primary response gave none.
+
+    Two tiers, cheapest sufficient one wins:
+
+    1. **Forced choice.** A small, non-reasoning model reads the original
+       analysis and names the answer it was heading towards. This is extraction,
+       not adjudication - the follow-up sees no abstracts. It costs a few
+       hundred tokens and only fires on the rare unanswered trial.
+    2. **Forced guess.** If there is no analysis to read, or the follow-up
+       fails or returns nothing usable, pick uniformly at random from a
+       generator seeded by the run seed and the trial index, so the guess is
+       reproducible. Expected accuracy is the random baseline rather than zero.
+
+    Returns the extraction, flags for which tier produced it, and the cost of
+    the follow-up call so the caller can add it to the trial's total.
+    """
+    attempted = bool(reasoning) and config.force_choice_model is not None
+    extra_cost = 0.0
+
+    if attempted:
+        try:
+            follow_up = client.complete(
+                force_choice(reasoning, config.panel_size),
+                model=config.force_choice_model,
+            )
+            extra_cost = follow_up.cost_usd
+            # The follow-up is asked for a bare digit, so the permissive rules
+            # are appropriate here in a way they are not for a severed trace.
+            recovered = extract_verdict(follow_up.content, config.panel_size)
+            if recovered.value is not None:
+                return (
+                    Extraction(recovered.value, "forced_choice"),
+                    True,
+                    False,
+                    extra_cost,
+                )
+        except Exception:  # noqa: BLE001 - a failed follow-up falls through
+            # The follow-up is a convenience, never a reason to lose the trial.
+            pass
+
+    guesser = random.Random(f"{config.seed}:{index}")
+    return (
+        Extraction(guesser.randint(1, config.panel_size), "forced_guess"),
+        attempted,
+        True,
+        extra_cost,
+    )
+
+
 def _truncate(doc: Document, max_words: int) -> Document:
     return Document(doc.id, doc.title, truncate_words(doc.abstract, max_words))
 
@@ -181,11 +245,17 @@ def run(
     config: RunConfig,
     client: ChatClient,
     progress: bool = True,
+    on_trial: Callable[[Trial], None] | None = None,
 ) -> Outcome:
     """Execute the protocol and return the outcome.
 
     A failing trial is recorded and the run continues; only the panels that
     produced a response contribute to accuracy.
+
+    ``on_trial`` is called with each trial as it completes. A run of a thousand
+    reasoning trials takes hours, so the caller uses this to checkpoint results
+    to disk rather than holding them in memory until the end, where a killed
+    process would take every completed trial with it.
     """
     template = INTRUSION_PROMPTS[config.prompt_variant]
     panels = build_panels(clusters, config)
@@ -204,16 +274,42 @@ def run(
             trial.error = str(error)
             trial.timestamp_utc = _now()
             outcome.trials.append(trial)
+            if on_trial is not None:
+                on_trial(trial)
             if progress:
                 print(f"Trial {index:4d} | ERROR: {error}")
             continue
 
         # Primary read is the visible answer; reasoning models sometimes emit
         # the verdict only in the reasoning trace, so that is the fallback.
+        #
+        # Only an *explicit* verdict is recoverable from a trace. The permissive
+        # rules exist for replies that are merely terse, not for traces severed
+        # by the token ceiling: a trace cut mid-sentence ends on an enumeration
+        # fragment ("... paper 2 clay bricks; paper 3"), and reading that as the
+        # answer scores a coin flip as though the model had decided. It is wrong
+        # four times in five and right once, so it adds noise in both
+        # directions. Left unparsed, the trial stays in the denominator and
+        # counts as incorrect - which is what a non-answer is.
         extraction = extract_verdict(completion.content, config.panel_size)
         if extraction.value is None and completion.reasoning:
-            extraction = extract_verdict(completion.reasoning, config.panel_size)
-            trial.recovered_from_reasoning = extraction.value is not None
+            recovered = extract_verdict(completion.reasoning, config.panel_size)
+            if recovered.is_explicit:
+                extraction = recovered
+                trial.recovered_from_reasoning = True
+
+        # Every trial must end in a verdict. The task has exactly one correct
+        # answer, so a blind guess scores 1/panel_size while a non-answer
+        # scores zero; leaving a trial unanswered would depress accuracy for a
+        # reason unrelated to cluster coherence.
+        follow_up_cost = 0.0
+        if extraction.value is None:
+            (
+                extraction,
+                trial.forced_choice,
+                trial.forced_guess,
+                follow_up_cost,
+            ) = _force_verdict(completion.reasoning, config, client, index)
 
         trial.predicted = extraction.value
         trial.extraction_rule = extraction.rule
@@ -222,9 +318,11 @@ def run(
         trial.reasoning = completion.reasoning
         trial.finish_reason = completion.finish_reason
         trial.truncated = completion.truncated
-        trial.cost_usd = completion.cost_usd
+        trial.cost_usd = completion.cost_usd + follow_up_cost
         trial.timestamp_utc = _now()
         outcome.trials.append(trial)
+        if on_trial is not None:
+            on_trial(trial)
 
         if progress:
             mark = "OK" if trial.correct else " X"

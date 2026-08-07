@@ -1,0 +1,745 @@
+DOCUMENT INTRUSION DETECTION
+Generated: 2026-08-06T06:29:42+00:00
+
+CONFIGURATION
+  protocol: intrusion
+  level: h3
+  level_description: micro level (research fronts)
+  model: deepseek-v4-flash
+  thinking: True
+  temperature: None
+  max_tokens: 3000
+  prompt_variant: reasoned
+  trials: 10
+  seed: 20250628
+  max_words: 200
+  panel_size: 5
+  min_cluster_size: 5
+  package_version: 1.0.0
+
+SUMMARY
+  trials_requested: 10
+  trials_completed: 10
+  trials_failed: 0
+  correct: 6
+  accuracy_percent: 60.0
+  random_baseline_percent: 20.0
+  recovered_from_reasoning: 1
+  non_explicit_verdicts: 1
+  truncated_responses: 1
+  unparsed_responses: 0
+  extraction_rule_counts: {'final_verdict': 9, 'trailing_digit': 1}
+  total_cost_usd: 0.004475
+
+======================================================================
+
+Trial 1
+Timestamp: 2026-08-06T06:28:10+00:00
+Home cluster: 341
+Intruder cluster: 150
+True intruder position: 1
+Predicted: 1
+Correct: True
+Extraction rule: final_verdict
+Recovered from reasoning: False
+Finish reason: stop
+Cost: $0.000329
+
+Response:
+Paper [1] is the outlier: it concerns cancer genomics and differentially expressed genes, while the other four are physics/quantum-related research.
+
+Final verdict: 1
+
+Reasoning trace:
+We need answer identify paper not same topic. Need reason briefly. Papers: [1] cancer gene expression MEGs. [2] M-theory compactification accelerated expansion. [3] machine learning topological phases. [4] QAOA quantum optimization. [5] Born-Infeld amplitudes. Four share research topic? [1] bioinformatics cancer genes. [3] condensed matter ML topological phases. [4] quantum computing QAOA. [5] high-energy physics amplitudes. [2] high-energy theory cosmology/M-theory. Which four share? Maybe [2], [5] are physics? [3], [4] quantum? Let's inspect. The question says "Below are 5 academic papers. Four share the same research topic; one does not." Need identify outlier. Likely [1] is outlier because others are physics/quantum? But [2] M-theory, [3] topological phases ML, [4] QAOA, [5] Born-Infeld amplitudes. They are all quantum/gravity/field theory? [3] condensed matter topological phases, [4] quantum approximate optimization, [5] amplitudes, [2] string cosmology. Topic? Maybe "quantum" or "physics" broadly. [1] is cancer genomics, clearly different. Need final verdict single digit. We can reason brief. Need line exactly "Final verdict: <single digit 1-5>". The outlier is [1]. So final verdict: 1. Need ensure no other grouping? Let's think: Could four share "machine learning"? [1] uses procedure not ML? [3] ML topological phases, [4] quantum algorithm, [5] computations, [2] neural network study. No. "academic papers" maybe all have arXiv identifiers? [2] Report on 2104.13380v2 is an arXiv paper about M-theory. [3] arXiv? [4] arXiv? [5] arXiv. [1] maybe journal. The outlier is [1] as biology/medicine. Yes.
+
+Need respond with reasoning then final line exactly.
+
+Panel:
+  [1] ID=https://openalex.org/W3102570385  *** INTRUDER ***
+      Title: Identification of Monotonically Differentially Expressed Genes across Pathologic Stages for Cancers
+      Abstract: Given the fact that cancer is a multistage progression process resulting from genetic sequence mutations, the genes whose expression values increase or decrease monotonically across pathologic stages are potentially involved in tumor progression. This may provide insightful clues about how human cancers advance, thereby facilitating more personalized treatments. By replacing the expression values of genes with their GeneRanks, we propose a procedure capable of identifying monotonically different
+
+  [2] ID=https://openalex.org/W4214912077
+      Title: Report on 2104.13380v2
+      Abstract: We present a mechanism for accelerated expansion of the universe in the generic case of negative-curvature compactifications of M-theory, with minimal ingredients.M-theory on a hyperbolic manifold with small closed geodesics supporting Casimir energy -along with a single classical source (7-form flux) -contains an immediate 3-term structure for volume stabilization at positive potential energy.Hyperbolic manifolds are well-studied mathematically, with an important rigidity property at fixed volu
+
+  [3] ID=https://openalex.org/W2908202417
+      Title: Machine learning topological phases in real space
+      Abstract: We develop a supervised machine learning algorithm that is able to learn topological phases of finite condensed matter systems from bulk data in real lattice space. The algorithm employs diagonalization in real space together with any supervised learning algorithm to learn topological phases through an eigenvector ensembling procedure. We combine our algorithm with decision trees and random forests to successfully recover topological phase diagrams of Su-Schrieffer-Heeger (SSH) models from bulk 
+
+  [4] ID=https://openalex.org/W4312717951
+      Title: Quantum Approximate Optimization Algorithm with Sparsified Phase Operator
+      Abstract: The Quantum Approximate Optimization Algorithm (QAOA) is a promising candidate algorithm for demonstrating quantum advantage in optimization using near-term quantum computers.However, QAOA has high requirements on gate fidelity due to the need to encode the objective function in the phase separating operator, requiring a large number of gates that potentially do not match the hardware connectivity.Using the MaxCut problem as the target, we demonstrate numerically that an easier way to implement 
+
+  [5] ID=https://openalex.org/W2952294269
+      Title: All-multiplicity one-loop amplitudes in Born-Infeld electrodynamics from generalized unitarity
+      Abstract: A bstract We initiate a study of non-supersymmetric Born-Infeld electrodynamics in 4d at the quantum level. Explicit all-multiplicity expressions are calculated for the purely rational one-loop amplitudes in the self-dual (+ + … +) and next-to-self-dual ( − + … +) helicity sectors. Using a supersymmetric decomposition, d -dimensional unitarity cuts of the integrand factorize into tree-amplitudes in a 4d model of Born-Infeld photons coupled to a massive complex scalar. The two-scalar tree-amplitu
+
+----------------------------------------------------------------------
+
+Trial 2
+Timestamp: 2026-08-06T06:28:13+00:00
+Home cluster: 102
+Intruder cluster: 041
+True intruder position: 4
+Predicted: 4
+Correct: True
+Extraction rule: final_verdict
+Recovered from reasoning: False
+Finish reason: stop
+Cost: $0.000256
+
+Response:
+Paper 4 is about privacy-preserving federated learning, not medical image classification/diagnosis like the others.
+
+Final verdict: 4
+
+Reasoning trace:
+We need answer identify paper that does not share topic. Need reason briefly then final verdict line with digit. Need determine topics. Papers:
+
+1 mammography breast positioning quality control deep learning.
+2 radiomics prostate MRI biopsy prediction.
+3 prostate tissue classification CNN ML.
+4 federated learning privacy-preserving classification framework LDP-Fed+.
+5 brain tumor classification MRI transfer learning.
+
+Shared topic among 1,2,3,5? Medical imaging AI/deep learning. Paper 4 is about federated learning privacy, not specific medical imaging. Actually paper 4 generic distributed learning framework, not medical imaging. So odd one is 4. Final verdict: 4.
+
+Panel:
+  [1] ID=https://openalex.org/W4367597846
+      Title: Quality control system for mammographic breast positioning using deep learning
+      Abstract: This study proposes a deep convolutional neural network (DCNN) classification for the quality control and validation of breast positioning criteria in mammography. A total of 1631 mediolateral oblique mammographic views were collected from an open database. We designed two main steps for mammographic verification: automated detection of the positioning part and classification of three scales that determine the positioning quality using DCNNs. After acquiring labeled mammograms with three scales 
+
+  [2] ID=https://openalex.org/W3165002506
+      Title: Integrative Radiomics Models To Predict Biopsy Results For Negative Prostate MRI
+      Abstract: Multi-parametric MRI (mpMRI) is a powerful non-invasive tool for diagnosing prostate cancer (PCa) and is widely recommended to be performed before prostate biopsies. Prostate Imaging Reporting and Data System version (PI-RADS) is used to interpret mpMRI. However, when the pre-biopsy mpMRI is negative, PI-RADS 1 or 2, there exists no consensus on which patients should undergo prostate biopsies. Recently, radiomics has shown great abilities in quantitative imaging analysis with outstanding perform
+
+  [3] ID=https://openalex.org/W3104605662
+      Title: An Efficient Lightweight CNN and Ensemble Machine Learning Classification of Prostate Tissue Using Multilevel Feature Analysis
+      Abstract: Prostate carcinoma is caused when cells and glands in the prostate change their shape and size from normal to abnormal. Typically, the pathologist’s goal is to classify the staining slides and differentiate normal from abnormal tissue. In the present study, we used a computational approach to classify images and features of benign and malignant tissues using artificial intelligence (AI) techniques. Here, we introduce two lightweight convolutional neural network (CNN) architectures and an ensembl
+
+  [4] ID=https://openalex.org/W4308114370  *** INTRUDER ***
+      Title: LDP‐Fed+: A robust and privacy‐preserving federated learning based classification framework enabled by local differential privacy
+      Abstract: Abstract As a distributed learning framework, Federated Learning (FL) allows different local learners/participants to collaboratively train a joint model without exposing their own local data, and offers a feasible solution to legally resolve data islands. However, among them, the data privacy and model security are two challenges. The former means that, if original data are used for trained FL models, various methods can be used to deduce the original data samples, thereby causing the leakage o
+
+  [5] ID=https://openalex.org/W4220879402
+      Title: Deep Transfer Learning Approaches in Performance Analysis of Brain Tumor Classification Using MRI Images
+      Abstract: Brain tumor classification is a very important and the most prominent step for assessing life-threatening abnormal tissues and providing an efficient treatment in patient recovery. To identify pathological conditions in the brain, there exist various medical imaging technologies. Magnetic Resonance Imaging (MRI) is extensively used in medical imaging due to its excellent image quality and independence from ionizing radiations. The significance of deep learning, a subset of artificial intelligenc
+
+----------------------------------------------------------------------
+
+Trial 3
+Timestamp: 2026-08-06T06:28:20+00:00
+Home cluster: 151
+Intruder cluster: 330
+True intruder position: 5
+Predicted: 4
+Correct: False
+Extraction rule: final_verdict
+Recovered from reasoning: False
+Finish reason: stop
+Cost: $0.000346
+
+Response:
+The other four papers use machine learning as a central method for biological data analysis. Paper [4] is a proteomics study using mass spectrometry and does not share that focus.
+
+Final verdict: 4
+
+Reasoning trace:
+We need answer identify paper not same research topic. Need reason briefly then final verdict digit 1-5. Need determine common topic among four. Papers: [1] scMinerva single-cell multi-omics integrated analysis, graph learning. [2] Machine learning unravels structural patterns in E. coli Hi-C matrices and predicts chromosome dynamics. [3] Wild Isolates of Neurospora crassa Reveal Three Conidiophore Architectural Phenotypes. [4] Proteome profiling of S-nitrosylation in colorectal cancer. [5] Multisensor models for assessing recurrent fire compatibility with habitat recovery for endangered species.
+
+Which four share research topic? Looks like [1], [2], [4]? Maybe bio/ML? [3] is fungal morphology with CNN classifier; [5] wildlife habitat ML remote sensing. Need identify odd one. Let's inspect.
+
+Academic papers: Four same research topic. Need find topic likely "machine learning applications in biology"? [1] ML single-cell multi-omics. [2] ML Hi-C chromosome. [3] ML image classifier for conidiophore phenotypes. [4] Proteomics S-nitrosylation in CRC, not ML. [5] ML multisensor habitat suitability. So four share "machine learning in biology/ecology"? [4] no ML. But maybe [4] is cancer proteomics, not ML. Others use ML. However [5] is wildlife habitat remote sensing, not molecular biology? But uses ML. [3] uses CNN. [1][2][5] ML. [4] no ML. Need determine which one does not share same research topic. Could be [4] because not ML-based.
+
+But need be careful: [3] is about Neurospora conidiophore architecture, uses CNN classifier, also genetics. [5] is about endangered species habitat using ML. [1][2] both computational biology ML. [3] also computational biology ML. [4] is proteomics with mass spec, no ML. So odd is 4.
+
+Let's craft brief reasoning and final line exactly.
+
+Panel:
+  [1] ID=https://openalex.org/W4281662821
+      Title: scMinerva: an Unsupervised Graph Learning Framework with Label-efficient Fine-tuning for Single-cell Multi-omics Integrated Analysis
+      Abstract: Abstract Single-cell multi-omics is a rapidly growing field in biomedicine, where multiple biological contents, such as the epigenome, genome, and transcriptome, can be measured simultaneously. Despite its potential, the integrated analysis and prediction of cellular states based on this complex multi-omics data pose significant challenges due to data sparsity, high noise, and computational overhead. To address these challenges, we developed scMinerva , an unsupervised framework for single-cell 
+
+  [2] ID=https://openalex.org/W4402101662
+      Title: Machine learning unravels inherent structural patterns in <i>Escherichia coli</i> Hi-C matrices and predicts chromosome dynamics
+      Abstract: Abstract High dimensional nature of the chromosomal conformation contact map (‘Hi-C Map’), even for microscopically small bacterial cell, poses challenges for extracting meaningful information related to its complex organization. Here we first demonstrate that an artificial deep neural network-based machine-learnt (ML) low-dimensional representation of a recently reported Hi-C interaction map of archetypal bacteria Escherichia coli can decode crucial underlying structural pattern. The ML-derived
+
+  [3] ID=https://openalex.org/W3103243315
+      Title: Wild Isolates of Neurospora crassa Reveal Three Conidiophore Architectural Phenotypes
+      Abstract: The vegetative life cycle in the model filamentous fungus, Neurospora crassa, relies on the development of conidiophores to produce new spores. Environmental, temporal, and genetic components of conidiophore development have been well characterized; however, little is known about their morphological variation. We explored conidiophore architectural variation in a natural population using a wild population collection of 21 strains from Louisiana, United States of America (USA). Our work reveals t
+
+  [4] ID=https://openalex.org/W4365515227
+      Title: Proteome profiling of endogenous and potential S-nitrosylation in colorectal cancer
+      Abstract: Background As a common cancer with high incidence rate and mortality, colorectal cancer (CRC) is seriously threatening human health. S-nitrosylation (SNO) proteins mediated by nitric oxide (NO) has important implications in the genesis, progression, and apoptosis of CRC. It’s worth noting that the SNO proteins also play an important role in the tumor endocrine and metabolic pathways of CRC. Materials and methods In this study, the protein extracts of human tissues and cell lines were treated by 
+
+  [5] ID=https://openalex.org/W4200349760  *** INTRUDER ***
+      Title: Multisensor models for assessing recurrent fire compatibility with habitat recovery for a critically endangered species
+      Abstract: The increased variety and availability of remotely sensed data from satellite and airborne platforms are expected to enhance data fusion approaches aimed at characterizing wildlife habitat. We investigated multisensor machine learning (ML) models to estimate desert grassland habitat suitability for a critically endangered species, the mask bobwhite quail (Colinus virginianus ridgewayi). Contemporary habitat conditions are marked by a history of intensive livestock grazing, periodic drought, and 
+
+----------------------------------------------------------------------
+
+Trial 4
+Timestamp: 2026-08-06T06:28:33+00:00
+Home cluster: 100
+Intruder cluster: 212
+True intruder position: 5
+Predicted: 5
+Correct: True
+Extraction rule: final_verdict
+Recovered from reasoning: False
+Finish reason: stop
+Cost: $0.000552
+
+Response:
+Papers 1–4 all involve medical imaging or image-based analysis (laparoscopic video, CT/MRI, ultrasound, X-ray). Paper 5 is about sentiment analysis of text data for adverse drug reactions, so it does not share that topic.
+
+Final verdict: 5
+
+Reasoning trace:
+We need answer. Need identify four same research topic, one not. Need reason briefly, final verdict single digit. Need determine topics.
+
+Papers:
+1 laparoscopic surgery training, YOLOv8 instance segmentation, suturing assessment.
+2 spider ball python wobble syndrome, CT/MRI inner ear morphology.
+3 comparison simulators for regional anaesthesia training among novice practitioners.
+4 knee pain prediction using X-ray and personal factors, logistic regression/XGBoost.
+5 adverse drug reaction sentiment analysis using ontology-XLNet.
+
+Which four share same research topic? Maybe medical/healthcare? All are medical. But "same research topic" likely "surgical training/simulation"? Papers 1 and 3 are surgical/medical training simulators. Paper 2 veterinary anatomy, 4 knee pain prediction, 5 sentiment analysis. Only 1 and 3 share. Need four? Hmm maybe all except one share "application of machine learning/deep learning in medical"? Let's examine.
+
+1 uses YOLOv8 instance segmentation/object detection for surgical assessment. 4 uses logistic regression/XGBoost for knee pain prediction. 5 uses XLNet/Bi-LSTM for sentiment analysis of adverse drug reactions. These three use ML/DL on medical data. 2 uses CT/MRI imaging but not ML. 3 compares simulators, not ML. But "same research topic" maybe "artificial intelligence in medicine"? Then 1,4,5 are AI/ML; 2 imaging; 3 simulation training. Not four.
+
+Need determine intended grouping. Could be "medical image analysis"? Paper 1 uses instance segmentation (image analysis) of surgical video; Paper 2 CT/MRI imaging; Paper 4 knee X-ray; Paper 5 text, not image. Paper 3 ultrasound simulators. Hmm.
+
+Let's parse titles:
+
+[1] Hybrid YOLOv8 and Instance Segmentation to Distinguish Sealed Tissue and Detect Tools' Tips in FLS Laparoscopic Box Trainer. Topic: computer vision for laparoscopic surgical training.
+
+[2] Comparative assessment of computed tomography and magnetic resonance imaging of spider morph Python regius and wild type to evaluate morphological correlate of wobble syndrome. Topic: veterinary radiology/anatomy.
+
+[3] Comparison of NeedleTrainer™ and ultrasound tissue simulator in a simulated environment among novice regional anaesthesia practitioners. Topic: medical simulation training.
+
+[4] Factors associated with predicting knee pain using knee X-ray and personal factors: multivariate logistic regression and XGBoost model analysis from Korean database. Topic: ML prediction model for knee pain using X-ray.
+
+[5] Sentence-Level Aspect-Based Sentiment Analysis for Classifying Adverse Drug Reactions (ADRs) Using Hybrid Ontology-XLNet Transfer Learning. Topic: NLP sentiment analysis for pharmacovigilance.
+
+All involve medical/health domains. But "research topic" might be "machine learning/medical data" except [3]? Actually [2] not ML. [3] not ML. [1] ML. [4] ML. [5] ML. That's three ML. So not.
+
+Maybe "deep learning in medical imaging"? [1] uses YOLOv8 segmentation on laparoscopic images. [2] uses CT/MRI imaging but no deep learning. [4] uses knee X-ray but statistical/ML. [5] text. [3] ultrasound simulator. Not.
+
+Maybe "surgical assessment/training" includes [1] and [3], but not four.
+
+Could be "using artificial intelligence to analyze medical data" includes [1], [4], [5], and maybe [2]? No, [2] uses imaging and anatomical comparison, no AI. [3] no AI. So only three.
+
+Could "academic papers" all from medical research? Four share "imaging" maybe [1] instance segmentation on images, [2] CT/MRI, [3] ultrasound, [4] knee X-ray. Paper [5] text sentiment analysis does not involve imaging. This is plausible: four papers use medical imaging (laparoscopic video/images, CT/MRI, ultrasound, X-ray) while one [5] uses social media text. Need check [3] "ultrasound tissue simulator" uses ultrasound technology (imaging) in simulated environment; yes. [1] YOLOv8 instance segmentation to distinguish tissue and detect tools' tips in laparoscopic box trainer: imaging. [2] CT and MRI imaging. [4] knee X-ray. Thus four share "medical imaging" broadly; [5] is NLP sentiment analysis. The one that does not is [5]. Need final verdict digit: 5? But question says "Below are 5 academic papers. Four share the same research topic; one does not." Need identify one not. If topic = medical imaging, paper 5 not. Final verdict with single digit 1-5 corresponding to paper number? Need output line exactly "Final verdict: 5". Let's ensure no other possibility.
+
+Let's consider "same research topic" could be "medical imaging/diagnostic imaging" with papers 2,3,4 and maybe 1? [1] is not exactly medical imaging? It's surgical video analysis; but uses images to detect tissues/tools. So yes imaging. [3] uses ultrasound imaging simulator, but not diagnostic? It compares simulators for regional anaesthesia; still ultrasound imaging. [4] knee X-ray. [2] CT/MRI. So [5] is text mining/sentiment analysis, definitely different.
+
+Need reason briefly. End line exactly.
+
+Panel:
+  [1] ID=https://openalex.org/W4391623414
+      Title: A Hybrid YOLOv8 and Instance Segmentation to Distinguish Sealed Tissue and Detect Tools' Tips in FLS Laparoscopic Box Trainer
+      Abstract: Intracorporeal suturing is one of the most crucial skills in the Fundamentals of Laparoscopic Surgery. Surgical residents are evaluated by their supervisory surgeon, but surgical assessment demands a substantial amount of time from the surgeons and can result in biased evaluations. In addition, distinguishing sealed tissue among multiple trainees would be a subjective decision. Therefore, we propose an autonomous assessment support system, which can supervise the execution of the suturing task b
+
+  [2] ID=https://openalex.org/W4220865203
+      Title: Comparative assessment of computed tomography and magnetic resonance imaging of the spider morph of <i>Python regius</i> and wild type <i>Python regius</i> to evaluate the morphological correlate of the wobble syndrome
+      Abstract: Abstract There is general awareness of artificial selection and its potential implications on health and welfare of animals. Despite growing popularity and increasing numbers of breeds of atypical colour and pattern variants in reptiles, only few studies have investigated the appearance and cause of various diseases associated with colour morphs. Ball pythons ( Python regius ) are among the most frequently bred reptiles and breeders selected for a multitude of different colour and pattern morphs
+
+  [3] ID=https://openalex.org/W4404640770
+      Title: Comparison of NeedleTrainer™ and ultrasound tissue simulator in a simulated environment among novice regional anaesthesia practitioners
+      Abstract: Utilising ultrasound technology has resulted in higher success and lower complication rates during regional anaesthesia (RA) procedures. Proper training is necessary to accurately identify structures, optimise images, and improve hand–eye coordination. Simulation training using immersive virtual environments and simulation models has enabled this competency training to be conducted safely before performing on patients. We conducted a study to compare the simulator performance and users' feedback
+
+  [4] ID=https://openalex.org/W4404914722
+      Title: Factors associated with predicting knee pain using knee X-ray and personal factors: A multivariate logistic regression and XGBoost model analysis from the Nationwide Korean Database (KNHANES)
+      Abstract: With increasing life expectancy, knee pain has become more prevalent, highlighting the need for early prediction. Although X-rays are commonly used for diagnosis, knee pain and X-ray findings do not always match. This study aims to identify factors contributing to knee pain in individuals with both normal and abnormal knee X-ray results to bridge the gap between X-ray findings and knee pain. Data from the fifth Korea National Health and Nutrition Examination Survey (KNHANES), collected from 2010
+
+  [5] ID=https://openalex.org/W3175052898  *** INTRUDER ***
+      Title: Sentence-Level Aspect-Based Sentiment Analysis for Classifying Adverse Drug Reactions (ADRs) Using Hybrid Ontology-XLNet Transfer Learning
+      Abstract: This paper presents a hybrid ontology-XLNet sentiment analysis classification approach for sentence-level aspects. The main objective of the proposed approach allows discovering user social data considering the extracted in-depth inference about sentiment depending on the context. Thus, in this paper, we investigate the contribution of utilizing the lexicalized ontology to improve the aspect-based sentiment analysis performance through extracting the indirect relationships in user social data. T
+
+----------------------------------------------------------------------
+
+Trial 5
+Timestamp: 2026-08-06T06:29:03+00:00
+Home cluster: 311
+Intruder cluster: 413
+True intruder position: 1
+Predicted: 3
+Correct: False
+Extraction rule: trailing_digit
+Recovered from reasoning: True
+Finish reason: length
+Cost: $0.001068
+
+Reasoning trace:
+We need answer. Need identify four share same research topic; one does not. Need reason briefly then final verdict line. Need examine papers.
+
+[1] Computer Vision Based Pre-Processing System for Autonomous Vehicles. Abstract talks about Industry 4.0, smart cities, ICT, Green ICT, IoT, GHG. Actually title autonomous vehicles, but abstract seems about smart cities/ICT/green. Hmm maybe truncated? Need infer topic: Computer vision preprocessing for autonomous vehicles, but abstract focuses ICT environmental. Could be related to autonomous vehicles? Others?
+
+[2] 3D-printed biodigital clay bricks, mechanical properties, sustainable construction materials.
+
+[3] Dovetail joint of composite fan blade, turbofan engines, composite materials, strength, 2D/3D modelling, reinforcement schemes. Topic: composite materials/mechanical engineering/aircraft engine components.
+
+[4] Optimization of Fracture Treatment Design in a Vertical Well. Oil/gas hydraulic fracturing, productivity index. Topic: petroleum engineering well stimulation.
+
+[5] Mapping density-dependent material properties of dry manufactured snow using micro-CT. Topic: snow mechanics, material properties using CT, mechanical loading.
+
+Common research topic among four? Need find four sharing same topic. Could be "material properties/mechanical testing using imaging/3D modelling"? Let's inspect.
+
+Paper 2: mechanical properties of 3D-printed clay bricks, compression/elasticity, compared to standard bricks. Material characterization.
+Paper 3: composite fan blade dovetail joint, strength, mechanical behaviour, computational modelling.
+Paper 5: density-dependent material properties of snow using micro-CT, mechanical loading, structural parameters.
+Paper 4: fracture treatment design in vertical well, optimizing productivity index. Not material characterization? It's about hydraulic fracturing design.
+Paper 1: autonomous vehicles pre-processing, maybe computer vision? Hmm.
+
+Could be four are about "modelling and optimization using computational methods"? Let's see.
+
+Maybe topic: "mechanical properties of materials/structures" includes 2,3,5, and 4? Paper 4 is fracture treatment design in vertical well (rock fracturing, proppant, productivity). Could be "fracture" in materials? But it's about oil well stimulation, not material property.
+
+Paper 1 autonomous vehicles pre-processing likely not same as any. So odd one could be 1 or 4.
+
+Need determine which four share same research topic. Let's analyze each.
+
+Paper [1] Title: Computer Vision Based Pre-Processing System for Autonomous Vehicles. Abstract: "In era Industry 4.0, Computational Intelligence, Data Science and smart ICT... Governments ... smart cities... intelligent technologies allow cities to monitor atmosphere, buildings, street lighting, traffic, crowds, crime... In building smarter city, Computational intelligence and ICT underlying technologies; if not wisely applied, ICT can be environmental problem... ICT industry 2% GHG emissions expected 14% by 2040... Intelligent use advances in ICT assist minimizing GHG... Green ICT, IoT and..." Abstract doesn't mention computer vision or autonomous vehicles except title. Possibly paper text about autonomous vehicles? But provided abstract maybe truncated/mismatched? It discusses ICT, smart cities, green ICT. Topic maybe "ICT and sustainability" or "smart cities". Not same as other four.
+
+Paper [2]: sustainable clay bricks, 3D printing, material properties. Topic: "sustainable building materials" / "mechanical characterization of 3D-printed clay bricks".
+
+Paper [3]: composite fan blade dovetail joint, 2D/3D modelling, choosing reinforcement schemes. Topic: "composite material mechanical behavior / structural analysis".
+
+Paper [4]: hydraulic fracturing design in vertical well, optimize parameters to increase productivity index. Topic: "well stimulation / fracture treatment design".
+
+Paper [5]: snow material properties using micro-CT and mechanical loading. Topic: "mechanical properties of porous materials via imaging".
+
+Which four share? Could be all about "using 3D imaging/computational modeling to characterize mechanical properties"? Paper 2 uses 3D printing, not CT. Paper 3 uses computational models. Paper 5 uses CT. Paper 4 uses software EFRAC to model fracture treatment. Paper 1 computer vision pre-processing for autonomous vehicles? No.
+
+Could be "optimization" in title: [2] optimization? It says design efficiency. [3] choosing rational reinforcement schemes = optimization. [4] optimization of fracture treatment design. [5] mapping density-dependent material properties, methodology. [1] pre-processing system. Hmm.
+
+Maybe four share "design optimization using computational simulation/3D modelling"? Let's examine.
+
+Paper 2: previously published study explained formal design efficiency of 3D-printed biodigital clay bricks; current work studies mechanical properties. Not optimization exactly.
+
+Paper 3: considers possibility replacing 3D with 2D when choosing rational reinforcement schemes. Topic: composite structures, strength.
+
+Paper 4: Optimization of fracture treatment design. Clearly oil/gas.
+
+Paper 5: Mapping density-dependent material properties using micro-CT. Material science.
+
+Paper 1: Autonomous vehicles pre-processing. Could be "computer vision" maybe not.
+
+Maybe the four papers are in "mechanical engineering/material characterization" and one in "petroleum engineering"? But paper 1 unrelated too. Need identify exactly.
+
+Let's search memory: Paper 2 title "The New Standard Is Biodigital: Durable and Elastic 3D-Printed Biodigital Clay Bricks" = construction/material. Paper 3 "Effectiveness of 2-D and 3-D modelling of dovetail joint of composite fan blade" = aerospace composite. Paper 5 "Mapping of density-dependent material properties of dry manufactured snow using μCT" = snow mechanics. Paper 4 "Optimization of Fracture Treatment Design in a Vertical Well" = hydraulic fracturing. Paper 1 "Computer Vision Based Pre-Processing System for Autonomous Vehicles" = autonomous driving.
+
+Which four could share research topic? Maybe "application of X-ray microtomography (μCT) / 3D imaging to characterize materials"? Paper 2 doesn't mention μCT, but 3D-printed bricks; paper 3 3D modelling; paper 4 EFRAC software model; paper 5 μCT. Hmm.
+
+Maybe the "share same research topic" could be "mechanical properties of materials under compression/loading"?
+- Paper 2: compression and elasticity of clay bricks.
+- Paper 3: strength of composite fan blade dovetail joint (mechanical behaviour, stress).
+- Paper 5: mechanical loading of snow, density-dependent material properties.
+- Paper 4: fracture treatment design? Not material mechanical properties? Hydraulic fracturing is about fracturing rock, but in petroleum engineering, "fracture treatment" not material property. Could be "fracture mechanics"? Actually hydraulic fracturing creates fractures in rock to increase well productivity; could involve fracture mechanics but more engineering design.
+- Paper 1: computer vision pre-processing for autonomous vehicles. Definitely unrelated to mechanical properties.
+Thus four are 2,3,4,5? Paper 4 also about fractures in rock, mechanical/geomechanical? But it's not same as materials? Need more likely topic is "computational/experimental analysis of mechanical behavior of materials/structures", including clay bricks, composite fan blade joints, snow, and fracture treatment? The fracture treatment design in vertical well: "fracture" as in hydraulic fracturing, not material property. However it uses EFRAC software to model and optimize design of fracture treatment. It shares "optimization of design" with paper 3 (choosing rational reinforcement schemes) and maybe paper 2 (formal design efficiency) and paper 4? Paper 5 not optimization, it's mapping properties.
+
+Let's consider another group: Papers 2,3,5 are clearly all about materials/structures mechanical properties. Paper 4 is about oil well fracture treatment (also engineering design involving fracturing/proppant), not materials. Paper 1 is unrelated. Need four share same research topic—could be "mechanical/material characterization and modelling" includes 2,3,5, and 4? No, paper 4 is design optimization in petroleum, not material properties. But maybe "fracture treatment design" involves "fracturing" as a mechanical failure of rock; still, could be considered "fracture mechanics" among 2? No.
+
+Let's examine paper 3 title: "Effectiveness of 2-D and 3-D modelling of dovetail joint of composite fan blade for choosing rational reinforcement schemes" It's about composite materials, mechanical design, finite element modelling. Paper 5: "Mapping of density-dependent material properties of dry manufactured snow using μCT" It's about experimental measurement of mechanical properties. Paper 2: "Durable and Elastic 3D-Printed Biodigital Clay Bricks" It's about mechanical properties of 3D-printed bricks. These three share "mechanical properties of materials" exactly. Paper 4: "Optimization of Fracture Treatment Design in a Vertical Well" Could be "fracture" in materials? Actually hydraulic fracturing treatment design: optimize fracture parameters. It's not about material properties but "fracture treatment" in reservoir. Paper 1: autonomous vehicles. So only 2,3,5 clearly share. Need fourth.
+
+Could paper 4 share with 3 and 5? "Fracture" / "dovetail joint" etc? No. Could paper 1 share with 2? "Computer Vision Based Pre-Processing System for Autonomous Vehicles" maybe uses 3D printing? No.
+
+Maybe there is a hidden connection: All five are from same source? Need find common topic among four excluding one. Let's identify possible topics:
+- "Sustainability/green technology" includes [1] (ICT, green ICT, smart cities) and [2] (sustainable clay bricks, passive cooling). [4]? Oil/gas fracturing not sustainable. [3] composite fan blades reduce weight/inertial loads, fuel efficiency, maybe sustainability. [5] snow? no.
+- "Industry 4.0 / Computational Intelligence / ICT" includes [1] and maybe [2] (3D printing), [3] (digital twin), [4] (software). But [5] no.
+- "Digital twin technologies" in paper 3: computational models. Paper 4 uses software modelling. Paper 5 uses μCT imaging. Paper 2 3D printing. Paper 1 computer vision.
+
+Perhaps the task is from a set where four papers share a topic like "mechanical properties" and one not. The challenge likely expects recognize odd one out based on titles/abstracts.
+
+Let's list titles:
+1 Computer Vision Based Pre-Processing System for Autonomous Vehicles
+2 The New Standard Is Biodigital: Durable and Elastic 3D-Printed Biodigital Clay Bricks
+3 Effectiveness of 2-D and 3-D modelling of dovetail joint of composite fan blade for choosing rational reinforcement schemes
+4 Optimization of Fracture Treatment Design in a Vertical Well
+5 Mapping of density-dependent material properties of dry manufactured snow using μCT
+
+Which four share "3D printing/3D modelling/3D structure"?
+- Paper 2: 3D-printed bricks
+- Paper 3: 2-D and 3-D modelling
+- Paper 5: three-dimensional structure via μCT
+- Paper 4: ? fracture treatment design in vertical well—could be 3D? EFRAC software models fracture? Not necessarily.
+- Paper 1: computer vision preprocessing—could involve 3D? No.
+
+Which four share "use of computational/software modelling and simulation to optimize/analyze engineering designs"?
+- Paper 3: computational models, finite element? yes.
+- Paper 4: EFRAC software modelling and optimize design. yes.
+- Paper 5: μCT imaging and mechanical loading, not computational simulation? It establishes methodology, uses binary image segmentation. Could be computational.
+- Paper 2: 3D printing, material properties. Not simulation.
+- Paper 1: computer vision system, autonomous vehicles. Not.
+
+Which four share "mechanical testing/properties under load"?
+- Paper 2: compression and elasticity tests.
+- Paper 3: strength analysis, mechanical behaviour.
+- Paper 5: quasi-static mechanical loading, material properties.
+- Paper 4: "fracture treatment" in vertical well—not mechanical test, but fracture is mechanical? It designs hydraulic fractures in rock; could be "fracture" as a mechanical process. Maybe yes, it's about engineering fracture treatment to increase productivity. Not material properties.
+- Paper 1: no.
+
+Maybe the common topic is "fracture/compression/strength under loading" includes 2,3,5, and 4? Paper 4 is literally "Fracture Treatment Design" (fracture). But "fracture treatment" in petroleum is well stimulation, not material fracture mechanics. Yet the word "fracture" might trick. No, likely not.
+
+Let's see if paper 4 abstract: "designing a fracture treatment in a vertical well with the goal of optimizing its parameters to increase its productivity index. Uses EFRAC software to model and optimize design. compares and selects optimum fracking fluid, completion design ... perforations, proppant size, injection rate, duration... productivity index." This is oil/gas hydraulic fracturing (fracking). It shares with paper 3? Both involve "fracture" maybe? No.
+
+Paper 1 abstract: "Computer Vision Based Pre-Processing System for Autonomous Vehicles" but abstract about ICT and smart cities, green ICT. Could be from a paper about "Green ICT" not autonomous vehicles? Title says autonomous vehicles. Maybe abstract truncated and includes intro about smart cities and ICT, then would discuss computer vision for autonomous vehicles. So topic is computer vision/autonomous vehicles. Definitely different from materials.
+
+Could the four sharing same topic be "modelling/optimization using software" including 1? No, paper 1 is computer vision pre-processing for autonomous vehicles, not materials.
+
+Let's consider possibility that the odd paper is [4], and the four are 1,2,3,5? What topic do 1,2,3,5 share? Not obvious. Paper 1 is autonomous vehicles; paper 2 clay bricks; paper 3
+
+Panel:
+  [1] ID=https://openalex.org/W4245009010  *** INTRUDER ***
+      Title: Computer Vision Based Pre-Processing System for Autonomous Vehicles
+      Abstract: In the era of fourth industrial revolution or Industry 4.0, Computational Intelligence, Data Science and smart Information and Communication technology (ICT) are gaining huge importance in our society.Governments around the world started relying heavily on information and communication technologies to build smart and hyper-connected infrastructures that allow cities to provide better services to people and reduce energy consumption, as the global urban population is growing substantially.These i
+
+  [2] ID=https://openalex.org/W4304128214
+      Title: The New Standard Is Biodigital: Durable and Elastic 3D-Printed Biodigital Clay Bricks
+      Abstract: In a previously published study, the authors explained the formal design efficiency of the 3D-printed biodigital clay bricks 3DPBDCB: a project that aimed to change the conventional methods of clay brick design and mass production. This was achieved by employing the behavioural algorithms of reaction-diffusion and the shortest path that were extracted from the exact material physical properties and hydrophilic behaviours of clay and controlled material deposition 3D printing to create sustainabl
+
+  [3] ID=https://openalex.org/W3172401118
+      Title: Effectiveness of 2-D and 3-D modelling of dovetail joint of composite fan blade for choosing rational reinforcement schemes
+      Abstract: Turbofan jet engines are among the most complex and responsible constructions in the world. The creation of modern globally competitive engines is impossible without the use of digital twin technologies: a set of computational models that fully describe the behaviour of the structure under any operating conditions. Today, composite materials are widely used in many industries. In aircraft engines, their use is very promising for fan blades and fan case to reduce the overall weight of the engine 
+
+  [4] ID=https://openalex.org/W4390654902
+      Title: Optimization of Fracture Treatment Design in a Vertical Well
+      Abstract: This project focuses on designing a fracture treatment in a vertical well with the goal of optimizing its parameters to increase its productivity index. The project uses EFRAC 3.3.0.0 software to model and optimize the design of the fracture treatment. The project first compares and selects the optimum fracking fluid, followed by a completion design to choose the best parameters using the optimum fluid selected. The project then analyzes the impact of the number of perforations, perforation diam
+
+  [5] ID=https://openalex.org/W4389580430
+      Title: Mapping of density-dependent material properties of dry manufactured snow using $$\mu$$CT
+      Abstract: Abstract Despite the significance of snow in various cryospheric, polar, and construction contexts, more comprehensive studies are required on its mechanical properties. In recent years, the utilization of $$\mu$$ <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML"> <mml:mi>μ</mml:mi> </mml:math> CT has yielded valuable insights into snow analysis. Our objective is to establish a methodology for mapping density-dependent material properties for dry manufactured snow within the density range
+
+----------------------------------------------------------------------
+
+Trial 6
+Timestamp: 2026-08-06T06:29:09+00:00
+Home cluster: 040
+Intruder cluster: 230
+True intruder position: 5
+Predicted: 2
+Correct: False
+Extraction rule: final_verdict
+Recovered from reasoning: False
+Finish reason: stop
+Cost: $0.000334
+
+Response:
+Papers [1], [3], [4], and [5] all focus on applying machine/deep learning to specific application domains such as image classification, domain adaptation, eye tracking, and stock prediction. Paper [2] instead focuses on a deep learning optimization algorithm (Adam to SGD transition), which is a different research topic.
+
+Final verdict: 2
+
+Reasoning trace:
+We need answer. Need identify four same research topic one does not. Need reason briefly then final line. Need determine papers topics.
+
+[1] electrospun nanofibers anomaly classification SEM images using c-GAN transfer learning CNN. Medical/materials image classification.
+[2] optimization algorithm DSTAdam transition Adam to SGD for deep learning.
+[3] unsupervised domain adaptation feature alignment.
+[4] eye tracking dataset collection for neural network training, CNN gaze estimation.
+[5] stock price prediction using news sentiments machine learning, review.
+
+Four share same research topic? Need infer common topic perhaps "deep learning / machine learning applications" but [2] is optimization algorithm. [1,3,4,5] all apply deep learning to specific domains? [2] also deep learning optimization. Hmm.
+
+Need identify one not same. Let's examine. Titles:
+1 conditional GAN and transfer learning anomaly classification electrospun nanofibers -> deep learning image classification.
+2 decreasing scaling transition scheme from Adam to SGD -> optimization algorithms for deep learning.
+3 multi-partition feature alignment network for unsupervised domain adaptation -> deep learning domain adaptation.
+4 eye tracking dataset collection for neural network training -> deep learning vision dataset.
+5 stock price prediction using news sentiments by machine learning -> financial prediction using ML.
+
+Which four share research topic? Maybe all except [2] are application-oriented machine learning papers? [2] is core optimization. But [5] is also application ML. [1][3][4] are computer vision / image? [1] SEM image classification, [3] visual recognition domain adaptation, [4] eye tracking gaze estimation. [5] stock market NLP. Not same.
+
+Maybe four share "using neural networks / deep learning for classification/prediction" and [2] is about training algorithm, not application. But [5] stock price prediction is prediction, [1] anomaly classification, [3] domain adaptation, [4] gaze estimation. All use deep learning for classification/regression tasks. [2] is optimizer, different.
+
+Need answer final verdict single digit 1-5. Which paper does not share topic? likely [2] because it's about optimization algorithm, not application of deep learning to a specific domain. Need reason briefly. Final line exactly "Final verdict: 2" maybe.
+
+Let's ensure no other. [5] "Prediction of Stock Price Market Using News Sentiments By Machine Learning" is a review/survey of methods for stock forecasting. [1],[3],[4] are deep learning applications. [2] optimizer. Yes.
+
+Need produce final with reasoning and final line.
+
+Panel:
+  [1] ID=https://openalex.org/W4290603431
+      Title: A Conditional Generative Adversarial Network and Transfer Learning-Oriented Anomaly Classification System for Electrospun Nanofibers
+      Abstract: This paper proposes a generative model and transfer learning powered system for classification of Scanning Electron Microscope (SEM) images of defective nanofibers (D-NF) and nondefective nanofibers (ND-NF) produced by electrospinning (ES) process. Specifically, a conditional-Generative Adversarial Network (c-GAN) is developed to generate synthetic D-NF/ND-NF SEM images. A transfer learning-oriented strategy is also proposed. First, a Convolutional Neural Network (CNN) is pre-trained on real ima
+
+  [2] ID=https://openalex.org/W3201385174
+      Title: A Decreasing Scaling Transition Scheme from Adam to SGD
+      Abstract: Abstract Adaptive gradient algorithm and its variants, such as RMSProp, Adam, AMSGrad, etc., have been widely used in deep learning. Although these algorithms are faster in the early phase of training, their generalization performance is often not as good as stochastic gradient descent (SGD). Hence, a trade‐off method of transforming Adam to SGD after a certain iteration to gain the merits of both algorithms is theoretically and practically significant. To that end, a decreasing scaling transiti
+
+  [3] ID=https://openalex.org/W3091304644
+      Title: Multi-Partition Feature Alignment Network for Unsupervised Domain Adaptation
+      Abstract: In this paper, we present a novel unsupervised domain adaptation framework, Multi-Partition Feature Alignment Network, that learns a deep neural model for the target domain without the need for any supervision. Recent leading approaches for unsupervised domain adaptation are based on adversarial alignment. Aligning the global distribution of the domain representations via adversarial training does not guarantee the class-wise distribution alignment. The proposed approach is built on adversarial 
+
+  [4] ID=https://openalex.org/W4399200481
+      Title: Meticulous Acquisition System for Tracking User’s Natural Kinetics (MAS TUNK): An Approach in Eye Tracking Dataset Collection for Neural Network Training
+      Abstract: We propose MAS TUNK, a novel data collection framework for eye-tracking, designed to enhance the future development of automatic proctoring systems. Confronting the constraints of traditional eye-tracking methods reliant on specialized hardware, MAS TUNK employs a game-based strategy using standard laptop webcams to amass a more diverse and natural set of eye movement data across different user environments. Our collected dataset features full face frames, eye-cropping regions, iris Euclidean di
+
+  [5] ID=https://openalex.org/W4392158757  *** INTRUDER ***
+      Title: Prediction of Stock Price Market Using News Sentiments By Machine Learning
+      Abstract: Stock price forecasting is one of the most researched topics because it appeals to both the academic and commercial communities. Since the development of artificial intelligence, a great number of different algorithms have been put to use to forecast the movement of the stock market. To get a knowledge of stocks over the long term or to forecast the start price of a stock for the very next trading day, machine learning and statistics have been integrated. The many techniques for predicting share
+
+----------------------------------------------------------------------
+
+Trial 7
+Timestamp: 2026-08-06T06:29:12+00:00
+Home cluster: 340
+Intruder cluster: 211
+True intruder position: 2
+Predicted: 2
+Correct: True
+Extraction rule: final_verdict
+Recovered from reasoning: False
+Finish reason: stop
+Cost: $0.000258
+
+Response:
+Paper [2] is about health communication and social media analysis during COVID-19, while the other four are all astronomy/astrophysics research.
+
+Final verdict: 2
+
+Reasoning trace:
+We need answer identify paper not same topic. Need reason briefly then final verdict line. Let's inspect papers. [1] FRB detection pipeline efficiencies at UTMOST via mock FRB injections. [2] COVID-19 social listening WHO on X. [3] PAU Survey photometric redshifts using Gaussian processes. [4] Kepler heritage transfer learning for exoplanet transits in TESS data. [5] Simulating galaxy scale strong lensing in clusters to train deep learning.
+
+Which four share same research topic? Likely astronomy/astrophysics? [1], [3], [4], [5] all astronomy. [2] is health communication/COVID social media. So outlier is 2. Need final verdict line exactly "Final verdict: 2". Include brief reasoning.
+
+Panel:
+  [1] ID=https://openalex.org/W3110611276
+      Title: Estimating fast transient detection pipeline efficiencies at UTMOST via real-time injection of mock FRBs
+      Abstract: Dedicated surveys using different detection pipelines are being carried out at multiple observatories to find more Fast Radio Bursts (FRBs). Understanding the efficiency of detection algorithms and the survey completeness function is important to enable unbiased estimation of the underlying FRB population properties. One method to achieve end-to-end testing of the system is by injecting mock FRBs in the live data-stream and searching for them blindly. Mock FRB injection is particularly effective
+
+  [2] ID=https://openalex.org/W4403876772  *** INTRUDER ***
+      Title: Understanding content dissemination on sensemaking: WHO’s social listening strategy on X during the initial phase of COVID-19
+      Abstract: Abstract Purpose Guided by the Crisis and Emergency Risk Communication model (CERC, Reynolds and Seeger 2005. Crisis and emergency risk communication as an integrative model. Journal of Health Communication 10(1). 43–55.), the present study aimed to study how X (formerly Twitter) users sensemaking and efficacy based message. Additionally, the study also aimed to understand how the World Health Organization (WHO) responded to the emerging conversation. Methods Unsupervised machine learning was co
+
+  [3] ID=https://openalex.org/W3119676241
+      Title: The PAU Survey: narrow-band photometric redshifts using Gaussian processes
+      Abstract: We study the performance of the hybrid template-machine-learning photometric redshift (photo-$z$) algorithm Delight, which uses Gaussian processes, on a subset of the early data release of the Physics of the Accelerating Universe Survey (PAUS). We calibrate the fluxes of the $40$ PAUS narrow bands with $6$ broadband fluxes ($uBVriz$) in the COSMOS field using three different methods, including a new method which utilises the correlation between the apparent size and overall flux of the galaxy. W
+
+  [4] ID=https://openalex.org/W3155072952
+      Title: Exploiting Kepler’s Heritage: A Transfer Learning Approach for Identifying Exoplanets’ Transits in TESS Data
+      Abstract: Abstract In the last decade, exoplanets space missions started to collect a huge amount of photometric observations, with over ∼1,000,000 new light curves generated every month from the Transiting Exoplanet Survey Satellite (TESS) full-frame images alone. In order to analyze such an unprecedented volume of data, automated planet-candidate detection has become an appreciable replacement to human vetting. In this work, we present a Machine Learning approach, based on Deep Neural Networks, to perfo
+
+  [5] ID=https://openalex.org/W4392370431
+      Title: Simulating high-realistic galaxy scale strong lensing in galaxy clusters to train deep learning methods
+      Abstract: Abstract Galaxy-galaxy strong lensing in galaxy clusters is a unique tool for studying the subhalo mass distribution, as well as for testing predictions from cosmological simulations. We describe a novel method that simulates realistic lensed features embedded inside the complexity of observed data by exploiting high-precision cluster lens models. Such methodology is used to build a large dataset with which Convolutional Neural Networks have been trained to identify strong lensing events in gala
+
+----------------------------------------------------------------------
+
+Trial 8
+Timestamp: 2026-08-06T06:29:17+00:00
+Home cluster: 220
+Intruder cluster: 302
+True intruder position: 5
+Predicted: 5
+Correct: True
+Extraction rule: final_verdict
+Recovered from reasoning: False
+Finish reason: stop
+Cost: $0.000293
+
+Response:
+Paper 5 is the clear outlier: it concerns lake water quality and environmental factors, while the other four are in social science/humanities areas (religion/politics, education, AI/society, literature/human-animal studies).
+
+Final verdict: 5
+
+Reasoning trace:
+We need answer identifying which paper does not share same research topic. Need reason briefly, final line exact. Need determine common topic among four. Papers:
+1 about Russian Orthodox Church, Sorok Sorokov movement, Patriarch Kirill, digital radical outreach.
+2 about professional citizen education model validation in education.
+3 about AI and societal/economic disruptions, interdisciplinary discourse.
+4 about posthumanism, human-animal relations in novel.
+5 about water quality in highland lakes, Dianchi.
+
+Four share same research topic? Which four? Maybe papers 1,3,4? No. Let's examine. Academic papers. Need identify odd one. Could be paper 5 (water quality) vs others social sciences/humanities? Let's see: 1 religion/politics/digital; 2 education/citizenship; 3 AI/society; 4 literature/posthumanism; 5 environmental science/water quality. Four share broad? Maybe all except 5 are humanities/social sciences? But 3 is AI special issue with social impact; 1,2,4 are social/humanities. 5 is natural science. So odd is 5.
+
+But let's ensure no other common topic: Four papers might be about "anthropocentrism/humanism"? No. Paper 1 is religious political, 3 AI, 4 posthumanism. Not same. Paper 2 education. So indeed only 5 is unrelated. Need final verdict single digit 1-5. Which number is paper 5. Final line exactly "Final verdict: 5". Need include reasoning brief.
+
+Panel:
+  [1] ID=https://openalex.org/W4324123527
+      Title: Patriarch Kirill’s Praetorian Guard: Sorok Sorokov as Radical Outreach for “Holy Tradition”
+      Abstract: The central focus of this article is an in-depth analysis of the interplay between Patriarch Kirill’s ideology of “Holy Tradition” and the movement Sorok Sorokov, which we consider Kirill’s praetorian guard, in charge of “maintaining the order for patriarchal services”—services which include humanitarian and military assistance in Russian offensives, the punishment of non-traditional priests, and the on-site guards of patriarchal projects within the wider scope of Russkiy mir. More importantly h
+
+  [2] ID=https://openalex.org/W3137248190
+      Title: Validation of the Professional Citizen Education Model in Education
+      Abstract: Purpose:The aim of this study was to validate the model of professional citizen education in education.Methodology: The present study was applied in terms of purpose and quantitative in terms of data collection and was conducted using a descriptive survey research method.The statistical population of the study was all line managers and education staff in Khorasan Razavi province in 2019.According to the collected statistics, their number was 12 thousand people and according to Krejcie and Morgan
+
+  [3] ID=https://openalex.org/W3164269737
+      Title: Zeitenwende — Turn of Eras
+      Abstract: A new wave of innovation disrupts our social and economic life as we have lived it in the 20th century. On the one hand, artificial intelligence (AI) has the potential to increase our efficiency and ability to cope with the changes that are coming. On the other hand, AI itself also causes disruptions that may be managed best by contributions from other fields. We aim to start an interdisciplinary discourse with this special issue and bring together a set of articles from AI researchers, sociolog
+
+  [4] ID=https://openalex.org/W4391279609
+      Title: Exploring Human-Animal Relations in William Bruce Cameron’s A Dog's Purpose: A Novel For Humans: A Critical Posthumanist Approach
+      Abstract: This paper examines the critical concept of posthumanism through an analysis of William Bruce Cameron's novel A Dog's Purpose: A Novel For Humans (2010).Human-animal studies have the power to resist the supremacy of humanism.Thus, nonhuman animals are seen as a key participant in a challenge to humanism.They are also displayed as being the victims of anthropocentric humanism.Adopting an analytical approach, this paper is divided into two parts: theoretical and practical.Theoretically, posthumani
+
+  [5] ID=https://openalex.org/W4389168079  *** INTRUDER ***
+      Title: Seasonal differences in water quality of highland lakes and its influencing factors: A case study of Dianchi Lake
+      Abstract: Abstract Water quality is of great significance to human survival and development. It is of good theoretical value to study seasonal water quality variation and driving factors in plateau lakes. This paper studied the variation of water quality parameters in different seasons and their relationship with land use and climate factors in Dianchi Lake, Yunnan Province from 2001 to 2019. The results show that the factors restricting water environment in different seasons are different, but basically 
+
+----------------------------------------------------------------------
+
+Trial 9
+Timestamp: 2026-08-06T06:29:39+00:00
+Home cluster: 411
+Intruder cluster: 420
+True intruder position: 3
+Predicted: 4
+Correct: False
+Extraction rule: final_verdict
+Recovered from reasoning: False
+Finish reason: stop
+Cost: $0.000792
+
+Response:
+Papers 1, 2, 3, and 5 all involve neural network / deep learning based approaches, while paper 4 focuses on optimization-based channel assignment without such machine learning methodology.
+
+Final verdict: 4
+
+Reasoning trace:
+We need answer question. Need identify four same research topic, one not. Need reason briefly, final verdict single digit 1-5 corresponding to paper that does not share topic. Need analyze topics.
+
+Papers:
+1 VR video caching/delivery framework for edge-enhanced next-gen wireless networks. Topic: wireless networks, edge caching, VR video delivery.
+2 Multipath TCP meets RL energy-efficient scheduling in heterogeneous wireless networks. Topic: wireless networks, MPTCP scheduling, RL.
+3 On-line monitoring method of carbon fiber composite drilling tool wear driven by digital twin. Topic: manufacturing/tool wear monitoring, digital twin.
+4 Maximum-Service Channel Assignment in Vehicular Radar-Communication. Topic: wireless spectrum sharing, vehicular radar/communication, channel assignment.
+5 CritiCoder: End-to-End Uncertain Regression Network for robust macroscopic pressure models in Water Distribution Systems. Topic: neural network/uncertain regression, water distribution systems.
+
+Four share same research topic? Which four? Papers 1,2,4 are wireless networks/communications. 3 is manufacturing digital twin, 5 is water systems. Actually only three wireless? Paper 5 machine learning for water systems; paper 3 manufacturing. Maybe there is another grouping: Papers 1,2,4 all wireless communications. Paper 3 digital twin (also maybe signal processing? no). Paper 5 neural network uncertain regression (machine learning). Not same.
+
+But question says four share same research topic; one does not. Need find grouping of four. Could be "reinforcement learning" in 1,2,3? Let's inspect:
+1 uses multi-agent reinforcement learning.
+2 uses deep reinforcement learning.
+3 uses double neural network but not RL? digital twin driven online monitoring, wavelet analysis, neural network.
+4 optimization heuristic, no RL.
+5 uncertain regression neural network.
+
+Maybe four share "deep learning/neural networks"? Paper 1 RL, 2 RL, 3 neural network, 5 neural network. Paper 4 no. That is four (1,2,3,5) using AI/ML? But 1 and 2 are wireless networks, 3 manufacturing, 5 water systems. Research topic? Not same. The prompt "same research topic" likely according to fields. Need infer from titles/abstracts.
+
+Maybe four share topic "wireless networks"? Papers 1,2,4 are wireless. What about 3? "carbon fiber composite drilling tool wear" no. 5 water distribution no. Only three. So not.
+
+Maybe four share "resource allocation/optimization in networks"? 1 caching, 2 scheduling, 4 channel assignment, maybe 3? no, 5? no. So 1,2,4.
+
+Could paper 3 and 5 be related to "digital twin"? 3 explicitly digital twin. 5? no. Paper 1 maybe edge-enhanced next-gen wireless, 2 heterogeneous wireless networks. 4 vehicular radar-communication. That's 3 wireless communication. Could paper 3 involve "online monitoring" and "digital twin" with signal processing, not wireless. Paper 5 water distribution systems with neural network. Not.
+
+Could there be a hidden topic: "Reinforcement Learning"? Paper 1 RL caching; Paper 2 RL MPTCP; Paper? 4 "channel assignment" optimization, no RL; 3 neural network but not RL; 5 neural network but not RL. Only two.
+
+Maybe four share "edge computing/network" including 5? No.
+
+Let's read carefully. Paper 1: "A Transcoding-Enabled 360° VR Video Caching and Delivery Framework for Edge-Enhanced Next-Generation Wireless Networks" - edge caching, NOMA, multicast, RL. Paper 2: "Multipath TCP Meets Reinforcement Learning: A Novel Energy-Efficient Scheduling Approach in Heterogeneous Wireless Networks" - MPTCP scheduling, RL. Paper 4: "Maximum-Service Channel Assignment in Vehicular Radar-Communication" - channel assignment in vehicular networks, optimization. All are wireless communication/networking.
+
+Paper 3: "On-Line Monitoring Method of Carbon Fiber Composite Drilling Tool Wear Driven by Digital Twin" - manufacturing, tool wear, digital twin. Paper 5: "CritiCoder: An End-to-End Uncertain Regression Network for Robust Macroscopic Pressure Models in Water Distribution Systems" - water systems, neural regression.
+
+Could 4 and 1 and 2 and maybe 5 share "reliability/quality of service"? No.
+
+Maybe one of them actually does not share "RL" but among 1,2,3,4,5, which four are "machine learning"? Paper 1 (multi-agent RL), Paper 2 (deep RL), Paper 3 (neural network), Paper 5 (neural network). Paper 4 does not use ML. The abstract of Paper 4 proposes optimization framework, heuristic, no ML. So if topic is "machine learning-based methods" then four are 1,2,3,5; one not 4. But question says "same research topic" not "methodology". However many academic paper classifications use topics like "reinforcement learning", "neural network". Let's assess: Paper 1 and 2 both RL; Paper 3 and 5 both neural networks. Paper 4 no neural/ML. But "research topic" is broad; 1,2,4 are wireless communications, 3,5 are industrial monitoring? Hmm.
+
+Need determine from problem statement: "Below are 5 academic papers. Four share the same research topic; one does not." This is a classification task. Need identify odd paper. We need reason briefly and final verdict single digit.
+
+Which grouping has exactly four? Let's examine possible research topics:
+
+- "Wireless networks/communications": 1,2,4. Only 3. Not four.
+- "Machine learning / deep learning / reinforcement learning": 1,2,3,5 all use neural/RL; 4 uses optimization. That's four. But are they same "research topic"? Not exactly: 1 wireless caching, 2 network scheduling, 3 tool wear monitoring, 5 water pressure modeling. The only commonality is ML, not topic. Yet "research topic" could be "application of AI/ML" maybe.
+
+- "Digital twin": only 3.
+- "Water distribution systems": only 5.
+- "Vehicular networks": only 4.
+
+Could the four be "engineering systems with wireless/network" including 3? "Edge-enhanced next-generation wireless networks" (1), "heterogeneous wireless networks" (2), "vehicular radar-communication" (4), "carbon fiber composite drilling" no. Not.
+
+Could four be "uses reinforcement learning"? Only 1,2. No.
+
+Could four be "optimization" including 1,2,4,5? 5 is regression network, not optimization. 3 SVM comparison.
+
+Maybe "titles contain hyphenated phrase"? No.
+
+Let's think of "academic papers" maybe from arXiv categories. 1: computer science networking. 2: networking. 3: manufacturing engineering. 4: vehicular networks. 5: water systems civil engineering. Four share "wireless/network communications"? Actually 1,2,4 indeed, but that's three. Wait paper 3 abstract "multi-source signals ... drilling process ... online monitoring ... digital twin" no networks. Paper 5 "water distribution systems ... pressure models" no networks. So no.
+
+Could paper 5 be about "uncertain regression neural network" and paper 3 about "neural network"; paper 1 and 2 about "reinforcement learning"; paper 4 about "optimization". The "same research topic" perhaps "neural network-based methods" includes 1,2,3,5; paper 4 is not neural. But paper 1,2 specifically deep reinforcement learning, which is a subfield of neural networks. Paper 3 "double neural network model", paper 5 "uncertain regression neural network". So indeed four papers use neural networks/deep learning; paper 4 uses integer linear programming and heuristic. But the prompt says "research topic" not "technique". However "neural networks" is often a research topic.
+
+Let's examine paper 4: "Maximum-Service Channel Assignment in Vehicular Radar-Communication" Abstract: spectrum sharing, automotive radars and communication transceivers, channel assignment, integer linear optimization, heuristic. This is in wireless communications, no ML. The other four all involve AI/neural network. If question is from "same research topic", likely they expect to identify paper 4 as odd because the others are "machine learning / deep learning approaches". But is paper 1 "A Transcoding-Enabled 360° VR Video Caching and Delivery Framework..." uses multi-agent reinforcement learning. Paper 2 uses deep reinforcement learning. Paper 3 uses neural networks. Paper 5 uses neural network. So yes.
+
+But "research topic" could be "applications of machine learning in systems" which includes 1,2,3,5. Paper 4 is optimization in vehicular networks, not ML. Let's see if paper 4 maybe also uses "heuristic" but not ML. Yes.
+
+Need answer final verdict single digit 1-5. Which paper does not share? Likely 4.
+
+Let's ensure no other grouping of four: "communication/network systems" 1,2,4 plus maybe? 5 no, 3 no. "signal processing" 1? 2? 3 (wavelet analysis) maybe 5? no. "optimization" 1? caching optimization; 2 scheduling; 4 channel assignment; maybe 5 regression loss? no. "quality of service / latency / service" 1,2,4? 3 no,5 no.
+
+Thus answer 4.
+
+Need provide brief reason. Mention papers 1,2,3,5 all employ neural network / deep reinforcement learning based approaches; paper 4 is about integer linear optimization/channel assignment in vehicular radar-communication, no ML. Final verdict: 4.
+
+Need exactly line "Final verdict: <single digit 1-5>" should be 4.
+
+Panel:
+  [1] ID=https://openalex.org/W4210795263
+      Title: A Transcoding-Enabled 360° VR Video Caching and Delivery Framework for Edge-Enhanced Next-Generation Wireless Networks
+      Abstract: Virtual reality (VR) content, including 360° panoramic video, provides users with an immersive multimedia experience and therefore attracts increasing research and development attention. However, the requirement of high bandwidth and low latency of virtual reality service demand puts forward greater challenges to the current infrastructure, especially mobile networks. Inspired by the sharable nature of virtual reality content tiles, we further considered the potential opportunities for computing
+
+  [2] ID=https://openalex.org/W4285024830
+      Title: Multipath TCP Meets Reinforcement Learning: A Novel Energy-Efficient Scheduling Approach in Heterogeneous Wireless Networks
+      Abstract: Multipath TCP (MPTCP) has been standardized by the IETF as an extension of conventional TCP and it allows the system to utilize multiple paths simultaneously, which can aggregate bandwidth to improve network throughput. However, MPTCP needs to open multiple interfaces at the same time, which makes MPTCP consume more energy to maintain multiple interface connections. Thus, how to manage subflows with the MPTCP's scheduling system to determine which paths should be used for data transmission is of
+
+  [3] ID=https://openalex.org/W4285295108  *** INTRUDER ***
+      Title: On-Line Monitoring Method of Carbon Fiber Composite Drilling Tool Wear Driven by Digital Twin
+      Abstract: Aiming at the problems of not being able to directly monitor the wear state of drill bit during vibration drilling and not being able to collect relevant dynamic data online during machining, a digital twin-driven online monitoring method for vibration drilling bit wear was proposed. Firstly, feature extraction of multi-source signals in drilling process is carried out by wavelet analysis, and a double neural network model for bit wear recognition is established. Based on this, an online monitor
+
+  [4] ID=https://openalex.org/W3206410832
+      Title: Maximum-Service Channel Assignment in Vehicular Radar-Communication
+      Abstract: Spectrum sharing between different technologies has become a necessity as the RF spectrum has become more congested than ever due to the increasing number of connected devices and applications all wishing to access the spectrum simultaneously. Vehicular networks are one of many scenarios of spectrum sharing as vehicles are expected to share the same spectrum for radar sensing and communication purposes. Channel assignment among radar sensors and communication transceivers in automotive systems i
+
+  [5] ID=https://openalex.org/W4376479136
+      Title: CritiCoder: An End-to-End Uncertain Regression Network for Robust Macroscopic Pressure Models in Water Distribution Systems
+      Abstract: Due to the massive uncertain disturbances in water distribution systems (WDSs), it is rather challenging to construct robust macroscopic pressure models. In this article, we propose the CritiCoder, an end-to-end uncertain regression neural network, to build macroscopic pressure models in WDSs and estimate the distribution of uncertain disturbances. By separating the normal regression process into two parts, the CritiCoder decomposes the output into two parts brought by observable and unobservabl
+
+----------------------------------------------------------------------
+
+Trial 10
+Timestamp: 2026-08-06T06:29:42+00:00
+Home cluster: 231
+Intruder cluster: 342
+True intruder position: 3
+Predicted: 3
+Correct: True
+Extraction rule: final_verdict
+Recovered from reasoning: False
+Finish reason: stop
+Cost: $0.000247
+
+Response:
+Paper [3] is about nuclear physics and alpha-decay half-lives, while the other four focus on finance, banking, or financial markets.
+
+Final verdict: 3
+
+Reasoning trace:
+We need answer question: "Below are 5 academic papers. Four share the same research topic; one does not. [1]... [5]... Reason briefly, then end with line exactly: Final verdict: <single digit 1-5>"
+
+Need identify odd one out. Topics: [1] AI financial reporting quality Jordanian banks. [2] Reverse mortgages Spanish market. [3] alpha-decay half-life nuclear physics. [4] R&D emerging markets China manufacturing. [5] AI finance opportunities risks. Four share same research topic? Likely finance/economics? [1] AI in finance/accounting. [2] reverse mortgages finance. [4] R&D firm performance emerging markets finance. [5] AI in finance. [3] nuclear physics unrelated. So odd one is [3]. Need final verdict: 3. Need reason briefly.
+
+Panel:
+  [1] ID=https://openalex.org/W4402026922
+      Title: Harnessing artificial intelligence to strengthen financial reporting quality in developing economies: A mediated model with internal controls in Jordanian banks
+      Abstract: Objectives: This research aimed to empirically examine the transformative impacts of Artificial Intelligence (AI) adoption on financial reporting quality in Jordanian banking, with internal controls as a hypothesized mediation mechanism. Methodology: Quantitative survey data was collected from 130 bank personnel. Multi-item reflective measures assessed AI adoption, internal controls, and financial reporting quality—structural equation modelling analysis relationships between constructs. Findings
+
+  [2] ID=https://openalex.org/W4388043113
+      Title: VALUATION OF REVERSE MORTGAGES IN THE SPANISH MARKET FOR FOREIGN RESIDENTS
+      Abstract: The continuous growth in life expectancy, besides to the difficult economic and financial situation of the public pension system in Spain, makes reverse mortgages an attractive solution for providing additional income to retirees. However, despite being almost 20 years old, the Spanish market remains immature. Consequently, providers face significant risks, due to factors such as interest rates, housing prices, and longevity. Numerous tourists visit Spain, and many retire there, obtaining legal 
+
+  [3] ID=https://openalex.org/W3195430509  *** INTRUDER ***
+      Title: A new empirical formula for α-decay half-life and decay chains of Z = 120 isotopes
+      Abstract: Experimental α-decay half-life, spin, and parity of 398 nuclei in the range Z are utilized to propose a new formula (QF) with only 4 coefficients as well as to modify the Tagepera-Nurmia formula with just 3 coefficients (MTNF) by employing nonlinear regressions. These formulas, based on reduced mass (μ) and angular momentum taken away by the α-particle, are ascertained very effective for both favoured and unfavoured α-decay in addition to their excellent match with all (Z, N) combinations of exp
+
+  [4] ID=https://openalex.org/W4308512578
+      Title: Should Firms in Emerging Markets Invest in R&amp;D? Evidence from China’s Manufacturing Sector
+      Abstract: Analyzing micro-level firm data from the Chinese manufacturing sector, this study provides compelling evidence that firms in emerging markets that invest in research and development (R&amp;D) for product differentiation significantly increase firm performance as measured by market power, profitability, and earning quality. Privately held (non-state-owned), mid-size, Shenzhen exchange-listed firms experience the largest boost to firm performance when they invest in research and development. Howev
+
+  [5] ID=https://openalex.org/W3207093649
+      Title: Powering the Digital Economy: Opportunities and Risks of Artificial Intelligence in Finance
+      Abstract: This paper discusses the impact of the rapid adoption of artificial intelligence (AI) and machine learning (ML) in the financial sector. It highlights the benefits these technologies bring in terms of financial deepening and efficiency, while raising concerns about its potential in widening the digital divide between advanced and developing economies. The paper advances the discussion on the impact of this technology by distilling and categorizing the unique risks that it could pose to the integ
+
+----------------------------------------------------------------------
+
