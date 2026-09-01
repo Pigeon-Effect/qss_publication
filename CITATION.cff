@@ -1,22 +1,26 @@
 cff-version: 1.2.0
 title: >-
-  Code and data for "Mapping the AI Research of China, the US and the EU"
+  Research compendium for "Mapping the AI Research of China, the US and the EU"
 message: >-
   If you use this software or its results, please cite both the software and
   the associated article.
 type: software
-version: 1.0.0
+version: 2.0.0
+date-released: "2026-09-01"
 license: MIT
 repository-code: https://github.com/Pigeon-Effect/qss_publication
 abstract: >-
-  Research compendium for a scientometric analysis of citation shares within
-  AI subdisciplines derived from 1,986,659 OpenAlex records (2020-2025):
-  keyword construction, OpenAlex data collection, dataset quality control,
-  a semi-supervised hierarchical topic model (SPECTER embeddings, K-Means,
-  expert consolidation), citation-impact analysis, visualization, and
-  LLM-based cluster validation via document intrusion detection (adapted from
-  the "reading tea leaves" paradigm of Chang et al. 2009) and Likert-scale
-  coherence rating (following Tan and D'Souza 2025).
+  Complete research compendium for a scientometric analysis of citation shares
+  within AI subdisciplines, derived from 1,986,659 OpenAlex records (2020-2025):
+  keyword construction, OpenAlex data collection, dataset quality control, a
+  semi-supervised hierarchical topic model (SPECTER embeddings, K-Means
+  over-segmentation, expert consolidation) yielding 5 domains, 31 fields and 106
+  research fronts, fractional citation-share analysis across that taxonomy for
+  China, the US and the EU-27, visualization, and LLM-based external validation
+  of the taxonomy by document intrusion detection, adapted from the "reading tea
+  leaves" paradigm of Chang et al. (2009) and run for 1,000 trials at each of the
+  three hierarchy levels. Includes the complete record of all 3,000 validation
+  trials, the cluster-level citation-share tables, and the manuscript sources.
 keywords:
   - scientometrics
   - topic modeling
@@ -53,7 +57,7 @@ references:
     title: >-
       Mapping the AI Research of China, the US and the EU: A Scientometric
       Analysis of Citation Shares within AI Subdisciplines (2020-2025)
-    status: in-preparation
+    status: submitted
     authors:
       - given-names: Julius
         family-names: Pfundstein

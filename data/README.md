@@ -1,23 +1,25 @@
 # Data
 
-This directory is where the labelled corpus is expected at runtime. **The
-corpus itself is not distributed with this repository** — it is a ~20 GB SQLite
-file, far beyond what a code repository or a Zenodo software record should
-carry, and it is derived data that can be rebuilt from its open source.
+This directory is where the labelled corpus is expected at runtime. The corpus
+itself is a ~20 GB SQLite file — too large for a git repository — so it is
+deposited on Zenodo as a data record alongside the code. See
+[Obtaining the corpus](#obtaining-the-corpus).
 
 ```
 data/
-├── merged_works_labeled.db     the final labelled corpus (not in git; see below)
+├── merged_works_labeled.db     the final labelled corpus (Zenodo; see below)
 └── interim/                    everything the pipeline builds on the way there
 ```
 
-Everything in this directory except this README is gitignored.
-
 ## `interim/`
 
-Where stages 01–06 read and write their intermediate artefacts. Nothing here is
-distributed: all of it is derived data, rebuilt by re-running the pipeline.
-Override the location with `QSS_INTERIM_DIR`.
+Where stages 01–06 read and write their intermediate artefacts. Two files here
+are small and are carried in git, because stage 06 and the Supplementary
+Information read them: `citshare_h3x4entities.csv` and
+`fractional_citations_by_country_h3.csv`, both written by
+[stage 05](../code/05_impact_analysis/). Everything else is multi-gigabyte
+derived data, rebuilt by re-running the pipeline. Override the location with
+`QSS_INTERIM_DIR`.
 
 ```
 data/interim/
@@ -34,7 +36,8 @@ data/interim/
 ├── h1_cluster_subsets/                             stage 04: one database per macro-domain
 │   ├── <domain>_dataset.db                           full subset, labelled in place
 │   └── <domain>_sample.db                            sample used for the UMAP figures
-└── citshare_h3x4entities.csv                       stage 05 output → stage 06 input
+├── citshare_h3x4entities.csv                       stage 05 output → stage 06 input (in git)
+└── fractional_citations_by_country_h3.csv          stage 05 output, per country (in git)
 ```
 
 `<domain>` is one of `computer_science`, `biomedical`, `social_science`,
@@ -106,20 +109,17 @@ This concatenation is defined once in `src/clustervalidation/config.py`
 
 ## Obtaining the corpus
 
-The corpus is derived data. Three routes, in order of preference:
+**Download it from the Zenodo data record** that accompanies the article and
+place it at `data/merged_works_labeled.db`. That deposit is the authoritative
+copy: it carries the published cluster labels, which the code alone cannot
+reproduce exactly.
 
-1. **Zenodo data deposit.** If a dataset record accompanies the published
-   article, download the database from there and place it at
-   `data/merged_works_labeled.db`.
-2. **Rebuild from OpenAlex.** The retrieval and topic-modeling pipeline is in
-   [`code/`](../code/README.md), stages 01–04, with each stage's inputs and
-   outputs documented in its own README. Note two things: the 279-term search
-   list is not currently in the repository (see
-   [stage 01](../code/01_keyword_construction/README.md#what-is-not-here)), and
-   clustering depends on random seeds and on an expert consolidation step whose
-   record is incomplete, so an independent rebuild will not reproduce cluster
-   identifiers exactly.
-3. **Contact the authors.** See `CITATION.cff` for the corresponding author.
+Rebuilding it from OpenAlex instead is possible — the retrieval and
+topic-modeling pipeline is [`code/`](../code/README.md) stages 01–04, each
+stage's inputs and outputs documented in its own README — but it will not
+reproduce the same cluster identifiers. Clustering depends on random seeds, and
+the expert-consolidation step was recorded only in part. A rebuild yields a
+similar taxonomy, not this one.
 
 ## Using a different path
 

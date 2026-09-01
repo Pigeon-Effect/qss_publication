@@ -1,0 +1,107 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}
+\definecolor{darkergray}{gray}{0.25}
+
+\title{Supplementary Information\\
+{\large Mapping the AI Research of China, the US and the EU:}\\
+{\large A Scientometric Analysis of Citation Shares within AI Subdisciplines (2020--2025)}}
+\author{Julius Pfundstein \quad Thomas Efer \quad Manuel Burghardt}
+\date{}
+
+\begin{document}
+\color{darkergray}
+\maketitle
+
+\section*{Contents}
+
+This document holds the complete cluster-level results that the manuscript
+summarises. It has two parts:
+
+\begin{itemize}
+  \item \textbf{Section~1} --- the fractional citation share held by each bloc
+  within every cluster of the taxonomy, at all three hierarchy levels. The
+  manuscript reports the macro level in full and, below that, only clusters
+  whose share diverges from their parent; these tables are the unabridged
+  version.
+  \item \textbf{Section~2} --- the full result of the document-intrusion
+  validation, including the response-extraction accounting behind each
+  accuracy figure.
+\end{itemize}
+
+Every number here is generated from the deposited data by
+\texttt{code/05\_impact\_analysis/supplementary\_tables.py}; the same tables are
+also deposited as CSV (\texttt{supplementary/citation\_shares\_h1.csv} and its
+h2 and h3 counterparts) for reuse.
+
+\section{Fractional citation shares by cluster}
+
+Impact is the \textit{fractional citation sum}: a work's incoming citations are
+split among the countries that produced it, in proportion to the institutional
+shares recorded in \texttt{country\_of\_origin}, then summed within a cluster and
+grouped into blocs. China is \texttt{CN + HK + MO + TW}; the EU-27 is the 27
+member states; RoW is every remaining country.
+
+Shares are read \textbf{across a row}: the four bloc columns of a cluster sum to
+100\,\%. The \textit{\% corpus} column instead reads down --- it is that
+cluster's share of all fractional citations in the corpus, and the column sums
+to 100\,\% within each table. Meso- and macro-level figures are aggregations of
+the micro-level citation sums, not averages of micro-level shares, so a
+cluster's share is always its own citations over its own total.
+
+\input{tables.tex}
+
+\section{Document-intrusion validation}
+
+Each trial shows the judge a panel of five documents --- four drawn from a
+target cluster, one intruder drawn from a different cluster at the same level,
+in randomised order --- with titles and abstracts truncated to 200 words, and
+nothing else: no cluster label, no TF-IDF terms, no indication of which
+document is which. The judge names the intruder. The random-guess baseline is
+20\,\%.
+
+Table~\ref{tab:s4} gives the three reported runs. \textit{Recovered} counts
+responses whose verdict was read out of the reasoning trace because the model
+never wrote the requested final line; \textit{forced choice} counts responses
+that hit the token ceiling mid-reasoning and were resolved by presenting the
+truncated trace to a second, non-reasoning model for extraction only. Neither
+step guesses: no trial was scored by fallback to a random answer, and no
+response went unparsed.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}l l r r r r r@{}}
+\toprule
+\textbf{Level} & \textbf{Granularity} & \textbf{Trials} & \textbf{Correct} & \textbf{Accuracy} & \textbf{Recovered} & \textbf{Forced choice} \\
+\midrule
+h1 & 5 domains           & 1{,}000 & 405 & 40.5\,\% & 22 & 103 \\
+h2 & 31 fields           & 1{,}000 & 647 & 64.7\,\% & 11 & 70 \\
+h3 & 106 research fronts & 1{,}000 & 778 & 77.8\,\% & 7  & 37 \\
+\bottomrule
+\end{tabular}
+\caption{Document-intrusion detection, 1{,}000 trials per hierarchy level.
+Model \texttt{deepseek-v4-flash} with reasoning enabled, \texttt{decisive}
+prompt variant, 200-word truncation, five-document panels, seed 20250628.
+Random-guess baseline 20\,\%.}
+\label{tab:s4}
+\end{table}
+
+Accuracy rises monotonically as the taxonomy becomes finer, which is what the
+protocol predicts: intrusion detection depends on the ratio of within-cluster
+spread to between-cluster separation, and a macro-domain is heterogeneous by
+construction. A panel drawn from \texttt{Natural Science} may pair structural
+health monitoring with ionospheric prediction and rural land-use change; an
+intruder is far less conspicuous there than among the narrow, lexically
+distinctive research fronts at h3.
+
+The complete record of all 3{,}000 trials --- the panel shown, the model's full
+reasoning, the extracted verdict and the rule that extracted it --- is deposited
+under \texttt{results/intrusion/}, one manifest (\texttt{.json}), one record per
+trial (\texttt{.jsonl}) and one readable transcript (\texttt{.txt}) per level.
+
+\end{document}

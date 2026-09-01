@@ -4,107 +4,130 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.0.0] — 2026-09-01
+
+Second release, and the first complete one. Where `1.0.0` deposited the LLM
+validation component alone, this release is the full research compendium behind
+the article: the entire pipeline, the reported validation experiment at its
+final scale, the cluster-level result tables, and a manuscript whose reported
+figures match the deposited record exactly.
 
 ### Added
-- Stages 01–04 and 06 of the pipeline, imported from the private working
-  repository into `code/`: keyword construction, OpenAlex retrieval, quality
-  control, the semi-supervised hierarchical topic model (h1/h2/h3, plus the
-  `finding_optimal_k` evidence and the parent-scoped contrastive TF-IDF term
-  extraction), and the citation-share heatmap.
-- Stage 05, `code/05_impact_analysis/fractional_citation_share.py`: the
-  fractional citation sum per micro-cluster and bloc, written newly rather than
-  imported. Splits each work's citations across countries by its
-  `country_of_origin` institution shares, aggregates into China / USA / EU-27 /
-  RoW, and writes the CSV stage 06 reads plus an un-aggregated per-country
-  companion so the bloc definitions can be re-cut without a second pass.
-  Bloc membership is a set of named constants, not a buried query: "China" is
-  `CN + HK + MO + TW`, which reproduces the manuscript's reported share
-  (24.00 % computed, 24.1 % published) where mainland-only would give 21.82 %.
-  Verified against the manuscript: all five macro-domain citation totals in
-  Figure 2 reproduce exactly (22.48 / 26.91 / 15.07 / 17.99 / 17.56 %).
+- Stages 01–06 of the pipeline in `code/`: keyword construction, OpenAlex
+  retrieval, quality control, the semi-supervised hierarchical topic model
+  (h1/h2/h3, plus the `finding_optimal_k` evidence and the parent-scoped
+  contrastive TF-IDF term extraction), impact analysis, and the citation-share
+  heatmap. Each stage carries a README documenting what it does, why the method
+  is what it is, how to run it, and its inputs and outputs.
+- `code/05_impact_analysis/fractional_citation_share.py`: the fractional
+  citation sum per micro-cluster and bloc. Splits each work's citations across
+  countries by its `country_of_origin` institution shares, aggregates into
+  China / USA / EU-27 / RoW, and writes the CSV stage 06 reads plus an
+  un-aggregated per-country companion so the bloc definitions can be re-cut
+  without a second pass. Bloc membership is a set of named constants, not a
+  buried query: "China" is `CN + HK + MO + TW`, which reproduces the
+  manuscript's reported share where mainland-only would give 21.82 %. All five
+  macro-domain citation totals in Figure 2 reproduce.
 - `code/05_impact_analysis/taxonomy.csv`: the display names of the 5 domains,
-  31 fields and 106 research fronts, transcribed from manuscript Figure 1. The
-  database stores only integer codes. Its structure is verified against the
-  corpus at runtime, and independently matches it (5/18, 6/19, 7/25, 7/22,
-  6/22 meso/micro per domain).
-- `data/interim/` as the documented location for every intermediate artefact
-  the pipeline builds, with a per-file inventory in `data/README.md`.
-- `python-dotenv`: credentials are now read from a local `.env` file as well as
-  from the environment, in both `clustervalidation` and the archived scripts.
-  An exported variable still takes precedence.
+  31 fields and 106 research fronts, keyed by 3-digit code. The database stores
+  only integer codes.
+- **The reported validation experiment at full scale.** Document intrusion at
+  1,000 trials per hierarchy level — 3,000 trials in total, 0 failed, 0
+  unparsed, 0 forced guesses — under `results/intrusion/`, each level with its
+  manifest, per-trial records, readable transcript and run log.
+- `decisive` prompt variant, which produced those runs. Written after the h3
+  pilot showed that a long reasoning trace is a symptom of failure rather than
+  care: wrong answers reasoned 4.1x longer than correct ones (mean 6,820 vs
+  1,680 characters). Testing "what if paper k is the intruder" for every k
+  re-reads the panel O(n^2) times where labelling each paper once is O(n); the
+  variant forbids the re-reading and supplies an explicit tie-break.
+- Forced-choice extraction: a response cut off by the token ceiling
+  mid-reasoning is passed to a second, non-reasoning model that reads the
+  truncated trace and reports which paper it was converging on. It never sees
+  the panel, so it extracts rather than judges, and it never guesses — a trial
+  it cannot resolve is recorded as unresolved rather than assigned an answer.
+  `--force-choice-model`, `--max-tokens` and `--outage-wait` expose the
+  surrounding controls.
+- Outage handling: an unreachable API pauses the run and retries rather than
+  losing it, with the wait recorded in the manifest and the notice written to
+  the run's `.err` stream. All three reported runs took one such wait.
+- `supplementary/`, the article's Supplementary Information: bloc citation
+  shares for every cluster at all three hierarchy levels as a typeset PDF and as
+  three CSVs, generated by `code/05_impact_analysis/supplementary_tables.py`.
+- `tests/test_forced_verdict.py` and `tests/test_outage_retry.py`.
+- `python-dotenv`: credentials are read from a local `.env` as well as from the
+  environment, in both `clustervalidation` and the pipeline scripts. An exported
+  variable still takes precedence.
 - Environment-variable overrides for every path that legitimately varies
   (`QSS_INTERIM_DIR`, `QSS_DB_PATH`, `QSS_H3_DB`, `QSS_SEARCH_TERMS`,
   `QSS_SURVEY_TXT_DIR`, `QSS_CITSHARE_CSV`), and a `--db` flag on the h3
   clustering script.
 
 ### Changed
-- Every stage `README.md` rewritten against the code that is now present.
-  They previously described what *should* go in each folder; they now document
-  what each script does, why the method is what it is, how to run it, and its
-  inputs and outputs.
+- **The manuscript now reports the deposited runs.** Section *External
+  Validation via Document Intrusion* and the RQ1 conclusion previously gave
+  46.0 % / 75.0 % / over 84.0 %, figures that no archived run produced. They now
+  give 40.5 % / 64.7 % / 77.8 % at h1 / h2 / h3, transcribed from the
+  1,000-trial manifests, with the 20 % random baseline stated alongside. The
+  qualitative claim is unchanged: accuracy rises monotonically with granularity
+  and clears chance at every level.
+- The manuscript's *Data and Code* section describes this compendium and its
+  Zenodo deposit; it previously pointed at a repository under a different name.
+- `data/interim/citshare_h3x4entities.csv` and
+  `fractional_citations_by_country_h3.csv` are now carried in git. They are
+  small, and stage 06 and the Supplementary Information read them.
 - All 67 hardcoded absolute paths across 32 scripts in `code/` replaced with
   paths derived from each file's own location, so a fresh clone runs anywhere.
 - `download_full_dataset.py` no longer inlines a 48-term search list. It loads
   the 279 curated terms from `code/01_keyword_construction/search_terms.txt`
   and queries them in groups, because OpenAlex limits the length of a single
-  `search` expression, merging and deduplicating the groups on the OpenAlex
-  work id. This matches the batched retrieval the manuscript describes; the
-  archived script did not.
-- OpenAlex credentials in `download_full_dataset.py` moved from `"xxx"`
-  placeholders to `OPENALEX_MAILTO` / `OPENALEX_API_KEY`.
+  `search` expression, merging and deduplicating on the OpenAlex work id. This
+  matches the batched retrieval the manuscript describes; the archived script
+  did not. OpenAlex credentials moved from `"xxx"` placeholders to
+  `OPENALEX_MAILTO` / `OPENALEX_API_KEY`.
 - `h2_labeling_biomedical.py`: meso 4 renamed *Immunology & Infectious Disease*
   → *Microbial and Immune Systems Biology*, meso 5 *Genetics, Genomics &
   Oncology* → *Genetics & Genomics*, matching Figure 1. Names only; no cluster
   assignment changed.
 - `h2_labeling_social_science.py`: meso 5 *Urban Development & Tourism* →
   *Urban Development* (Tourism is micro-cluster 251 in the published taxonomy).
+- Documentation rewritten to read as a finished deposit rather than a work
+  plan: the top-level README opens with a plain-language account of what the
+  study did and how the taxonomy was checked, and descends into protocol
+  detail, reproducibility and command reference below that.
+- `.gitignore` no longer applies a blanket `*.log` rule, which had been
+  silently excluding the validation run logs; LaTeX artefacts are now ignored
+  per directory.
 
-### Known gaps, now documented rather than silent
-- `h2_labeling_computer_science.py` records eight meso codes; the manuscript
-  gives Computer Science five. A later consolidation pass moved Neuromorphic
-  Hardware Accelerators to Natural Science, Ethical & Creative AI to Social
-  Science, and dissolved Recommendation Systems — reassigning fine clusters
-  across macro-domains, which these per-subset scripts cannot express. The
-  corresponding meso-clusters are correspondingly absent from
-  `h2_labeling_natural_science.py` (35, 36) and
-  `h2_labeling_social_science.py` (26). Not reconstructed: the record of which
-  fine cluster ids moved is not in this repository, and guessing it would
-  fabricate part of the taxonomy.
-- `h2_cluster_social_sciences/h2_umap_social_science.py` is an unadapted copy
-  of the engineering script — its paths, `remap` and palette are all
-  Engineering. Flagged in the file; not repaired, for the same reason.
-- `H3_MAP` in `h3_label_selected_cluster.py` held one (h1, h2) slice at a time
-  and was overwritten between runs. Only the last (h1=4, h2=5) survives.
-- Stage 05 (fractional citation sum) has no code, and Figure 1's generating
-  code is absent from stage 06.
+### Removed
+- The exploratory validation record: model-selection sweeps, prompt variants,
+  truncation experiments, the Likert coherence runs, and the small-*n* pilots
+  that set the final configuration. This deposit archives the experiment the
+  article reports, at the scale it reports, rather than the path to it. The
+  coherence *protocol* remains implemented in the package; only its exploratory
+  transcripts are gone. Everything removed is preserved in git history before
+  this release.
+- The superseded per-level intrusion scripts under
+  `code/07_llm_validation/archive/`, replaced by
+  `src/clustervalidation/protocols/intrusion.py` and no longer the provenance
+  of any deposited result.
 
-### Changed (earlier this cycle)
-- Corrected repository scope. `README.md`, `.zenodo.json` and `CITATION.cff`
-  previously described this repository as containing "the validation
-  component only," pointing to a separate, private repository for data
-  collection, topic modeling, and visualization. That was wrong: this is the
-  single archival deposit intended to hold the full pipeline behind
-  `paper/main.pdf`. Added `code/`, structured as one numbered stage per
-  manuscript section (`01_keyword_construction` through
-  `07_llm_validation`), each with a `README.md` describing what belongs there
-  and its manuscript section/figures.
-- Moved the pre-restructure `h1`/`h2`/`h3_intrusion_detection_v4_thinking.py`
-  scripts into `code/07_llm_validation/archive/intrusion_detection_scripts/`,
-  matching the existing `paper/archive/` convention for superseded material.
-
-### To resolve before deposit
-- Import the generating code for Figure 1.
-- Add the curated 279-term search list at
-  `code/01_keyword_construction/search_terms.txt`.
-- Recover the record of the final h2 consolidation pass, so
+### Known limitations of the record
+Stated once, plainly, rather than as items awaiting action.
+- The curated 279-term search list is not in this repository. Stage 02 expects
+  it at `code/01_keyword_construction/search_terms.txt`.
+- Figure 1's rendering code is not part of the deposit. The figure itself is in
+  `paper/figures/` and the taxonomy it displays in `taxonomy.csv`.
+- The expert consolidation at h2 and h3 was recorded only in part: `H3_MAP`
+  held one slice at a time and was overwritten between runs, and a final h2
+  pass that moved three cluster groups between macro-domains left no record.
   `h2_labeling_computer_science.py`, `_natural_science.py` and
-  `_social_science.py` can be brought in line with the published taxonomy.
-- Reconcile the trial count and accuracies between `paper/main.tex` and
-  `results/intrusion/` (see the README's *Known discrepancy* section).
-- Update the manuscript's *Data and Code* section to cite this repository.
-- Mint the Zenodo DOI and record it in `README.md`, `CITATION.cff` and
-  `.zenodo.json`.
+  `_social_science.py` therefore diverge from the published taxonomy, and
+  `h2_umap_social_science.py` is an unadapted copy of the engineering script.
+  Nothing was reconstructed by guesswork; the published labels ship with the
+  corpus and are authoritative.
+- The survey PDFs behind stage 01 are third-party copyrighted material and are
+  not redistributed.
 
 ## [1.0.0] — 2026-07-28
 

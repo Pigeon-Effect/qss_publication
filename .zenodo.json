@@ -1,11 +1,11 @@
 {
-  "title": "Code and data for \"Mapping the AI Research of China, the US and the EU\"",
-  "description": "<p>Research compendium for a scientometric analysis of citation shares within AI subdisciplines (2020-2025), based on a semi-supervised hierarchical topic model of 1,986,659 OpenAlex records (5 domains, 31 fields, 106 research fronts).</p><p>The repository holds the full pipeline: keyword construction, OpenAlex data collection, dataset quality control, the hierarchical topic model (SPECTER embeddings, K-Means, expert consolidation), citation-impact analysis, visualization (subdiscipline-landscape UMAP and citation-share heatmap), and LLM-based cluster validation.</p><p>The LLM-based cluster validation component is implemented as an installable Python package with two protocols: <strong>document intrusion detection</strong>, adapted from the &quot;reading tea leaves&quot; paradigm of Chang et al. (2009), where a panel of genuine cluster members is presented to a language model together with one intruder drawn from a different cluster at the same hierarchy level and detection accuracy is taken as the coherence signal; and <strong>coherence rating</strong>, following Tan and D'Souza (2025), where a sample of documents from a single cluster is rated on a five-point Likert scale.</p><p>The repository contains the pipeline code, archived transcripts of all validation runs, and the manuscript sources. The 20 GB labelled corpus is not redistributed here; see data/README.md for how to reconstruct it from OpenAlex.</p>",
+  "title": "Research compendium for \"Mapping the AI Research of China, the US and the EU: A Scientometric Analysis of Citation Shares within AI Subdisciplines (2020-2025)\"",
+  "description": "<p>Complete research compendium for a scientometric analysis of citation shares within AI subdisciplines, based on metadata for 1,986,659 AI-related publications retrieved from OpenAlex for 2020-2025.</p><p><strong>What the study does.</strong> It builds a data-driven map of AI research and then measures where each of China, the United States and the EU-27 holds influence within it. Subdisciplines are identified with a semi-supervised, hierarchical topic model: documents are embedded with SPECTER, deliberately over-segmented by K-Means at high granularity, and consolidated by an expert into interpretable units, iterated across three levels. The resulting taxonomy comprises 5 domains, 31 fields and 106 research fronts. Research impact is operationalized as the fractional citation sum - a work's citations split among the countries that produced it, in proportion to its authors' institutional shares - and decomposed across every cluster of that taxonomy.</p><p><strong>External validation.</strong> Because the taxonomy is partly the product of expert judgement, it is tested from outside with a document-intrusion protocol adapted from the &quot;reading tea leaves&quot; paradigm of Chang et al. (2009): a language model is shown four genuine members of a cluster plus one intruder from a different cluster at the same level, with no labels or hints, and must identify the intruder. Detection accuracy is the coherence signal. Run at 1,000 trials per hierarchy level - 3,000 trials in total - accuracy rises monotonically with granularity: 40.5% at the macro level, 64.7% at the meso level and 77.8% at the micro level, against a 20% random baseline. The complete record of every trial is deposited here.</p><p><strong>Contents.</strong> The full pipeline as seven numbered stages (keyword construction, OpenAlex retrieval, quality control, hierarchical topic modeling, impact analysis, visualization, and LLM-based cluster validation as an installable and tested Python package); the manifests, per-trial records, transcripts and run logs for all 3,000 validation trials; the article's Supplementary Information giving bloc citation shares for every cluster at all three hierarchy levels as PDF and CSV; and the manuscript sources, figures and bibliography.</p><p>The 20 GB labelled corpus is deposited as a separate data record; see data/README.md for its schema and provenance.</p>",
   "upload_type": "software",
   "language": "eng",
   "license": "MIT",
   "access_right": "open",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "keywords": [
     "scientometrics",
     "topic modeling",
@@ -14,7 +14,9 @@
     "large language models",
     "OpenAlex",
     "artificial intelligence",
-    "research policy"
+    "citation analysis",
+    "research policy",
+    "science of science"
   ],
   "creators": [
     {

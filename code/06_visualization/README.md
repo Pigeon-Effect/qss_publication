@@ -1,18 +1,12 @@
 # 06 — Visualization
 
-Generates the manuscript's findings figures (§4, *Findings*). The manuscript
-includes exactly two figures, and this stage covers one of them.
-
-| | Figure | Code |
-|---|---|---|
-| Figure 1 | Summarized UMAP and taxonomy of AI subdisciplines | ⚠ not in this repository — see below |
-| Figure 2 | Fractional citation shares of the blocs and RoW across hierarchical AI subdisciplines | `bloc_share_heatmap_cluster_across_microclusters.py` |
+Draws Figure 2, the manuscript's citation-share heatmap (§4, *Findings*).
 
 `paper/figures/` also holds figures carried over from the originating master's
-thesis (country-contribution Aitoff projection, institution network, percentile
+thesis — country-contribution Aitoff projection, institution network, percentile
 composition, search-term bar chart, H1/H2 CAGR bars, dataset-completeness
-charts, pipeline diagrams). **None of them appears in the manuscript**, so
-their generating code is deliberately not part of this deposit.
+charts, pipeline diagrams. None of them appears in the manuscript, so their
+generating code is not part of this deposit.
 
 ## `bloc_share_heatmap_cluster_across_microclusters.py`
 
@@ -54,8 +48,9 @@ python code/06_visualization/bloc_share_heatmap_cluster_across_microclusters.py
 ```
 
 **Input** — `data/interim/citshare_h3x4entities.csv` (override with
-`QSS_CITSHARE_CSV`), the per-cluster per-bloc citation shares from
-[stage 05](../05_impact_analysis/). Required columns:
+`QSS_CITSHARE_CSV`), the per-cluster per-bloc citation shares written by
+[stage 05](../05_impact_analysis/) and deposited with this repository. Required
+columns:
 
 ```
 macro_id, macro, meso, micro, code, total_citations,
@@ -63,22 +58,19 @@ cn_cits, us_cits, eu27_cits, row_cits,
 cn_share, us_share, eu27_share, row_share
 ```
 
-Since stage 05 is not yet in this repository, that CSV must be supplied
-separately for this figure to be regenerable.
-
 **Output** — `output/bloc_citation_shares_across_subdisciplines.svg`. The
 manuscript embeds the PDF conversion of this file.
 
-## The missing Figure 1
+## Figure 1
 
 `cluster_umap_with_legend_2025_10_09_bigger_clusters.pdf` — the
-density-summarized UMAP of all 106 micro-clusters, where each cluster is drawn
-as an ellipse whose size reflects **semantic spread, not publication volume**,
-accompanied by the full taxonomy legend.
+density-summarized UMAP of all 106 micro-clusters, each drawn as an ellipse
+whose size reflects **semantic spread, not publication volume**, with the full
+taxonomy legend beside it.
 
-Its generating code is not here. The UMAP projections written by
+Its rendering code is not part of this deposit. The UMAP projections written by
 [stage 04](../04_subdiscipline_clustering/) are the per-level diagnostic
 scatterplots the expert consolidated from; none of them produces the
-density-summarized ellipse rendering or the legend layout used in the
-manuscript. This is a genuine gap in the deposit, not a documentation
-oversight.
+density-summarized ellipse rendering or the legend layout the manuscript uses.
+The figure itself is deposited as PDF in `paper/figures/`, and the taxonomy it
+displays is in `code/05_impact_analysis/taxonomy.csv`.

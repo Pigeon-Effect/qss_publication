@@ -75,10 +75,10 @@ redistributed with this repository**; the folder must be assembled locally.
 | `time_sec` | extraction wall time |
 | `text_length` | characters before truncation |
 
-## What is not here
+## The curated term list
 
-The 279-term list itself. It is the product of step 4, manual curation, and is
-**not currently in this repository** — stage 02 expects it at
+Step 4 is manual curation, and its product — the 279 terms themselves — is the
+one input stage 02 cannot derive. Stage 02 expects it at
 `code/01_keyword_construction/search_terms.txt` (one term per line, `#` for
-comments) and fails with an explicit message if it is absent. Adding that file
-is required before the retrieval stage can be re-run.
+comments), or wherever `QSS_SEARCH_TERMS` points, and fails with an explicit
+message if it is absent.

@@ -1,0 +1,1027 @@
+Loading corpus at level h2 ...
+  31 clusters, 1,986,659 documents (smallest 20448, largest 169315)
+
+Running intrusion | level=h2 | model=deepseek-v4-flash | prompt=decisive | trials=1000 | seed=20250628
+
+Trial    1 | true=2 pred=2 | OK
+Trial    2 | true=1 pred=1 | OK
+Trial    3 | true=2 pred=2 | OK
+Trial    4 | true=5 pred=5 | OK
+Trial    5 | true=3 pred=3 | OK
+Trial    6 | true=5 pred=3 |  X
+Trial    7 | true=5 pred=5 | OK
+Trial    8 | true=2 pred=2 | OK
+Trial    9 | true=2 pred=5 |  X
+Trial   10 | true=5 pred=5 | OK
+Trial   11 | true=5 pred=1 |  X [truncated]
+Trial   12 | true=3 pred=5 |  X
+Trial   13 | true=5 pred=5 | OK
+Trial   14 | true=1 pred=4 |  X
+Trial   15 | true=2 pred=2 | OK
+Trial   16 | true=5 pred=5 | OK
+Trial   17 | true=1 pred=4 |  X
+Trial   18 | true=1 pred=5 |  X
+Trial   19 | true=1 pred=5 |  X
+Trial   20 | true=3 pred=3 | OK
+Trial   21 | true=5 pred=5 | OK
+Trial   22 | true=3 pred=3 | OK
+Trial   23 | true=3 pred=3 | OK
+Trial   24 | true=2 pred=2 | OK
+Trial   25 | true=4 pred=4 | OK
+Trial   26 | true=4 pred=4 | OK
+Trial   27 | true=1 pred=1 | OK
+Trial   28 | true=1 pred=5 |  X
+Trial   29 | true=3 pred=1 |  X
+Trial   30 | true=2 pred=2 | OK
+Trial   31 | true=4 pred=2 |  X
+Trial   32 | true=5 pred=5 | OK
+Trial   33 | true=3 pred=3 | OK
+Trial   34 | true=4 pred=4 | OK
+Trial   35 | true=2 pred=2 | OK
+Trial   36 | true=3 pred=5 |  X
+Trial   37 | true=2 pred=2 | OK
+Trial   38 | true=5 pred=5 | OK
+Trial   39 | true=3 pred=3 | OK
+Trial   40 | true=3 pred=3 | OK
+Trial   41 | true=1 pred=2 |  X
+Trial   42 | true=2 pred=2 | OK
+Trial   43 | true=4 pred=4 | OK
+Trial   44 | true=1 pred=1 | OK
+Trial   45 | true=3 pred=3 | OK
+Trial   46 | true=4 pred=4 | OK
+Trial   47 | true=2 pred=2 | OK
+Trial   48 | true=3 pred=3 | OK [truncated]
+Trial   49 | true=1 pred=2 |  X
+Trial   50 | true=1 pred=5 |  X
+Trial   51 | true=1 pred=1 | OK
+Trial   52 | true=2 pred=2 | OK
+Trial   53 | true=5 pred=5 | OK
+Trial   54 | true=2 pred=2 | OK
+Trial   55 | true=3 pred=3 | OK
+Trial   56 | true=1 pred=1 | OK
+Trial   57 | true=5 pred=3 |  X
+Trial   58 | true=1 pred=1 | OK
+Trial   59 | true=3 pred=3 | OK
+Trial   60 | true=3 pred=3 | OK
+Trial   61 | true=1 pred=1 | OK
+Trial   62 | true=1 pred=1 | OK
+Trial   63 | true=4 pred=4 | OK
+Trial   64 | true=2 pred=3 |  X
+Trial   65 | true=4 pred=4 | OK
+Trial   66 | true=2 pred=2 | OK
+Trial   67 | true=2 pred=1 |  X
+Trial   68 | true=1 pred=1 | OK
+Trial   69 | true=1 pred=1 | OK
+Trial   70 | true=5 pred=5 | OK
+Trial   71 | true=3 pred=3 | OK
+Trial   72 | true=4 pred=4 | OK
+Trial   73 | true=4 pred=5 |  X
+Trial   74 | true=3 pred=1 |  X
+Trial   75 | true=5 pred=5 | OK
+Trial   76 | true=3 pred=3 | OK
+Trial   77 | true=1 pred=1 | OK
+Trial   78 | true=2 pred=1 |  X
+Trial   79 | true=4 pred=4 | OK
+Trial   80 | true=1 pred=1 | OK
+Trial   81 | true=5 pred=5 | OK
+Trial   82 | true=1 pred=5 |  X
+Trial   83 | true=2 pred=3 |  X
+Trial   84 | true=3 pred=3 | OK
+Trial   85 | true=2 pred=2 | OK
+Trial   86 | true=3 pred=3 | OK
+Trial   87 | true=2 pred=2 | OK
+Trial   88 | true=1 pred=1 | OK
+Trial   89 | true=2 pred=2 | OK
+Trial   90 | true=2 pred=2 | OK
+Trial   91 | true=5 pred=5 | OK
+Trial   92 | true=1 pred=2 |  X
+Trial   93 | true=3 pred=1 |  X
+Trial   94 | true=2 pred=3 |  X
+Trial   95 | true=3 pred=2 |  X
+Trial   96 | true=4 pred=4 | OK
+Trial   97 | true=1 pred=5 |  X
+Trial   98 | true=2 pred=1 |  X
+Trial   99 | true=5 pred=5 | OK
+Trial  100 | true=5 pred=5 | OK
+Trial  101 | true=2 pred=3 |  X
+Trial  102 | true=3 pred=3 | OK
+Trial  103 | true=5 pred=5 | OK
+Trial  104 | true=4 pred=4 | OK
+Trial  105 | true=3 pred=4 |  X
+Trial  106 | true=3 pred=1 |  X
+Trial  107 | true=3 pred=3 | OK
+Trial  108 | true=4 pred=4 | OK
+Trial  109 | true=1 pred=1 | OK
+Trial  110 | true=2 pred=2 | OK
+Trial  111 | true=5 pred=1 |  X [truncated]
+Trial  112 | true=2 pred=3 |  X
+Trial  113 | true=3 pred=5 |  X
+Trial  114 | true=2 pred=3 |  X
+Trial  115 | true=3 pred=3 | OK
+Trial  116 | true=5 pred=5 | OK
+Trial  117 | true=2 pred=2 | OK
+Trial  118 | true=5 pred=5 | OK
+Trial  119 | true=1 pred=1 | OK
+Trial  120 | true=3 pred=4 |  X
+Trial  121 | true=5 pred=1 |  X [truncated]
+Trial  122 | true=4 pred=4 | OK
+Trial  123 | true=2 pred=2 | OK [reasoning] [truncated]
+Trial  124 | true=1 pred=5 |  X
+Trial  125 | true=4 pred=3 |  X
+Trial  126 | true=3 pred=3 | OK
+Trial  127 | true=3 pred=3 | OK
+Trial  128 | true=2 pred=2 | OK
+Trial  129 | true=2 pred=5 |  X
+Trial  130 | true=4 pred=4 | OK
+Trial  131 | true=4 pred=4 | OK
+Trial  132 | true=5 pred=5 | OK
+Trial  133 | true=4 pred=4 | OK
+Trial  134 | true=5 pred=5 | OK
+Trial  135 | true=1 pred=1 | OK
+Trial  136 | true=1 pred=2 |  X
+Trial  137 | true=4 pred=1 |  X
+Trial  138 | true=2 pred=2 | OK
+Trial  139 | true=4 pred=4 | OK
+Trial  140 | true=5 pred=5 | OK
+Trial  141 | true=4 pred=4 | OK
+Trial  142 | true=1 pred=2 |  X
+Trial  143 | true=5 pred=5 | OK
+Trial  144 | true=3 pred=3 | OK
+Trial  145 | true=4 pred=5 |  X [truncated]
+Trial  146 | true=5 pred=3 |  X
+Trial  147 | true=2 pred=2 | OK
+Trial  148 | true=2 pred=2 | OK
+Trial  149 | true=1 pred=2 |  X
+Trial  150 | true=4 pred=4 | OK
+Trial  151 | true=3 pred=3 | OK [truncated]
+Trial  152 | true=3 pred=3 | OK
+Trial  153 | true=5 pred=5 | OK
+Trial  154 | true=3 pred=3 | OK
+Trial  155 | true=2 pred=4 |  X
+Trial  156 | true=1 pred=1 | OK
+Trial  157 | true=3 pred=5 |  X
+Trial  158 | true=2 pred=2 | OK
+Trial  159 | true=4 pred=3 |  X
+Trial  160 | true=3 pred=3 | OK
+Trial  161 | true=5 pred=5 | OK
+Trial  162 | true=4 pred=4 | OK
+Trial  163 | true=1 pred=1 | OK
+Trial  164 | true=3 pred=4 |  X
+Trial  165 | true=2 pred=2 | OK
+Trial  166 | true=5 pred=5 | OK
+Trial  167 | true=2 pred=2 | OK
+Trial  168 | true=3 pred=3 | OK
+Trial  169 | true=1 pred=1 | OK
+Trial  170 | true=1 pred=2 |  X
+Trial  171 | true=5 pred=3 |  X
+Trial  172 | true=4 pred=2 |  X
+Trial  173 | true=3 pred=3 | OK
+Trial  174 | true=5 pred=5 | OK
+Trial  175 | true=4 pred=5 |  X
+Trial  176 | true=2 pred=3 |  X
+Trial  177 | true=5 pred=2 |  X [truncated]
+Trial  178 | true=3 pred=3 | OK
+Trial  179 | true=1 pred=1 | OK
+Trial  180 | true=5 pred=5 | OK
+Trial  181 | true=2 pred=2 | OK
+Trial  182 | true=2 pred=2 | OK [truncated]
+Trial  183 | true=2 pred=2 | OK
+Trial  184 | true=3 pred=3 | OK
+Trial  185 | true=3 pred=3 | OK
+Trial  186 | true=1 pred=2 |  X
+Trial  187 | true=1 pred=1 | OK
+Trial  188 | true=4 pred=3 |  X
+Trial  189 | true=2 pred=4 |  X
+Trial  190 | true=2 pred=5 |  X [truncated]
+Trial  191 | true=4 pred=3 |  X
+Trial  192 | true=2 pred=2 | OK
+Trial  193 | true=1 pred=1 | OK
+Trial  194 | true=4 pred=4 | OK
+Trial  195 | true=5 pred=5 | OK
+Trial  196 | true=1 pred=1 | OK
+Trial  197 | true=5 pred=5 | OK
+Trial  198 | true=1 pred=4 |  X
+Trial  199 | true=2 pred=3 |  X
+Trial  200 | true=4 pred=4 | OK
+Trial  201 | true=5 pred=5 | OK [truncated]
+Trial  202 | true=3 pred=3 | OK
+Trial  203 | true=4 pred=4 | OK
+Trial  204 | true=3 pred=3 | OK
+Trial  205 | true=5 pred=5 | OK
+Trial  206 | true=2 pred=4 |  X
+Trial  207 | true=3 pred=3 | OK
+Trial  208 | true=2 pred=5 |  X
+Trial  209 | true=4 pred=1 |  X
+Trial  210 | true=2 pred=4 |  X
+Trial  211 | true=2 pred=2 | OK
+Trial  212 | true=3 pred=3 | OK
+Trial  213 | true=5 pred=5 | OK
+Trial  214 | true=4 pred=1 |  X
+Trial  215 | true=5 pred=5 | OK
+Trial  216 | true=5 pred=5 | OK
+Trial  217 | true=4 pred=4 | OK
+Trial  218 | true=2 pred=5 |  X [truncated]
+Trial  219 | true=4 pred=4 | OK
+Trial  220 | true=4 pred=3 |  X
+Trial  221 | true=1 pred=4 |  X
+Trial  222 | true=2 pred=3 |  X
+Trial  223 | true=3 pred=3 | OK
+Trial  224 | true=1 pred=1 | OK
+Trial  225 | true=3 pred=3 | OK
+Trial  226 | true=5 pred=3 |  X
+Trial  227 | true=4 pred=4 | OK
+Trial  228 | true=3 pred=5 |  X
+Trial  229 | true=2 pred=2 | OK
+Trial  230 | true=3 pred=3 | OK
+Trial  231 | true=3 pred=3 | OK
+Trial  232 | true=4 pred=4 | OK
+Trial  233 | true=1 pred=5 |  X
+Trial  234 | true=2 pred=2 | OK
+Trial  235 | true=5 pred=5 | OK
+Trial  236 | true=1 pred=1 | OK
+Trial  237 | true=5 pred=5 | OK
+Trial  238 | true=2 pred=2 | OK
+Trial  239 | true=4 pred=5 |  X
+Trial  240 | true=5 pred=4 |  X
+Trial  241 | true=5 pred=5 | OK [truncated]
+Trial  242 | true=3 pred=4 |  X
+Trial  243 | true=1 pred=4 |  X [truncated]
+Trial  244 | true=2 pred=2 | OK
+Trial  245 | true=2 pred=5 |  X [truncated]
+Trial  246 | true=4 pred=2 |  X
+Trial  247 | true=5 pred=5 | OK
+Trial  248 | true=5 pred=5 | OK
+Trial  249 | true=3 pred=5 |  X [truncated]
+Trial  250 | true=4 pred=4 | OK
+Trial  251 | true=2 pred=2 | OK
+Trial  252 | true=1 pred=5 |  X [truncated]
+Trial  253 | true=3 pred=3 | OK
+Trial  254 | true=4 pred=4 | OK
+Trial  255 | true=3 pred=2 |  X
+Trial  256 | true=4 pred=4 | OK
+Trial  257 | true=4 pred=4 | OK
+Trial  258 | true=3 pred=3 | OK
+Trial  259 | true=3 pred=2 |  X
+Trial  260 | true=1 pred=5 |  X
+Trial  261 | true=4 pred=4 | OK
+Trial  262 | true=1 pred=1 | OK
+Trial  263 | true=2 pred=4 |  X
+Trial  264 | true=5 pred=5 | OK
+Trial  265 | true=3 pred=5 |  X [truncated]
+Trial  266 | true=3 pred=3 | OK
+Trial  267 | true=1 pred=1 | OK
+Trial  268 | true=2 pred=2 | OK
+Trial  269 | true=3 pred=2 |  X
+Trial  270 | true=5 pred=2 |  X
+Trial  271 | true=4 pred=5 |  X [truncated]
+Trial  272 | true=5 pred=5 | OK
+Trial  273 | true=2 pred=2 | OK
+Trial  274 | true=4 pred=3 |  X
+Trial  275 | true=3 pred=2 |  X
+Trial  276 | true=2 pred=1 |  X [truncated]
+Trial  277 | true=4 pred=4 | OK
+Trial  278 | true=1 pred=4 |  X
+Trial  279 | true=1 pred=2 |  X
+Trial  280 | true=2 pred=2 | OK
+Trial  281 | true=5 pred=3 |  X
+Trial  282 | true=5 pred=2 |  X [reasoning] [truncated]
+Trial  283 | true=2 pred=5 |  X [truncated]
+Trial  284 | true=3 pred=3 | OK
+Trial  285 | true=5 pred=5 | OK
+Trial  286 | true=1 pred=2 |  X
+Trial  287 | true=1 pred=4 |  X
+Trial  288 | true=4 pred=2 |  X
+Trial  289 | true=3 pred=3 | OK
+Trial  290 | true=3 pred=3 | OK
+Trial  291 | true=2 pred=2 | OK
+Trial  292 | true=4 pred=4 | OK
+Trial  293 | true=1 pred=2 |  X
+Trial  294 | true=1 pred=1 | OK
+Trial  295 | true=1 pred=1 | OK
+Trial  296 | true=2 pred=2 | OK
+Trial  297 | true=2 pred=2 | OK
+Trial  298 | true=3 pred=2 |  X
+Trial  299 | true=5 pred=5 | OK
+Trial  300 | true=2 pred=5 |  X [truncated]
+Trial  301 | true=1 pred=1 | OK
+Trial  302 | true=1 pred=1 | OK
+Trial  303 | true=5 pred=5 | OK
+Trial  304 | true=3 pred=3 | OK
+Trial  305 | true=4 pred=3 |  X
+Trial  306 | true=3 pred=3 | OK
+Trial  307 | true=5 pred=5 | OK
+Trial  308 | true=1 pred=1 | OK
+Trial  309 | true=5 pred=5 | OK
+Trial  310 | true=5 pred=5 | OK
+Trial  311 | true=3 pred=3 | OK
+Trial  312 | true=5 pred=5 | OK
+Trial  313 | true=5 pred=5 | OK
+Trial  314 | true=3 pred=3 | OK
+Trial  315 | true=5 pred=4 |  X
+Trial  316 | true=3 pred=3 | OK
+Trial  317 | true=3 pred=2 |  X
+Trial  318 | true=1 pred=1 | OK
+Trial  319 | true=5 pred=5 | OK
+Trial  320 | true=1 pred=1 | OK
+Trial  321 | true=5 pred=5 | OK
+Trial  322 | true=2 pred=5 |  X
+Trial  323 | true=2 pred=3 |  X
+Trial  324 | true=1 pred=4 |  X
+Trial  325 | true=5 pred=3 |  X
+Trial  326 | true=2 pred=4 |  X
+Trial  327 | true=3 pred=4 |  X
+Trial  328 | true=5 pred=1 |  X
+Trial  329 | true=3 pred=2 |  X
+Trial  330 | true=1 pred=1 | OK
+Trial  331 | true=4 pred=2 |  X
+Trial  332 | true=4 pred=3 |  X
+Trial  333 | true=2 pred=2 | OK [truncated]
+Trial  334 | true=3 pred=2 |  X
+Trial  335 | true=4 pred=4 | OK
+Trial  336 | true=1 pred=1 | OK
+Trial  337 | true=3 pred=3 | OK
+Trial  338 | true=3 pred=1 |  X
+Trial  339 | true=5 pred=5 | OK
+Trial  340 | true=5 pred=5 | OK
+Trial  341 | true=5 pred=5 | OK
+Trial  342 | true=4 pred=5 |  X [truncated]
+Trial  343 | true=4 pred=4 | OK
+Trial  344 | true=2 pred=1 |  X
+Trial  345 | true=3 pred=3 | OK
+Trial  346 | true=3 pred=3 | OK
+Trial  347 | true=2 pred=2 | OK
+Trial  348 | true=1 pred=1 | OK
+Trial  349 | true=5 pred=2 |  X
+Trial  350 | true=3 pred=5 |  X [reasoning] [truncated]
+Trial  351 | true=2 pred=2 | OK
+Trial  352 | true=4 pred=4 | OK
+Trial  353 | true=5 pred=3 |  X [truncated]
+Trial  354 | true=2 pred=5 |  X
+Trial  355 | true=3 pred=3 | OK
+Trial  356 | true=1 pred=1 | OK
+Trial  357 | true=1 pred=1 | OK
+Trial  358 | true=1 pred=1 | OK
+Trial  359 | true=1 pred=5 |  X
+Trial  360 | true=4 pred=5 |  X
+Trial  361 | true=1 pred=5 |  X
+Trial  362 | true=3 pred=3 | OK
+Trial  363 | true=4 pred=4 | OK
+Trial  364 | true=1 pred=5 |  X
+Trial  365 | true=5 pred=5 | OK
+Trial  366 | true=4 pred=2 |  X
+Trial  367 | true=1 pred=1 | OK
+Trial  368 | true=5 pred=5 | OK
+Trial  369 | true=4 pred=4 | OK
+Trial  370 | true=1 pred=3 |  X
+Trial  371 | true=3 pred=3 | OK
+Trial  372 | true=2 pred=2 | OK
+Trial  373 | true=4 pred=4 | OK
+Trial  374 | true=5 pred=5 | OK
+Trial  375 | true=5 pred=4 |  X
+Trial  376 | true=2 pred=5 |  X
+Trial  377 | true=5 pred=1 |  X
+Trial  378 | true=1 pred=5 |  X
+Trial  379 | true=4 pred=4 | OK
+Trial  380 | true=2 pred=2 | OK
+Trial  381 | true=1 pred=5 |  X [truncated]
+Trial  382 | true=3 pred=3 | OK
+Trial  383 | true=2 pred=2 | OK
+Trial  384 | true=2 pred=2 | OK
+Trial  385 | true=1 pred=1 | OK
+Trial  386 | true=4 pred=4 | OK
+Trial  387 | true=2 pred=2 | OK
+Trial  388 | true=4 pred=1 |  X
+Trial  389 | true=2 pred=2 | OK
+Trial  390 | true=1 pred=1 | OK
+Trial  391 | true=5 pred=5 | OK
+Trial  392 | true=4 pred=4 | OK
+Trial  393 | true=1 pred=1 | OK
+Trial  394 | true=2 pred=2 | OK
+Trial  395 | true=5 pred=1 |  X
+Trial  396 | true=1 pred=3 |  X
+Trial  397 | true=1 pred=1 | OK
+Trial  398 | true=5 pred=5 | OK
+Trial  399 | true=3 pred=3 | OK
+Trial  400 | true=1 pred=3 |  X
+Trial  401 | true=2 pred=5 |  X [truncated]
+Trial  402 | true=1 pred=3 |  X
+Trial  403 | true=4 pred=4 | OK
+Trial  404 | true=1 pred=1 | OK
+Trial  405 | true=5 pred=5 | OK
+Trial  406 | true=3 pred=3 | OK
+Trial  407 | true=2 pred=2 | OK
+Trial  408 | true=1 pred=5 |  X
+Trial  409 | true=2 pred=2 | OK
+Trial  410 | true=3 pred=3 | OK
+Trial  411 | true=1 pred=3 |  X
+Trial  412 | true=4 pred=1 |  X
+Trial  413 | true=1 pred=1 | OK
+Trial  414 | true=5 pred=1 |  X
+Trial  415 | true=2 pred=2 | OK [reasoning] [truncated]
+Trial  416 | true=3 pred=3 | OK
+Trial  417 | true=3 pred=3 | OK
+Trial  418 | true=5 pred=2 |  X
+Trial  419 | true=4 pred=3 |  X
+Trial  420 | true=2 pred=3 |  X
+Trial  421 | true=2 pred=2 | OK
+Trial  422 | true=2 pred=2 | OK
+Trial  423 | true=2 pred=5 |  X [reasoning] [truncated]
+Trial  424 | true=5 pred=2 |  X
+Trial  425 | true=4 pred=1 |  X [truncated]
+Trial  426 | true=2 pred=5 |  X [truncated]
+Trial  427 | true=3 pred=3 | OK
+Trial  428 | true=2 pred=2 | OK
+Trial  429 | true=5 pred=5 | OK
+Trial  430 | true=3 pred=1 |  X
+Trial  431 | true=2 pred=2 | OK
+Trial  432 | true=5 pred=5 | OK
+Trial  433 | true=5 pred=2 |  X
+Trial  434 | true=5 pred=5 | OK
+Trial  435 | true=3 pred=3 | OK
+Trial  436 | true=4 pred=2 |  X
+Trial  437 | true=3 pred=3 | OK
+Trial  438 | true=3 pred=3 | OK
+Trial  439 | true=2 pred=3 |  X
+Trial  440 | true=1 pred=1 | OK
+Trial  441 | true=4 pred=4 | OK
+Trial  442 | true=4 pred=2 |  X
+Trial  443 | true=1 pred=1 | OK
+Trial  444 | true=1 pred=5 |  X
+Trial  445 | true=1 pred=1 | OK
+Trial  446 | true=4 pred=3 |  X
+Trial  447 | true=4 pred=4 | OK
+Trial  448 | true=4 pred=4 | OK [truncated]
+Trial  449 | true=3 pred=3 | OK
+Trial  450 | true=2 pred=1 |  X
+Trial  451 | true=4 pred=3 |  X
+Trial  452 | true=3 pred=3 | OK
+Trial  453 | true=4 pred=2 |  X
+Trial  454 | true=2 pred=2 | OK
+Trial  455 | true=4 pred=1 |  X
+Trial  456 | true=3 pred=3 | OK
+Trial  457 | true=4 pred=4 | OK [truncated]
+Trial  458 | true=5 pred=5 | OK
+Trial  459 | true=1 pred=5 |  X [truncated]
+Trial  460 | true=5 pred=5 | OK
+Trial  461 | true=5 pred=5 | OK
+Trial  462 | true=1 pred=1 | OK [reasoning] [truncated]
+Trial  463 | true=4 pred=5 |  X
+Trial  464 | true=2 pred=2 | OK
+Trial  465 | true=2 pred=2 | OK
+Trial  466 | true=3 pred=3 | OK
+Trial  467 | true=5 pred=3 |  X
+Trial  468 | true=3 pred=3 | OK
+Trial  469 | true=5 pred=3 |  X
+Trial  470 | true=5 pred=5 | OK
+Trial  471 | true=2 pred=2 | OK
+Trial  472 | true=2 pred=2 | OK
+Trial  473 | true=1 pred=3 |  X
+Trial  474 | true=5 pred=4 |  X
+Trial  475 | true=5 pred=5 | OK
+Trial  476 | true=2 pred=2 | OK
+Trial  477 | true=4 pred=2 |  X
+Trial  478 | true=4 pred=4 | OK
+Trial  479 | true=5 pred=5 | OK
+Trial  480 | true=1 pred=1 | OK
+Trial  481 | true=4 pred=2 |  X
+Trial  482 | true=5 pred=3 |  X
+Trial  483 | true=1 pred=1 | OK
+Trial  484 | true=5 pred=5 | OK
+Trial  485 | true=5 pred=5 | OK
+Trial  486 | true=1 pred=5 |  X
+Trial  487 | true=4 pred=3 |  X
+Trial  488 | true=1 pred=1 | OK
+Trial  489 | true=1 pred=1 | OK
+Trial  490 | true=3 pred=3 | OK
+Trial  491 | true=5 pred=3 |  X
+Trial  492 | true=3 pred=3 | OK
+Trial  493 | true=4 pred=4 | OK
+Trial  494 | true=1 pred=3 |  X
+Trial  495 | true=2 pred=2 | OK
+Trial  496 | true=3 pred=4 |  X
+Trial  497 | true=2 pred=2 | OK
+Trial  498 | true=5 pred=5 | OK
+Trial  499 | true=4 pred=4 | OK
+Trial  500 | true=2 pred=2 | OK
+Trial  501 | true=1 pred=2 |  X
+Trial  502 | true=2 pred=2 | OK
+Trial  503 | true=2 pred=2 | OK
+Trial  504 | true=4 pred=4 | OK
+Trial  505 | true=4 pred=1 |  X
+Trial  506 | true=1 pred=1 | OK
+Trial  507 | true=4 pred=1 |  X
+Trial  508 | true=1 pred=3 |  X
+Trial  509 | true=5 pred=2 |  X
+Trial  510 | true=4 pred=4 | OK
+Trial  511 | true=4 pred=5 |  X [truncated]
+Trial  512 | true=5 pred=5 | OK
+Trial  513 | true=5 pred=5 | OK
+Trial  514 | true=1 pred=1 | OK
+Trial  515 | true=2 pred=4 |  X
+Trial  516 | true=1 pred=4 |  X
+Trial  517 | true=2 pred=2 | OK
+Trial  518 | true=5 pred=5 | OK
+Trial  519 | true=4 pred=3 |  X
+Trial  520 | true=1 pred=1 | OK
+Trial  521 | true=4 pred=4 | OK
+Trial  522 | true=3 pred=3 | OK
+Trial  523 | true=3 pred=3 | OK
+Trial  524 | true=1 pred=3 |  X
+Trial  525 | true=2 pred=1 |  X
+Trial  526 | true=1 pred=2 |  X
+Trial  527 | true=1 pred=1 | OK
+Trial  528 | true=1 pred=1 | OK
+Trial  529 | true=1 pred=1 | OK
+Trial  530 | true=4 pred=4 | OK
+Trial  531 | true=2 pred=2 | OK
+Trial  532 | true=5 pred=5 | OK
+Trial  533 | true=1 pred=1 | OK
+Trial  534 | true=5 pred=5 | OK
+Trial  535 | true=1 pred=1 | OK
+Trial  536 | true=1 pred=1 | OK
+Trial  537 | true=3 pred=3 | OK
+Trial  538 | true=3 pred=3 | OK
+Trial  539 | true=5 pred=5 | OK [truncated]
+Trial  540 | true=1 pred=1 | OK
+Trial  541 | true=3 pred=3 | OK
+Trial  542 | true=4 pred=4 | OK
+Trial  543 | true=3 pred=3 | OK
+Trial  544 | true=1 pred=1 | OK
+Trial  545 | true=3 pred=3 | OK
+Trial  546 | true=1 pred=2 |  X
+Trial  547 | true=4 pred=4 | OK
+Trial  548 | true=3 pred=3 | OK
+Trial  549 | true=2 pred=5 |  X
+Trial  550 | true=5 pred=5 | OK
+Trial  551 | true=4 pred=4 | OK
+Trial  552 | true=5 pred=3 |  X
+Trial  553 | true=2 pred=3 |  X
+Trial  554 | true=4 pred=4 | OK
+Trial  555 | true=4 pred=4 | OK
+Trial  556 | true=5 pred=4 |  X
+Trial  557 | true=1 pred=3 |  X [truncated]
+Trial  558 | true=2 pred=3 |  X
+Trial  559 | true=1 pred=4 |  X [truncated]
+Trial  560 | true=3 pred=3 | OK
+Trial  561 | true=3 pred=3 | OK
+Trial  562 | true=3 pred=3 | OK
+Trial  563 | true=1 pred=1 | OK
+Trial  564 | true=1 pred=5 |  X [truncated]
+Trial  565 | true=5 pred=5 | OK
+Trial  566 | true=5 pred=5 | OK
+Trial  567 | true=3 pred=3 | OK
+Trial  568 | true=5 pred=5 | OK
+Trial  569 | true=5 pred=5 | OK
+Trial  570 | true=4 pred=4 | OK
+Trial  571 | true=4 pred=3 |  X
+Trial  572 | true=1 pred=2 |  X
+Trial  573 | true=4 pred=2 |  X
+Trial  574 | true=2 pred=5 |  X
+Trial  575 | true=2 pred=2 | OK
+Trial  576 | true=2 pred=2 | OK
+Trial  577 | true=1 pred=5 |  X
+Trial  578 | true=3 pred=3 | OK
+Trial  579 | true=2 pred=2 | OK
+Trial  580 | true=3 pred=3 | OK
+Trial  581 | true=1 pred=1 | OK
+Trial  582 | true=3 pred=5 |  X
+Trial  583 | true=4 pred=5 |  X
+Trial  584 | true=3 pred=3 | OK
+Trial  585 | true=3 pred=3 | OK
+Trial  586 | true=2 pred=2 | OK
+Trial  587 | true=3 pred=3 | OK
+Trial  588 | true=3 pred=3 | OK
+Trial  589 | true=5 pred=5 | OK
+Trial  590 | true=3 pred=3 | OK
+Trial  591 | true=1 pred=5 |  X [truncated]
+Trial  592 | true=4 pred=4 | OK
+Trial  593 | true=5 pred=5 | OK [truncated]
+Trial  594 | true=2 pred=4 |  X
+Trial  595 | true=1 pred=1 | OK
+Trial  596 | true=3 pred=5 |  X
+Trial  597 | true=3 pred=3 | OK
+Trial  598 | true=2 pred=2 | OK
+Trial  599 | true=1 pred=4 |  X [reasoning] [truncated]
+Trial  600 | true=3 pred=4 |  X
+Trial  601 | true=3 pred=1 |  X
+Trial  602 | true=4 pred=4 | OK
+Trial  603 | true=1 pred=2 |  X
+Trial  604 | true=4 pred=4 | OK
+Trial  605 | true=4 pred=4 | OK
+Trial  606 | true=3 pred=4 |  X
+Trial  607 | true=5 pred=5 | OK
+Trial  608 | true=1 pred=1 | OK
+Trial  609 | true=5 pred=5 | OK
+Trial  610 | true=5 pred=2 |  X [truncated]
+Trial  611 | true=4 pred=2 |  X
+Trial  612 | true=5 pred=5 | OK
+Trial  613 | true=2 pred=2 | OK
+Trial  614 | true=5 pred=5 | OK
+Trial  615 | true=5 pred=1 |  X
+Trial  616 | true=5 pred=5 | OK
+Trial  617 | true=5 pred=5 | OK [truncated]
+Trial  618 | true=4 pred=4 | OK
+Trial  619 | true=2 pred=4 |  X
+Trial  620 | true=5 pred=1 |  X [truncated]
+Trial  621 | true=3 pred=3 | OK
+Trial  622 | true=3 pred=5 |  X
+Trial  623 | true=4 pred=2 |  X
+Trial  624 | true=4 pred=4 | OK [truncated]
+Trial  625 | true=3 pred=3 | OK
+Trial  626 | true=5 pred=4 |  X
+Trial  627 | true=2 pred=2 | OK
+Trial  628 | true=4 pred=4 | OK
+Trial  629 | true=2 pred=1 |  X
+Trial  630 | true=2 pred=2 | OK
+Trial  631 | true=4 pred=4 | OK
+Trial  632 | true=5 pred=4 |  X
+Trial  633 | true=2 pred=2 | OK
+Trial  634 | true=4 pred=2 |  X
+Trial  635 | true=3 pred=3 | OK
+Trial  636 | true=4 pred=4 | OK
+Trial  637 | true=3 pred=3 | OK
+Trial  638 | true=5 pred=5 | OK
+Trial  639 | true=3 pred=1 |  X
+Trial  640 | true=3 pred=3 | OK
+Trial  641 | true=4 pred=4 | OK [truncated]
+Trial  642 | true=4 pred=4 | OK
+Trial  643 | true=5 pred=5 | OK
+Trial  644 | true=2 pred=2 | OK
+Trial  645 | true=2 pred=3 |  X
+Trial  646 | true=4 pred=4 | OK
+Trial  647 | true=2 pred=2 | OK
+Trial  648 | true=4 pred=4 | OK
+Trial  649 | true=5 pred=5 | OK
+Trial  650 | true=1 pred=1 | OK
+Trial  651 | true=2 pred=2 | OK
+Trial  652 | true=2 pred=4 |  X
+Trial  653 | true=2 pred=5 |  X
+Trial  654 | true=1 pred=4 |  X
+Trial  655 | true=5 pred=2 |  X
+Trial  656 | true=5 pred=2 |  X
+Trial  657 | true=4 pred=1 |  X
+Trial  658 | true=3 pred=3 | OK
+Trial  659 | true=4 pred=1 |  X
+Trial  660 | true=5 pred=5 | OK
+Trial  661 | true=1 pred=4 |  X
+Trial  662 | true=5 pred=3 |  X
+Trial  663 | true=1 pred=3 |  X
+Trial  664 | true=1 pred=1 | OK
+Trial  665 | true=1 pred=3 |  X
+Trial  666 | true=3 pred=2 |  X
+Trial  667 | true=5 pred=5 | OK
+Trial  668 | true=2 pred=1 |  X [truncated]
+Trial  669 | true=5 pred=5 | OK
+Trial  670 | true=1 pred=1 | OK
+Trial  671 | true=1 pred=3 |  X
+Trial  672 | true=1 pred=3 |  X
+Trial  673 | true=3 pred=3 | OK
+Trial  674 | true=3 pred=2 |  X
+Trial  675 | true=5 pred=4 |  X
+Trial  676 | true=4 pred=4 | OK [truncated]
+Trial  677 | true=2 pred=2 | OK
+Trial  678 | true=5 pred=5 | OK
+Trial  679 | true=2 pred=2 | OK
+Trial  680 | true=4 pred=3 |  X
+Trial  681 | true=1 pred=1 | OK
+Trial  682 | true=5 pred=5 | OK
+Trial  683 | true=2 pred=2 | OK
+Trial  684 | true=4 pred=4 | OK
+Trial  685 | true=4 pred=4 | OK
+Trial  686 | true=4 pred=4 | OK [truncated]
+Trial  687 | true=3 pred=3 | OK
+Trial  688 | true=4 pred=5 |  X [truncated]
+Trial  689 | true=5 pred=5 | OK
+Trial  690 | true=4 pred=4 | OK
+Trial  691 | true=5 pred=5 | OK
+Trial  692 | true=4 pred=1 |  X
+Trial  693 | true=1 pred=1 | OK
+Trial  694 | true=1 pred=1 | OK
+Trial  695 | true=1 pred=4 |  X
+Trial  696 | true=5 pred=5 | OK
+Trial  697 | true=1 pred=1 | OK
+Trial  698 | true=1 pred=4 |  X
+Trial  699 | true=5 pred=3 |  X
+Trial  700 | true=2 pred=2 | OK
+Trial  701 | true=1 pred=1 | OK
+Trial  702 | true=4 pred=4 | OK
+Trial  703 | true=4 pred=3 |  X
+Trial  704 | true=2 pred=4 |  X
+Trial  705 | true=2 pred=2 | OK [truncated]
+Trial  706 | true=3 pred=3 | OK
+Trial  707 | true=1 pred=1 | OK
+Trial  708 | true=1 pred=1 | OK
+Trial  709 | true=5 pred=5 | OK
+Trial  710 | true=1 pred=2 |  X
+Trial  711 | true=2 pred=4 |  X
+Trial  712 | true=2 pred=2 | OK
+Trial  713 | true=4 pred=4 | OK
+Trial  714 | true=3 pred=3 | OK
+Trial  715 | true=1 pred=1 | OK
+Trial  716 | true=3 pred=1 |  X
+Trial  717 | true=4 pred=4 | OK
+Trial  718 | true=4 pred=4 | OK
+Trial  719 | true=4 pred=3 |  X
+Trial  720 | true=2 pred=2 | OK
+Trial  721 | true=5 pred=3 |  X
+Trial  722 | true=1 pred=1 | OK
+Trial  723 | true=4 pred=4 | OK
+Trial  724 | true=3 pred=3 | OK
+Trial  725 | true=5 pred=5 | OK
+Trial  726 | true=4 pred=5 |  X [truncated]
+Trial  727 | true=1 pred=1 | OK
+Trial  728 | true=2 pred=2 | OK
+Trial  729 | true=2 pred=3 |  X
+Trial  730 | true=2 pred=2 | OK
+Trial  731 | true=3 pred=5 |  X
+Trial  732 | true=2 pred=4 |  X
+Trial  733 | true=5 pred=2 |  X
+Trial  734 | true=5 pred=5 | OK
+Trial  735 | true=3 pred=3 | OK
+Trial  736 | true=5 pred=5 | OK
+Trial  737 | true=1 pred=1 | OK
+Trial  738 | true=4 pred=4 | OK
+Trial  739 | true=5 pred=2 |  X
+Trial  740 | true=4 pred=3 |  X
+Trial  741 | true=5 pred=5 | OK
+Trial  742 | true=4 pred=4 | OK
+Trial  743 | true=3 pred=3 | OK
+Trial  744 | true=5 pred=5 | OK
+Trial  745 | true=5 pred=5 | OK
+Trial  746 | true=1 pred=1 | OK
+Trial  747 | true=2 pred=1 |  X
+Trial  748 | true=1 pred=4 |  X
+Trial  749 | true=1 pred=3 |  X
+Trial  750 | true=2 pred=2 | OK [truncated]
+Trial  751 | true=5 pred=5 | OK
+Trial  752 | true=5 pred=5 | OK
+Trial  753 | true=4 pred=4 | OK
+Trial  754 | true=2 pred=2 | OK
+Trial  755 | true=4 pred=4 | OK
+Trial  756 | true=1 pred=2 |  X
+Trial  757 | true=2 pred=5 |  X [truncated]
+Trial  758 | true=1 pred=5 |  X [truncated]
+Trial  759 | true=4 pred=4 | OK
+Trial  760 | true=3 pred=3 | OK
+Trial  761 | true=4 pred=4 | OK
+Trial  762 | true=5 pred=5 | OK
+Trial  763 | true=2 pred=5 |  X
+Trial  764 | true=2 pred=4 |  X
+Trial  765 | true=2 pred=2 | OK
+Trial  766 | true=4 pred=4 | OK
+Trial  767 | true=3 pred=3 | OK
+Trial  768 | true=5 pred=5 | OK [truncated]
+Trial  769 | true=4 pred=4 | OK
+Trial  770 | true=2 pred=2 | OK
+Trial  771 | true=1 pred=3 |  X
+Trial  772 | true=3 pred=4 |  X
+Trial  773 | true=1 pred=2 |  X
+Trial  774 | true=4 pred=3 |  X
+Trial  775 | true=1 pred=1 | OK
+Trial  776 | true=5 pred=5 | OK
+Trial  777 | true=4 pred=4 | OK
+Trial  778 | true=3 pred=3 | OK
+Trial  779 | true=3 pred=3 | OK
+Trial  780 | true=3 pred=5 |  X
+Trial  781 | true=1 pred=1 | OK
+Trial  782 | true=5 pred=5 | OK
+Trial  783 | true=5 pred=5 | OK
+Trial  784 | true=2 pred=2 | OK
+Trial  785 | true=1 pred=2 |  X
+Trial  786 | true=4 pred=3 |  X
+Trial  787 | true=4 pred=1 |  X
+Trial  788 | true=3 pred=5 |  X
+Trial  789 | true=3 pred=3 | OK
+Trial  790 | true=5 pred=2 |  X
+Trial  791 | true=2 pred=2 | OK
+Trial  792 | true=5 pred=5 | OK
+Trial  793 | true=1 pred=2 |  X
+Trial  794 | true=3 pred=3 | OK
+Trial  795 | true=5 pred=5 | OK [truncated]
+Trial  796 | true=4 pred=5 |  X
+Trial  797 | true=3 pred=3 | OK
+Trial  798 | true=2 pred=2 | OK
+Trial  799 | true=1 pred=5 |  X
+Trial  800 | true=3 pred=3 | OK
+Trial  801 | true=2 pred=2 | OK
+Trial  802 | true=3 pred=4 |  X
+Trial  803 | true=3 pred=3 | OK
+Trial  804 | true=1 pred=1 | OK
+Trial  805 | true=1 pred=1 | OK
+Trial  806 | true=5 pred=1 |  X
+Trial  807 | true=3 pred=3 | OK
+Trial  808 | true=3 pred=3 | OK
+Trial  809 | true=5 pred=5 | OK
+Trial  810 | true=1 pred=1 | OK
+Trial  811 | true=4 pred=4 | OK
+Trial  812 | true=3 pred=3 | OK [truncated]
+Trial  813 | true=1 pred=1 | OK
+Trial  814 | true=2 pred=5 |  X
+Trial  815 | true=4 pred=4 | OK
+Trial  816 | true=2 pred=2 | OK
+Trial  817 | true=5 pred=2 |  X
+Trial  818 | true=1 pred=1 | OK
+Trial  819 | true=4 pred=4 | OK
+Trial  820 | true=2 pred=1 |  X
+Trial  821 | true=3 pred=2 |  X
+Trial  822 | true=3 pred=3 | OK
+Trial  823 | true=1 pred=5 |  X
+Trial  824 | true=1 pred=2 |  X
+Trial  825 | true=4 pred=4 | OK
+Trial  826 | true=5 pred=5 | OK
+Trial  827 | true=4 pred=5 |  X
+Trial  828 | true=4 pred=2 |  X
+Trial  829 | true=1 pred=4 |  X
+Trial  830 | true=2 pred=2 | OK
+Trial  831 | true=5 pred=2 |  X
+Trial  832 | true=3 pred=2 |  X
+Trial  833 | true=5 pred=3 |  X
+Trial  834 | true=2 pred=2 | OK
+Trial  835 | true=1 pred=5 |  X
+Trial  836 | true=3 pred=3 | OK
+Trial  837 | true=1 pred=1 | OK
+Trial  838 | true=1 pred=1 | OK
+Trial  839 | true=5 pred=5 | OK
+Trial  840 | true=2 pred=3 |  X
+Trial  841 | true=2 pred=2 | OK
+Trial  842 | true=2 pred=2 | OK [truncated]
+Trial  843 | true=2 pred=2 | OK
+Trial  844 | true=1 pred=2 |  X
+Trial  845 | true=2 pred=5 |  X [truncated]
+Trial  846 | true=1 pred=4 |  X
+Trial  847 | true=2 pred=3 |  X
+Trial  848 | true=3 pred=5 |  X
+Trial  849 | true=3 pred=3 | OK
+Trial  850 | true=5 pred=5 | OK
+Trial  851 | true=2 pred=5 |  X [truncated]
+Trial  852 | true=2 pred=2 | OK
+Trial  853 | true=2 pred=2 | OK
+Trial  854 | true=5 pred=5 | OK
+Trial  855 | true=4 pred=5 |  X [reasoning] [truncated]
+Trial  856 | true=5 pred=3 |  X
+Trial  857 | true=3 pred=3 | OK
+Trial  858 | true=3 pred=3 | OK
+Trial  859 | true=3 pred=3 | OK
+Trial  860 | true=1 pred=1 | OK
+Trial  861 | true=1 pred=1 | OK
+Trial  862 | true=1 pred=2 |  X
+Trial  863 | true=4 pred=4 | OK
+Trial  864 | true=4 pred=4 | OK
+Trial  865 | true=1 pred=1 | OK [truncated]
+Trial  866 | true=5 pred=5 | OK
+Trial  867 | true=1 pred=1 | OK
+Trial  868 | true=1 pred=1 | OK
+Trial  869 | true=2 pred=2 | OK
+Trial  870 | true=5 pred=5 | OK
+Trial  871 | true=3 pred=3 | OK
+Trial  872 | true=2 pred=3 |  X
+Trial  873 | true=1 pred=5 |  X
+Trial  874 | true=5 pred=5 | OK
+Trial  875 | true=1 pred=1 | OK
+Trial  876 | true=2 pred=2 | OK
+Trial  877 | true=4 pred=2 |  X
+Trial  878 | true=1 pred=1 | OK [truncated]
+Trial  879 | true=3 pred=3 | OK
+Trial  880 | true=4 pred=4 | OK
+Trial  881 | true=3 pred=3 | OK
+Trial  882 | true=1 pred=1 | OK
+Trial  883 | true=3 pred=3 | OK
+Trial  884 | true=5 pred=3 |  X
+Trial  885 | true=2 pred=2 | OK
+Trial  886 | true=4 pred=4 | OK
+Trial  887 | true=2 pred=2 | OK
+Trial  888 | true=5 pred=5 | OK [reasoning] [truncated]
+Trial  889 | true=4 pred=3 |  X
+Trial  890 | true=5 pred=5 | OK
+Trial  891 | true=5 pred=5 | OK
+Trial  892 | true=2 pred=2 | OK
+Trial  893 | true=4 pred=2 |  X
+Trial  894 | true=3 pred=3 | OK
+Trial  895 | true=3 pred=5 |  X
+Trial  896 | true=1 pred=1 | OK
+Trial  897 | true=5 pred=4 |  X
+Trial  898 | true=5 pred=5 | OK [truncated]
+Trial  899 | true=1 pred=1 | OK
+Trial  900 | true=1 pred=3 |  X [truncated]
+Trial  901 | true=4 pred=4 | OK
+Trial  902 | true=3 pred=3 | OK
+Trial  903 | true=5 pred=5 | OK
+Trial  904 | true=1 pred=4 |  X
+Trial  905 | true=2 pred=2 | OK
+Trial  906 | true=5 pred=4 |  X
+Trial  907 | true=2 pred=2 | OK
+Trial  908 | true=3 pred=3 | OK
+Trial  909 | true=5 pred=5 | OK
+Trial  910 | true=5 pred=5 | OK
+Trial  911 | true=5 pred=5 | OK
+Trial  912 | true=5 pred=1 |  X [truncated]
+Trial  913 | true=3 pred=3 | OK
+Trial  914 | true=2 pred=3 |  X
+Trial  915 | true=1 pred=4 |  X [truncated]
+Trial  916 | true=5 pred=1 |  X
+Trial  917 | true=1 pred=4 |  X [truncated]
+Trial  918 | true=3 pred=3 | OK
+Trial  919 | true=3 pred=5 |  X
+Trial  920 | true=1 pred=3 |  X
+Trial  921 | true=3 pred=1 |  X [reasoning] [truncated]
+Trial  922 | true=2 pred=2 | OK
+Trial  923 | true=4 pred=4 | OK
+Trial  924 | true=1 pred=3 |  X
+Trial  925 | true=2 pred=5 |  X [truncated]
+Trial  926 | true=1 pred=1 | OK
+Trial  927 | true=3 pred=3 | OK
+Trial  928 | true=4 pred=4 | OK
+Trial  929 | true=4 pred=4 | OK
+Trial  930 | true=4 pred=4 | OK
+Trial  931 | true=3 pred=5 |  X
+Trial  932 | true=3 pred=3 | OK
+Trial  933 | true=1 pred=1 | OK
+Trial  934 | true=2 pred=2 | OK
+Trial  935 | true=4 pred=4 | OK
+Trial  936 | true=3 pred=3 | OK
+Trial  937 | true=2 pred=2 | OK
+Trial  938 | true=2 pred=2 | OK
+Trial  939 | true=2 pred=1 |  X
+Trial  940 | true=4 pred=2 |  X
+Trial  941 | true=3 pred=3 | OK
+Trial  942 | true=2 pred=4 |  X
+Trial  943 | true=4 pred=5 |  X
+Trial  944 | true=1 pred=5 |  X
+Trial  945 | true=5 pred=5 | OK
+Trial  946 | true=2 pred=4 |  X
+Trial  947 | true=2 pred=1 |  X [truncated]
+Trial  948 | true=2 pred=5 |  X
+Trial  949 | true=4 pred=4 | OK
+Trial  950 | true=3 pred=3 | OK
+Trial  951 | true=4 pred=5 |  X
+Trial  952 | true=4 pred=1 |  X
+Trial  953 | true=1 pred=1 | OK
+Trial  954 | true=4 pred=4 | OK
+Trial  955 | true=4 pred=5 |  X
+Trial  956 | true=2 pred=2 | OK
+Trial  957 | true=1 pred=5 |  X [truncated]
+Trial  958 | true=3 pred=5 |  X
+Trial  959 | true=5 pred=5 | OK
+Trial  960 | true=2 pred=2 | OK
+Trial  961 | true=3 pred=3 | OK
+Trial  962 | true=2 pred=2 | OK
+Trial  963 | true=4 pred=4 | OK
+Trial  964 | true=4 pred=4 | OK
+Trial  965 | true=1 pred=1 | OK
+Trial  966 | true=2 pred=2 | OK
+Trial  967 | true=3 pred=3 | OK
+Trial  968 | true=5 pred=5 | OK
+Trial  969 | true=3 pred=3 | OK
+Trial  970 | true=2 pred=2 | OK
+Trial  971 | true=1 pred=1 | OK
+Trial  972 | true=1 pred=1 | OK
+Trial  973 | true=1 pred=1 | OK
+Trial  974 | true=3 pred=3 | OK
+Trial  975 | true=3 pred=3 | OK
+Trial  976 | true=5 pred=3 |  X
+Trial  977 | true=3 pred=3 | OK
+Trial  978 | true=5 pred=5 | OK
+Trial  979 | true=5 pred=5 | OK
+Trial  980 | true=2 pred=2 | OK
+Trial  981 | true=4 pred=4 | OK
+Trial  982 | true=1 pred=1 | OK
+Trial  983 | true=3 pred=2 |  X
+Trial  984 | true=3 pred=3 | OK
+Trial  985 | true=4 pred=4 | OK [truncated]
+Trial  986 | true=2 pred=3 |  X
+Trial  987 | true=4 pred=4 | OK
+Trial  988 | true=1 pred=1 | OK
+Trial  989 | true=1 pred=3 |  X
+Trial  990 | true=1 pred=1 | OK [reasoning] [truncated]
+Trial  991 | true=2 pred=2 | OK
+Trial  992 | true=5 pred=5 | OK
+Trial  993 | true=2 pred=2 | OK
+Trial  994 | true=3 pred=3 | OK
+Trial  995 | true=3 pred=5 |  X [truncated]
+Trial  996 | true=1 pred=1 | OK
+Trial  997 | true=2 pred=2 | OK
+Trial  998 | true=4 pred=4 | OK
+Trial  999 | true=2 pred=2 | OK
+Trial 1000 | true=1 pred=4 |  X
+
+============================================================
+            trials_requested: 1000
+            trials_completed: 1000
+               trials_failed: 0
+                     correct: 647
+            accuracy_percent: 64.7
+     random_baseline_percent: 20.0
+    recovered_from_reasoning: 11
+       non_explicit_verdicts: 0
+         truncated_responses: 81
+         forced_choice_calls: 70
+              forced_guesses: 0
+          unparsed_responses: 0
+      extraction_rule_counts: {'final_verdict': 930, 'forced_choice': 70}
+              total_cost_usd: 0.891876
+============================================================
+
+Reports written:
+   json  C:\Users\Administrator\Documents\coding_projects\qss_publication\results\intrusion\intrusion_h2_n1000_decisive.json
+  jsonl  C:\Users\Administrator\Documents\coding_projects\qss_publication\results\intrusion\intrusion_h2_n1000_decisive.jsonl
+    txt  C:\Users\Administrator\Documents\coding_projects\qss_publication\results\intrusion\intrusion_h2_n1000_decisive.txt

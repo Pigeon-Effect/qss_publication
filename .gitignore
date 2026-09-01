@@ -1,13 +1,18 @@
 # ---------------------------------------------------------------
 # Data
 # ---------------------------------------------------------------
-# merged_works_labeled.db is a ~20 GB SQLite corpus and is not
-# distributed via git. Obtain it separately and place it in data/.
-# Ignore the directory contents but keep its README, which documents the
-# schema and how to obtain the file. `data/*` rather than `data/` so git
-# still descends into the directory and can see the negation below.
+# merged_works_labeled.db is a ~20 GB SQLite corpus and is deposited on
+# Zenodo rather than carried in git. Ignore the directory contents but keep
+# its README (which documents the schema and how to obtain the file) and the
+# two small stage-05 outputs that stage 06 and the Supplementary Information
+# read. `data/*` rather than `data/` so git still descends into the directory
+# and can see the negations below.
 data/*
 !data/README.md
+!data/interim/
+data/interim/*
+!data/interim/citshare_h3x4entities.csv
+!data/interim/fractional_citations_by_country_h3.csv
 
 # ---------------------------------------------------------------
 # Secrets
@@ -15,6 +20,11 @@ data/*
 .env
 .env.*
 !.env.example
+
+# ---------------------------------------------------------------
+# Working notes (never published)
+# ---------------------------------------------------------------
+TODO.local.md
 
 # ---------------------------------------------------------------
 # Python
@@ -46,18 +56,39 @@ desktop.ini
 .DS_Store
 
 # ---------------------------------------------------------------
-# LaTeX build artifacts (all regenerable from paper/main.tex)
+# LaTeX build artifacts (all regenerable from the .tex sources)
+#
+# Scoped to the two directories that hold LaTeX documents. A blanket `*.log`
+# would also swallow the run logs in results/, which are part of the archived
+# record.
 # ---------------------------------------------------------------
-*.bbl
-*.aux
-*.bcf
-*.blg
-*.fdb_latexmk
-*.fls
-*.lof
-*.log
-*.lot
-*.out
-*.run.xml
-*.synctex.gz
-*.toc
+paper/*.aux
+paper/*.bcf
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.lof
+paper/*.log
+paper/*.lot
+paper/*.out
+paper/*.run.xml
+paper/*.synctex.gz
+paper/*.toc
+supplementary/*.aux
+supplementary/*.bcf
+supplementary/*.blg
+supplementary/*.fdb_latexmk
+supplementary/*.fls
+supplementary/*.lof
+supplementary/*.log
+supplementary/*.lot
+supplementary/*.out
+supplementary/*.run.xml
+supplementary/*.synctex.gz
+supplementary/*.toc
+
+# Lab scaffolding left behind by long background runs.
+results/**/.*.pid
+results/**/.chain_*.log
+paper/*.bbl
+supplementary/*.bbl

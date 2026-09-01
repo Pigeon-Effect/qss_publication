@@ -1,96 +1,131 @@
-# Code and data for "Mapping the AI Research of China, the US and the EU"
+# Mapping the AI Research of China, the US and the EU
 
-Research compendium — code, archived intermediate results, and manuscript
-sources — for:
+Research compendium for:
 
 > **Mapping the AI Research of China, the US and the EU: A Scientometric
 > Analysis of Citation Shares within AI Subdisciplines (2020–2025)**
 > Julius Pfundstein, Thomas Efer, Manuel Burghardt
-> Computational Humanities, University of Leipzig — *manuscript in preparation*
-> ([`paper/main.pdf`](paper/main.pdf))
+> Computational Humanities, University of Leipzig
 
-The study identifies AI subdisciplines in 1,986,659 OpenAlex records through a
-semi-supervised, hierarchical topic model (SPECTER embeddings → high-granularity
-K-Means → expert consolidation), yielding **5 domains, 31 fields and 106
-research fronts**, then measures each of China, the US, and the EU-27's
-citation-share footprint across that taxonomy.
+This repository holds everything behind that article: the code that built the
+dataset, the code that analysed it, the complete record of the validation
+experiments, the cluster-level result tables, and the manuscript sources.
 
 ---
 
-## Scope
+## What the study did, in plain terms
 
-**This repository is the archival deposit for the full pipeline behind the
-manuscript** — keyword construction, OpenAlex data collection, dataset
-processing, the hierarchical topic model, citation-impact analysis,
-visualization, and the LLM-based cluster validation. See
-[`code/README.md`](code/README.md) for the stage-by-stage breakdown, and each
-stage's own README for the reasoning behind its method.
+Almost every government with global ambitions now has an AI strategy, and the
+question of who is "ahead" is usually answered with a single number — total
+publications, total citations, a benchmark score. Those numbers hide something
+important: **AI is not one field.** A country can dominate computer vision and
+be nearly absent from AI ethics, and a single ranking will never show that.
 
-| # | Stage | Status |
-|---|---|---|
-| 01 | Keyword construction | ✅ code present; the curated 279-term list itself is not |
-| 02 | Data collection (OpenAlex retrieval) | ✅ |
-| 03 | Data processing (quality control) | ✅ |
-| 04 | Subdiscipline clustering | ✅ with three documented gaps |
-| 05 | Impact analysis (fractional citation sum) | ✅ |
-| 06 | Visualization | ◐ Figure 2 present, Figure 1 missing |
-| 07 | LLM-based cluster validation | ✅ implemented and tested |
+So this study did two things.
 
-Everything absent is listed in
-[`code/README.md`](code/README.md#what-is-not-here) rather than left to be
-discovered. Nothing has been reconstructed by guesswork.
+**First, it drew a map of AI research.** It collected the metadata for
+1,986,659 research publications from 2020–2025 — every paper that matched a
+carefully built list of 279 AI-related search terms — and asked what
+subdisciplines they naturally fall into. Rather than trusting an algorithm to
+find "the right number" of topics (there isn't one; the evidence for that is in
+[stage 04](code/04_subdiscipline_clustering/)), the pipeline deliberately cuts
+the corpus into far too many pieces and then has a human expert consolidate
+them into meaningful units, three times over. The result is a three-level
+taxonomy: **5 broad domains, 31 fields inside them, and 106 specific research
+fronts inside those.**
 
-What is here today:
+**Second, it measured who holds influence where.** Every publication's
+citations were split among the countries that produced it, in proportion to
+where its authors work. Summed inside each of the 106 research fronts and
+grouped into three blocs — China, the United States, and the EU-27 — this shows
+each bloc's share of the scholarly attention in that specific corner of AI.
+
+The headline results: the three blocs together hold 58.9 % of publications and
+63.5 % of citations, but their profiles differ sharply. China leads computer
+science and engineering and trails in the social and health sciences. The US
+leads health science and the older computer-science fields. The EU-27 is the
+most balanced, with the fewest blind spots. Governance and ethics — the part of
+AI that dominates public debate — accounts for 2.7 % of the literature.
+
+### How we checked the map was real
+
+A taxonomy built partly by a human expert has an obvious weakness: the person
+who drew the boundaries is also the person who thinks they look right. That is
+not evidence. So the clusters were tested from outside, using a protocol
+adapted from Chang et al.'s *reading tea leaves* (2009).
+
+The idea is simple. Take four papers from one cluster, add one "intruder" from
+a different cluster, shuffle them, and ask a judge which one does not belong —
+showing nothing but the papers themselves, no labels, no hints. If the cluster
+is a genuine, coherent topic, the intruder sticks out. If the cluster is an
+artefact, it doesn't. Detection accuracy is therefore a measure of how real the
+cluster is. The judge here is a large language model, which makes it feasible
+to run this **3,000 times** where human annotators would not be.
+
+The result, at 1,000 trials for each of the three levels:
+
+| Level | What a cluster is here | Accuracy | Chance |
+|---|---|---:|---:|
+| Macro (h1) | one of 5 broad domains | 40.5 % | 20 % |
+| Meso (h2) | one of 31 fields | 64.7 % | 20 % |
+| Micro (h3) | one of 106 research fronts | 77.8 % | 20 % |
+
+Accuracy climbs as the clusters get more specific, which is exactly what should
+happen. A broad domain like *Natural Science* legitimately contains structural
+engineering, ionospheric physics and land-use change all at once, so an
+intruder hides easily. A narrow research front like *Cancer Detection &
+Screening* has a tight vocabulary, and an outsider is obvious. Every level beats
+chance by a wide margin, and the levels the analysis leans on hardest are the
+ones that score best.
+
+---
+
+## What is in this repository
 
 | | |
 |---|---|
-| `code/` | the full pipeline, one numbered stage per manuscript section — see [`code/README.md`](code/README.md) |
-| `src/clustervalidation/` | stage 07 (LLM validation), as an installable package |
-| `results/` | transcripts of every validation run, including the reported ones |
-| `paper/` | manuscript sources, figures and bibliography |
-| `data/` | where the corpus is expected at runtime (not redistributed) |
-| `tests/` | test suite for `clustervalidation`, runs without network access or an API key |
+| [`code/`](code/README.md) | the full pipeline, one numbered stage per step of the study |
+| [`src/clustervalidation/`](src/clustervalidation/) | the validation protocols, as an installable Python package |
+| [`results/`](results/README.md) | the complete record of all 3,000 validation trials |
+| [`supplementary/`](supplementary/) | cluster-level result tables (PDF + CSV) — the article's Supplementary Information |
+| [`paper/`](paper/) | manuscript source, figures, bibliography |
+| [`data/`](data/README.md) | where the corpus lives, and how to get it |
+| [`tests/`](tests/) | test suite for `clustervalidation` — no network, no API key, no spend |
 
----
+The corpus itself — 1,986,659 labelled records, about 20 GB — is deposited on
+Zenodo as a separate data record rather than carried in git. See
+[`data/README.md`](data/README.md).
 
-## Stage 07: LLM-based cluster validation
+### The pipeline, stage by stage
 
-Two protocols test whether the taxonomy produced by stage 04 (topic modeling)
-captures coherent semantic units rather than analytical artefacts.
+```
+01  survey papers ──KeyBERT──▶ candidate terms ──manual curation──▶ 279 search terms
+                                                                          │
+02  ◀─────────────── Boolean-OR query, batched, deduplicated ──────────────┘
+    3,346,705 raw OpenAlex records
+                                                                          │
+03  abstracts reconstructed · country shares derived · length/completeness filter
+    1,986,659 publications
+                                                                          │
+04  SPECTER embeddings ─▶ K-Means k=50 (over-segment) ─▶ TF-IDF + UMAP
+                                        │
+                          expert consolidation ─▶ remap dict ─▶ labels
+                          repeated at h1 → h2 → h3
+    5 domains · 31 fields · 106 research fronts
+                    │                                    │
+05  fractional citation sum per cluster per bloc    07  document-intrusion
+                    │                                    validation
+06  Figure 2 heatmap · Supplementary tables              40.5 / 64.7 / 77.8 %
+```
 
-### Document intrusion detection
-
-Adapted from the *reading tea leaves* paradigm of Chang et al. (2009). A panel
-of four genuine members of a target cluster is shown to a language model
-together with one **intruder** drawn from a different cluster at the same
-hierarchy level, in randomised order. The model must identify the intruder.
-
-A semantically tight cluster makes the intruder conspicuous, so **detection
-accuracy is the coherence signal**. The random-guess baseline is 1/*panel size*
-— 20 % for the default five-document panel.
-
-### Coherence rating
-
-Following Tan and D'Souza (2025). A sample from a single cluster is rated on a
-five-point Likert scale for whether it forms one recognisable unit — a
-discipline at h1, a subfield at h2, a research topic at h3. There is no random
-baseline; this is an absolute judgement, reported as a mean with its spread.
-
-A `dual_score` variant scores topical and methodological coherence separately,
-since a cluster can be methodologically tight while topically diffuse.
-
-> Coherence rating proved **far more prompt-sensitive** than intrusion
-> detection — the same h3 clusters score 1.50 or 3.97 depending only on the
-> rubric. That instability is why the manuscript reports intrusion detection as
-> the external validation. See [`results/README.md`](results/README.md) for the
-> evidence.
+Each stage directory carries its own README explaining what it does, **why it
+does it that way**, how to run it, and what it reads and writes.
 
 ---
 
 ## Quick start
 
-The instructions below run stage 07 (LLM-based cluster validation), the only
-stage currently implemented. Requires Python 3.10+ and a
+Requires Python 3.10+ and, for the validation protocols, a
 [DeepSeek](https://platform.deepseek.com) API key.
 
 ```bash
@@ -102,22 +137,14 @@ source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 ```
 
-Provide the API key through a local `.env` file or the environment — never in a
-file that gets committed. `.env` is gitignored; `.env.example` documents the
-variable name:
+Provide the API key through a local `.env` file or the environment. `.env` is
+gitignored; `.env.example` documents the variable name.
 
 ```bash
 cp .env.example .env                      # then fill in the key
-```
-
-or, equivalently:
-
-```bash
-export DEEPSEEK_API_KEY='sk-...'          # bash / zsh
+export DEEPSEEK_API_KEY='sk-...'          # bash / zsh — takes precedence
 $env:DEEPSEEK_API_KEY = 'sk-...'          # PowerShell
 ```
-
-An exported variable takes precedence over the `.env` file.
 
 Place the corpus at `data/merged_works_labeled.db` (see
 [`data/README.md`](data/README.md)), then:
@@ -127,32 +154,82 @@ Place the corpus at `data/merged_works_labeled.db` (see
 python -m clustervalidation inspect --level h3
 
 # See exactly what would be sent, without spending anything
-python -m clustervalidation intrusion --level h3 --trials 100 --dry-run
+python -m clustervalidation intrusion --level h3 --trials 1000 --dry-run
 
-# Run the reported configuration
-python -m clustervalidation intrusion --level h3 --trials 100
-python -m clustervalidation coherence --level h1 --trials 50
+# Reproduce the reported run
+python -m clustervalidation intrusion --level h3 --trials 1000 \
+    --prompt decisive --max-tokens 8000 --seed 20250628
 ```
 
-Reports land in `results/<protocol>/` as three files sharing a stem: `.json`
-(manifest and summary), `.jsonl` (one record per trial), and `.txt` (readable
-transcript).
+Reports land in `results/<protocol>/` as four files sharing a stem: `.json`
+(manifest and summary), `.jsonl` (one record per trial), `.txt` (readable
+transcript) and `.log` (run log).
 
-### Options
+Regenerating the tables and figures needs no API key:
 
-| Flag | Default | Notes |
-|---|---|---|
-| `--level` | *required* | `h1`, `h2` or `h3` |
-| `--model` | `deepseek-v4-flash` | also `deepseek-chat`, `deepseek-reasoner`, `deepseek-v4-pro` |
-| `--prompt` | `reasoned` / `tan_dsouza` | see `--help` for all registered variants |
-| `--trials` | `100` | |
-| `--seed` | `20250628` | fixes panel construction |
-| `--max-words` | `200` | abstract truncation |
-| `--panel-size` | `5` | changes the random baseline |
-| `--dry-run` | off | build panels, print one prompt, make no API calls |
+```bash
+python code/05_impact_analysis/fractional_citation_share.py
+python code/05_impact_analysis/supplementary_tables.py
+python code/06_visualization/bloc_share_heatmap_cluster_across_microclusters.py
+```
 
-Every one of these is written into the run manifest, so a result file always
-carries the parameters that produced it.
+---
+
+## The validation protocols in detail
+
+### Document intrusion detection
+
+A panel of `--panel-size` documents is built: `panel_size - 1` genuine members
+of a target cluster plus one intruder drawn from a different cluster at the same
+hierarchy level, in randomised order, with titles and abstracts truncated to
+`--max-words`. The model receives the panel and nothing else — no cluster label,
+no TF-IDF terms, no indication of which document came from where — and names the
+intruder. The random-guess baseline is 1 / panel size, so 20 % at the default
+five.
+
+**The reported configuration** is `deepseek-v4-flash` with reasoning enabled,
+the `decisive` prompt variant, 200-word truncation, five-document panels, an
+8,000-token ceiling and seed 20250628, at 1,000 trials per level.
+
+The `decisive` variant exists for a measurable reason. In the h3 pilot, wrong
+answers reasoned 4.1× longer than correct ones (mean 6,820 vs 1,680 characters),
+and the one truncated trial spent ~3,500 tokens cycling hypotheses without ever
+committing. The cause is structural: testing "what if paper *k* is the intruder"
+for every *k* re-reads the panel O(n²) times, where labelling each paper once
+and taking the minority is O(n). `decisive` forbids the re-reading and supplies
+an explicit tie-break, so the model has an exit from the deadlock rather than
+looping into the token ceiling.
+
+### Coherence rating
+
+A second protocol, Likert coherence rating after Tan and D'Souza (2025), is
+implemented in the package: a sample from a single cluster is rated 1–5 for
+whether it forms one recognisable unit. It is **not** what the article reports.
+In development it proved far more sensitive to the wording of the rubric than to
+the clusters being rated — the same clusters can move most of the way across the
+five-point scale on a rubric change alone. An absolute judgement that unstable
+cannot carry an external validation, which is why document intrusion does.
+
+### How a verdict is extracted
+
+Models do not always emit the requested verdict line. Extraction proceeds from
+the most explicit pattern to the least and **records which rule fired**, so a
+value read off an explicit marker is distinguishable from one recovered by a
+last-resort rule. Every run reports the counts.
+
+Two specific recovery paths matter, because both appear in the reported runs:
+
+- **Reasoning-trace recovery.** A model that states its answer inside its
+  reasoning but never writes the final line is not a failed trial. The verdict
+  is read from the trace. This fired 22 / 11 / 7 times across h1 / h2 / h3.
+- **Forced choice.** A response cut off by the token ceiling mid-reasoning is
+  passed to a second, non-reasoning model (`deepseek-chat`) whose only job is to
+  read the truncated trace and report which paper it was converging on. This
+  fired 103 / 70 / 37 times.
+
+Neither path guesses. Across all 3,000 trials, `forced_guesses` is 0 and
+`unparsed_responses` is 0 — every trial was scored from something the model
+actually said.
 
 ---
 
@@ -160,65 +237,68 @@ carries the parameters that produced it.
 
 **Panel construction is deterministic.** A dedicated seeded generator is used
 rather than global random state, so the same `--seed`, `--level`, `--trials`,
-`--panel-size` and `--max-words` rebuild the identical panel sequence:
-
-```bash
-python -m clustervalidation intrusion --level h3 --trials 100 --seed 20250628
-```
+`--panel-size` and `--max-words` rebuild the identical panel sequence.
 
 **Model responses are not.** Sampling is non-deterministic server-side and the
-API is a moving target, so accuracy will vary between runs of the same panels.
-Treat a single 100-trial run as a point estimate with meaningful sampling error
-(±~5 pp at *n* = 100), not an exact figure.
+API is a moving target, so accuracy will vary between runs over the same panels.
+At n = 1,000 the sampling error on a single accuracy figure is roughly ±3 pp.
 
 **Prompts are versioned, not edited.** Every wording ever run is registered by
 name in `prompts.py`. Editing a registered variant would silently invalidate the
 results that cite it, so new wordings get new names.
 
-**Extraction is auditable.** Models do not always emit the requested verdict
-line. Extraction proceeds from the most explicit pattern to the least and
-records *which rule fired*, so a value recovered by the last-resort rule is
-distinguishable from one read off an explicit marker. Runs report both counts.
+**The taxonomy is not fully rebuildable from this code.** Clustering depends on
+random seeds, and the expert-consolidation step at h2 and h3 was recorded only
+in part — `H3_MAP` held one slice at a time and was overwritten between runs,
+and a final h2 pass that moved three cluster groups between macro-domains left
+no record. The published labels are therefore authoritative and are deposited
+with the corpus; an independent re-run of stage 04 will produce a similar but
+not identical taxonomy. [Stage 04's README](code/04_subdiscipline_clustering/README.md)
+states exactly which parts diverge. Nothing has been reconstructed by guesswork,
+because inventing a cluster assignment would fabricate part of the taxonomy.
 
-### Caveat on the archived runs
-
-The transcripts in `results/` were produced by the original per-experiment
-scripts, which used unseeded sampling. They record which panels were shown but
-**cannot be regenerated panel-for-panel**. Seeded sampling begins at `v1.0.0`.
-
----
-
-## Known discrepancy
-
-⚠ **The manuscript and the archived results do not currently agree.**
-
-`paper/main.tex` (section *External Validation via Document Intrusion*) states
-1,000 trials per hierarchy level, reporting 46.0 % / 75.0 % / over 84.0 % for
-h1 / h2 / h3. The archived runs are 100 trials at 44.0 % / 68.0 % / 82.0 %.
-
-|  | h1 | h2 | h3 | Trials |
-|---|---:|---:|---:|---:|
-| `paper/main.tex` | 46.0 % | 75.0 % | > 84.0 % | 1,000 |
-| `results/intrusion/` | 44.0 % | 68.0 % | 82.0 % | 100 |
-
-Either a larger run exists that was never archived here, or the manuscript
-figures need revising. **This has to be reconciled before deposit** — the whole
-point of an archived record is that it reproduces the published numbers. Note
-that the qualitative claim (monotonic rise across levels, all well above the
-20 % baseline) holds under both sets.
+Two further items are outside what this repository can carry. The survey PDFs
+that seeded the keyword extraction are third-party copyrighted material and are
+not redistributed. Figure 1's rendering code — the density-summarised UMAP with
+its taxonomy legend — is not part of the deposit; the per-level UMAP
+projections that stage 04 writes are the diagnostic scatterplots the expert
+consolidated from, not that figure.
 
 ---
 
-## Tests
+## Command reference
 
-```bash
-pytest
-```
+| Flag | Default | Notes |
+|---|---|---|
+| `--level` | *required* | `h1`, `h2` or `h3` |
+| `--model` | `deepseek-v4-flash` | also `deepseek-chat`, `deepseek-reasoner`, `deepseek-v4-pro` |
+| `--prompt` | `reasoned` / `tan_dsouza` | `decisive` is the reported intrusion variant; see `--help` for all |
+| `--trials` | `100` | |
+| `--seed` | `20250628` | fixes panel construction |
+| `--max-words` | `200` | abstract truncation |
+| `--panel-size` | `5` | changes the random baseline |
+| `--max-tokens` | `3000` | 8,000 in the reported runs |
+| `--db` | `data/merged_works_labeled.db` | |
+| `--dry-run` | off | build panels, print one prompt, make no API calls |
 
-62 tests covering verdict and rating extraction, panel and sample construction,
-seed determinism, corpus loading, and an end-to-end run against a synthetic
-SQLite corpus with a stub client. **No API key or network access required** —
-nothing in the suite spends credit.
+Every one of these is written into the run manifest, so a result file always
+carries the parameters that produced it.
+
+### Environment variables
+
+| Variable | Default | Used by |
+|---|---|---|
+| `DEEPSEEK_API_KEY` | — | stage 07 |
+| `OPENALEX_MAILTO`, `OPENALEX_API_KEY` | — | stage 02 |
+| `QSS_INTERIM_DIR` | `data/interim/` | stages 01–06 |
+| `QSS_DB_PATH` | `data/merged_works_labeled.db` | stage 04 TF-IDF, stage 07 |
+| `QSS_H3_DB` | `data/interim/h1_cluster_subsets/engineering_dataset.db` | stage 04 h3 scripts |
+| `QSS_SEARCH_TERMS` | `code/01_keyword_construction/search_terms.txt` | stage 02 |
+| `QSS_SURVEY_TXT_DIR` | `data/interim/ai_discipline_surveys_txt/` | stage 01 |
+| `QSS_CITSHARE_CSV` | `data/interim/citshare_h3x4entities.csv` | stages 05–06 |
+
+No script contains an absolute path; each derives the repository root from its
+own location, so a fresh clone runs anywhere.
 
 ---
 
@@ -232,60 +312,60 @@ nothing in the suite spends credit.
 │   ├── 04_subdiscipline_clustering/
 │   │   ├── finding_optimal_k/     evidence that no natural k exists
 │   │   └── SPECTER/               h1 / h2 / h3: over-segment, then consolidate
-│   ├── 05_impact_analysis/        fractional citation sum per cluster per bloc
+│   ├── 05_impact_analysis/        fractional citation sum; supplementary tables
 │   ├── 06_visualization/          citation-share heatmap (Figure 2)
-│   └── 07_llm_validation/         ✅ implemented — see src/clustervalidation/ below
-├── src/clustervalidation/         stage 07, as an installable package
-│   ├── config.py            models, pricing, taxonomy levels, RunConfig
-│   ├── corpus.py            SQLite loading, cluster grouping, truncation
-│   ├── llm.py               API client, retries, cost accounting
-│   ├── parsing.py           verdict/rating extraction with rule tracking
-│   ├── prompts.py           every registered prompt variant
-│   ├── reporting.py         JSON / JSONL / text reports
-│   ├── cli.py               command-line interface
+│   └── 07_llm_validation/         document intrusion — see src/clustervalidation/
+├── src/clustervalidation/
+│   ├── config.py                  models, pricing, taxonomy levels, RunConfig
+│   ├── corpus.py                  SQLite loading, cluster grouping, truncation
+│   ├── llm.py                     API client, retries, outage handling, cost accounting
+│   ├── parsing.py                 verdict/rating extraction with rule tracking
+│   ├── prompts.py                 every registered prompt variant
+│   ├── reporting.py               JSON / JSONL / text reports
+│   ├── cli.py                     command-line interface
 │   └── protocols/
-│       ├── intrusion.py     document-intrusion detection
-│       └── coherence.py     Likert coherence rating
-├── results/
-│   ├── intrusion/           reported + supporting runs
-│   ├── coherence/           coherence-rating runs
-│   └── exploratory/         model selection, pilots, diagnostics
-├── paper/
-│   ├── main.tex             current manuscript
-│   ├── bibliography.bib
-│   ├── figures/
-│   └── archive/             superseded drafts and the originating thesis
-├── data/                    corpus + intermediates (gitignored)
-└── tests/                   tests for src/clustervalidation
+│       ├── intrusion.py           document-intrusion detection
+│       └── coherence.py           Likert coherence rating
+├── results/intrusion/             the three reported runs, 1,000 trials each
+├── supplementary/                 cluster-level tables (PDF + CSV)
+├── paper/                         manuscript, figures, bibliography, archive/
+├── data/                          corpus location and schema documentation
+└── tests/                         75 tests, no network required
 ```
 
-Compile the manuscript with `latexmk -pdf main.tex` from `paper/`
-(requires `biber`).
+Compile the manuscript with `latexmk -pdf main.tex` from `paper/` (requires
+`biber`), and the Supplementary Information the same way from `supplementary/`.
+
+---
+
+## Tests
+
+```bash
+pytest
+```
+
+75 tests covering verdict and rating extraction, panel and sample construction,
+seed determinism, corpus loading, forced-choice fallback, outage retry, and an
+end-to-end run against a synthetic SQLite corpus with a stub client. No API key
+or network access required; nothing in the suite spends credit.
 
 ---
 
 ## Citing
 
-Cite **both** the article and this software. Machine-readable metadata is in
+Cite **both** the article and this compendium. Machine-readable metadata is in
 [`CITATION.cff`](CITATION.cff); GitHub renders a "Cite this repository" button
 from it.
-
-A Zenodo DOI will be minted at publication and added here. Until then, cite the
-repository and commit hash.
-
----
 
 ## Licence
 
 | Content | Licence |
 |---|---|
-| Software (`src/`, `tests/`) | [MIT](LICENSE) |
-| Results, figures, manuscript | [CC BY 4.0](LICENSE-DATA) |
+| Software (`src/`, `code/`, `tests/`) | [MIT](LICENSE) |
+| Results, tables, figures, manuscript | [CC BY 4.0](LICENSE-DATA) |
 
 Source metadata from [OpenAlex](https://openalex.org), released by OurResearch
 under CC0.
-
----
 
 ## References
 

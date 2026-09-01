@@ -212,12 +212,14 @@ variants used for the visualisations).
 `h3_cluster`, consumed by [stage 05](../05_impact_analysis/),
 [stage 06](../06_visualization/) and [stage 07](../07_llm_validation/).
 
-## Known gaps between this code and the published taxonomy
+## Where this code and the published taxonomy diverge
 
-These scripts are the working record of an iterative process, and the record is
-incomplete in three places. Each is flagged in the affected file's header. None
-has been reconstructed by guesswork, because inventing a cluster assignment
-would silently fabricate part of the taxonomy.
+These scripts are the working record of an iterative process, and in three
+places that record is partial. Each is flagged in the affected file's header.
+Nothing has been reconstructed by guesswork, because inventing a cluster
+assignment would silently fabricate part of the taxonomy — so the published
+labels, which ship with the corpus, are the authoritative version of the
+taxonomy, and these scripts are the record of how it was arrived at.
 
 1. **`h2_labeling_computer_science.py` is superseded.** It records eight meso
    codes; the manuscript gives Computer Science five. Neuromorphic Hardware
@@ -233,6 +235,6 @@ would silently fabricate part of the taxonomy.
    it is an unadapted copy of `h2_umap_engineering.py`. The social-science
    static-UMAP countercheck was therefore never produced.
 
-Reconciling 1–2 needs the record of which fine cluster ids were reassigned in
-the final consolidation pass. `h2_labeling_engineering.py` and
-`h2_labeling_biomedical.py` match the published taxonomy exactly.
+`h2_labeling_engineering.py` and `h2_labeling_biomedical.py` match the published
+taxonomy exactly. Points 1 and 2 would need the record of which fine cluster ids
+the final consolidation pass reassigned, which was not kept.

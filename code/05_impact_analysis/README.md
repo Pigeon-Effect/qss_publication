@@ -177,7 +177,8 @@ something code can check.
 
 ## Outputs
 
-Both land in `data/interim/` and are gitignored.
+Both land in `data/interim/` and are deposited with this repository — they are
+small, and stage 06 and the Supplementary Information read them.
 
 **`citshare_h3x4entities.csv`** — one row per micro-cluster, sorted by macro
 then code, which is the order stage 06 needs (it groups meso-clusters into
@@ -195,7 +196,36 @@ descending within a cluster. Keeping it means the bloc definitions can be
 re-cut — adding Hong Kong to China, say, or splitting the EU-27 — without
 another pass over two million rows.
 
-Macro- and meso-level figures are not written to file. They are exact sums of
-the micro rows, stage 06 aggregates them itself, and a second file holding
-derivable numbers is a second file that can fall out of sync. The run prints
-them instead, since they are the figures quoted in manuscript §4.2.
+Macro- and meso-level figures are not written by this script. They are exact
+sums of the micro rows, and a second file holding derivable numbers is a second
+file that can fall out of sync. The run prints them instead, since they are the
+figures quoted in manuscript §4.2, and `supplementary_tables.py` below writes
+them out properly when they are needed as a published table.
+
+## `supplementary_tables.py`
+
+Builds the article's Supplementary Information from the CSV above: the bloc
+citation shares for every cluster at all three hierarchy levels, as three CSVs
+and as LaTeX.
+
+The manuscript reports the macro level in full and, below it, only clusters that
+diverge from their parent — printing all 106 research fronts in a two-column
+article would crowd out the argument. These tables are the unabridged version.
+
+Meso and macro rows are aggregations of the micro-level citation *sums*, not
+averages of micro-level shares, so a cluster's share is always its own citations
+over its own total at whatever level it is read.
+
+**Run it**
+
+```bash
+python code/05_impact_analysis/supplementary_tables.py
+```
+
+**Input** — `data/interim/citshare_h3x4entities.csv` (override with
+`QSS_CITSHARE_CSV`).
+
+**Output** — into `supplementary/`: `citation_shares_h1.csv`,
+`citation_shares_h2.csv`, `citation_shares_h3.csv`, and `tables.tex`, which
+`supplementary_information.tex` inputs. See
+[`supplementary/README.md`](../../supplementary/README.md).

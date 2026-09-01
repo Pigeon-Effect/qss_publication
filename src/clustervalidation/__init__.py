@@ -21,6 +21,6 @@ Both protocols run against the labelled OpenAlex corpus described in
     python -m clustervalidation coherence --level h1 --trials 50
 """
 
-__version__ = "1.0.0"
+__version__ = "2.0.0"
 
 __all__ = ["__version__"]
