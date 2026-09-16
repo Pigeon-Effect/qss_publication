@@ -1,0 +1,3 @@
+[09:10:57Z] API unreachable (APITimeoutError). Waiting 10 min, then retrying (outage wait #1). Ctrl-C to abort.
+[10:13:52Z] API unreachable (APITimeoutError). Waiting 10 min, then retrying (outage wait #2). Ctrl-C to abort.
+[10:42:30Z] API unreachable (APITimeoutError). Waiting 10 min, then retrying (outage wait #3). Ctrl-C to abort.

@@ -1,13 +1,15 @@
 # Data
 
 This directory is where the labelled corpus is expected at runtime. The corpus
-itself is a ~20 GB SQLite file — too large for a git repository — so it is
-deposited on Zenodo as a data record alongside the code. See
+is too large for a git repository, so it is deposited on Zenodo as a data
+record alongside the code:
+**[10.5281/zenodo.22791584](https://doi.org/10.5281/zenodo.22791584)**. See
 [Obtaining the corpus](#obtaining-the-corpus).
 
 ```
 data/
 ├── merged_works_labeled.db     the final labelled corpus (Zenodo; see below)
+├── published_dataset/          README and checksums for the Zenodo deposit
 └── interim/                    everything the pipeline builds on the way there
 ```
 
@@ -58,7 +60,7 @@ Verified against the database itself:
 | Distinct `h1` clusters | 5 |
 | Distinct `h2` clusters | 31 |
 | Distinct `h3` clusters | 106 |
-| File size | ~20 GB |
+| File size | 4.3 GB (1.2 GB gzipped, as deposited) |
 
 These match the figures reported in the manuscript. Because every row carries
 an abstract, the protocols' `cleaned_abstract IS NOT NULL` filter removes
@@ -66,31 +68,25 @@ nothing on this corpus — it guards against a differently-built database.
 
 | Column | Type | Notes |
 |---|---|---|
-| `id` | TEXT | OpenAlex work ID; primary identifier |
-| `doi` | TEXT | may be null; OpenAlex IDs cover records without one |
-| `title` | TEXT | |
-| `publication_year` | INTEGER | 2020–2025 |
-| `language` | TEXT | filtered to English abstracts |
-| `type`, `type_crossref` | TEXT | article, preprint, review, … |
-| `is_oa` | INTEGER | open-access flag |
-| `authorships` | TEXT | JSON; source for country attribution |
+| `id` | TEXT | OpenAlex work ID; primary identifier, unique |
+| `doi` | TEXT | may be null (32,595 records); OpenAlex IDs cover records without one |
+| `title` | TEXT | empty for 1,897 records |
+| `publication_year` | INTEGER | 2020–2024 |
+| `cited_by_count` | INTEGER | complete for all records; an OpenAlex snapshot of July 2025 |
 | `country_of_origin` | TEXT | JSON list of country–share tuples summing to 1 |
-| `countries_distinct_count` | REAL | |
-| `institutions_distinct_count` | REAL | |
-| `cited_by_count` | INTEGER | complete for all records |
-| `fwci` | REAL | field-weighted citation impact |
-| `cited_by_percentile_year` | TEXT | |
-| `referenced_works` | TEXT | JSON; outgoing references (~92% complete after filtering) |
-| `abstract_inverted_index` | TEXT | JSON, as delivered by OpenAlex |
 | `cleaned_abstract` | TEXT | reconstructed plain-text abstract — **the field the protocols read** |
 | `h1_cluster` | INTEGER | macro level: domain |
 | `h2_cluster` | INTEGER | meso level: field within domain |
 | `h3_cluster` | INTEGER | micro level: research front within field |
 
-Additional bibliographic columns (`relevance_score`, `host_organization_name`,
-`source_issn_1`, `corresponding_author_ids`, `corresponding_institution_ids`,
-`apc_list`, `apc_paid`, `biblio`, `grants`) are retained from retrieval but are
-not used by the validation protocols.
+The working database carried twenty further columns retrieved from OpenAlex
+(`language`, `type`, `is_oa`, `authorships`, `fwci`, `cited_by_percentile_year`,
+`referenced_works`, `abstract_inverted_index`, `grants` and others). They are
+not part of the deposit: no analysis in this repository reads them, and most
+change as OpenAlex updates its records, so a snapshot of them would go stale.
+Current values can be fetched from the [OpenAlex API](https://docs.openalex.org)
+with the `id` column. `country_of_origin`, `cleaned_abstract` and the three
+cluster labels are derived by us and exist nowhere else.
 
 ### Cluster identifiers
 
@@ -109,10 +105,20 @@ This concatenation is defined once in `src/clustervalidation/config.py`
 
 ## Obtaining the corpus
 
-**Download it from the Zenodo data record** that accompanies the article and
-place it at `data/merged_works_labeled.db`. That deposit is the authoritative
-copy: it carries the published cluster labels, which the code alone cannot
-reproduce exactly.
+**Download it from the Zenodo data record**
+[10.5281/zenodo.22791584](https://doi.org/10.5281/zenodo.22791584), which
+accompanies the article. That deposit is the authoritative copy: it carries the
+published cluster labels, which the code alone cannot reproduce exactly.
+
+```bash
+gunzip merged_works_labeled_published.db.gz
+mv merged_works_labeled_published.db data/merged_works_labeled.db
+```
+
+The deposited file is named `merged_works_labeled_published.db` to distinguish
+it from the full working database. Rename it as above, or keep its own name and
+pass `--db` to every command. Table and column names are unchanged either way.
+`data/published_dataset/` holds the deposit's README and its SHA-256 checksums.
 
 Rebuilding it from OpenAlex instead is possible — the retrieval and
 topic-modeling pipeline is [`code/`](../code/README.md) stages 01–04, each

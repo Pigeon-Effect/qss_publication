@@ -86,15 +86,20 @@ ones that score best.
 |---|---|
 | [`code/`](code/README.md) | the full pipeline, one numbered stage per step of the study |
 | [`src/clustervalidation/`](src/clustervalidation/) | the validation protocols, as an installable Python package |
-| [`results/`](results/README.md) | the complete record of all 3,000 validation trials |
+| [`results/`](results/README.md) | the complete record of all 3,000 validation trials, plus one paired prompt experiment |
 | [`supplementary/`](supplementary/) | cluster-level result tables (PDF + CSV) — the article's Supplementary Information |
 | [`paper/`](paper/) | manuscript source, figures, bibliography |
 | [`data/`](data/README.md) | where the corpus lives, and how to get it |
 | [`tests/`](tests/) | test suite for `clustervalidation` — no network, no API key, no spend |
 
-The corpus itself — 1,986,659 labelled records, about 20 GB — is deposited on
-Zenodo as a separate data record rather than carried in git. See
-[`data/README.md`](data/README.md).
+The corpus itself — 1,986,659 labelled records with their citation counts,
+country shares and cluster labels — is deposited on Zenodo as a **separate data
+record**, [10.5281/zenodo.22791584](https://doi.org/10.5281/zenodo.22791584),
+rather than carried in git: 1.2 GB gzipped, 4.3 GB as a SQLite file. This
+repository is the software record; the two are deposited apart so each carries
+its own DOI and licence (code MIT, data CC BY 4.0) and so the corpus is not
+re-archived with every code release. See [`data/README.md`](data/README.md) for
+the schema and how to place the file.
 
 ### The pipeline, stage by stage
 

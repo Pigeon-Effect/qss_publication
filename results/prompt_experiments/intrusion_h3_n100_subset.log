@@ -1,0 +1,127 @@
+Loading corpus at level h3 ...
+  106 clusters, 1,986,659 documents (smallest 3412, largest 49613)
+
+Running intrusion | level=h3 | model=deepseek-v4-flash | prompt=subset | trials=100 | seed=20250628
+
+Trial    1 | true=1 pred=1 | OK
+Trial    2 | true=4 pred=4 | OK
+Trial    3 | true=5 pred=4 |  X
+Trial    4 | true=5 pred=5 | OK
+Trial    5 | true=1 pred=4 |  X [truncated]
+Trial    6 | true=5 pred=5 | OK [truncated]
+Trial    7 | true=2 pred=2 | OK
+Trial    8 | true=5 pred=5 | OK [truncated]
+Trial    9 | true=3 pred=4 |  X
+Trial   10 | true=3 pred=3 | OK
+Trial   11 | true=5 pred=5 | OK
+Trial   12 | true=2 pred=2 | OK
+Trial   13 | true=1 pred=1 | OK
+Trial   14 | true=2 pred=2 | OK [reasoning] [truncated]
+Trial   15 | true=1 pred=1 | OK [reasoning] [truncated]
+Trial   16 | true=4 pred=4 | OK
+Trial   17 | true=1 pred=1 | OK
+Trial   18 | true=4 pred=1 |  X [truncated]
+Trial   19 | true=4 pred=4 | OK
+Trial   20 | true=1 pred=3 |  X [truncated]
+Trial   21 | true=3 pred=3 | OK
+Trial   22 | true=3 pred=3 | OK
+Trial   23 | true=1 pred=1 | OK
+Trial   24 | true=3 pred=3 | OK
+Trial   25 | true=4 pred=4 | OK
+Trial   26 | true=3 pred=3 | OK
+Trial   27 | true=3 pred=4 |  X
+Trial   28 | true=2 pred=2 | OK
+Trial   29 | true=5 pred=5 | OK
+Trial   30 | true=2 pred=2 | OK
+Trial   31 | true=3 pred=3 | OK
+Trial   32 | true=2 pred=2 | OK
+Trial   33 | true=2 pred=2 | OK
+Trial   34 | true=5 pred=5 | OK [truncated]
+Trial   35 | true=4 pred=4 | OK
+Trial   36 | true=3 pred=5 |  X
+Trial   37 | true=4 pred=5 |  X [truncated]
+Trial   38 | true=2 pred=2 | OK
+Trial   39 | true=3 pred=3 | OK
+Trial   40 | true=4 pred=4 | OK
+Trial   41 | true=1 pred=1 | OK
+Trial   42 | true=5 pred=5 | OK [truncated]
+Trial   43 | true=2 pred=2 | OK
+Trial   44 | true=5 pred=5 | OK
+Trial   45 | true=3 pred=3 | OK [reasoning] [truncated]
+Trial   46 | true=3 pred=3 | OK [reasoning] [truncated]
+Trial   47 | true=2 pred=2 | OK
+Trial   48 | true=5 pred=5 | OK
+Trial   49 | true=2 pred=2 | OK
+Trial   50 | true=5 pred=5 | OK
+Trial   51 | true=3 pred=3 | OK
+Trial   52 | true=3 pred=5 |  X [truncated]
+Trial   53 | true=1 pred=4 |  X
+Trial   54 | true=2 pred=1 |  X [truncated]
+Trial   55 | true=1 pred=1 | OK
+Trial   56 | true=5 pred=5 | OK
+Trial   57 | true=1 pred=5 |  X [truncated]
+Trial   58 | true=1 pred=1 | OK
+Trial   59 | true=1 pred=1 | OK [truncated]
+Trial   60 | true=2 pred=5 |  X [truncated]
+Trial   61 | true=3 pred=5 |  X [truncated]
+Trial   62 | true=2 pred=2 | OK
+Trial   63 | true=2 pred=2 | OK
+Trial   64 | true=3 pred=5 |  X [truncated]
+Trial   65 | true=4 pred=2 |  X [reasoning] [truncated]
+Trial   66 | true=1 pred=1 | OK
+Trial   67 | true=4 pred=4 | OK
+Trial   68 | true=5 pred=5 | OK
+Trial   69 | true=3 pred=3 | OK
+Trial   70 | true=4 pred=1 |  X [truncated]
+Trial   71 | true=5 pred=5 | OK
+Trial   72 | true=5 pred=5 | OK
+Trial   73 | true=1 pred=1 | OK
+Trial   74 | true=2 pred=5 |  X [truncated]
+Trial   75 | true=3 pred=3 | OK
+Trial   76 | true=4 pred=4 | OK
+Trial   77 | true=1 pred=1 | OK
+Trial   78 | true=5 pred=5 | OK
+Trial   79 | true=1 pred=1 | OK [truncated]
+Trial   80 | true=2 pred=2 | OK
+Trial   81 | true=3 pred=3 | OK [truncated]
+Trial   82 | true=5 pred=5 | OK
+Trial   83 | true=1 pred=4 |  X [truncated]
+Trial   84 | true=4 pred=4 | OK
+Trial   85 | true=3 pred=5 |  X [truncated]
+Trial   86 | true=3 pred=3 | OK
+Trial   87 | true=4 pred=4 | OK
+Trial   88 | true=3 pred=3 | OK
+Trial   89 | true=5 pred=3 |  X
+Trial   90 | true=3 pred=3 | OK
+Trial   91 | true=1 pred=5 |  X [truncated]
+Trial   92 | true=3 pred=3 | OK
+Trial   93 | true=1 pred=1 | OK
+Trial   94 | true=4 pred=4 | OK
+Trial   95 | true=1 pred=1 | OK
+Trial   96 | true=1 pred=1 | OK
+Trial   97 | true=4 pred=4 | OK
+Trial   98 | true=4 pred=5 |  X [truncated]
+Trial   99 | true=3 pred=4 |  X
+Trial  100 | true=5 pred=5 | OK
+
+============================================================
+            trials_requested: 100
+            trials_completed: 100
+               trials_failed: 0
+                     correct: 76
+            accuracy_percent: 76.0
+     random_baseline_percent: 20.0
+    recovered_from_reasoning: 5
+       non_explicit_verdicts: 1
+         truncated_responses: 28
+         forced_choice_calls: 22
+              forced_guesses: 0
+          unparsed_responses: 0
+      extraction_rule_counts: {'final_verdict': 77, 'forced_choice': 22, 'last_digit': 1}
+              total_cost_usd: 0.158256
+============================================================
+
+Reports written:
+   json  results/prompt_experiments\intrusion_h3_n100_subset.json
+  jsonl  results/prompt_experiments\intrusion_h3_n100_subset.jsonl
+    txt  results/prompt_experiments\intrusion_h3_n100_subset.txt

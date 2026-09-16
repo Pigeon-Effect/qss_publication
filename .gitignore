@@ -13,6 +13,26 @@ data/*
 data/interim/*
 !data/interim/citshare_h3x4entities.csv
 !data/interim/fractional_citations_by_country_h3.csv
+# The slim published corpus lives on Zenodo (10.5281/zenodo.22791584), not in
+# git: at 1.2 GB the compressed file is well over GitHub's 100 MB limit. Keep
+# only its README and the checksums that let a downloader verify the deposit.
+!data/published_dataset/
+data/published_dataset/*
+!data/published_dataset/README.md
+!data/published_dataset/SHA256SUMS.txt
+
+# ---------------------------------------------------------------
+# Databases
+# ---------------------------------------------------------------
+# Never commit a database by accident, wherever it sits in the tree. Nothing is
+# exempt: the published corpus is distributed through Zenodo, not GitHub.
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.sqlite
+*.sqlite3
+*.db.gz
 
 # ---------------------------------------------------------------
 # Secrets

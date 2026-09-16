@@ -1,14 +1,27 @@
 # Results
 
 The complete record of the document-intrusion validation reported in the
-article: 3,000 trials, 1,000 at each of the three hierarchy levels.
+article: 3,000 trials, 1,000 at each of the three hierarchy levels. Alongside
+it, one controlled prompt experiment that is *not* part of the reported result
+but settles a question the reported result raises.
 
 ```
-results/intrusion/
+results/intrusion/            the reported validation — 3,000 trials
 ├── intrusion_h1_n1000_decisive.{json,jsonl,txt,log,err}    5 domains
 ├── intrusion_h2_n1000_decisive.{json,jsonl,txt,log,err}    31 fields
 └── intrusion_h3_n1000_decisive.{json,jsonl,txt,log,err}    106 research fronts
+
+results/prompt_experiments/   a paired prompt comparison — 300 trials
+├── README.md                                    design, results, reading
+├── compare.py                                   the paired analysis, rerunnable
+└── intrusion_{h1,h2,h3}_n100_subset.{json,jsonl,txt,log,err}
 ```
+
+The prompt experiment asks whether a different prompt framing (`subset`) would
+have scored higher than the one the article used (`decisive`). On identical
+panels it scores 9 pp *lower* at every level. See
+[`prompt_experiments/README.md`](prompt_experiments/README.md); it changes
+nothing about the reported figures below.
 
 ## What was measured
 
@@ -130,8 +143,19 @@ target. At n = 1,000 the sampling error on an accuracy figure is roughly ±3 pp.
 ## Development history
 
 These three runs are the reported result. The exploratory work behind them —
-model selection, prompt variants, truncation sweeps, the Likert coherence
-protocol, and the smaller pilot runs that set the final configuration — is not
-carried in this deposit, which archives the experiment the article reports
-rather than the path to it. That history is preserved in the repository's git
-history before `v2.0.0` for anyone who wants it.
+model selection, truncation sweeps, the Likert coherence protocol, and the
+smaller pilot runs that set the final configuration — is not carried in this
+deposit, which archives the experiment the article reports rather than the path
+to it. That history is preserved in the repository's git history before
+`v2.0.0` for anyone who wants it.
+
+[`prompt_experiments/`](prompt_experiments/) is the one deliberate exception,
+and it is not exploratory work. During development a belief formed that a
+second prompt framing scored substantially better; that belief rested on an
+extrapolation and on a subgroup of a token-starved pilot, never on a
+measurement. The experiment measures it, at the deposited runs' own token
+ceiling and on the deposited runs' own panels, and finds the opposite. A
+question that the reported result invites — "would a different prompt have done
+better?" — therefore has a measured answer in the deposit rather than an
+unexamined assumption behind it. Its manifests record `package_version: 2.0.0`,
+against `1.0.0` for the reported runs, because it was run after that release.

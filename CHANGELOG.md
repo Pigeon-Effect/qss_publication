@@ -4,6 +4,45 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- **The corpus is deposited.** The labelled corpus is published as a separate
+  Zenodo data record, [10.5281/zenodo.22791584](https://doi.org/10.5281/zenodo.22791584):
+  1,986,659 works with their identifiers, citation counts, fractional country
+  shares, abstracts and three-level cluster labels, as a gzip-compressed SQLite
+  database of 1.2 GB (4.3 GB uncompressed). Every statement in the repository
+  that the corpus "is deposited on Zenodo" was a forward reference until now.
+  The twenty further columns retrieved from OpenAlex are not part of the
+  deposit: no analysis here reads them, and most change as OpenAlex updates its
+  records, so a snapshot would go stale. `data/published_dataset/` carries the
+  deposit's README and its SHA-256 checksums; the database itself is not in git.
+- `results/prompt_experiments/`: a paired comparison of the `subset` prompt
+  framing against the `decisive` one the article used — 300 trials, same seed,
+  same panels, same 8,000-token ceiling, 100 % panel alignment. `subset` scores
+  9 pp lower at every level (36.0 / 63.0 / 76.0 % against 45.0 / 71.0 / 85.0 %
+  on the same panels), McNemar pooled p = 6.9 × 10⁻⁵. It also reproduces, at
+  90.3 %, the 90.2 % figure from an earlier token-starved pilot that had
+  suggested the opposite, and shows it to be a selection artefact of
+  conditioning on non-truncated responses rather than a prompt effect. Includes
+  `compare.py`, which recomputes every published figure from the trial records.
+  This closes the question in favour of the prompt already used; the reported
+  40.5 / 64.7 / 77.8 % are unaffected.
+
+### Changed
+- `data/README.md`: schema table reduced to the ten deposited columns, with the
+  dropped columns and how to fetch them from OpenAlex documented; corpus year
+  range corrected from 2020–2025 to 2020–2024, which is what the database
+  holds; file size corrected; unzip-and-place instructions added.
+- `.zenodo.json`: the data record linked as `isSupplementedBy`, and the
+  description's "20 GB labelled corpus" replaced with the deposited sizes.
+- `CITATION.cff`: the dataset added as a `type: data` reference with its DOI.
+- `README.md`: the corpus paragraph now names the data DOI and says why the
+  compendium and the corpus are deposited as two records.
+- `.gitignore`: databases are ignored wherever they sit in the tree. The
+  published corpus is distributed through Zenodo, not GitHub, where its 1.2 GB
+  would exceed the 100 MB file limit.
+
 ## [2.0.0] — 2026-09-01
 
 Second release, and the first complete one. Where `1.0.0` deposited the LLM
