@@ -42,9 +42,28 @@ data/published_dataset/*
 !.env.example
 
 # ---------------------------------------------------------------
-# Working notes (never published)
+# Working notes and scratch material (never published)
 # ---------------------------------------------------------------
 TODO.local.md
+
+# Local working copy of the exploratory master's-thesis code. The parts of it
+# that belong to the published pipeline have been cleaned up and live under
+# code/; the folder itself is not part of the deposit.
+gitignore_additional_code/
+
+# ---------------------------------------------------------------
+# Regenerable script products
+#
+# Scripts write artefacts that are part of the archived record to `resources/`
+# and everything regenerable to `output/`. The latter is rebuilt by running the
+# stage, so it is not carried in git.
+# ---------------------------------------------------------------
+code/**/output/
+
+# Embedding caches and projections: large, derived, and rebuilt by
+# code/06_visualization/semantic_landscape/project_sample.py.
+*.npy
+embeddings_cache/
 
 # ---------------------------------------------------------------
 # Python

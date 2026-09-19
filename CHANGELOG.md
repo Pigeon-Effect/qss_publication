@@ -7,6 +7,31 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 ### Added
+- **The search vocabulary is deposited.**
+  `code/01_keyword_construction/search_terms.txt` holds the 279 curated terms,
+  one per line, in the order of the published term-count chart. Stage 02 reads
+  it directly, so retrieval runs from a clean checkout.
+- **Stage 01 covers the whole keyword pipeline.** `pdf_to_text.py` converts the
+  survey papers to the plain text KeyBERT reads, stripping reference lists and
+  page furniture; `deduplicate_keywords.py` flattens the per-paper keyphrases
+  into the candidate pool curation works from; `term_hit_counts.py` counts the
+  works each term matches and draws the log-scale chart, which is the evidence
+  for the "at least ten retrievable works" curation criterion.
+- **Stage 02 retrieval matches how the corpus was built.**
+  `download_openalex_works.py` retrieves one term batch straight into SQLite,
+  resuming from a stored cursor and inserting idempotently on the work id;
+  `merge_term_batches.py` merges the batch databases and deduplicates them into
+  the database stage 03 reads. The README lists the six runs that produced the
+  published corpus.
+- **The semantic landscape (Figure 1) is reproducible.**
+  `code/06_visualization/semantic_landscape/` holds the three steps —
+  `project_sample.py` (seeded sample, SPECTER, UMAP), `summarize_clusters.py`
+  (per-cluster Gaussian KDE, the contour enclosing 80 % of a cluster's points),
+  `render_landscape.py` (the figure) — and, in `resources/`, the published
+  layout as GeoJSON: all 106 outlines with their cluster codes, taxonomy names
+  and label positions. The figure redraws from it without the corpus or a GPU,
+  and the layout can be reused to shade the same map by any per-cluster
+  quantity.
 - **The corpus is deposited.** The labelled corpus is published as a separate
   Zenodo data record, [10.5281/zenodo.22791584](https://doi.org/10.5281/zenodo.22791584):
   1,986,659 works with their identifiers, citation counts, fractional country
@@ -30,6 +55,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   40.5 / 64.7 / 77.8 % are unaffected.
 
 ### Changed
+- `.env.example` documents the OpenAlex variables (`OPENALEX_MAILTO`,
+  `OPENALEX_API_KEY`) alongside the DeepSeek key, and `pyproject.toml` gains a
+  `pipeline` extra listing what the numbered stages need; the package itself
+  still depends only on `openai` and `python-dotenv`.
+- `code/06_visualization/README.md` now covers both manuscript figures.
+- Stage 04's README and script headers describe the consolidation as the
+  level-by-level judgement it is, and point to the deposited label set as the
+  authoritative form of the taxonomy.
 - `data/README.md`: schema table reduced to the ten deposited columns, with the
   dropped columns and how to fetch them from OpenAlex documented; corpus year
   range corrected from 2020–2025 to 2020–2024, which is what the database
@@ -41,7 +74,17 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   compendium and the corpus are deposited as two records.
 - `.gitignore`: databases are ignored wherever they sit in the tree. The
   published corpus is distributed through Zenodo, not GitHub, where its 1.2 GB
-  would exceed the 100 MB file limit.
+  would exceed the 100 MB file limit. Regenerable `output/` folders, embedding
+  caches and local scratch material are ignored too, so a clone carries the
+  deposit and nothing else.
+
+### Removed
+- `code/02_data_collection/download_full_dataset.py`, superseded by
+  `download_openalex_works.py` and `merge_term_batches.py`, which retrieve and
+  merge the corpus the way it was built.
+- `h2_cluster_social_sciences/h2_umap_social_science.py`, a duplicate of the
+  engineering countercheck that had been saved into the social-sciences folder;
+  `h2_umap_engineering.py` is the file it copied.
 
 ## [2.0.0] — 2026-09-01
 

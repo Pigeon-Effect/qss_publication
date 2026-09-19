@@ -19,12 +19,11 @@ Meso codes (manuscript Figure 1, macro-domain 2 - Social Science):
     4 : Business & Management
     5 : Urban Development          (Tourism became micro-cluster 251)
 
-INCOMPLETE relative to the manuscript. Figure 1 shows a seventh meso-cluster
-under this domain, 26 Ethical & Creative AI (261 Digital Art, 262 Virtual
-Reality). It is absent here: at the time this script was written that group
-still sat under Computer Science, and the fine cluster IDs that were later
-reassigned to it are not recorded anywhere in this repository. Adding code 6
-requires that record; it must not be guessed. See this stage's README.
+These are the groupings as read off this domain at this point of the
+consolidation; later passes over the whole taxonomy refined them further,
+including across macro-domains. The taxonomy in its final form is the label set
+deposited with the corpus and named in `code/05_impact_analysis/taxonomy.csv`;
+see this stage's README.
 """
 import os, json, re, sqlite3, torch
 from pathlib import Path

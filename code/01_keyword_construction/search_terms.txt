@@ -1,0 +1,286 @@
+# The 279 curated AI search terms used to query OpenAlex (manuscript section 2.2).
+#
+# One term per line; blank lines and lines starting with "#" are ignored.
+# Terms are listed in the order of paper/figures/logarithmic_bar_graph_seach_term_document_count.pdf,
+# i.e. by the number of works each term matches in OpenAlex for 2020-2024, descending.
+# The order has no effect on retrieval: the terms are combined with Boolean OR.
+# Matching is case-insensitive.
+machine learning
+neural network
+deep learning
+artificial intelligence
+random forest
+support vector machine
+loss function
+overfitting
+computer vision
+lstm
+reinforcement learning
+language model
+activation function
+dimensionality reduction
+long short term memory
+transfer learning
+attention mechanism
+object detection
+gradient descent
+image classification
+llama
+active learning
+resnet
+dnn
+autoencoder
+image segmentation
+generative adversarial
+gradient boosting
+fuzzy logic
+pytorch
+backpropagation
+unsupervised learning
+anomaly detection
+speech recognition
+tensorflow
+llm
+generative model
+synthetic data
+edge computing
+digital twin
+gpt
+collaborative learning
+self attention
+multilayer perceptron
+u-net
+diffusion model
+graph neural network
+causal inference
+batch normalization
+ensemble learning
+federated learning
+knowledge graph
+word embedding
+path planning
+face recognition
+machine translation
+feature engineering
+bayesian network
+transformer model
+text classification
+alexnet
+gated recurrent unit
+pose estimation
+graph convolutional network
+contrastive learning
+residual network
+machine vision
+generative ai
+neuromorphic
+adversarial attacks
+densenet
+self supervised learning
+transformer architecture
+weak supervision
+state space models
+time series forecasting
+vision transformer
+multi task learning
+outlier detection
+adversarial training
+mobilenet
+explainable ai
+bert based
+knowledge distillation
+meta learning
+action recognition
+sensor fusion
+face detection
+few shot learning
+bidirectional encoder
+multi head attention
+graph embedding
+foundation model
+deep belief network
+you only look once
+depth estimation
+efficientnet
+classification loss
+structure from motion
+simultaneous localization and mapping
+transformative learning
+cross attention
+optical character recognition
+curriculum learning
+boltzmann machine
+generalization error
+neural architecture search
+residual learning
+siamese networks
+convnet
+in context learning
+catastrophic forgetting
+speech synthesis
+imitation learning
+model compression
+learning rate scheduler
+positional encoding
+swin transformer
+discriminative model
+contextual embeddings
+embodied cognition
+multimodal fusion
+zero shot learning
+automl
+ai ethics
+responsible ai
+prompt engineering
+capsule network
+adversarial robustness
+manifold learning
+non parametric models
+trustworthy ai
+pointnet
+ethical ai
+edge ai
+artificial general intelligence
+stable diffusion
+monte carlo tree search
+causal reasoning
+neural radiance fields
+conversational ai
+semantic parsing
+mixture of experts
+cognitive computing
+echo state networks
+sparsity regularization
+agent learning
+retrieval augmented generation
+dropout regularization
+radial basis function networks
+instruction tuning
+von neumann architecture
+system prompt
+genai
+ai governance
+gradient clipping
+iot ai
+text to image generation
+automated reasoning
+optical flow estimation
+one shot learning
+cnn transformer
+preference learning
+convnext
+robot perception
+facenet
+agent architecture
+discriminative learning
+fairseq
+trust ai
+squeeze and excitation network
+robust ai
+semantic reasoning
+tensorrt
+hopfield network
+symbolic ai
+neural ordinary differential equations
+tinyml
+parameter efficient fine tuning
+ai safety
+temporal reasoning
+ai accelerators
+neural rendering
+ai bias
+low rank adaptation
+neural tangent kernel
+mxnet
+multimodal transformer
+gradient reversal layer
+scene graph generation
+language reasoning
+bert transformer
+sparse activation
+sim to real transfer
+aligned ai
+cross modal learning
+procedural generation
+reasoning network
+autoregressive transformer
+embodied intelligence
+pac learning
+neurosymbolic
+paraphrase generation
+prefix tuning
+agentic ai
+paddlepaddle
+green ai
+liquid state machines
+prompt optimization
+langchain
+mechanistic interpretability
+rnn transformer
+sparse transformer
+keypoint estimation
+physical intelligence
+algorithmic reasoning
+artificial superintelligence
+chain of thought reasoning
+nlg systems
+nlp transformer
+hypergraph learning
+planning benchmarks
+generative transformer
+ai alignment
+activation monitoring
+language agents
+quantum ai
+deep speech
+deepspeed
+ai benchmark
+generative flows
+horovod
+code generation model
+multimodal reasoning
+step by step reasoning
+activation sparsity
+symbol grounding problem
+decentralized ai
+detectron
+hallucination detection
+asr decoder
+gradient checkpointing
+slot attention
+ensemble distillation
+ai robustness
+hypergraph network
+grounded generation
+causal transformer
+neural pruning
+human in the loop ai
+hybrid ai system
+deep forecasting
+causal ai
+agent orchestration
+memory augmented network
+ray serve
+attention modality
+text2image
+neural scaling law
+financial ai
+toolformer
+neural asr
+dynamic trajectory optimization
+text2text
+transformer compression
+dalle-e
+weak to strong generalization
+ai causality
+facemasknet
+speech2text
+adversarial natural language
+ctc transformer
+compression transformer
+image2text
+causalnex
+attention compression
+self consistency decoding
+language world models
+minibert

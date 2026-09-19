@@ -33,6 +33,24 @@ authors = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0", "ruff>=0.6"]
+# Everything the numbered pipeline stages in code/ need. The package itself
+# (src/clustervalidation, stage 07) depends only on the two libraries above.
+pipeline = [
+    "requests>=2.31",
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "matplotlib>=3.8",
+    "tqdm>=4.66",
+    "pymupdf>=1.24",          # stage 01: PDF to text
+    "keybert>=0.8",           # stage 01: candidate extraction
+    "sentence-transformers>=2.2",  # stages 04, 06: SPECTER embeddings
+    "transformers>=4.35",
+    "torch>=2.0",
+    "umap-learn>=0.5",        # stages 04, 06: projection
+    "scikit-learn>=1.3",      # stage 04: K-Means, TF-IDF
+    "nltk>=3.8",              # stage 04: lemmatisation for TF-IDF contrast
+    "plotly>=5.18",           # stage 04: interactive UMAPs
+]
 
 [project.urls]
 Repository = "https://github.com/Pigeon-Effect/qss_publication"

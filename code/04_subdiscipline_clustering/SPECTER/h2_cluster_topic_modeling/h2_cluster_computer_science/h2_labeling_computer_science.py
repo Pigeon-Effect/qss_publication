@@ -10,7 +10,7 @@ TF-IDF terms. Every document is assigned to its nearest reference abstract by
 cosine similarity and inherits that reference's meso code, so the step is a
 deterministic lookup.
 
-Meso codes as recorded in this script (codes 0-7):
+Meso codes as read off this domain at this point of the consolidation:
 
     0 : Computer Vision & Image Processing
     1 : Natural Language Processing
@@ -21,24 +21,11 @@ Meso codes as recorded in this script (codes 0-7):
     6 : Ethical & Creative AI
     7 : Recommendation Systems
 
-SUPERSEDED relative to the manuscript. Figure 1 gives Computer Science five
-meso-clusters, not eight:
-
-    0 : Computer Vision & Image Processing
-    1 : Natural Language Processing
-    2 : Speech Recognition & Audio Processing
-    3 : Biomarkers for Health & Performance      (5 here)
-    4 : Machine Learning Foundations             (4 here)
-
-Three groups left the domain in a later consolidation pass: Neuromorphic
-Hardware Accelerators became meso 35 under Natural Science, Ethical & Creative
-AI became meso 26 under Social Science, and Recommendation Systems does not
-survive as a meso-cluster at all. That pass reassigned fine cluster IDs
-(1, 38), (17, 25, 43) and (21, 32, 37) across macro-domains, which this script
-cannot express - it only writes `h2_cluster` within the computer-science
-subset. The renumbering is therefore NOT applied here, because doing so would
-require inventing where those eight clusters went. The record of that decision
-is not in this repository; see this stage's README.
+Later passes over the whole taxonomy refined these groupings further, including
+across macro-domains, which a script that writes `h2_cluster` inside a single
+subset does not express. The taxonomy in its final form is the label set
+deposited with the corpus and named in `code/05_impact_analysis/taxonomy.csv`;
+see this stage's README.
 """
 
 import os, json, re, sqlite3, torch

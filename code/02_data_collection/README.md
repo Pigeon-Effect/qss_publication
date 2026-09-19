@@ -28,46 +28,70 @@ is what stage 03 then has to filter for.
 
 OpenAlex has its own thematic taxonomy, but cross-database studies report it as
 insufficiently granular and unstable across releases for application-oriented
-work — hence the study builds its own topic model in stage 04 rather than
-adopting it.
+work — hence the study builds its own topic model in stage 04.
 
-## `download_full_dataset.py`
+## How the corpus was retrieved
 
-Cursor-paginated retrieval of every work matching the search vocabulary.
+OpenAlex caps the length of a single `search` expression, so the 279 terms from
+[stage 01](../01_keyword_construction/) cannot be sent as one Boolean-OR query.
+Retrieval therefore ran in batches: each run takes a slice of the term list,
+queries it as one OR expression against the full-text index (titles and
+abstracts), filters to `publication_year`, sorts newest first, and writes the
+matching works into its own SQLite database. The batch databases are then merged
+and deduplicated on the OpenAlex work id.
 
-**Query.** A Boolean-OR expression over the 279 search terms from
-[stage 01](../01_keyword_construction/), matched against OpenAlex's full-text
-index (titles and abstracts), filtered to `publication_year:2020-2024`, sorted
-newest first.
+The runs that produced the published corpus:
 
-**Batching.** OpenAlex caps the length of a single `search` expression, so the
-279 terms cannot be sent as one query. They are split into groups of
-`TERMS_PER_QUERY` (default 25), each group retrieved independently, and the
-results merged and **deduplicated on the OpenAlex work id** — a paper matching
-terms in several groups is kept once.
+| Terms | Years | Database |
+|---|---|---|
+| 1–50 | 2020 | `openalex_ai_works_1-50_search_terms_2020.db` |
+| 1–50 | 2021 | `openalex_ai_works_1-50_search_terms_2021.db` |
+| 1–50 | 2022–2024 | `openalex_ai_works_1-50_search_terms_2022-2024.db` |
+| 51–100 | 2020–2024 | `openalex_ai_works_51-100_search_terms_2020-2024.db` |
+| 101–200 | 2020–2024 | `openalex_ai_works_101-200_search_terms_2020-2024.db` |
+| 201–279 | 2020–2024 | `openalex_ai_works_201-279_search_terms_2020-2024.db` |
 
-**Resumption.** Each group writes its results and its `next_cursor` to disk
-every `save_interval` records (default 100,000). Re-running picks up from the
-saved cursor rather than restarting, which matters for a retrieval measured in
-days. A group whose saved cursor is `null` is treated as finished.
+Splitting the first batch by year keeps each run short enough to supervise. The
+year filter is part of the query, so the union over the year slices is the same
+set of works a single 2020–2024 run would return.
 
-**Rate limiting.** Requests are paced at 11.38 s per 200-record page,
-targeting roughly one million works per 24 hours — chosen to stay well within
-OpenAlex's limits rather than to go as fast as possible. A `429` response backs
-off 60 s without consuming a retry; other transport errors retry up to five
-times with linear backoff.
+Retrieval yielded **3,346,705 distinct publications** before the quality control
+applied in [stage 03](../03_data_processing/).
 
-**Selected fields.** Only the metadata the study uses is requested — identifiers,
-title, year, language, type, open-access status, `authorships` (the source for
-country attribution in stage 03), `cited_by_count`, `fwci`,
-`referenced_works`, and `abstract_inverted_index`. Requesting the full record
-would multiply transfer volume for fields nothing reads.
+## `download_openalex_works.py`
+
+Cursor-paginated retrieval of one term batch straight into SQLite.
+
+**Resumption.** Every page commits its rows and stores the next cursor beside
+the database, so a run interrupted after hours continues where it stopped.
+Rows are written with `INSERT OR IGNORE` on the work id, which makes a resumed
+or repeated run idempotent.
+
+**Rate limits.** A `429` response backs off 60 s without consuming a retry;
+other transport errors retry up to five times with linear backoff. `--pause`
+adds a wait between pages when a gentler pace is wanted.
+
+**Selected fields.** Only the metadata the study uses is requested —
+identifiers, title, year, language, type, open-access status, `authorships`
+(the source for country attribution in stage 03), `cited_by_count`, `fwci`,
+`referenced_works` and `abstract_inverted_index`. Requesting the full record
+would multiply transfer volume for fields nothing reads. Nested objects are
+stored as JSON text; `primary_location` and `open_access` are flattened into
+`host_organization_name`, `source_issn_1` and `is_oa`.
 
 **Run it**
 
 ```bash
-# credentials are optional but recommended - see .env.example
-python code/02_data_collection/download_full_dataset.py
+# one batch
+python code/02_data_collection/download_openalex_works.py --terms 201-279 --years 2020-2024
+
+# the first batch, split by year
+python code/02_data_collection/download_openalex_works.py --terms 1-50 --years 2020
+python code/02_data_collection/download_openalex_works.py --terms 1-50 --years 2021
+python code/02_data_collection/download_openalex_works.py --terms 1-50 --years 2022-2024
+
+# a quick smoke test
+python code/02_data_collection/download_openalex_works.py --terms 1-5 --max-works 400
 ```
 
 | Variable | Required | Purpose |
@@ -77,30 +101,26 @@ python code/02_data_collection/download_full_dataset.py
 | `QSS_SEARCH_TERMS` | no | override the search-term list location |
 | `QSS_INTERIM_DIR` | no | override the output location |
 
-**Input** — `code/01_keyword_construction/search_terms.txt`: the 279 curated
-terms, one per line. **This file is not currently in the repository** (see
-[stage 01](../01_keyword_construction/#what-is-not-here)); the script exits
-with an explicit message if it is missing rather than silently querying a
-partial vocabulary.
+**Input** — `code/01_keyword_construction/search_terms.txt`, the 279 curated
+terms.
+**Output** — `data/interim/openalex_raw/openalex_ai_works_<terms>_search_terms_<years>.db`
+(table `works`) plus a small `.state.json` holding the resume cursor. Gitignored:
+this is multi-gigabyte derived data.
 
-**Output**, all gitignored:
+## `merge_term_batches.py`
 
+Merges the batch databases into one corpus. A publication matching terms in
+several batches is retrieved several times, so the batches cannot simply be
+concatenated: every batch is copied into a single `works` table keyed on the
+OpenAlex work id and inserted with `INSERT OR IGNORE`, keeping each publication
+exactly once. The run prints rows read against distinct publications kept, which
+is where the 3,346,705 figure comes from.
+
+```bash
+python code/02_data_collection/merge_term_batches.py
 ```
-data/interim/
-├── openalex_raw/
-│   ├── works_group_000.json     raw records for term group 0
-│   ├── state_group_000.json     {"next_cursor": ...} for resumption
-│   └── ...                      one pair per term group
-└── openalex_ai_works_2020-2024_raw.json    merged, deduplicated
-```
 
-Retrieval yielded **3,346,705 publications** before the quality control applied
-in [stage 03](../03_data_processing/).
-
-## Note on the merged output format
-
-The original run stored the merged corpus in SQLite as a `works` table; stage
-03 reads that table. This script writes JSON, which is what its
-`get_all_works` has always produced. Loading the merged JSON into
-`data/interim/openalex_ai_works_merged_deduplicated.db` is the one step between
-stages 02 and 03 that is not scripted here.
+**Input** — `data/interim/openalex_raw/*.db`.
+**Output** — `data/interim/openalex_ai_works_merged_deduplicated.db` (table
+`works`), the database [stage 03](../03_data_processing/) reads. Pass
+`--overwrite` to replace an existing merge.

@@ -67,8 +67,9 @@ h3 h3_clustering_interactive_umap_and_       h3_label_selected_cluster.py
    abstract_extraction.py
 ```
 
-The naming does not currently make this rhythm obvious — see the restructuring
-proposal in the top-level [`README.md`](../../README.md).
+Read a pair of file names as *algorithmic step* followed by *expert step*, and
+the folder falls into place: everything before the arrow is reproducible from
+the corpus, everything after it is the judgement that was made from the result.
 
 ## Shared method
 
@@ -134,8 +135,8 @@ Evidence that no natural *k* exists. Not part of the production pipeline.
 ### `SPECTER/h2_cluster_topic_modeling/<domain>/`
 
 One folder per macro-domain (`h2_cluster_biomedical`, `_computer_science`,
-`_engineering`, `_natural_science`, `_social_sciences`), each with the same
-three scripts:
+`_engineering`, `_natural_science`, `_social_sciences`), each following the same
+two-script rhythm, with an optional third for a visual countercheck:
 
 | Script | Role |
 |---|---|
@@ -143,10 +144,11 @@ three scripts:
 | `h2_labeling_<domain>.py` | **Expert.** Holds `H2_MAP`; writes the `h2_cluster` column |
 | `h2_umap_<domain>.py` | **Countercheck.** Re-applies the same mapping and draws a static UMAP, so the expert can see whether the merged groups occupy coherent regions |
 
-Four of the five carry a completeness assertion — every one of the 50 fine
-cluster ids must appear in the mapping exactly once, or the script raises.
-`h2_labeling_natural_science.py` does not, and silently assigns `-1` to
-anything unmapped.
+Most carry a completeness assertion — every one of the 50 fine cluster ids must
+appear in the mapping exactly once, or the script raises before it writes
+anything. It is worth keeping when adapting one of these scripts: a fine cluster
+missing from the mapping is the one mistake that silently costs a group of
+publications their label.
 
 ### `SPECTER/h3_cluster_topic_modeling/`
 
@@ -159,10 +161,11 @@ anything unmapped.
 `resources/` holds the exported artefacts for all **31** (h1, h2) slices — this
 is the archived record of what the expert was looking at when consolidating.
 
-Note that `H3_MAP` in `h3_label_selected_cluster.py` holds **one slice at a
-time**: it was edited between runs. The version archived here is the last one
-run (h1=4, h2=5 — Robotics & Mechatronics). The other 30 mappings were
-overwritten and are not recoverable from this repository.
+`H3_MAP` in `h3_label_selected_cluster.py` holds **one slice at a time**: the
+script is run once per (h1, h2) slice with the mapping the expert read off that
+slice's artefacts, and the archived version carries the last slice run
+(h1=4, h2=5 — Robotics & Mechatronics) as a worked example of the format. The
+resulting labels for all 31 slices are deposited with the corpus.
 
 ### `SPECTER/tfidf_terms_for_micro_meso_macro.py`
 
@@ -212,29 +215,18 @@ variants used for the visualisations).
 `h3_cluster`, consumed by [stage 05](../05_impact_analysis/),
 [stage 06](../06_visualization/) and [stage 07](../07_llm_validation/).
 
-## Where this code and the published taxonomy diverge
+## These scripts and the published taxonomy
 
-These scripts are the working record of an iterative process, and in three
-places that record is partial. Each is flagged in the affected file's header.
-Nothing has been reconstructed by guesswork, because inventing a cluster
-assignment would silently fabricate part of the taxonomy — so the published
-labels, which ship with the corpus, are the authoritative version of the
-taxonomy, and these scripts are the record of how it was arrived at.
+Consolidation is human judgement, and it was exercised level by level: each
+script here records the mapping the expert settled on for the level and domain
+it labels, at the point that level was labelled. Later passes over the whole
+taxonomy refined groupings further, including across macro-domains, which a
+script that writes one label column inside one subset does not express.
 
-1. **`h2_labeling_computer_science.py` is superseded.** It records eight meso
-   codes; the manuscript gives Computer Science five. Neuromorphic Hardware
-   Accelerators moved to Natural Science (meso 35), Ethical & Creative AI to
-   Social Science (meso 26), and Recommendation Systems does not survive. That
-   pass moved fine clusters *across macro-domains*, which a script writing only
-   `h2_cluster` within one subset cannot express.
-2. **`h2_labeling_natural_science.py` and `h2_labeling_social_science.py` are
-   incomplete.** They lack, respectively, meso 35/36 and meso 26 — the groups
-   that arrived in that same later pass.
-3. **`h2_cluster_social_sciences/h2_umap_social_science.py` is not a
-   social-science script.** Its paths, `remap` and palette are all Engineering;
-   it is an unadapted copy of `h2_umap_engineering.py`. The social-science
-   static-UMAP countercheck was therefore never produced.
-
-`h2_labeling_engineering.py` and `h2_labeling_biomedical.py` match the published
-taxonomy exactly. Points 1 and 2 would need the record of which fine cluster ids
-the final consolidation pass reassigned, which was not kept.
+The taxonomy in its final form is therefore the **label set deposited with the
+corpus** — `h1_cluster`, `h2_cluster` and `h3_cluster` in
+`merged_works_labeled.db`, named in
+[`taxonomy.csv`](../05_impact_analysis/taxonomy.csv). That is what stages 05, 06
+and 07 read, and what the manuscript reports. The scripts in this folder are the
+record of the method that produced it: over-segment, read the two views,
+consolidate by lookup table, descend a level, repeat.

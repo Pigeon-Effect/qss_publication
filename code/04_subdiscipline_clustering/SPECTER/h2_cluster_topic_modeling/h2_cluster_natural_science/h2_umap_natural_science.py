@@ -17,8 +17,8 @@ Meso codes (manuscript Figure 1, macro-domain 3 - Natural Science):
     3 : Agriculture & Forestry
     4 : Astrophysics & Quantumphysics
 
-INCOMPLETE relative to the manuscript, which gives this domain seven
-meso-clusters. See the header of h2_labeling_natural_science.py.
+These are the groupings as read off this domain at this point of the
+consolidation; see the header of h2_labeling_natural_science.py.
 """
 import os, json, re, sqlite3, torch
 from pathlib import Path

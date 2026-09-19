@@ -1,14 +1,23 @@
 # 06 — Visualization
 
-Draws Figure 2, the manuscript's citation-share heatmap (§4, *Findings*).
+Draws the manuscript's two figures (§4, *Findings*):
 
-`paper/figures/` also holds figures carried over from the originating master's
-thesis — country-contribution Aitoff projection, institution network, percentile
-composition, search-term bar chart, H1/H2 CAGR bars, dataset-completeness
-charts, pipeline diagrams. None of them appears in the manuscript, so their
-generating code is not part of this deposit.
+| Figure | What it shows | Where |
+|---|---|---|
+| Figure 1 | the semantic landscape of the 106 micro-clusters | [`semantic_landscape/`](semantic_landscape/) |
+| Figure 2 | each bloc's citation share within every cluster | `bloc_share_heatmap_cluster_across_microclusters.py` |
 
-## `bloc_share_heatmap_cluster_across_microclusters.py`
+Both read the deposited outputs of earlier stages, so neither needs an API key
+and neither re-runs the pipeline.
+
+## Figure 1 — the semantic landscape
+
+See [`semantic_landscape/README.md`](semantic_landscape/README.md). The folder
+holds the three steps that turn the corpus into the map — projection, density
+summarization, rendering — and the published layout, so the figure can be
+redrawn without recomputing the embedding.
+
+## Figure 2 — `bloc_share_heatmap_cluster_across_microclusters.py`
 
 Draws Figure 2: five columns, one per macro-domain, each a treemap-style stack
 of meso-cluster boxes, each box holding a mini-heatmap row per micro-cluster
@@ -61,16 +70,10 @@ cn_share, us_share, eu27_share, row_share
 **Output** — `output/bloc_citation_shares_across_subdisciplines.svg`. The
 manuscript embeds the PDF conversion of this file.
 
-## Figure 1
+## A note on `paper/figures/`
 
-`cluster_umap_with_legend_2025_10_09_bigger_clusters.pdf` — the
-density-summarized UMAP of all 106 micro-clusters, each drawn as an ellipse
-whose size reflects **semantic spread, not publication volume**, with the full
-taxonomy legend beside it.
-
-Its rendering code is not part of this deposit. The UMAP projections written by
-[stage 04](../04_subdiscipline_clustering/) are the per-level diagnostic
-scatterplots the expert consolidated from; none of them produces the
-density-summarized ellipse rendering or the legend layout the manuscript uses.
-The figure itself is deposited as PDF in `paper/figures/`, and the taxonomy it
-displays is in `code/05_impact_analysis/taxonomy.csv`.
+That folder also holds figures carried over from the originating master's
+thesis — country-contribution Aitoff projection, institution network, percentile
+composition, H1/H2 CAGR bars, dataset-completeness charts, pipeline diagrams.
+They are part of the manuscript's lineage rather than of its argument, and the
+code here covers the two figures the manuscript itself presents.

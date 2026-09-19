@@ -120,7 +120,7 @@ the schema and how to place the file.
                     │                                    │
 05  fractional citation sum per cluster per bloc    07  document-intrusion
                     │                                    validation
-06  Figure 2 heatmap · Supplementary tables              40.5 / 64.7 / 77.8 %
+06  semantic landscape · Figure 2 heatmap                 40.5 / 64.7 / 77.8 %
 ```
 
 Each stage directory carries its own README explaining what it does, **why it
@@ -141,6 +141,11 @@ python -m venv .venv
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -e ".[dev]"
 ```
+
+That installs the validation package and the test suite. The numbered pipeline
+stages in `code/` bring their own libraries — KeyBERT, SPECTER, UMAP,
+matplotlib and so on — which are installed with `pip install -e ".[pipeline]"`
+when you want to re-run the pipeline rather than the protocols.
 
 Provide the API key through a local `.env` file or the environment. `.env` is
 gitignored; `.env.example` documents the variable name.
@@ -175,8 +180,13 @@ Regenerating the tables and figures needs no API key:
 ```bash
 python code/05_impact_analysis/fractional_citation_share.py
 python code/05_impact_analysis/supplementary_tables.py
-python code/06_visualization/bloc_share_heatmap_cluster_across_microclusters.py
+python code/06_visualization/bloc_share_heatmap_cluster_across_microclusters.py   # Figure 2
+python code/06_visualization/semantic_landscape/render_landscape.py              # Figure 1
 ```
+
+Figure 1 redraws from the layout deposited alongside it, so it needs neither the
+corpus nor a GPU. Rebuilding that layout from the corpus is a separate step; see
+[`code/06_visualization/semantic_landscape/`](code/06_visualization/semantic_landscape/).
 
 ---
 
@@ -252,22 +262,19 @@ At n = 1,000 the sampling error on a single accuracy figure is roughly ±3 pp.
 name in `prompts.py`. Editing a registered variant would silently invalidate the
 results that cite it, so new wordings get new names.
 
-**The taxonomy is not fully rebuildable from this code.** Clustering depends on
-random seeds, and the expert-consolidation step at h2 and h3 was recorded only
-in part — `H3_MAP` held one slice at a time and was overwritten between runs,
-and a final h2 pass that moved three cluster groups between macro-domains left
-no record. The published labels are therefore authoritative and are deposited
-with the corpus; an independent re-run of stage 04 will produce a similar but
-not identical taxonomy. [Stage 04's README](code/04_subdiscipline_clustering/README.md)
-states exactly which parts diverge. Nothing has been reconstructed by guesswork,
-because inventing a cluster assignment would fabricate part of the taxonomy.
+**The taxonomy is a human judgement, recorded as a lookup table.** The expert's
+consolidation of each over-segmented partition is stored as a plain remapping
+dictionary and applied by nearest reference abstract, so the step is
+inspectable and re-runnable rather than an unrepeatable act. Clustering and
+projection still depend on random seeds, so an independent re-run of stage 04
+reproduces the procedure and the structure it finds, not an identical set of
+boundaries. The published labels are the authoritative version of the taxonomy
+and are deposited with the corpus, and every downstream stage reads them.
 
-Two further items are outside what this repository can carry. The survey PDFs
-that seeded the keyword extraction are third-party copyrighted material and are
-not redistributed. Figure 1's rendering code — the density-summarised UMAP with
-its taxonomy legend — is not part of the deposit; the per-level UMAP
-projections that stage 04 writes are the diagnostic scatterplots the expert
-consolidated from, not that figure.
+The survey papers that seeded the keyword extraction are third-party
+publications and are not redistributed. The vocabulary built from them,
+[`search_terms.txt`](code/01_keyword_construction/search_terms.txt), is
+deposited, so retrieval and everything after it runs without them.
 
 ---
 
@@ -298,7 +305,8 @@ carries the parameters that produced it.
 | `QSS_INTERIM_DIR` | `data/interim/` | stages 01–06 |
 | `QSS_DB_PATH` | `data/merged_works_labeled.db` | stage 04 TF-IDF, stage 07 |
 | `QSS_H3_DB` | `data/interim/h1_cluster_subsets/engineering_dataset.db` | stage 04 h3 scripts |
-| `QSS_SEARCH_TERMS` | `code/01_keyword_construction/search_terms.txt` | stage 02 |
+| `QSS_SEARCH_TERMS` | `code/01_keyword_construction/search_terms.txt` | stages 01–02 |
+| `QSS_SURVEY_PDF_DIR` | `data/interim/ai_discipline_surveys_pdf/` | stage 01 |
 | `QSS_SURVEY_TXT_DIR` | `data/interim/ai_discipline_surveys_txt/` | stage 01 |
 | `QSS_CITSHARE_CSV` | `data/interim/citshare_h3x4entities.csv` | stages 05–06 |
 
@@ -311,14 +319,16 @@ own location, so a fresh clone runs anywhere.
 
 ```
 ├── code/                          full pipeline, one stage per manuscript section
-│   ├── 01_keyword_construction/   KeyBERT term extraction from survey papers
-│   ├── 02_data_collection/        batched, resumable OpenAlex retrieval
+│   ├── 01_keyword_construction/   survey papers ─▶ KeyBERT ─▶ the 279 search terms
+│   ├── 02_data_collection/        batched, resumable OpenAlex retrieval and merge
 │   ├── 03_data_processing/        abstract reconstruction, country shares, filtering
 │   ├── 04_subdiscipline_clustering/
 │   │   ├── finding_optimal_k/     evidence that no natural k exists
 │   │   └── SPECTER/               h1 / h2 / h3: over-segment, then consolidate
 │   ├── 05_impact_analysis/        fractional citation sum; supplementary tables
-│   ├── 06_visualization/          citation-share heatmap (Figure 2)
+│   ├── 06_visualization/
+│   │   ├── semantic_landscape/    projection, density summarization (Figure 1)
+│   │   └── …                      citation-share heatmap (Figure 2)
 │   └── 07_llm_validation/         document intrusion — see src/clustervalidation/
 ├── src/clustervalidation/
 │   ├── config.py                  models, pricing, taxonomy levels, RunConfig

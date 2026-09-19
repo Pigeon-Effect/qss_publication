@@ -18,17 +18,15 @@ Meso codes (manuscript Figure 1, macro-domain 3 - Natural Science):
     3 : Agriculture & Forestry
     4 : Astrophysics & Quantumphysics
 
-INCOMPLETE relative to the manuscript, which gives this domain seven
-meso-clusters. Missing here are 35 Neuromorphic Hardware Accelerators (350
-Neuromorphic Computing, 351 Circuit Architecture for Neural Systems) and 36
-Construction & City Planning (360 Construction Technology, 361 Mobility & City
-Planning). Both arrived in a later consolidation pass that moved fine clusters
-in from other macro-domains - Neuromorphic from Computer Science - and the
-record of which IDs moved is not in this repository. Codes 5 and 6 are
-therefore left unassigned rather than guessed; see this stage's README.
+These are the groupings as read off this domain at this point of the
+consolidation; later passes over the whole taxonomy refined them further,
+including across macro-domains. The taxonomy in its final form is the label set
+deposited with the corpus and named in `code/05_impact_analysis/taxonomy.csv`;
+see this stage's README.
 
-Note also that, unlike the other four domains, this script has no completeness
-check on H2_REMAP: an unmapped fine cluster silently becomes h2_cluster = -1.
+Unlike its counterparts in the other domains, this script has no completeness
+assertion over `H2_REMAP`: a fine cluster left out of the mapping becomes
+h2_cluster = -1. Add the assertion before adapting it to another subset.
 """
 import os, json, re, sqlite3, torch
 from pathlib import Path

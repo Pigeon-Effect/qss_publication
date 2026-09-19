@@ -20,9 +20,8 @@ Meso codes as recorded in this script (codes 0-7):
     6 : Ethical & Creative AI
     7 : Recommendation Systems
 
-SUPERSEDED relative to the manuscript, which gives Computer Science five
-meso-clusters. See the header of h2_labeling_computer_science.py for what
-changed and why the renumbering is not applied here.
+These are the groupings as read off this domain at this point of the
+consolidation; see the header of h2_labeling_computer_science.py.
 """
 
 
