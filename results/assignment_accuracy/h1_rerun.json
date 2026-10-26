@@ -1,0 +1,21 @@
+{
+  "n_heldout": 94038,
+  "n_out_of_sample": 10000,
+  "as_implemented": {
+    "heldout_fine": 0.689551032561305,
+    "heldout_consolidated": 0.8433080244156618,
+    "out_of_sample_fine": 0.6812,
+    "out_of_sample_consolidated": 0.8356,
+    "loo_fine": 0.7048293000000002,
+    "loo_consolidated": 0.8489780000000001
+  },
+  "preprocessed_both": {
+    "heldout_fine": 0.7112124885684511,
+    "heldout_consolidated": 0.8550479593355877,
+    "out_of_sample_fine": 0.7089,
+    "out_of_sample_consolidated": 0.857,
+    "loo_fine": 0.7226118000000002,
+    "loo_consolidated": 0.8619203999999998
+  },
+  "kmeans_consolidated_vs_deposited_h1": 0.79116
+}

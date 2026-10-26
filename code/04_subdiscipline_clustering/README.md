@@ -167,6 +167,17 @@ slice's artefacts, and the archived version carries the last slice run
 (h1=4, h2=5 — Robotics & Mechatronics) as a worked example of the format. The
 resulting labels for all 31 slices are deposited with the corpus.
 
+### `assignment_accuracy/`
+
+Checks the step that carries the sample clustering to the full corpus:
+how often assigning a document to its nearest reference abstract reproduces
+the label K-Means would have given it. Leave-one-out on the archived reference
+sets for h2 and h3, a fresh re-run for h1 (whose references were not
+archived). After consolidation the assignment agrees in **84 %** (h1) to
+**88 %** (h2, h3) of held-out documents; for the over-segmented K-Means
+clusters themselves, in about two thirds. See
+[`assignment_accuracy/README.md`](assignment_accuracy/README.md).
+
 ### `SPECTER/tfidf_terms_for_micro_meso_macro.py`
 
 Post-hoc term extraction for the finished taxonomy, and the reason the

@@ -1,0 +1,26 @@
+{
+  "h2_as_implemented": {
+    "fine": 0.6959,
+    "consolidated": 0.8803,
+    "clusters": 200,
+    "documents_represented": 396005
+  },
+  "h2_raw_both": {
+    "fine": 0.6635,
+    "consolidated": 0.8651,
+    "clusters": 200,
+    "documents_represented": 396005
+  },
+  "h3_as_implemented": {
+    "fine": 0.6658,
+    "consolidated": 0.8812,
+    "clusters": 930,
+    "documents_represented": 892156
+  },
+  "h3_raw_both": {
+    "fine": 0.6485,
+    "consolidated": 0.8743,
+    "clusters": 930,
+    "documents_represented": 892156
+  }
+}

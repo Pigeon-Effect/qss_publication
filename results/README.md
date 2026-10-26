@@ -140,6 +140,24 @@ dedicated seeded generator rather than global random state. Model responses will
 still differ: sampling is non-deterministic server-side and the API is a moving
 target. At n = 1,000 the sampling error on an accuracy figure is roughly ±3 pp.
 
+## Assignment accuracy
+
+```
+results/assignment_accuracy/  how faithfully the full corpus inherits the sample clustering
+├── loo_per_cluster.csv       h2 / h3: one row per K-Means cluster, slice and variant
+├── loo_summary.json          h2 / h3: size-weighted totals
+└── h1_rerun.json             h1: held-out, out-of-sample and leave-one-out figures
+```
+
+Not part of the intrusion validation, but reported in the same section of the
+article. Clustering ran on samples, and the rest of the corpus was labeled by
+nearest reference abstract; these files measure how often that reproduces the
+K-Means label. After consolidation: **84.3 %** at h1, **88.0 %** at h2,
+**88.1 %** at h3; for the K-Means clusters themselves, 69.0 / 69.6 / 66.6 %.
+Produced by
+[`code/04_subdiscipline_clustering/assignment_accuracy/`](../code/04_subdiscipline_clustering/assignment_accuracy/),
+whose README explains the method and how to read the figures.
+
 ## Development history
 
 These three runs are the reported result. The exploratory work behind them —

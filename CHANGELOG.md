@@ -7,6 +7,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 ### Added
+- **The assignment of the full corpus to the sample clustering is measured.**
+  `code/04_subdiscipline_clustering/assignment_accuracy/` tests how often the
+  nearest-reference assignment reproduces the K-Means label: leave-one-out on
+  the archived reference sets for h2 and h3, a fresh re-run for h1. After
+  consolidation it agrees in 84.3 % (h1), 88.0 % (h2) and 88.1 % (h3) of
+  held-out documents; for the K-Means clusters themselves in 69.0 / 69.6 /
+  66.6 %. Results in `results/assignment_accuracy/`. Embeddings run through the
+  ONNX export of SPECTER, so `onnxruntime`, `tokenizers` and `huggingface_hub`
+  join the `pipeline` extra.
 - **The search vocabulary is deposited.**
   `code/01_keyword_construction/search_terms.txt` holds the 279 curated terms,
   one per line, in the order of the published term-count chart. Stage 02 reads
