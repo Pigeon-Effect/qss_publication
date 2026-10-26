@@ -41,7 +41,7 @@ TOKENIZER_NAME = "allenai/specter"
 H1_CLUSTER_ID = 4
 H2_CLUSTER_ID = 5
 
-# ── Super‑cluster remapping (fine h3_id → macro code 0‑4) ──────────────────
+# ── Super‑cluster consolidation (fine h3_id → macro code 0‑4) ──────────────────
 H3_MAP = {
     # 0 – Autonomous Navigation & Path Planning
     **{str(i): 0 for i in (22, 26, 12, 3, 6, 5)},

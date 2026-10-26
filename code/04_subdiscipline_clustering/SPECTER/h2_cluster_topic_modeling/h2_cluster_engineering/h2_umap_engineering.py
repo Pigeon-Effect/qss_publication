@@ -108,7 +108,7 @@ df   = df[mask].reset_index(drop=True)
 abs_emb = abs_emb[mask]
 print(f"Filtered dataset size: {len(df)} (removed {(~mask).sum()} outliers)")
 
-# ── 7. Macro‑cluster remap -----------------------------------------------------
+# ── 7. Macro‑cluster consolidation -----------------------------------------------------
 remap = {
     # 0 – Cybersecurity & Privacy
     **{str(i): "Cybersecurity & Privacy"

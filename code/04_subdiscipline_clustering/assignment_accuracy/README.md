@@ -8,8 +8,8 @@ similarity and inherit its cluster, then let the expert mapping carry it to its
 consolidated cluster.
 
 This folder measures how often that rule gives the same answer K-Means would
-have given — the figure reported in manuscript §3.1 (*Scaling to the full
-corpus*) and in the Limitations.
+have given — the figure reported in manuscript §4.1 (*Scaling to the full
+corpus*) and in the Limitations (§7).
 
 ## Result
 
@@ -60,15 +60,13 @@ optimistic; the h2/h3 figures should be read with that margin.
 
 ## Details that matter
 
-**The consolidation mapping is reconstructed.** Only the h1 and one h3 mapping
-survive in the scripts (see `../README.md`, *These scripts and the published
-taxonomy*), so each K-Means cluster is mapped to the most common **deposited**
-code among its members (h1) or references (h2, h3; matched to the corpus by
-title). At h1 this is a rough proxy: the fresh K-Means clusters do not coincide
-with the original ones, and the deposited h1 labels include later refinements
-across domains, so the reconstructed consolidation agrees with the deposited
-h1 label for only 79 % of the sample. The h1 consolidated figure is therefore
-best read as a conservative estimate.
+**The consolidation is read from the deposited labels.** The deposited labels
+are the published taxonomy, so each K-Means cluster is assigned the most common
+**deposited** code among its members (h1) or references (h2, h3; matched to the
+corpus by title). At h1 this is an approximation: the fresh K-Means clusters do
+not coincide with the original ones, so the consolidation derived this way
+agrees with the deposited h1 label for only 79 % of the sample. The h1
+consolidated figure is therefore best read as a conservative estimate.
 
 **References and documents are embedded from different text.** Every labeling
 script embeds references from the raw `title. abstract` but documents from the
@@ -106,5 +104,9 @@ python rerun_h1_heldout.py          # ~45 min on a GPU
 ```
 
 Both read the labeled corpus (`QSS_DB_PATH`, default
-`data/original_dataset/merged_works_labeled.db`) read-only. Embeddings are
-cached in `output/` (gitignored), so a second run only redoes the scoring.
+`data/merged_works_labeled.db`; see [`data/README.md`](../../../data/README.md))
+read-only. The published corpus is sufficient: it carries the titles,
+abstracts and labels the scripts need, in the same row order as the working
+database the deposited results were computed on, so the h1 re-run draws the
+same sample. Embeddings are cached in `output/` (gitignored), so a second run
+only redoes the scoring.

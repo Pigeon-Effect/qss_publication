@@ -10,7 +10,7 @@ TF-IDF terms. Every document is assigned to its nearest reference abstract by
 cosine similarity and inherits that reference's meso code, so the step is a
 deterministic lookup.
 
-Meso codes as read off this domain at this point of the consolidation:
+Meso codes recorded in this script (macro-domain 0 - Computer Science):
 
     0 : Computer Vision & Image Processing
     1 : Natural Language Processing
@@ -21,11 +21,8 @@ Meso codes as read off this domain at this point of the consolidation:
     6 : Ethical & Creative AI
     7 : Recommendation Systems
 
-Later passes over the whole taxonomy refined these groupings further, including
-across macro-domains, which a script that writes `h2_cluster` inside a single
-subset does not express. The taxonomy in its final form is the label set
-deposited with the corpus and named in `code/05_impact_analysis/taxonomy.csv`;
-see this stage's README.
+The taxonomy is the label set deposited with the corpus and named in
+`code/05_impact_analysis/taxonomy.csv`; see this stage's README.
 """
 
 import os, json, re, sqlite3, torch

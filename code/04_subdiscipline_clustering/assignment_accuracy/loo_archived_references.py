@@ -15,9 +15,9 @@ Two accuracies are reported:
   fine          same K-Means cluster
   consolidated  same consolidated cluster after the expert mapping
 
-Only one h3 mapping survives in the scripts, so the mapping is reconstructed
-from the deposited labels: each K-Means cluster maps to the most common final
-code among its references (matched to the corpus by title).
+The consolidation is read from the deposited labels: each K-Means cluster maps
+to the most common deposited code among its references (matched to the corpus
+by title).
 
 Writes results/assignment_accuracy/loo_per_cluster.csv and loo_summary.json.
 Embeddings are cached in output/; a full run takes about an hour on a GPU.
@@ -38,7 +38,7 @@ import specter_onnx as S
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 SPECTER_DIR = Path(__file__).resolve().parents[1] / "SPECTER"
 DB_PATH = Path(os.environ.get(
-    "QSS_DB_PATH", PROJECT_ROOT / "data" / "original_dataset" / "merged_works_labeled.db"))
+    "QSS_DB_PATH", PROJECT_ROOT / "data" / "merged_works_labeled.db"))
 OUT = Path(__file__).resolve().parent / "output"
 RESULTS = PROJECT_ROOT / "results" / "assignment_accuracy"
 OUT.mkdir(exist_ok=True)

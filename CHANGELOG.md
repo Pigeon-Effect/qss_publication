@@ -4,7 +4,43 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [3.0.0] — 2026-10-26
+
+Version 3.0.0 accompanies the revised manuscript; all reported figures follow
+it.
+
+### Changed
+- **The manuscript is the revised version.** `paper/main.tex` and
+  `paper/bibliography.bib` are the reworked manuscript, compiled as
+  `paper/main.pdf`; its title gives the corpus years as 2020–2024.
+  `paper/figures/` holds exactly the five figures it uses.
+- **The compendium's title and metadata follow the manuscript.** `README.md`
+  and `CITATION.cff` are rewritten for this version; `.zenodo.json`, the
+  citation metadata and the dataset reference give the corpus years as
+  2020–2024 and the authors in the order Pfundstein, Efer, Burghardt.
+- **Stage 04 states what is reproducible and what is not.** Its README states
+  that applying a consolidation decision is mechanical, but the decisions
+  themselves rest on one labeler's judgement and are not reproducible, and
+  points to the deposited label set as the authoritative form of the taxonomy.
+- `.env.example` documents the OpenAlex variables (`OPENALEX_MAILTO`,
+  `OPENALEX_API_KEY`) alongside the DeepSeek key, and `pyproject.toml` gains a
+  `pipeline` extra listing what the numbered stages need; the package itself
+  still depends only on `openai` and `python-dotenv`.
+- `code/06_visualization/README.md` now covers both manuscript figures.
+- `data/README.md`: schema table reduced to the ten deposited columns, with the
+  dropped columns and how to fetch them from OpenAlex documented; corpus year
+  range corrected from 2020–2025 to 2020–2024, which is what the database
+  holds; file size corrected; unzip-and-place instructions added.
+- `.zenodo.json`: the data record linked as `isSupplementedBy`, and the
+  description's "20 GB labelled corpus" replaced with the deposited sizes.
+- `CITATION.cff`: the dataset added as a `type: data` reference with its DOI.
+- `README.md`: the corpus paragraph now names the data DOI and says why the
+  compendium and the corpus are deposited as two records.
+- `.gitignore`: databases are ignored wherever they sit in the tree. The
+  published corpus is distributed through Zenodo, not GitHub, where its 1.2 GB
+  would exceed the 100 MB file limit. Regenerable `output/` folders, embedding
+  caches and local scratch material are ignored too, so a clone carries the
+  deposit and nothing else.
 
 ### Added
 - **The assignment of the full corpus to the sample clustering is measured.**
@@ -16,6 +52,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   66.6 %. Results in `results/assignment_accuracy/`. Embeddings run through the
   ONNX export of SPECTER, so `onnxruntime`, `tokenizers` and `huggingface_hub`
   join the `pipeline` extra.
+- `supplementary/citation_shares_all_levels.csv`: the bloc shares of all four
+  blocs at h1, h2 and h3 in one file, with a `level` column.
+- **`data/published_dataset/taxonomy.csv`** names all 106 research fronts with
+  their fields and domains, one row per front, with `h1_cluster`, `h2_cluster`
+  and `h3_cluster` as separate integers so it joins to the corpus directly, and
+  the number of works in each. It is part of the Zenodo data record, and
+  `SHA256SUMS.txt` now covers it too. Both files are pinned to LF line endings
+  in `.gitattributes`: the earlier `SHA256SUMS.txt` had CRLF endings, with
+  which `sha256sum -c` fails on Linux and macOS.
 - **The search vocabulary is deposited.**
   `code/01_keyword_construction/search_terms.txt` holds the 279 curated terms,
   one per line, in the order of the published term-count chart. Stage 02 reads
@@ -63,30 +108,6 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   This closes the question in favour of the prompt already used; the reported
   40.5 / 64.7 / 77.8 % are unaffected.
 
-### Changed
-- `.env.example` documents the OpenAlex variables (`OPENALEX_MAILTO`,
-  `OPENALEX_API_KEY`) alongside the DeepSeek key, and `pyproject.toml` gains a
-  `pipeline` extra listing what the numbered stages need; the package itself
-  still depends only on `openai` and `python-dotenv`.
-- `code/06_visualization/README.md` now covers both manuscript figures.
-- Stage 04's README and script headers describe the consolidation as the
-  level-by-level judgement it is, and point to the deposited label set as the
-  authoritative form of the taxonomy.
-- `data/README.md`: schema table reduced to the ten deposited columns, with the
-  dropped columns and how to fetch them from OpenAlex documented; corpus year
-  range corrected from 2020–2025 to 2020–2024, which is what the database
-  holds; file size corrected; unzip-and-place instructions added.
-- `.zenodo.json`: the data record linked as `isSupplementedBy`, and the
-  description's "20 GB labelled corpus" replaced with the deposited sizes.
-- `CITATION.cff`: the dataset added as a `type: data` reference with its DOI.
-- `README.md`: the corpus paragraph now names the data DOI and says why the
-  compendium and the corpus are deposited as two records.
-- `.gitignore`: databases are ignored wherever they sit in the tree. The
-  published corpus is distributed through Zenodo, not GitHub, where its 1.2 GB
-  would exceed the 100 MB file limit. Regenerable `output/` folders, embedding
-  caches and local scratch material are ignored too, so a clone carries the
-  deposit and nothing else.
-
 ### Removed
 - `code/02_data_collection/download_full_dataset.py`, superseded by
   `download_openalex_works.py` and `merge_term_batches.py`, which retrieve and
@@ -94,6 +115,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `h2_cluster_social_sciences/h2_umap_social_science.py`, a duplicate of the
   engineering countercheck that had been saved into the social-sciences folder;
   `h2_umap_engineering.py` is the file it copied.
+- The previous manuscript (`paper/main.tex`, `main.pdf`, `bibliography.bib`),
+  `paper/archive/` (the first manuscript version and the master's thesis the
+  study grew out of) and the figures in `paper/figures/` that the revised
+  manuscript does not use.
 
 ## [2.0.0] — 2026-09-01
 
@@ -116,9 +141,7 @@ figures match the deposited record exactly.
   China / USA / EU-27 / RoW, and writes the CSV stage 06 reads plus an
   un-aggregated per-country companion so the bloc definitions can be re-cut
   without a second pass. Bloc membership is a set of named constants, not a
-  buried query: "China" is `CN + HK + MO + TW`, which reproduces the
-  manuscript's reported share where mainland-only would give 21.82 %. All five
-  macro-domain citation totals in Figure 2 reproduce.
+  buried query. All five macro-domain citation totals in Figure 2 reproduce.
 - `code/05_impact_analysis/taxonomy.csv`: the display names of the 5 domains,
   31 fields and 106 research fronts, keyed by 3-digit code. The database stores
   only integer codes.
@@ -181,7 +204,7 @@ figures match the deposited record exactly.
   Oncology* → *Genetics & Genomics*, matching Figure 1. Names only; no cluster
   assignment changed.
 - `h2_labeling_social_science.py`: meso 5 *Urban Development & Tourism* →
-  *Urban Development* (Tourism is micro-cluster 251 in the published taxonomy).
+  *Urban Development*.
 - Documentation rewritten to read as a finished deposit rather than a work
   plan: the top-level README opens with a plain-language account of what the
   study did and how the taxonomy was checked, and descends into protocol
@@ -209,14 +232,10 @@ Stated once, plainly, rather than as items awaiting action.
   it at `code/01_keyword_construction/search_terms.txt`.
 - Figure 1's rendering code is not part of the deposit. The figure itself is in
   `paper/figures/` and the taxonomy it displays in `taxonomy.csv`.
-- The expert consolidation at h2 and h3 was recorded only in part: `H3_MAP`
-  held one slice at a time and was overwritten between runs, and a final h2
-  pass that moved three cluster groups between macro-domains left no record.
-  `h2_labeling_computer_science.py`, `_natural_science.py` and
-  `_social_science.py` therefore diverge from the published taxonomy, and
-  `h2_umap_social_science.py` is an unadapted copy of the engineering script.
-  Nothing was reconstructed by guesswork; the published labels ship with the
-  corpus and are authoritative.
+- `H3_MAP` held one h3 slice at a time and was overwritten between runs, so
+  the script carries only the last slice; the labels of all 31 slices ship with
+  the corpus and are authoritative. `h2_umap_social_science.py` is an
+  unadapted copy of the engineering script.
 - The survey PDFs behind stage 01 are third-party copyrighted material and are
   not redistributed.
 

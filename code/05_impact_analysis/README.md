@@ -1,7 +1,7 @@
 # 05 — Impact analysis
 
 Computes each bloc's research impact within every cluster of the taxonomy
-(manuscript §3.2, *Assessment of Research Impact*), producing the input to
+(manuscript §4.3, *Measuring citation shares*), producing the input to
 Figure 2 in [stage 06](../06_visualization/).
 
 ## The metric
@@ -63,20 +63,25 @@ country), aggregates countries into blocs, and writes the CSVs.
 
 | Bloc | Members |
 |---|---|
-| China | `CN`, `HK`, `MO`, `TW` — the Greater China reading |
+| China | `CN`, `HK`, `MO` — the mainland plus Hong Kong and Macao; **Taiwan (`TW`) is not included** and counts under RoW |
 | USA | `US` |
 | EU-27 | the 27 member states; the UK is **not** one |
 | RoW | the residual: everything in no other bloc |
 
 OpenAlex reports Hong Kong, Macao and Taiwan as separate institution country
-codes, so whether they count as China is a choice, and a consequential one:
+codes, so whether they count as China is a choice, and a consequential one.
+The China bloc under three alternative definitions:
 
 | Definition | Corpus-wide citation share |
 |---|---:|
 | `CN` only | 21.82 % |
-| `CN + HK + MO` | 23.05 % |
-| **`CN + HK + MO + TW`** (used) | **24.00 %** |
-| manuscript reports | 24.10 % |
+| **`CN + HK + MO`** (used) | **23.05 %** |
+| `CN + HK + MO + TW` | 24.00 % |
+
+Taiwan carries 0.96 % of the corpus's fractional citations, and in no research
+front more than 3.3 percentage points, so assigning it to China instead would
+shift China up and RoW down by that amount and leave the other two blocs and
+every cluster total untouched.
 
 It is a named constant rather than something buried in a query, so it can be
 re-cut and re-checked. The un-aggregated per-country output below makes
@@ -133,22 +138,19 @@ least one citation; 19,817,595 fractional citations in total):
 | Natural Science | 17.99 % | 17.99 % |
 | Engineering | 17.56 % | 17.56 % |
 
-**Corpus-wide bloc shares — within 0.22 pp of §4.2:**
+**Corpus-wide bloc shares — exact match to the manuscript (Table 4, §5.2):**
 
 | Bloc | Computed | Manuscript |
 |---|---:|---:|
-| China | 24.00 % | 24.1 % |
-| USA | 18.52 % | 18.60 % |
-| EU-27 | 20.75 % | 20.79 % |
-| RoW | 36.73 % | 36.51 % |
+| China | 23.05 % | 23.0 % |
+| USA | 18.52 % | 18.5 % |
+| EU-27 | 20.75 % | 20.8 % |
+| RoW | 37.69 % | 37.7 % |
 
-Every macro-level bloc figure quoted in §4.2 also reproduces within 0.22 pp
-(e.g. China in Computer Science 32.89 % vs 32.8 %, the US in Health Science
-23.49 % vs 23.36 %, the EU-27 in Social Science 25.60 % vs 25.38 %). The
-residual is a consistent ~0.2 pp of citation mass sitting in RoW here that the
-manuscript assigns to the three blocs — small enough to be a marginally
-different corpus snapshot or a one-country difference in a bloc list, and left
-unreconciled rather than tuned away.
+Every macro-level bloc share quoted in §5.2 matches the computed value to the
+rounding as well, e.g. China in Computer Science 31.54 % vs 31.5 %, the US in
+Health Science 23.49 % vs 23.5 %, the EU-27 in Social Science 25.60 % vs
+25.6 %.
 
 ## Inputs
 
@@ -199,7 +201,7 @@ another pass over two million rows.
 Macro- and meso-level figures are not written by this script. They are exact
 sums of the micro rows, and a second file holding derivable numbers is a second
 file that can fall out of sync. The run prints them instead, since they are the
-figures quoted in manuscript §4.2, and `supplementary_tables.py` below writes
+figures quoted in manuscript §5.2, and `supplementary_tables.py` below writes
 them out properly when they are needed as a published table.
 
 ## `supplementary_tables.py`

@@ -51,9 +51,10 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 INTERIM_DIR = Path(os.environ.get("QSS_INTERIM_DIR", PROJECT_ROOT / "data" / "interim"))
 
 # Per-cluster, per-bloc fractional citation shares. Produced by stage 05
-# (impact analysis), which is not yet in this repository - see its README.
+# (impact analysis); China = CN + HK + MO, Taiwan counts under RoW.
 IN_CSV = Path(os.environ.get("QSS_CITSHARE_CSV", INTERIM_DIR / "citshare_h3x4entities.csv"))
 OUT_SVG = Path(__file__).resolve().parent / "output" / "bloc_citation_shares_across_subdisciplines.svg"
+OUT_PDF = OUT_SVG.with_suffix(".pdf")
 
 # Global font scale (~+50%)
 SCALE = 1.5
@@ -642,7 +643,9 @@ def main():
     # ── Save ──────────────────────────────────────────────────────────────────
     os.makedirs(os.path.dirname(OUT_SVG), exist_ok=True)
     fig.savefig(OUT_SVG, format="svg", bbox_inches="tight")
-    print(f"✅ Saved: {OUT_SVG}")
+    fig.savefig(OUT_PDF, format="pdf", bbox_inches="tight")
+    print(f"Saved: {OUT_SVG}")
+    print(f"Saved: {OUT_PDF}")
     print("Items per macro:", [p['matrices'].shape[0] for p in panels])
     print(
         "Layout: column gap = {}px, H1 box outset = {}px, H2 box outset = {}px; fonts scaled by {}×."

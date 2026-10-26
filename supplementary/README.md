@@ -16,6 +16,7 @@ CSV for reuse.
 | `citation_shares_h1.csv` | 5 domains |
 | `citation_shares_h2.csv` | 31 fields |
 | `citation_shares_h3.csv` | 106 research fronts |
+| `citation_shares_all_levels.csv` | the three levels stacked in one file, with a `level` column (`h1`/`h2`/`h3`) |
 
 ## Reading the tables
 
@@ -29,7 +30,7 @@ Meso- and macro-level figures are aggregations of the micro-level citation
 *sums*, not averages of micro-level shares. A cluster's share is therefore
 always its own citations over its own total, at whatever level it is read.
 
-Bloc membership is explicit: China is `CN + HK + MO + TW`, the EU-27 is the 27
+Bloc membership is explicit: China is `CN + HK + MO` (Taiwan is counted in RoW), the EU-27 is the 27
 member states, RoW is every remaining country. The definitions live as named
 constants in `code/05_impact_analysis/fractional_citation_share.py` rather than
 buried in a query, so they can be re-cut without guesswork — the per-country

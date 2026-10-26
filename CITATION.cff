@@ -1,26 +1,31 @@
 cff-version: 1.2.0
 title: >-
-  Research compendium for "Mapping the AI Research of China, the US and the EU"
+  Research compendium for "Mapping the AI Research of China, the US and the EU:
+  A Scientometric Analysis of Citation Shares within AI Subdisciplines
+  (2020-2024)"
 message: >-
-  If you use this software or its results, please cite both the software and
+  If you use this software or its results, please cite both the compendium and
   the associated article.
 type: software
-version: 2.0.0
-date-released: "2026-09-01"
+version: 3.0.0
+date-released: "2026-10-26"
 license: MIT
 repository-code: https://github.com/Pigeon-Effect/qss_publication
 abstract: >-
-  Complete research compendium for a scientometric analysis of citation shares
-  within AI subdisciplines, derived from 1,986,659 OpenAlex records (2020-2025):
-  keyword construction, OpenAlex data collection, dataset quality control, a
-  semi-supervised hierarchical topic model (SPECTER embeddings, K-Means
-  over-segmentation, expert consolidation) yielding 5 domains, 31 fields and 106
-  research fronts, fractional citation-share analysis across that taxonomy for
-  China, the US and the EU-27, visualization, and LLM-based external validation
-  of the taxonomy by document intrusion detection, adapted from the "reading tea
-  leaves" paradigm of Chang et al. (2009) and run for 1,000 trials at each of the
-  three hierarchy levels. Includes the complete record of all 3,000 validation
-  trials, the cluster-level citation-share tables, and the manuscript sources.
+  Research compendium for a scientometric analysis of citation shares within AI
+  subdisciplines, based on 1,986,659 AI-related publications from 2020-2024
+  retrieved from OpenAlex. It contains the complete pipeline: keyword
+  construction from 125 survey papers into 279 search terms, OpenAlex
+  retrieval, quality control, a hierarchical, semi-supervised document
+  clustering (SPECTER embeddings, K-Means over-segmentation, human
+  consolidation) yielding 5 domains, 31 fields and 106 research fronts, a test
+  of how faithfully the full corpus inherits the sample clustering, fractional
+  citation shares of China, the United States and the EU-27 across that
+  taxonomy, and the figures. The taxonomy is validated externally by an
+  LLM-based document-intrusion test adapted from Chang et al. (2009); the
+  compendium includes the complete record of all 3,000 trials, a paired prompt
+  experiment, the Supplementary Information with bloc citation shares for every
+  cluster, and the manuscript.
 keywords:
   - scientometrics
   - topic modeling
@@ -60,6 +65,8 @@ references:
     doi: 10.5281/zenodo.22791584
     year: 2026
     license: CC-BY-4.0
+    publisher:
+      name: Zenodo
     authors:
       - given-names: Julius
         family-names: Pfundstein
@@ -73,7 +80,7 @@ references:
   - type: article
     title: >-
       Mapping the AI Research of China, the US and the EU: A Scientometric
-      Analysis of Citation Shares within AI Subdisciplines (2020-2025)
+      Analysis of Citation Shares within AI Subdisciplines (2020-2024)
     status: submitted
     authors:
       - given-names: Julius

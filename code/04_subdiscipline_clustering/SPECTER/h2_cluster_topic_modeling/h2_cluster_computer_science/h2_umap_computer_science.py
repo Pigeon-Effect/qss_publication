@@ -19,9 +19,6 @@ Meso codes as recorded in this script (codes 0-7):
     5 : Biomarkers for Health & Performance
     6 : Ethical & Creative AI
     7 : Recommendation Systems
-
-These are the groupings as read off this domain at this point of the
-consolidation; see the header of h2_labeling_computer_science.py.
 """
 
 
@@ -120,7 +117,7 @@ df   = df[mask].reset_index(drop=True)
 abs_emb = abs_emb[mask]
 print(f"Filtered dataset size: {len(df)} (removed {(~mask).sum()} outliers)")
 
-# ── 7. Macro-cluster remap -----------------------------------------------------
+# ── 7. Macro-cluster consolidation -----------------------------------------------------
 remap = {
     # 0 – Computer Vision & Image Processing
     **{str(i): "Computer Vision & Image Processing"

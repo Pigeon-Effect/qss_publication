@@ -10,7 +10,7 @@ TF-IDF terms. Every document is assigned to its nearest reference abstract by
 cosine similarity and inherits that reference's meso code, so the step is a
 deterministic lookup.
 
-Meso codes (manuscript Figure 1, macro-domain 3 - Natural Science):
+Meso codes recorded in this script (macro-domain 3 - Natural Science):
 
     0 : Climate & Hydrology
     1 : Material Science
@@ -18,11 +18,8 @@ Meso codes (manuscript Figure 1, macro-domain 3 - Natural Science):
     3 : Agriculture & Forestry
     4 : Astrophysics & Quantumphysics
 
-These are the groupings as read off this domain at this point of the
-consolidation; later passes over the whole taxonomy refined them further,
-including across macro-domains. The taxonomy in its final form is the label set
-deposited with the corpus and named in `code/05_impact_analysis/taxonomy.csv`;
-see this stage's README.
+The taxonomy is the label set deposited with the corpus and named in
+`code/05_impact_analysis/taxonomy.csv`; see this stage's README.
 
 Unlike its counterparts in the other domains, this script has no completeness
 assertion over `H2_REMAP`: a fine cluster left out of the mapping becomes

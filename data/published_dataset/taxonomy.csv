@@ -1,0 +1,107 @@
+h1_cluster,h2_cluster,h3_cluster,code,domain,field,research_front,works
+0,0,0,000,Computer Science,Computer Vision & Image Processing,Image Generation & Segmentation,49437
+0,0,1,001,Computer Science,Computer Vision & Image Processing,Face & Fingerprint Recognition,18386
+0,0,2,002,Computer Science,Computer Vision & Image Processing,Multimodal Vision & Transformer,23629
+0,0,3,003,Computer Science,Computer Vision & Image Processing,Object Detection & Classification,42874
+0,0,4,004,Computer Science,Computer Vision & Image Processing,Mapping & Geospatial Analysis,34989
+0,1,0,010,Computer Science,Natural Language Processing,Text to Text Transformer,27309
+0,1,1,011,Computer Science,Natural Language Processing,Knowledge Graphs & Reasoning,26358
+0,2,0,020,Computer Science,Speech Recognition & Audio Processing,Music & Acoustic Modeling,6109
+0,2,1,021,Computer Science,Speech Recognition & Audio Processing,Emotion & Cognition in Audio,11328
+0,2,2,022,Computer Science,Speech Recognition & Audio Processing,Speech Recognition,17890
+0,3,0,030,Computer Science,Biomarkers for Health & Performance,Signal Processing & Sensing,22944
+0,3,1,031,Computer Science,Biomarkers for Health & Performance,Human - Computer Interaction,43405
+0,4,0,040,Computer Science,Machine Learning Foundations,Supervised Learning,19932
+0,4,1,041,Computer Science,Machine Learning Foundations,Neural Network Architectures,18634
+0,4,2,042,Computer Science,Machine Learning Foundations,SVM & Decision Tree,27471
+0,4,3,043,Computer Science,Machine Learning Foundations,Probabilistic Modeling,27065
+0,4,4,044,Computer Science,Machine Learning Foundations,Unsupervised Learning,14091
+0,4,5,045,Computer Science,Machine Learning Foundations,Graph Learning & Network Modeling,9810
+1,0,0,100,Health Science,Medical Imaging & Radiology,Musculoskeletal Imaging,22061
+1,0,1,101,Health Science,Medical Imaging & Radiology,Neuroimaging & Imaging Physics,19976
+1,0,2,102,Health Science,Medical Imaging & Radiology,Cancer Detection & Screening,25086
+1,0,3,103,Health Science,Medical Imaging & Radiology,Disease Diagnostics,34297
+1,1,0,110,Health Science,Neuroscience & Mental Health,Neuroscience,46790
+1,1,1,111,Health Science,Neuroscience & Mental Health,Mental Health & Behaviorism,37476
+1,2,0,120,Health Science,Clinical Informatics & Public Health,Cardiovascular Risk Modeling,18673
+1,2,1,121,Health Science,Clinical Informatics & Public Health,Treatment Response & Risk Prediction,32580
+1,2,2,122,Health Science,Clinical Informatics & Public Health,Epidemiological Forecasting & Policy,13478
+1,2,3,123,Health Science,Clinical Informatics & Public Health,Human-Centered Medical AI Systems,34127
+1,2,4,124,Health Science,Clinical Informatics & Public Health,Clinical Decision Support,20897
+1,3,0,130,Health Science,Molecular Biology & Drug Discovery,Molecular Biology,17658
+1,3,1,131,Health Science,Molecular Biology & Drug Discovery,Drug Discovery,21255
+1,4,0,140,Health Science,Microbial and Immune Systems Biology,Infectious Disease & Immunology,15888
+1,4,1,141,Health Science,Microbial and Immune Systems Biology,Microbial Ecosystems,8254
+1,5,0,150,Health Science,Genetics & Genomics,Cancer Genomics,35052
+1,5,1,151,Health Science,Genetics & Genomics,Gene Regulation,20917
+1,5,2,152,Health Science,Genetics & Genomics,Mutation & Evolutionary Genetics,10462
+1,5,3,153,Health Science,Genetics & Genomics,Organ Physiology,19337
+2,0,0,200,Social Science,Education & Learning Science,Learning & Performance Analytics,26518
+2,0,1,201,Social Science,Education & Learning Science,Teaching & Curriculum Design,40140
+2,0,2,202,Social Science,Education & Learning Science,Learning Psychology & Motivation,27762
+2,0,3,203,Social Science,Education & Learning Science,Digital Learning Enhancement,13448
+2,1,0,210,Social Science,Digital Media & Communication,Content Integrity & Safety,10438
+2,1,1,211,Social Science,Digital Media & Communication,Social Media & Public Discourse,9427
+2,1,2,212,Social Science,Digital Media & Communication,Sentiment Mining & Analysis,18796
+2,1,3,213,Social Science,Digital Media & Communication,Dialogue & Conversational AI,7644
+2,2,0,220,Social Science,Politics & Governance,International Politics & Law,16508
+2,2,1,221,Social Science,Politics & Governance,Science Policy & Knowledge Networks,5567
+2,2,2,222,Social Science,Politics & Governance,Game Theory & Decision Making,3894
+2,3,0,230,Social Science,Finance & Stock Market,Market Forecasting & Algorithmic Trading,15129
+2,3,1,231,Social Science,Finance & Stock Market,Digital Financial Services,10697
+2,3,2,232,Social Science,Finance & Stock Market,Macroeconomic Financial Policy,5584
+2,4,0,240,Social Science,Business & Management,Risk Analytics & Decision Modeling,18489
+2,4,1,241,Social Science,Business & Management,Smart Manufacturing,22547
+2,4,2,242,Social Science,Business & Management,Organizational Performance,16352
+2,4,3,243,Social Science,Business & Management,Enterprise Digitization,24466
+2,4,4,244,Social Science,Business & Management,Digital Marketing & Consumer Behavior,14423
+2,4,5,245,Social Science,Business & Management,Psychographic Profiling & Personalization,15124
+2,5,0,250,Social Science,Urban Development,Sustainable Development,20158
+2,5,1,251,Social Science,Urban Development,Tourism,3412
+2,6,0,260,Social Science,Ethical & Creative AI,Artificial Cognition & Ethics,10860
+2,6,1,261,Social Science,Ethical & Creative AI,Digital Art,6813
+2,6,2,262,Social Science,Ethical & Creative AI,Virtual Reality,9338
+3,0,0,300,Natural Science,Climate & Hydrology,Tectonics & Geology,9532
+3,0,1,301,Natural Science,Climate & Hydrology,Topography & Earth-Observation,23134
+3,0,2,302,Natural Science,Climate & Hydrology,Hydrology & Marine Science,29586
+3,0,3,303,Natural Science,Climate & Hydrology,Ecosystem Ecology,11407
+3,0,4,304,Natural Science,Climate & Hydrology,Climate & Atmospheric Prediction,34177
+3,1,0,310,Natural Science,Material Science,"Flow, Wind & Heat Modeling",15521
+3,1,1,311,Natural Science,Material Science,"Material Strength, Damage & Fabrication",36719
+3,1,2,312,Natural Science,Material Science,"Polymers, Photonics & Biomaterials",31233
+3,2,0,320,Natural Science,Energy & Thermodynamics,Petroleum Mapping & Extraction,7336
+3,2,1,321,Natural Science,Energy & Thermodynamics,Environmental Engineering,13112
+3,3,0,330,Natural Science,Agriculture & Forestry,Forest Ecosystems,16982
+3,3,1,331,Natural Science,Agriculture & Forestry,Soil & Microbiome Monitoring,11366
+3,3,2,332,Natural Science,Agriculture & Forestry,Crop Disease & Species Classifier,14113
+3,3,3,333,Natural Science,Agriculture & Forestry,Livestock & Veterinary Science,8253
+3,3,4,334,Natural Science,Agriculture & Forestry,Digital Agriculture & Yield Optimization,14038
+3,4,0,340,Natural Science,Astrophysics & Quantumphysics,Astrophysics,7258
+3,4,1,341,Natural Science,Astrophysics & Quantumphysics,Computational Quantum Systems,9729
+3,4,2,342,Natural Science,Astrophysics & Quantumphysics,Experimental Particle & Nuclear Physics,4269
+3,5,0,350,Natural Science,Neuromorphic Hardware Accelerators,Neuromorphic Computing,8987
+3,5,1,351,Natural Science,Neuromorphic Hardware Accelerators,Circuit Architecture for Neural Systems,12169
+3,6,0,360,Natural Science,Construction & City Planning,Construction Technology,7290
+3,6,1,361,Natural Science,Construction & City Planning,Mobility & City Planning,14010
+4,0,0,400,Engineering,Cybersecurity & Privacy,Cybersecurity,49613
+4,0,1,401,Engineering,Cybersecurity & Privacy,Blockchain & Cryptography,20996
+4,0,2,402,Engineering,Cybersecurity & Privacy,Hardware - Software Interaction,23757
+4,1,0,410,Engineering,IoT & Edge Computing,Wireless Communications,25670
+4,1,1,411,Engineering,IoT & Edge Computing,Edge Computing,25555
+4,1,2,412,Engineering,IoT & Edge Computing,Cloud & Distributed Systems,8119
+4,1,3,413,Engineering,IoT & Edge Computing,IoT Devices & Sensors,7767
+4,2,0,420,Engineering,Anomaly & Fault Detection,Structural Health Monitoring,6779
+4,2,1,421,Engineering,Anomaly & Fault Detection,Anomaly Detection,6907
+4,2,2,422,Engineering,Anomaly & Fault Detection,Fault Detection,14002
+4,3,0,430,Engineering,Energy Technologies,NEV & Battery Health,5597
+4,3,1,431,Engineering,Energy Technologies,Power Asset Monitoring,4524
+4,3,2,432,Engineering,Energy Technologies,Smart Grid Analytics & Optimization,30117
+4,3,3,433,Engineering,Energy Technologies,Energy System Modeling,29071
+4,3,4,434,Engineering,Energy Technologies,Renewables & Grid Optimization,13547
+4,4,0,440,Engineering,Autonomous Mobility,Autonomous Driving,20287
+4,4,1,441,Engineering,Autonomous Mobility,Traffic Modeling,15332
+4,4,2,442,Engineering,Autonomous Mobility,Networked Routing,10892
+4,5,0,450,Engineering,Robotics & Mechatronics,Autonomous Navigation & Path Planning,13142
+4,5,1,451,Engineering,Robotics & Mechatronics,Embodied Robotics,10188
+4,5,2,452,Engineering,Robotics & Mechatronics,Task Scheduling & Decision Making,13322
+4,5,3,453,Engineering,Robotics & Mechatronics,Control Systems & Fuzzy Logic,21795

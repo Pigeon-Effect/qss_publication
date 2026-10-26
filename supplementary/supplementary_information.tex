@@ -10,7 +10,7 @@
 
 \title{Supplementary Information\\
 {\large Mapping the AI Research of China, the US and the EU:}\\
-{\large A Scientometric Analysis of Citation Shares within AI Subdisciplines (2020--2025)}}
+{\large A Scientometric Analysis of Citation Shares within AI Subdisciplines (2020--2024)}}
 \author{Julius Pfundstein \quad Thomas Efer \quad Manuel Burghardt}
 \date{}
 
@@ -26,9 +26,9 @@ summarises. It has two parts:
 \begin{itemize}
   \item \textbf{Section~1} --- the fractional citation share held by each bloc
   within every cluster of the taxonomy, at all three hierarchy levels. The
-  manuscript reports the macro level in full and, below that, only clusters
-  whose share diverges from their parent; these tables are the unabridged
-  version.
+  manuscript shows these shares graphically (Figure~2) and lists the domains
+  and fields in its Appendix Table~A1; these tables give all three levels in
+  numbers.
   \item \textbf{Section~2} --- the full result of the document-intrusion
   validation, including the response-extraction accounting behind each
   accuracy figure.
@@ -37,14 +37,15 @@ summarises. It has two parts:
 Every number here is generated from the deposited data by
 \texttt{code/05\_impact\_analysis/supplementary\_tables.py}; the same tables are
 also deposited as CSV (\texttt{supplementary/citation\_shares\_h1.csv} and its
-h2 and h3 counterparts) for reuse.
+h2 and h3 counterparts, and all three levels together in
+\texttt{citation\_shares\_all\_levels.csv}) for reuse.
 
 \section{Fractional citation shares by cluster}
 
 Impact is the \textit{fractional citation sum}: a work's incoming citations are
 split among the countries that produced it, in proportion to the institutional
 shares recorded in \texttt{country\_of\_origin}, then summed within a cluster and
-grouped into blocs. China is \texttt{CN + HK + MO + TW}; the EU-27 is the 27
+grouped into blocs. China is \texttt{CN + HK + MO} (Taiwan is counted in RoW); the EU-27 is the 27
 member states; RoW is every remaining country.
 
 Shares are read \textbf{across a row}: the four bloc columns of a cluster sum to

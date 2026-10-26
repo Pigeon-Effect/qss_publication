@@ -84,13 +84,13 @@ DEFAULT_COUNTRY_CSV = INTERIM_DIR / "fractional_citations_by_country_h3.csv"
 # ── Bloc definitions ──────────────────────────────────────────────────────────
 # ISO 3166-1 alpha-2, as OpenAlex reports institution country codes.
 #
-# "China" is the Greater China reading: the mainland plus Hong Kong (HK), Macao
-# (MO) and Taiwan (TW), which OpenAlex reports as separate institution country
-# codes. This is a choice, not a fact, and it is a consequential one - the four
-# codes together carry 24.00 % of the corpus's fractional citation sum against
-# the mainland's 21.82 %, and the manuscript reports 24.1 %. Kept as an explicit
-# constant rather than buried in a query so it can be re-cut and re-checked.
-CHINA = frozenset({"CN", "HK", "MO", "TW"})
+# "China" is the mainland plus Hong Kong (HK) and Macao (MO), which OpenAlex
+# reports as separate institution country codes. Taiwan (TW) is NOT part of the
+# bloc: it falls into the RoW residual. This is a choice, not a fact, and a
+# consequential one - mainland-only carries 21.82 % of the corpus's fractional
+# citation sum, CN + HK + MO 23.05 %, and CN + HK + MO + TW 24.00 %. Kept as an
+# explicit constant rather than buried in a query so it can be re-cut.
+CHINA = frozenset({"CN", "HK", "MO"})
 USA = frozenset({"US"})
 
 # The 27 member states of the European Union. The United Kingdom is not a

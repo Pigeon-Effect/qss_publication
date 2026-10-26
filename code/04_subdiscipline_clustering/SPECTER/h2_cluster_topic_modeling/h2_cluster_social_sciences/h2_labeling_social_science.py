@@ -10,20 +10,17 @@ TF-IDF terms. Every document is assigned to its nearest reference abstract by
 cosine similarity and inherits that reference's meso code, so the step is a
 deterministic lookup.
 
-Meso codes (manuscript Figure 1, macro-domain 2 - Social Science):
+Meso codes recorded in this script (macro-domain 2 - Social Science):
 
     0 : Education & Learning Science
     1 : Digital Media & Communication
     2 : Politics & Governance
     3 : Finance & Stock Market
     4 : Business & Management
-    5 : Urban Development          (Tourism became micro-cluster 251)
+    5 : Urban Development
 
-These are the groupings as read off this domain at this point of the
-consolidation; later passes over the whole taxonomy refined them further,
-including across macro-domains. The taxonomy in its final form is the label set
-deposited with the corpus and named in `code/05_impact_analysis/taxonomy.csv`;
-see this stage's README.
+The taxonomy is the label set deposited with the corpus and named in
+`code/05_impact_analysis/taxonomy.csv`; see this stage's README.
 """
 import os, json, re, sqlite3, torch
 from pathlib import Path

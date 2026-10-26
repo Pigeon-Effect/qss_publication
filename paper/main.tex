@@ -1,513 +1,625 @@
-\documentclass{article}
+\documentclass[10pt,twocolumn,a4paper]{article}
 
-% ===== Graphics =====
+% ===== Encoding, fonts, language =====
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{microtype}
+
+% ===== Layout (two columns, no line numbers) =====
+\usepackage[a4paper,top=2.3cm,bottom=2.3cm,left=1.9cm,right=1.9cm,columnsep=18pt]{geometry}
+\setlength{\parindent}{1.1em}
+\setlength{\emergencystretch}{3em}
+\tolerance=2000
+\hbadness=3000
+\raggedbottom
+
+% ===== Running head =====
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\itshape Mapping the AI Research of China, the US and the EU}
+\fancyhead[R]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[C]{\footnotesize\thepage}}
+
+% ===== Floats and tables =====
 \usepackage{graphicx}
-\usepackage{svg}
 \graphicspath{{figures/}}
-% Colors, table rule color, and caption styling
-\usepackage[table]{xcolor}
-\definecolor{darkgray}{HTML}{404040}
-\arrayrulecolor{darkgray}
-\usepackage{caption}
-\captionsetup{labelfont={color=darkgray},textfont={color=darkgray}}
-\usepackage{array}
-\usepackage{tabularx}
+\usepackage{booktabs}
 \usepackage{threeparttable}
-\usepackage{amsmath,amssymb}
-\usepackage{tabularx}
-\usepackage{dblfloatfix}
-\usepackage{afterpage}
+\usepackage{array}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,skip=20pt}
+\usepackage{placeins}
+\usepackage{stfloats}
+\usepackage{amsmath}
 
-\usepackage[colorlinks=true,
-linkcolor=blue,    % internal links (sections, equations, etc.)
-citecolor=blue,    % citations in the bibliography
-urlcolor=blue]     % URLs
-{hyperref}
+% ===== Section headings =====
+\usepackage{titlesec}
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{2.4ex plus .4ex minus .2ex}{1.1ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{2.0ex plus .3ex minus .2ex}{0.8ex plus .2ex}
 
-
-
-% Add these packages for better hyphenation control
-\usepackage[english]{babel}  % Or german, french, etc. for language-specific rules
-\usepackage{hyphenat}        % For additional hyphenation control
-\hyphenation{}              % Add custom word break rules if needed
-
-
-
-
-
-% --- required ---
+% ===== Cluster identifiers (colour matches Figures 1 and 2) =====
 \usepackage{xcolor}
-
-% --- colors ---
-\definecolor{usa_teal}{RGB}{0,255,255}
-\definecolor{cn_orange}{RGB}{255,191,0}
-\definecolor{eu_purple}{RGB}{255,0,255}
-\definecolor{row_grey}{RGB}{220,220,220}
-
-% ============================================================
-%  Cluster label pills with hierarchical color intensities
-% ============================================================
-
 \usepackage[most]{tcolorbox}
-\usepackage{xcolor}
-
-% ---------- Define base colors ----------
 \definecolor{clusterCS}{HTML}{9556CB} % Computer Science (purple)
 \definecolor{clusterHS}{HTML}{619EFF} % Health Science (blue)
 \definecolor{clusterSS}{HTML}{57DCCB} % Social Science (teal)
 \definecolor{clusterNS}{HTML}{FFDD33} % Natural Science (yellow)
 \definecolor{clusterE}{HTML}{FB7738}  % Engineering (orange)
+\tcbset{clusterstyle/.style={on line, boxrule=0pt, arc=2pt, top=0.5pt, bottom=0.5pt,
+		left=2.5pt, right=2.5pt, boxsep=0pt, valign=center, colupper=black, fontupper=\footnotesize\sffamily}}
+\newtcbox{\idC}{clusterstyle, colback=clusterCS!60}
+\newtcbox{\idH}{clusterstyle, colback=clusterHS!60}
+\newtcbox{\idS}{clusterstyle, colback=clusterSS!60}
+\newtcbox{\idN}{clusterstyle, colback=clusterNS!60}
+\newtcbox{\idE}{clusterstyle, colback=clusterE!60}
+% \cl{Name}{C|H|S|N|E}{code}
+\newcommand{\cl}[3]{\textsf{#1}~\csname id#2\endcsname{#3}}
 
-% ---------- Shared pill style ----------
-\tcbset{
-	clusterstyle/.style={
-		on line,
-		boxrule=0pt,
-		arc=2pt,
-		top=1pt, bottom=1pt,
-		left=3pt, right=3pt,
-		boxsep=0pt,
-		valign=center,
-		colupper=black,
-	}
-}
+% ===== References: author-year, APA (QSS revision style) =====
+\usepackage{csquotes}
+\usepackage[backend=biber,style=apa]{biblatex}
+\addbibresource{bibliography.bib}
+\renewcommand*{\bibfont}{\small}
+\setlength{\bibitemsep}{0.35em}
+\setcounter{biburlnumpenalty}{1000}
+\setcounter{biburlucpenalty}{1000}
+\setcounter{biburllcpenalty}{1000}
+\AtBeginBibliography{\emergencystretch=4em\relax}
 
-% ============================================================
-%                       MACRO LEVEL (20%)
-% ============================================================
-\newtcbox{\macroC}{clusterstyle, colback=clusterCS!20}
-\newtcbox{\macroH}{clusterstyle, colback=clusterHS!20}
-\newtcbox{\macroS}{clusterstyle, colback=clusterSS!20}
-\newtcbox{\macroN}{clusterstyle, colback=clusterNS!20}
-\newtcbox{\macroE}{clusterstyle, colback=clusterE!20}
-
-% ============================================================
-%                       MESO LEVEL (50%)
-% ============================================================
-\newtcbox{\mesoC}{clusterstyle, colback=clusterCS!50}
-\newtcbox{\mesoH}{clusterstyle, colback=clusterHS!50}
-\newtcbox{\mesoS}{clusterstyle, colback=clusterSS!50}
-\newtcbox{\mesoN}{clusterstyle, colback=clusterNS!50}
-\newtcbox{\mesoE}{clusterstyle, colback=clusterE!50}
-
-% ============================================================
-%                       MICRO LEVEL (80%)
-% ============================================================
-\newtcbox{\microC}{clusterstyle, colback=clusterCS!70}
-\newtcbox{\microH}{clusterstyle, colback=clusterHS!70}
-\newtcbox{\microS}{clusterstyle, colback=clusterSS!70}
-\newtcbox{\microN}{clusterstyle, colback=clusterNS!70}
-\newtcbox{\microE}{clusterstyle, colback=clusterE!70}
-
-
-
-
-
-% 2) Make all badges the same size (inner width)
-\newlength{\rankbadgewidth}
-\setlength{\rankbadgewidth}{1.5em}  % fits 1-100 in bold
-
-\newcommand{\badgebox}[2]{% #1=color, #2=rank text
-	{\setlength{\fboxsep}{0.6pt}%
-		\colorbox{#1}{\makebox[\rankbadgewidth][c]{\strut\textbf{#2}}}%
-	}%
-}
-
-
-% --- EU-27 registry (silent; no text output) ---
-\makeatletter
-\def\EU@AT{}\def\EU@BE{}\def\EU@BG{}\def\EU@HR{}\def\EU@CY{}\def\EU@CZ{}\def\EU@DK{}\def\EU@EE{}%
-\def\EU@FI{}\def\EU@FR{}\def\EU@DE{}\def\EU@GR{}\def\EU@HU{}\def\EU@IE{}\def\EU@IT{}\def\EU@LV{}%
-\def\EU@LT{}\def\EU@LU{}\def\EU@MT{}\def\EU@NL{}\def\EU@PL{}\def\EU@PT{}\def\EU@RO{}\def\EU@SK{}%
-\def\EU@SI{}\def\EU@ES{}\def\EU@SE{}%
-% \IfEU{<ISO>}{<true>}{<false>}
-\newcommand{\IfEU}[3]{%
-	\edef\ISOtmp{#1}%
-	\expandafter\@ifundefined\expandafter{EU@\ISOtmp}{#3}{#2}%
-}
-\makeatother
-
-% --- choose badge color by ISO-2 (expects UPPERCASE ISO) ---
-% Usage: \rankbadge{<rank>}{<ISO2>}
-\newcommand{\rankbadge}[2]{%
-	\begingroup
-	\def\ISO{#2}%
-	\def\US{US}\def\CN{CN}%
-	\def\badgecol{row_grey}%
-	\ifx\ISO\US \def\badgecol{usa_teal}\fi
-	\ifx\ISO\CN \def\badgecol{cn_orange}\fi
-	\IfEU{\ISO}{\def\badgecol{eu_purple}}{}%
-	
-	\def\HK{HK}\def\MO{MO}\def\TW{TW}%
-	\ifx\ISO\HK \def\badgecol{cn_orange}\fi
-	\ifx\ISO\MO \def\badgecol{cn_orange}\fi
-	\ifx\ISO\TW \def\badgecol{cn_orange}\fi
-	\makebox[2.4em][c]{\badgebox{\badgecol}{#1}}%
-	\endgroup
-}
-
-% convenience alias used in the table
-\newcommand{\rc}[2]{\rankbadge{#1}{#2}}
-
-
-
-% Optional, for nicer rules and spacing
-\usepackage{booktabs}
-
-
-
-% ===== Colors =====
-\usepackage{xcolor}
-\definecolor{darkergray}{gray}{0.25}
-
-% ===== Page layout =====
-\usepackage[
-a4paper,
-top=2.5cm,
-bottom=2.5cm,
-left=1.5cm,
-right=1.5cm,
-columnsep=20pt
-]{geometry}
-
-
-% ===== Bibliography with biblatex =====
-% NOTE: switched from numeric to author-date (Springer "Basic" style) for Scientometrics.
-\usepackage[
-backend=biber,
-style=authoryear,
-sorting=nyt,
-maxcitenames=2,   % in-text: 3+ authors collapse to "First et al."
-mincitenames=1,
-maxbibnames=99    % reference list: keep ALL authors
-]{biblatex}
-\addbibresource{bibliography.bib} % <-- your .bib file location
-
-% Make existing \cite calls render as parenthetical author-date, e.g. (Smith 2020).
-\let\cite\parencite
-
-\renewcommand*{\bibfont}{\footnotesize}  % Very small font
-\setlength{\bibitemsep}{0.25em}         % Tight spacing
-
-% ===== Other styling =====
-\usepackage{parskip}    % no indentation, space between paragraphs
-\usepackage{titlesec}   % custom section titles
-\usepackage{amsmath}
-\usepackage{ragged2e}   % for \justifying
-\usepackage{microtype}  % better typography
-\usepackage{hyperref}   % hyperlinks
-\usepackage{float}
-\usepackage{paralist}
-\usepackage{placeins}
-\usepackage{balance}
-\usepackage{fancyhdr}
+% ===== Links =====
 \usepackage{orcidlink}
-\pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\fancyhead[R]{\thepage} % page number in top right corner
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt} % remove footer line
-\pagenumbering{gobble}
-
-
-
-% ===== Justification and bad box fixes =====
-\AtBeginDocument{\justifying}
-\sloppy
-\setlength{\RaggedRightRightskip}{0pt plus 0.1\textwidth}
-
-% ===== Section title formatting =====
-\titleformat{\section}
-{\normalfont\large\bfseries\centering\MakeUppercase}
-{\thesection.}{1em}{}
-\titleformat{\subsection}
-{\normalfont\large\bfseries\centering\MakeUppercase}
-{\thesubsection.}{1em}{}
-
-\titlespacing*{\section}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-\titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-
-% ===== Document metadata =====
-\title{Mapping the AI Research of China, the US and the EU: A Scientometric Analysis of Citation Shares within AI Subdisciplines (2020--2025)}
-\author{Julius Pfundstein$^{1}$ \orcidlink{0009-0002-3717-6125} \quad Thomas Efer$^{1}$ \orcidlink{0000-0002-8376-3884} \quad Manuel Burghardt$^{1}$ \orcidlink{0000-0003-1354-9089}}
-\date{}
+\usepackage{xurl}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue!50!black, citecolor=blue!50!black, urlcolor=blue!50!black,
+	pdftitle={Mapping the AI Research of China, the US and the EU},
+	pdfauthor={Julius Pfundstein, Thomas Efer, Manuel Burghardt},
+	pdflang={en}}
 
 \begin{document}
 	
-	\color{darkergray}
+	\thispagestyle{plain}
+	\twocolumn[{%
+		\begin{center}
+			\begin{minipage}{0.93\textwidth}
+				\centering
+				{\LARGE\bfseries Mapping the AI Research of\\ China, the US and the EU\par}
+				\vspace{0.45em}
+				{\large\bfseries A Scientometric Analysis of Citation Shares within AI Subdisciplines (2020-2024)\par}
+			\end{minipage}\par
+			\vspace{1.2em}
+			{\large Julius Pfundstein$^{1}$\,\orcidlink{0009-0002-3717-6125}\quad
+				Thomas Efer$^{1}$\,\orcidlink{0000-0002-8376-3884}\quad
+				Manuel Burghardt$^{1}$\,\orcidlink{0000-0003-1354-9089}\par}
+			\vspace{0.9em}
+			{\small $^{1}$Computational Humanities, Faculty of Mathematics and Information Science, University of Leipzig, Germany\\[0.25em]
+				Corresponding author: Thomas Efer, \href{mailto:efer@informatik.uni-leipzig.de}{efer@informatik.uni-leipzig.de}\par}
+		\end{center}
+		\vspace{1.0em}
+		\begin{center}
+			\begin{minipage}{0.88\textwidth}
+				\small
+				\noindent\textbf{Abstract.}\enspace This study maps the internal structure of artificial intelligence (AI) research and the relative impact of its three leading actors, China, the US, and the EU, within it. Drawing on metadata of 1,986,659 AI-related publications (2020-2024) retrieved from OpenAlex, we identify AI subdisciplines through a hierarchical, semi-supervised document clustering that over-segments SPECTER embeddings with K-Means and consolidates the clusters manually at three levels of granularity. The resulting taxonomy comprises 5 domains, 31 fields, and 106 research fronts, and is externally validated through an LLM-based document-intrusion test. Research impact is operationalized as the fractional citation sum and decomposed across these hierarchical subdisciplines for the three blocs. We find that China leads in computer science and engineering, in particular computer vision, control systems, and robotics, but trails in the social and health sciences. The United States leads in health science and natural language processing and holds its highest shares in genomics, computational quantum systems, and probabilistic modeling, while lagging in engineering and natural science. The EU-27 is the most balanced bloc: it has the fewest disciplinary blind spots and leads across most social sciences, neuroscience, and astrophysics, and holds a slight edge in natural science.
+				
+				\medskip
+				\noindent\textbf{Keywords:}\enspace knowledge production; scientometrics; artificial intelligence; OpenAlex; document clustering; citation analysis
+			\end{minipage}
+		\end{center}
+		\vspace{1.8em}
+	}]
 	
-	\maketitle
-	\thispagestyle{empty}
-	
-	\begin{center}
-		{\footnotesize
-			$^{1}$Computational Humanities, Faculty of Mathematics and Information Science, University of Leipzig, Germany\\[0.3em]
-			Corresponding author: \href{mailto:julius.pfundstein@gmail.com}{julius.pfundstein@gmail.com}
-		}
-	\end{center}
-	
-	\vspace{1em}
-	
-	\begin{abstract}
-		\noindent This study maps the contemporary landscape of artificial intelligence (AI) research and the relative impact of its three leading actors --- China, the United States, and the EU-27 --- within it. Drawing on metadata for 1,986,659 AI-related publications (2020--2025) retrieved from OpenAlex, AI subdisciplines are identified through a semi-supervised, hierarchical topic-modeling pipeline that pairs high-granularity K-Means clustering of SPECTER embeddings with expert consolidation across three levels of granularity. The resulting taxonomy comprises 5 domains, 31 fields, and 106 research fronts, and is externally validated through an LLM-based document-intrusion test. Research impact is operationalized as the fractional citation sum and decomposed across these subdisciplines for the three blocs. The landscape exhibits a methodological computer-science core encircled by more specialized application domains, and a marked divergence between scholarly volume and public salience: governance and ethics account for only 2.7\% of publications. Together the three blocs hold 58.9\% of publications and 63.5\% of citations, yet their profiles differ sharply. China leads in computer science and engineering --- notably computer vision, control systems, and robotics --- but trails in the social and health sciences. The United States leads in health science and in legacy fields (natural language processing, machine learning, neuroscience) while lagging in engineering and natural science. The EU-27 is the most balanced bloc, leading the social sciences with the fewest disciplinary blind spots.
-	\end{abstract}
-	
-	\vspace{1em}
-	
-	\begin{center}
-		\textbf{Keywords:} Scientometrics, Artificial Intelligence, OpenAlex, Topic Modeling, Citation Analysis
-	\end{center}
-	
-\vspace{1em}
-
-\pagenumbering{arabic}
-\setcounter{page}{1}
-
-% --- Table of contents (single-column, on the first page) ---
-\begingroup
-\renewcommand{\contentsname}{\normalfont\large\bfseries Contents}
-\setcounter{tocdepth}{2}   % show sections + subsections; use 3 to include subsubsections, 1 for sections only
-\tableofcontents
-\endgroup
-\vspace{1em}
-
-\twocolumn
-	
+	% ===================================================================
 	\section{Introduction}
+	\label{sec:introduction}
+	% ===================================================================
 	
-	In 2025, artificial intelligence (AI) is widely expected to reshape large parts of the economy, society, and politics, and decision-makers across the globe are investing heavily in domestic AI capacity. Beyond its economic relevance, AI has become a security-policy concern: autonomous systems operate on the front lines \cite{onderco2025aifrontierNATO}, AI is used both to erect and to breach digital defenses \cite{salem2024aicybersecurityreview, vance2023geopolitical}, and military planning is increasingly optimized through AI-based simulation \cite{basuchoudhary2025aiwarfare}. Virtually every government with regional or global ambitions has by now articulated a national AI strategy \cite{sabouri2024newgeopolitics}.
+	The three largest research systems, China, the United States, and the European Union, have built up their AI research along different paths. China's research system has expanded faster than any other since the 1990s \parencite{zhou2006emergence,xie2014china,marginson2022all}, and its 2017 development plan made world leadership in AI by 2030 an explicit goal \parencite{roberts2021chinese}. In the United States, a growing share of frontier AI research takes place in private firms, which control much of the computing power, data, and talent the field depends on \parencite{ahmed2023growing}. The EU-27 brings together 27 national research systems under a common framework that has put the regulation of AI at its center \parencite{balcioglu2025turning}. \textcite{bradford2023digital} describes the three paths as state-driven, market-driven, and rights-driven models of governing digital technology. The systems are not independent of each other. Collaboration between US and Chinese scientists has come under political pressure \parencite{marginson2022all}, and US investigations into researchers' ties with China have coincided with lower productivity among US scientists who had worked with Chinese peers \parencite{jia2024impact}. At the same time, dozens of countries have published national AI strategies since 2017 \parencite{fatima2020national,radu2021steering}, and the funding programs that implement them act on specific fields of research. Comparing research systems therefore requires more than a total: it requires knowing how a system's research impact is distributed across the parts of AI research.
 	
-	This shared recognition of strategic importance coincides with distinct development paths shaped by regulatory philosophy \cite{wang2025artificial}, the capacity of venture capital \cite{montanaro2024venture}, and access to compute \cite{lehdonvirta2025compute}, cheap electricity \cite{lin2024exploding}, and rare-earth inputs \cite{fan2023geopolitics}. As of 2025, the US leads in frontier-model benchmarks and AI market capitalization \cite{sastry2024computing}; China couples a centralized strategic vision with the industrial diffusion of open-source models \cite{khanal2024development}; and the EU pursues a normative, regulation-first path under the AI Act \cite{balcioglu2025turning}.
+	Answering that question requires indicators, and choosing them is not straightforward. Candidate measures of AI capacity include computing power \parencite{lehdonvirta2024compute}, energy supply \parencite{lin2024exploding}, venture capital \parencite{montanaro2024venture}, patents and benchmark results \parencite{maslej2025artificial}, and talent \parencite{ozkaya2023analysis}. Each captures something real. But most are hard to compare across countries, and combining them into one index requires weights that are difficult to defend. Publication data avoid part of this problem. Researchers in all major research systems compete for attention in a shared set of international journals and conferences, so bibliographic databases record their output in a common format \parencite{machacek2021globalization}. Publications also reflect more than academic activity: universities train the people and produce the knowledge that domestic industry draws on \parencite{brekke2021university}, and scientific and technological knowledge reinforce each other \parencite{szczygielski2024mutual}. Scientometrics has long compared research systems by their share of the world's citations, from early studies of the scientific impact of nations \parencite{may1997scientific,king2004scientific} to work tracing how China's rise changed the world science system \parencite{zhou2006emergence,xie2014china,leydesdorff2014european}.
 	
-	Many indicators could in principle approximate the global distribution of AI capacity --- compute, talent, benchmarks, patents, R\&D spending \cite{ozkaya2023analysis} --- but assembling internationally comparable measures across all of them, and defending a single mode of aggregation, is impractical. This study instead draws on scientometrics, which documents publicly accessible scientific output. Because researchers and their institutions compete for academic attention within shared international standards \cite{machacek2021globalization}, scientific knowledge graphs (SKGs) are broadly available and internationally comparable. Research capacity is both a catalyst and a proxy for technological advancement: it supplies a talent pool and standards to domestic industry \cite{brekke2021university} while itself reflecting a country's more fundamental capacity to build effective research regimes \cite{szczygielski2024mutual}.
+	Most bibliometric comparisons of national AI research, however, treat AI as a single field. They count a country's AI publications and citations and compare the totals. By these counts, China now publishes more AI papers than any other country, while the United States still leads on several measures of quality \parencite{almarzouqi2024comparative,min2026has}. The difficulty is that AI is no longer one field. AI methods are used in nearly every area of research \parencite{hajkowicz2023artificial,gao2024quantifying}, to the point that economists describe AI as a general method of invention \parencite{bianchini2022artificial,crafts2021artificial}. A paper that applies convolutional networks to breast-cancer screening, a paper on fault detection in power grids, and a paper on transformer architectures all count as AI research. Yet they come from different research communities, with different funders and different routes to application. A national total that adds them up hides where a country's strength lies. Two countries with the same share of AI citations can have very different profiles, one built on method development, the other on medical applications. For understanding a research system, the composition of its output often reveals more than its volume, because a system’s capacity is built in specific fields, by research communities with their own training paths, venues, and citation practices, rather than in AI as a whole.
 	
-	Prior scientometric work has mapped AI research extensively. China was found to overtake the US in AI publications in 2007 \cite{almarzouqi2024comparative} and Europe in 2017 \cite{hellwig2019ai}, and the US in received citations by 2015 \cite{almarzouqi2024comparative}; per-publication metrics instead favor smaller, affluent systems such as Singapore, Switzerland, and Hong Kong \cite{almarzouqi2024comparative}. Subdiscipline-level studies have identified national specializations --- China in face and image recognition and automated vehicles, the US in machine learning and probabilistic reasoning, Europe in robotics and software services \cite{righi2020ai, yu2023discovering}. Yet existing work shares recurring limitations: (i) outdated corpora that miss recent dynamics \cite{niu2016global}; (ii) geographic bias from proprietary SKGs such as Scopus and Web of Science \cite{almarzouqi2024comparative, ozkaya2023analysis, hellwig2019ai}; (iii) a unified-domain view that obscures AI's heterogeneous subdisciplines \cite{almarzouqi2024comparative, cao2020international, alshebli2022beijing}; (iv) a narrow application focus \cite{schmallenbach2024global, mariani2023artificial}; (v) author- or institution-level framing over systematic national assessment \cite{niu2016global, klinger2020narrowing}; and (vi) per-paper metrics that overweight affluent micro-states \cite{righi2020ai}.
+	Seeing these profiles requires a classification of AI research that is fine enough to separate research fronts and recent enough to include fields that barely existed a few years ago. The classifications that bibliographic databases supply do not meet both conditions. Journal-based subject categories assign papers by venue, and some journals sit in categories to which they are only weakly connected by citations \parencite{wang2016large}. In addition, the fields and subfields of OpenAlex's topic classification have been judged too broad for fine-grained maps of science, and its topics not yet mature \parencite{haunschild2024use}. Maps of the AI field itself exist, but they rely on data that end in 2020 or earlier \parencite{righi2020ai,gargiulo2022cartography}. As a result, we do not know how the leading research systems are positioned within the internal structure of current AI research.
 	
-	This study addresses these gaps with a contemporary, low-bias corpus and a deliberately focused comparison. Rather than ranking the research performance of individual nations, it concentrates on the three actors that dominate the global AI debate --- China, the United States, and the EU-27 (hereafter \textit{blocs}) --- and asks how each is positioned within the internal structure of the field. The approach proceeds in two stages: it first derives a data-driven taxonomy of AI subdisciplines, and then measures the three blocs' relative citation impact within that taxonomy. The study therefore makes two contributions: a hierarchical, data-driven taxonomy of AI research; and a decomposition of the blocs' citation impact across the subdisciplines at three levels of granularity. Two research questions follow:
+	This paper addresses that gap for the three largest producers of AI research: China, the United States, and the 27 member states of the European Union (EU-27), which we call \textit{blocs}. Together they account for 57.4\% of the AI publications in our corpus and 62.3\% of their citations. Our aim is not to rank them. It is to describe how each bloc's research impact is distributed across the parts of AI research. We ask two questions:
 	
-	\vspace{1em}
-	\rule{\linewidth}{0.4pt}
+	\begin{description}
+		\item[RQ1] Which subdisciplines structure the contemporary global AI research landscape?
+		\item[RQ2] How are the three blocs - China, the US, and the EU-27 - positioned within these subdisciplines in terms of their relative research impact?
+	\end{description}
 	
-	\begin{enumerate}
-		\item[\textbf{RQ1}]\hspace*{2em}\parbox[t]{\dimexpr\linewidth-2em}{
-			\textit{Which subdisciplines structure the contemporary AI research landscape?}
-		}
-		\vspace{0.5em}
-		
-		\item[\textbf{RQ2}]\hspace*{2em}\parbox[t]{\dimexpr\linewidth-2em}{
-			\textit{How are the three blocs --- China, the US, and the EU-27 --- positioned within these subdisciplines in terms of their relative research impact?}
-		}
-	\end{enumerate}
+	To answer them, we analyze metadata for 1,986,659 AI publications from OpenAlex \parencite{openalex2023}, published between 2020 and 2024 and retrieved in July 2025. The data are a cross-section, not a time series. For RQ1, we build a three-level taxonomy with hierarchical, semi-supervised document clustering: an algorithm splits the corpus into many small clusters, and one of the authors merges them into interpretable units, at each of three levels. A document-intrusion experiment, in which a language model has to spot the one document that does not belong to a cluster, tests the result. For RQ2, we measure each bloc's share of fractional citations within every cluster.
 	
-	\vspace{0.25em}
-	\rule{\linewidth}{0.4pt}
-	\vspace{1em}
+	The paper makes two contributions. The first is a data-driven and externally validated taxonomy of AI research with 5 domains, 31 fields, and 106 research fronts, published together with the labeled corpus. The second is a decomposition of the three blocs' citation shares across this taxonomy, which shows that similar aggregate shares conceal sharply different profiles. We also discuss what these profiles mean for comparing national AI capacity.
 	
-	To answer them, this study analyzes metadata for 1,986,659 AI publications (2020--2025) retrieved from OpenAlex \cite{openalex2023}. The dataset is a cross-sectional snapshot rather than a longitudinal series, and supports no historical time-series analysis. Subdisciplines are identified with a semi-supervised, hierarchical topic model: because no natural number of clusters emerges from the data, an algorithm first over-segments the corpus and a human expert then consolidates the result into interpretable units, iterated across three levels of granularity. The blocs' relative impact is measured with fractional citation sums --- chosen for robustness over harder-to-justify network-centrality abstractions --- examined first across institutions and then as entity-level aggregates. The taxonomy itself is validated with an LLM-based document-intrusion test.
+	We first review the literature along the two research questions, on how AI research can be delineated and divided and on how research systems can be compared within it (Section~\ref{sec:literature}), then describe the corpus and the clustering procedure (Sections~\ref{sec:data} and~\ref{sec:methods}). The findings follow the two research questions (Section~\ref{sec:findings}), and we close by discussing what they imply for comparing national AI research and where their limits lie (Sections~\ref{sec:discussion} to~\ref{sec:conclusion}).
 	
+	% ===================================================================
+	\section{Previous research}
+	\label{sec:literature}
+	% ===================================================================
+	
+	Our two research questions build on each other. RQ1 asks for a current, fine-grained, and validated taxonomy of AI research that covers both its methodological core and its applications. RQ2 asks how the citation shares of China, the United States, and the EU-27 are distributed across that taxonomy. We review the literature in the same order: first the work on delineating and dividing AI research, then the work on comparing research systems within it. One finding links the two literatures and motivates the order of our questions: what a comparison of research systems shows depends on how the field underneath it is delineated.
+	
+	\subsection{Delineating and dividing AI research}
+	\label{sec:lit_taxonomy}
+	
+	A taxonomy of AI research requires two decisions: what counts as AI research, and how to divide it. Both are instances of the general problem of field delineation in bibliometrics \parencite{zitt2019bibliometric}, and both are harder for AI than for most fields.
+	
+	The first decision concerns the outer boundary of the field. It has been drawn with keyword queries and with classifiers. Keyword queries start from a seed of clearly relevant publications and expand it with the terms these publications use \parencite{baruffaldi2020identifying}. \textcite{liu2021tracking} built such a strategy from the term ``artificial intelligence'' and 19 specialized journals, expanded it with screened keywords, and compared it with three published strategies on the same Web of Science data: for 2010--2020, the four strategies retrieved between about 13,000 and 532,000 articles. \textcite{sachini2022ai} trained a BERT classifier on AI publications. It classified a substantial part of the literature in computer science, decision sciences, and mathematics as AI-related, and in some cases papers in medicine and psychology as well, although journal-based classification assigns them elsewhere. AI therefore has no natural boundary, and every AI corpus reflects the choices behind its query rather than a given set of papers waiting to be found.
+	
+	The second decision concerns the internal structure of the field, and here AI poses a specific difficulty: it mixes work that develops methods with work that applies them in a domain. \textcite{gargiulo2022cartography} reconstructed 15 AI specialties from the co-occurrence of AI terms in publications and found that collaborations between those who develop AI and those who apply it are rare. \textcite{klinger2021deep} traced the evolution and geography of deep learning as a general purpose technology, and \textcite{hajkowicz2023artificial} found AI-related publications in more than 98\% of 333 research fields. A classification that recognizes only method specialties would miss most of this applied work; a classification that recognizes only application domains would miss the method core. Existing divisions of AI rarely cover both. Studies of national specialization use a small set of broad categories \parencite{righi2020ai,yu2023discovering}, others focus on a single application area such as the life sciences \parencite{schmallenbach2024global} or innovation research \parencite{mariani2023artificial}, and several rely on data that end years before the current wave of AI research \parencite{niu2016global,righi2020ai}.
+	
+	Scientometrics offers two broad routes to building such a division. Citation-based approaches cluster publications by their citation relations \parencite{waltman2012new} and can be tuned to identify research fronts in the sense of \textcite{price1965networks}. Text-based approaches group publications by the similarity of their titles and abstracts. For large collections, the two produce considerably different clusters that appear to capture complementary aspects of relatedness \parencite{boyack2020comparison}. Either route forces the analyst to choose a granularity. \textcite{sjogarde2018granularity} show that this choice can be grounded empirically for a given purpose, but no level is correct in general, and statistical criteria for the right number of clusters are often unstable \parencite{bulatov2024determination}. Classifications of research also encode social conventions about how knowledge is divided \parencite{stichweh_1992_sociology_disciplines}, and several valid classifications of the same body of work can coexist \parencite{rafols_2025_multiple_ontologies}.
+	
+	Two consequences follow for RQ1. First, a taxonomy of AI research cannot be judged by whether it recovers one true structure, but only by whether its units are coherent and useful for the question at hand, which makes explicit validation necessary. Second, the literature offers no taxonomy that is at once current, fine-grained, validated, and inclusive of both the method core and the applications of AI. RQ1 addresses this gap.
+	
+	\subsection{Comparing research systems within AI}
+	\label{sec:lit_comparison}
+	
+	China, Europe, and the United States lead AI research, but in different ways. China publishes the most. In 2023 it produced 23.2\% of all AI publications, compared with 15.2\% for the EU-44 and 9.2\% for the United States, in a field whose annual output more than doubled from about 102,000 publications in 2013 to more than 242,000 \parencite{maslej2025artificial}. Whether China also leads in impact is less clear, and the answer depends on the measure. Attributing papers to the last author's country (in AI, typically the senior researcher heading supervision and funding), \textcite{alshebli2024china} find that between 2000 and 2021 the United States produced 43.9\% of the world's most-cited 1\% of AI papers and China 10.9\%, with China's share rising over time. A comparison of output, citation impact, and citation sources finds the two countries similar, although US papers are cited more often on average and the United States draws a larger share of its citations from abroad \parencite{min2026has}. Per publication, small, well-funded research systems perform best \parencite{almarzouqi2024comparative}. Much of this disagreement reflects what is counted: total output, total citations, the most-cited papers, or citations per paper.
+	
+	These results are sensitive to technical choices, and the most consequential of them is the delineation of fields discussed above. Using field-normalized indicators, \textcite{leydesdorff2014european} found that the United States remained far ahead in the top 1\% of most-cited publications, that China dropped out of the competition for this elite layer, and that the EU28 increased its share among top-cited papers between 2000 and 2010. Eight years later, \textcite{wagner2022discussion} reported that China had overtaken the United States in its participation in the top 1\% in 2019. Part of the difference is time, but Wagner and colleagues attribute most of it to field normalization, that is, to how journals are grouped into fields that then serve as the baseline for comparison. When a field is delineated differently, the expected citation rate changes, and so does the ranking. The choice of database adds another layer: most country comparisons of AI rely on Scopus or Web of Science \parencite{hellwig2019ai,almarzouqi2024comparative}, whose journal coverage is distributed very unevenly across world regions \parencite{Maddi2025GeographicalDisciplinaryCoverage}. A further limit applies to all publication-based comparisons. Industry increasingly controls the computing power, large datasets, and skilled researchers that modern AI depends on \parencite{ahmed2023growing}; company-authored AI papers receive more citations than purely academic ones \parencite{farber2024analyzing}; and nearly 90\% of the notable AI models released in 2024 came from industry \parencite{maslej2025artificial}. Publication data record this work only when firms publish it, so they capture a country's academic AI research more fully than its industrial research.
+	
+	Comparisons below the level of AI as a whole remain scarce. Earlier work points to a division of labor: China is strongest in visual and autonomous systems \parencite{righi2020ai,yu2023discovering}, the United States in software and language, and Europe in robotics and automation \parencite{righi2020ai}. Other studies compare different units, such as collaboration networks \parencite{hu2020global,alshebli2022beijing,cao2020international,vinayak2023signatures} or authors and institutions \parencite{niu2016global,klinger2020narrowing}. None decomposes the positions of the leading blocs across the full range of current AI research.
+	
+	Such a decomposition requires three measurement decisions. The first concerns what citations measure. They reflect scientific impact and relevance, but not other dimensions of quality such as originality or societal value \parencite{aksnes2019citations}, and they result from citing practices that range from acknowledgement to criticism \parencite{bornmann2008what}. The Leiden Manifesto adds that quantitative evaluation should support, not replace, expert assessment \parencite{hicks2015bibliometrics}. We therefore read citation shares as a measure of how much of a field's scholarly attention goes to work from a given research system. The second decision concerns co-authored papers. Full counting credits each country with the whole paper, which favors systems that collaborate a lot internationally. Fractional counting divides the credit among the contributors and is recommended for comparisons between countries \parencite{waltman2015field}. The literature distinguishes many variants, depending on how the credit is divided and to which units it is assigned \parencite{gauffriau2007publication}, as well as intermediate forms between full and fractional counting \parencite{sivertsen2019measuring}. The third decision concerns normalization and size. Field-normalized indicators compare each paper with the average paper of its field and year. This removes differences in citation practice between fields, but makes the result depend on the classification used for the baseline, and classifications with very specific fields have been judged unsuitable for this purpose \parencite{waltman2019field}. This rules out normalizing against a fine-grained taxonomy of the kind RQ1 asks for. Size-independent indicators such as citations per paper favor small, well-resourced systems \parencite{almarzouqi2024comparative}. Size-dependent indicators, such as a system's share of all citations in a field, describe the weight the system carries there \parencite{waltman2016review}. Because such shares sum to one within each field, they can be compared across fields that differ in size and citation practice, which makes them suitable for decomposing a bloc's position across a taxonomy.
+	
+	For RQ2, this literature establishes that aggregate rankings of national AI research depend on delineation, database, counting, and normalization, and that fractional, size-dependent citation shares are the appropriate measure for comparing large blocs within fine-grained fields. What it does not provide is a decomposition of the leading blocs' citation shares across a taxonomy that covers the full range of current AI research. RQ2 addresses this gap, building on the taxonomy from RQ1. The next two sections describe how we built the corpus, the taxonomy, and the citation measure.
+	
+	% ===================================================================
 	\section{Data}
+	\label{sec:data}
+	% ===================================================================
 	
-	The data-collection stage shapes all downstream analysis. This section first compares candidate SKGs against the requirements derived from the research questions, then describes the extraction pipeline and quality control used to build the corpus.
+	Our research questions call for a large, current, and globally representative corpus of AI publications. The taxonomy in RQ1 requires abstracts for every paper, and the citation shares in RQ2 require affiliation and citation data that are complete across all three blocs. Existing AI corpora meet some of these requirements but not all of them, since they are restricted to particular databases, publication types, or periods. We therefore built our own corpus. This section compares candidate databases against these requirements and then describes how we assembled and cleaned the data.
 	
-	\subsection{SKG Selection}
-	\label{skg_selection}
+	\subsection{Choice of bibliographic database}
+	\label{sec:database}
 	
-	Three SKGs can credibly claim broad, up-to-date coverage across regions and fields: Clarivate's \textit{Web of Science}, Elsevier's \textit{Scopus}, and OurResearch's \textit{OpenAlex}. For this study, the SKG must (i) record abstracts for subdiscipline identification, (ii) allow attribution of publications to a country of origin, and (iii) supply at least one indicator of research impact. Beyond these, the corpus must be comprehensive and exhibit minimal regional bias.
+	Several bibliographic databases offer broad and current coverage across regions and fields. The most prominent are Clarivate's \textit{Web of Science}, Elsevier's \textit{Scopus}, Digital Science's \textit{Dimensions}, and OurResearch's \textit{OpenAlex}, the open successor to the discontinued \textit{Microsoft Academic Graph} \parencite{visser2021large}. Other sources, such as \textit{Semantic Scholar}, \textit{Crossref}, and \textit{Google Scholar}, are either less complete in the metadata we need or do not permit bulk access. Our research questions impose three requirements on a database. It must record abstracts, because we identify subfields from text. It must allow publications to be attributed to countries through their authors' affiliations. And it must provide at least one indicator of research impact. Beyond these requirements, the corpus should be as complete as possible and as free as possible of regional bias, because we compare research systems in different parts of the world. We compare three databases against these criteria. Web of Science and Scopus represent selective, curated indexing and underlie most existing country comparisons of AI research \parencite{hellwig2019ai,almarzouqi2024comparative}, so they serve as the established reference points. OpenAlex represents inclusive, open indexing. Dimensions also indexes inclusively, but under a proprietary licence, and therefore adds no distinct contrast to the comparison.
 	
-	Table~\ref{tab:skg_comparison} compares the three against these requirements. OpenAlex aligns most closely with the analytical goals. With 243.1 million indexed publications it covers roughly four times as much as the proprietary databases, and it exhibits a markedly smaller geographic skew: comparing each region's share in the SKG against its share in the \textit{Directory of Open Access Scholarly Resources} (ROAD), Scopus and Web of Science strongly underrepresent Asia (coverage index below 0.4) and overrepresent Europe (above 1.6), whereas OpenAlex is close to parity across the AI hotspots Asia (0.97), Europe (1.01), and North America (1.03), with residual distortion for Africa (0.77) and Oceania (1.46) \cite{Maddi2025GeographicalDisciplinaryCoverage}.
+	Table~\ref{tab:skg_comparison} compares the three databases against these requirements. In snapshots from 2023, OpenAlex contained 243.1 million records, more than three times as many as the Web of Science (71.3 million) or Scopus (65.6 million), although the databases differ in the document types and periods they include \parencite{culbert2025reference}. Its geographic skew is also much smaller. In Web of Science and Scopus, a region's share of journals ranges from about a third of its share in a reference directory of open access journals to three or four times that share; in OpenAlex, the range is 0.77 to 1.46 \parencite{Maddi2025GeographicalDisciplinaryCoverage}. The price is metadata completeness. For publications in African-based journals, with data from 2023, affiliations were recorded for 61\% of OpenAlex records against 95\% in both Web of Science and Scopus, and references for 45\% against 89\% and 95\% \parencite{alonsoalvarez2025coverage}. Across all journal articles in a 2022 snapshot, 62\% of OpenAlex records lacked complete institutional information \parencite{zhang2024missing}.
 	
-	\begin{table*}[t]
+	The broader coverage follows from OpenAlex's open and inclusive indexing strategy, which avoids the selective curation that favors established publishers and higher-income regions \parencite{Maddi2025GeographicalDisciplinaryCoverage}, and from its inclusion of document types beyond journal articles, such as preprints, conference proceedings, books, datasets, and theses \parencite{openalex2023,zhang2024missing}. Metadata quality in OpenAlex has improved over time, so a corpus of recent publications is likely to be more complete than the figures above suggest. Weighing these points, we chose OpenAlex as the database that best meets our requirements: its coverage and low regional bias matter most for a comparison of research systems across world regions, and its gaps in metadata can be addressed by restricting the corpus to records with the fields we need. OpenAlex has a further advantage. Its data are openly available under a CC0 licence, so the corpus underlying our analysis can be shared, and others can inspect, reproduce, and extend our results without access to a commercial database.
+	
+	\begin{table}[tb]
 		\centering
 		\begin{threeparttable}
-			\caption{Comparison of Major Scientific Knowledge Graphs against Research Requirements\\\vspace{1.5em}}
+			\caption{Comparison of major bibliographic databases against the requirements of this study}
 			\label{tab:skg_comparison}
 			\small
-			{\color{darkgray}
-				\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}l c c c >{\raggedright\arraybackslash}p{3cm}}
-					\textbf{Requirement} & \textbf{Web of Science} & \textbf{Scopus} & \textbf{OpenAlex} & \textbf{Data Source}\vspace{0.5em}\\
-					\hline
-					\noalign{\vskip 0.5em}
-					\multicolumn{5}{l}{\textbf{dataset coverage}}\\[0.5em]
-					total publications (millions)  & 71.3 & 65.6 & 243.1 & \cite{Culbert2025ReferenceCoverageAnalysis}\\
-					geographic skew$^{a}$   & 0.38--3.39 & 0.31--4.3 & 0.77--1.46 & \cite{Maddi2025GeographicalDisciplinaryCoverage}\vspace{0.5em}\\
-					\hline
-					\noalign{\vskip 0.6em}
-					\multicolumn{5}{l}{\textbf{metadata completeness}}\\[0.5em]
-					country of origin       & 0.95 & 0.99 & 0.56 & \cite{alperin2024analysis} \\
-					abstract                & 0.92 & 0.92 & 0.87 & \cite{Maddi2025GeographicalDisciplinaryCoverage,Culbert2025ReferenceCoverageAnalysis} \\
-					outgoing references     & 0.99 & 0.84 & 0.33 & \cite{Culbert2025ReferenceCoverageAnalysis,alperin2024analysis}\vspace{0.5em}\\
-					\hline
-				\end{tabular*}
-			}
-			\vspace{1em}
+			\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}l c c c@{}}
+				\toprule
+				& WoS & Scopus & OpenAlex \\
+				\midrule
+				\multicolumn{4}{@{}l}{\textit{Coverage}}\\
+				\quad Records (millions)\tnote{a} & 71.3 & 65.6 & 243.1 \\
+				\quad Geographic skew\tnote{b} & 0.31--4.30 & 0.38--3.39 & 0.77--1.46 \\
+				\addlinespace
+				\multicolumn{4}{@{}l}{\textit{Metadata Completeness}\tnote{c}}\\
+				\quad Affiliation (Country) & 0.95 & 0.95 & 0.61 \\
+				\quad Abstract & 0.87 & 0.90 & 0.72 \\
+				\quad Outgoing references & 0.95 & 0.89 & 0.45 \\
+				\bottomrule
+			\end{tabular*}
 			\begin{tablenotes}[flushleft]
-				\footnotesize\itshape\color{darkgray}
-				\item[$^{a}$] Geographic skew is measured as a coverage index: the share of journals from a region in a database relative to that region's global share in the ROAD reference database. Values above 1 indicate overrepresentation, values below 1 underrepresentation.
+				\footnotesize
+				\item \textit{Note.} WoS = Web of Science.
+				\item[a] \textcite{culbert2025reference}, snapshots from 2023.
+				\item[b] \textcite{Maddi2025GeographicalDisciplinaryCoverage}, data from 2023--2024. A region's share of journals in the database divided by its share in the \textit{Directory of Open Access Scholarly Resources}; values above 1 indicate overrepresentation. The range runs from the least to the most covered region.
+				\item[c] \textcite{alonsoalvarez2025coverage}, publications in African-based journals, 1996--2022, data from 2023.
 			\end{tablenotes}
 		\end{threeparttable}
-		\vspace{1.5em}
-	\end{table*}
+	\end{table}
 	
-	This inclusivity follows from OpenAlex's broad indexing strategy, which reduces structural bias toward elite institutions \cite{openalex2023}, and is reinforced by its inclusion of preprints, proceedings, datasets, reviews, and dissertations \cite{weimer2023quantification}. The trade-off is lower metadata completeness than the curated databases, though completeness has improved over time and the contemporary subset may perform better than Table~\ref{tab:skg_comparison} suggests. OpenAlex also offers its own thematic taxonomy, but cross-database studies report insufficient granularity \cite{stansfield2025analyzing} and limited classification stability \cite{haunschild2024use} for application-oriented research --- a particular problem in the fast-evolving, interdisciplinary AI domain. For this reason the present study builds its own hierarchical topic model.
+	\subsection{Building the corpus}
+	\label{sec:extraction}
 	
-	\subsection{Dataset Extraction Pipeline}
-	\label{dataset_extraction_pipeline_chapter}
+	With OpenAlex as the source, the next question is how to retrieve the AI research it contains. The obvious approach is to search for the phrase \textit{artificial intelligence}. Searched in OpenAlex titles, abstracts, and, where available, full texts, this query returns about 1,077,000 publications for 2020--2024. Many AI papers, however, never use the phrase. They describe a specific method or application, for instance a convolutional network for tumor segmentation, without calling themselves AI research. A query for the umbrella term therefore captures the part of the field that labels itself as AI and misses much of the rest.
 	
-	A naive query for the phrase \textit{artificial intelligence} in titles and abstracts retrieves only about 1,077,000 publications for 2020--2025 --- far short of what the scale of OpenAlex and prior corpora would imply (\citeauthor{baruffaldi2020identifying} identified roughly 1.7 million AI publications for 2002--2019 in Scopus \cite{baruffaldi2020identifying}; \citeauthor{gargiulo2022cartography} reported 3.39 million in Web of Science for 1990--2020 \cite{gargiulo2022cartography}). Many AI papers address specific methods or applications without self-labeling, so a comprehensive keyword list is required \cite{baruffaldi2020identifying}.
+	Studies that delineate AI address this by building their queries from the vocabulary the field itself uses, starting from clearly relevant publications and expanding them with the terms these contain \parencite{baruffaldi2020identifying,liu2021tracking}. For a field that changes as quickly as AI, such a list ages fast: terms that are central to current research may have been rare a few years earlier, and \textcite{liu2021tracking} expect their own strategy to miss terms that emerge later. We therefore built a new list from recent literature, in four steps. First, we assembled an initial list of 24 AI subdisciplines: the 15 specialties identified by \textcite{gargiulo2022cartography}, plus nine that have gained prominence since 2020, among them language and foundation models, federated learning, and AI safety and alignment. Second, we collected survey papers published in 2019 or later for each subdiscipline, 125 in total, and removed reference lists, cover pages, and other boilerplate. Survey papers suit this purpose because they try to cover a field's current research fronts in vocabulary that outsiders can follow. Third, we extracted candidate terms from each survey with KeyBERT and the all-MiniLM-L6-v2 Sentence-BERT model \parencite{reimers2019sentencebert}, separately for single words, two-word phrases, and three- and four-word phrases. After removing duplicates, 1,784 candidates remained. Fourth, we curated these candidates by hand. A term had to be specific to AI, so generic terms such as \textit{software} or \textit{optimization} were dropped. It had to add information beyond a shorter term already on the list, so \textit{neural network architecture} was dropped in favor of \textit{neural network}. And it had to return at least ten works in OpenAlex. This left 279 search terms. Appendix Figure~\ref{fig:search_terms} lists all of them with the number of works each retrieves on its own.
 	
-	Search terms are restricted to English. OpenAlex translates neither metadata nor queries, so English terms retrieve only exact lemmatized matches; non-English terms return very few documents (for the ten most-spoken languages after English, only 25,257 documents for the relevant translations of \textit{artificial intelligence}). Crucially for this study, citation rather than publication volume is the object of analysis, and about 98.89\% of outgoing references in OpenAlex point to English-language documents \cite{pradier2025smack}, so the language filter sacrifices roughly 1.11\% of citations. Conceptually, English is also the arena within which publications compete for the same attention; non-English work largely competes in parallel venues, so the filter mainly excludes non-competing publications --- a further instance of scientometrics' well-documented Anglophone bias.
+	Because the surveys are written in English, so are the terms, and the query retrieves publications whose titles, abstracts, or full texts contain English terms. OpenAlex translates neither metadata nor queries, so reaching other languages would require translating every term. We did not do so, because little would be gained: the translations of \textit{artificial intelligence} into the ten most-spoken languages after English together return only 25,257 documents. The loss is smaller still for citations, which our analysis relies on. Since 98.89\% of the references in scholarly articles published between 1990 and 2023 point to English-language documents \parencite{pradier2025smack}, an English-only corpus misses only about 1.11\% of citations. Publications in other languages largely circulate in their own venues and citation networks, so leaving them out removes little of the citation flow we measure. The restriction nonetheless reproduces the English-language bias of citation data \parencite{dibitetti2017publish}.
 	
-	The keyword list was built in stages. An initial taxonomy of 24 AI subdisciplines was assembled from the 15 principal subfields of \citeauthor{gargiulo2022cartography} \cite{gargiulo2022cartography} plus nine subdisciplines that gained prominence after 2020. For each, survey papers from 2019 onward were collected (125 in total) and cleaned of boilerplate. A multi-ngram KeyBERT workflow using the all-MiniLM-L6-v2 Sentence-BERT model \cite{reimers2019sentencebert} extracted unigram, bigram, and trigram/four-gram candidates per paper, yielding 1,784 unique candidates after deduplication. Manual curation then applied three criteria --- domain exclusivity, non-redundancy by subsumption, and a minimum of ten retrievable works --- leaving 279 search terms.
+	We queried OpenAlex's search index, which covers titles, abstracts, and, where available, full texts, with a Boolean OR over the 279 terms, restricted to publications from 2020 to 2024. Because the full list exceeds the maximum length of a query, we ran it in batches and then merged and deduplicated the results. This yielded 3,346,705 publications, about three times as many as the phrase \textit{artificial intelligence} retrieves on its own. We stored them in a SQLite database. We downloaded the data in July 2025, so the youngest publications had about six months to accumulate citations. This short window affects every citation-based result in this paper, and we return to it in Section~\ref{sec:limitations}.
 	
-	Retrieval used a Boolean-OR query over the 279 terms against OpenAlex's full-text index (titles and abstracts) for 2020--2024, executed in batches and deduplicated. The result was 3,346,705 publications, stored in a SQLite database. Downloading took place in July 2025, so the youngest records were about six months old at retrieval --- far short of the typical citation-accumulation peak, a constraint that conditions every citation-based result below.
+	\subsection{Quality control}
+	\label{sec:quality}
 	
-	\subsection{Quality Control and Postprocessing}
-	\label{quality_control_and_postprocessing}
+	The retrieved records still had to meet the three requirements set out in Section~\ref{sec:database}: an abstract the clustering could work with, authors whose affiliations allow the work to be attributed to countries, and an indicator of research impact. Not every record in OpenAlex meets all three, so we checked them in turn.
 	
-	Each record must provide an abstract, a country of origin, and at least one impact indicator. Abstracts (recorded for 84.5\% of records) were filtered for English (95.36\% were already English, since even non-English abstracts use English terms extensively) and for length, removing 107,515 records with fewer than 100 or more than 1000 tokens as likely formatting errors. The country of origin is not native to OpenAlex; it was derived from author institutions as a list of country--share tuples summing to one (e.g. \texttt{[("US": 0.75), ("DE": 0.25)]}), available for 64.3\% of records. Inferring it ex post from language, funders, or publishers would introduce unknown biases, so records without an institution-based attribution were removed. For impact, citation counts are complete and outgoing references (76.3\% complete) were retained regardless, since every record carries a citation count.
+	An abstract was available for 84.5\% of records. Nearly all of these, 95.36\%, were in English, as the English search terms would suggest, and we kept only those. Length mattered as well, because it reveals whether the abstract field actually holds an abstract. The further a record departs from the usual length of a summary, the more likely it is that something else has been stored in its place. Very short entries are often a repeated title, a line of publisher boilerplate, or a placeholder; very long ones are often the opening pages of a full text, a table of contents, or several abstracts merged into one record. Such entries describe the paper poorly or not at all, and they also suit the clustering poorly. Our embeddings average over windows of 100 tokens (Section~\ref{sec:clustering}), so a text shorter than one window offers too little to represent, while a very long one spreads its topic across so many windows that the average loses focus. We therefore removed the 107,515 records whose abstracts had fewer than 100 or more than 1,000 tokens.
 	
-	Beyond these three essentials no exclusions were applied; OpenAlex's internal identifiers handle records missing a DOI or title. The final corpus comprises 1,986,659 publications (81.4\% articles, 11.1\% preprints, 3.7\% reviews, 1.7\% peer reviews, 1.6\% book chapters, 0.5\% datasets, 0.2\% dissertations). Because metadata completeness is strongly correlated across fields, filtering also improved the other variables: reference completeness rose from 64.3\% to 92.2\%.
+	OpenAlex does not record which country a publication comes from, so we derived it from the institutions of its authors, as a list of country shares that sum to one. A paper with three authors at US institutions and one at a German institution, for example, receives the shares \texttt{[("US", 0.75), ("DE", 0.25)]}. This rests on two premises: that all authors contribute equally, and that an author's institution indicates the research system behind the work better than funders or publishers would. Shares could be derived for 64.3\% of records. We removed the rest rather than guess their origin from language, funders, or publishers, which would have introduced biases of unknown size.
 	
+	Impact was the least demanding requirement. OpenAlex records a citation count for every publication, and citations received are what our measure uses (Section~\ref{sec:impact_method}). Outgoing references are recorded for only 76.3\% of records, but since we count the citations a paper receives rather than the references it makes, we kept records without them.
+	
+	Beyond these three requirements, we applied no filters. A missing DOI, in particular, was no reason to exclude a record, since OpenAlex gives every publication an identifier of its own. The final corpus contains 1,986,659 publications: 81.4\% articles, 11.1\% preprints, 3.7\% reviews, 1.7\% peer reviews, 1.6\% book chapters, 0.5\% datasets, and 0.2\% dissertations. Because missing metadata tend to occur together, the filtering also raised the completeness of fields we did not filter on. Outgoing references, for example, are recorded for 92.2\% of the final corpus, up from 76.3\% before filtering.
+	
+	% ===================================================================
 	\section{Methods}
+	\label{sec:methods}
+	% ===================================================================
 	
-	The methodological framework has two parts, each aligned with one research question: the internal structure of AI research is mapped with a semi-supervised hierarchical topic model, and the relative research impact of the blocs is measured with the fractional citation sum. Dense SPECTER embeddings capture semantic similarity, while sparse TF-IDF features provide lexical cues; together they guide expert consolidation.
+	With the corpus in place, the two research questions call for two steps. To find out which subdisciplines structure AI research (RQ1), we let an algorithm divide the corpus into many small groups of similar documents, consolidate these groups into a three-level taxonomy, and test whether the resulting units hold together for an independent reader. To see where the three blocs stand within this structure (RQ2), we then ask how much of the scholarly attention in each cluster goes to each of them, measured as their share of fractional citations.
 	
-	\subsection{Hierarchical Topic Modeling}
-	\label{sec:topic_modeling_method}
+	\subsection{Hierarchical, semi-supervised document clustering}
+	\label{sec:clustering}
 	
-	Indicators such as the silhouette score and entropy-based criteria identify no natural number of clusters \textit{k} in the corpus: cohesion keeps improving as \textit{k} grows, with no elbow and only a noisy plateau once a complexity penalty is added. This is consistent with the known instability of data-driven heuristics for \textit{k} \cite{bulatov2024determination} and with the fact that linguistic corpora reflect disciplinary conventions rather than discrete natural boundaries. The pipeline therefore deliberately over-segments and then consolidates, iterated three times. Its steps are as follows.
+	Dividing AI research into subdisciplines is not a measurement problem with a hidden correct answer. We first looked for one in the data by asking which number of clusters, \textit{k}, the embeddings support best. Standard criteria gave no answer. The silhouette score kept improving as \textit{k} grew, without an elbow, and information-theoretic criteria that penalize complexity showed only a noisy plateau. This matches the broader finding that data-driven heuristics for \textit{k} are unstable \parencite{bulatov2024determination}, and it is what Section~\ref{sec:lit_taxonomy} leads us to expect: the boundaries between research fields are conventions that communities have agreed on, not features that the data contain and an algorithm can discover.
 	
-	\textit{Vectorization.} Each document (title concatenated with abstract, no stop-word removal) is encoded with SPECTER, a transformer trained on citation networks \cite{cohan2020specter}. Texts are tokenized into overlapping 100-token windows (stride 50) and the chunk embeddings are averaged into one 768-dimensional vector.
+	What we need is therefore not the one correct partition but a useful and intelligible one, and for that we combine the strengths of two approaches. A clustering algorithm is exhaustive and consistent: it finds every pocket of related work, including small ones that a person would overlook, and it treats all documents alike. A human labeler, in turn, knows which distinctions carry meaning for readers and which are artifacts of the embedding space. We therefore let an algorithm over-segment the corpus, had a person consolidate the result into units that make sense to humans, and repeated both steps at three levels.
 	
-	\textit{Clustering.} Vectors are L2-normalized so Euclidean distance approximates cosine similarity, and partitioned with K-Means. To prevent small but distinctive clusters from being absorbed by larger neighbors --- a loss the human-in-the-loop step could not reverse --- \textit{k} is set deliberately high at 50.
+	This design has a price. A human labeler is not deterministic: another analyst, or the same analyst on another day, would probably draw some boundaries differently. The taxonomy therefore cannot be re-derived from the data alone. To make up for this, Section~\ref{sec:intrusion_method} tests the result against a criterion that does not depend on the labeler. All consolidation decisions were made by one person, the first author, and Section~\ref{sec:limitations} returns to what this means.
 	
-	\textit{Lexical labeling.} A sparse TF-IDF representation is computed per cluster with scikit-learn \cite{pedregosa2011scikit}, with distinctiveness measured against the cluster's hierarchical siblings so that descriptors remain discriminative as the hierarchy descends. The ten highest-scoring terms per cluster serve as provisional descriptors.
+	\paragraph{Vectorization.} We represent each document by its title and abstract, without removing stop words, and encode it with SPECTER, a transformer model trained on citation relations between scientific papers \parencite{cohan2020specter}. Texts are split into overlapping windows of 100 tokens with a stride of 50, and the window embeddings are averaged into one 768-dimensional vector per document.
 	
-	\textit{Expert consolidation.} An interactive UMAP projection of the embedding space, combined with the TF-IDF lexicon, gives the expert (an author) two complementary views --- a map of topology and a lexicon of content. Variations of a coherent field are merged while small distinctive clusters are preserved, producing a deterministic remapping from the 50 algorithmic clusters to expert-defined super-clusters with numeric codes and interpretive names. The names are approximations, not mutually exclusive categories; overlaps are expected.
+	\paragraph{Clustering.} We partition the vectors with K-Means (ten random initializations, fixed seed) and deliberately set \textit{k} far above the number of units we expect to keep. At the first two levels, \textit{k} is 50, for three reasons. First, the risk is asymmetric: two clusters that belong together can be merged later, but a small, distinctive cluster that K-Means has absorbed into a larger neighbor cannot be recovered. Second, the number has to remain within what one person can review. Fifty clusters can each be read with their terms and their position on the map, whereas a much larger \textit{k} would make the consolidation the bottleneck of the procedure. Third, 50 leaves enough room for merging: the five domains correspond to a tenfold over-segmentation, and at every level a consolidated cluster combines roughly eight to ten algorithmic ones. At the third level, the fields are narrower and more homogeneous, so we use \textit{k}\,=\,30, which still exceeds by a factor of three the maximum of ten units we keep in any field.
 	
-	\textit{Hierarchy.} The procedure is repeated within each super-cluster, yielding macro-clusters (single-digit identifiers), meso-clusters (two-digit, inheriting the parent digit), and micro-clusters (three-digit). No cluster is divided into more than ten children.
+	\paragraph{Human consolidation.} The first author, as sole labeler, merged the algorithmic clusters. The labeler worked with two kinds of cues, one lexical and one topographic. The lexical cue is a list of contrastive terms for each cluster. We compute TF-IDF scores with scikit-learn \parencite{pedregosa2011scikit}, using the cluster's siblings in the hierarchy as reference documents: the vocabulary is built only from the documents of the parent cluster, English stop words are removed for this step, and a term ranks high if it is typical for a cluster and prominent in few of its siblings. The scores are therefore contrastive, as they name what sets a cluster apart from its siblings, not what it shares with them. This keeps the terms discriminative as the hierarchy descends. Within health science, for example, a term such as \textit{patient} is common to all clusters and no longer distinguishes any of them. The highest-scoring terms of each cluster serve as provisional descriptors of what it is about. The topographic cue is an interactive map of the embeddings. We project them to two dimensions with UMAP (cosine distance, 15 neighbors) after removing the 1\% of points flagged as outliers. Each document is a point, colored by its algorithmic cluster, and hovering over a point shows the cluster's number and its terms. The map shows which clusters lie close to each other, where they border, and which stand apart; it is read for neighborhoods, not for distances. The abstracts closest to each cluster's center were available as a further check. Clusters that were variants of one coherent field were merged, and small clusters with a distinct vocabulary were kept. At the domain level, the deciding question was whether a cluster's terms were purely methodological or already specific to an application domain. The result is a fixed mapping from the algorithmic clusters to a smaller set of consolidated clusters, each with a numeric code and a descriptive name. The names approximate the content of a cluster; they are not mutually exclusive categories, and neighboring clusters overlap.
 	
-	\subsection{Assessment of Research Impact}
-	\label{national_reserach_authority}
+	\paragraph{Hierarchy.} We repeated these steps within each consolidated cluster. This produced macro-clusters (domains, one-digit codes), meso-clusters (fields, two digits, the first inherited from the parent), and micro-clusters (research fronts, three digits). No cluster has more than ten children, so one digit per level suffices. Appendix Table~\ref{tab:tfidf_path} shows the terms that guided the labeler along one path through the hierarchy.
 	
-	Several metrics could in principle quantify the blocs' research impact. Network-centrality measures (closeness, eigenvector, PageRank) derived from citation or co-authorship graphs are heavily distorted here by collaboration cultures and institutional architectures, so they track network structure more than research impact. Field- and year-normalized indicators such as the field-weighted citation impact (FWCI) are unstable across the many small and young clusters the topic model produces, where a handful of publications can swing the expected-citation baseline. Both approaches therefore introduce abstractions that are difficult to defend at this granularity.
+	\paragraph{Scaling to the full corpus.} Clustering is the iterative part of the pipeline. For $N$ documents, $k$ clusters, $d = 768$ dimensions, and $I$ iterations, one K-Means run costs $\mathcal{O}(N k d I)$, and we repeat it at three levels and with ten random initializations. The interactive map used for consolidation is not usable with two million points, and the labeler's effort grows with the number of clusters, not with the number of documents. We therefore performed clustering and consolidation on random samples (100,000 publications at the first two levels, at most 30,000 per field at the third) and labeled the full corpus in one linear pass per level, at cost $\mathcal{O}(N m d)$ for $m$ reference documents. For each K-Means cluster, the reference set consists of the 20 documents closest to its center, which anchor its core, and 100 randomly drawn members, which cover its spread, so that $m = 120\,k$. Every publication is assigned to the cluster of its most similar reference document by cosine similarity, and the labeler's mapping carries it to its consolidated cluster. On held-out sample documents, this assignment places a publication in the same consolidated cluster as K-Means in 84\% of cases at the first level and 88\% at the third. For the K-Means clusters themselves, the figures are 69\% and 67\%; most of the difference consists of confusions between clusters that were later merged.
 	
-	For this reason the \textit{fractional citation sum} --- incoming citations split equally among contributing authors and thus among their countries --- is used as the primary metric: it is the most transparent and intuitive, makes no further abstraction, and is complete in the dataset (outgoing references are missing for 7.8\% of records). It is the dominant metric throughout the impact analysis.
+	\subsection{External validation by document intrusion}
+	\label{sec:intrusion_method}
 	
+	Because the taxonomy rests on one person’s decisions, we tested it with a procedure that does not depend on them. We adapted the intrusion tests that \textcite{chang2009reading} introduced to check whether automatically derived groups of words and documents make sense to human readers. In each trial, a judge sees five documents: four drawn from one target cluster and one intruder drawn from a different cluster at the same level, in random order. Clusters, not documents, are sampled uniformly, so small clusters are tested as often as large ones. Titles and abstracts are truncated to 200 words, and no cluster names, terms, or other hints are shown. The judge has to name the intruder. If a cluster is coherent, its four members share a subject and the intruder stands out. If the cluster is an artifact of the algorithm, the intruder is hard to find. Detection accuracy is therefore a measure of coherence, against a random-guess baseline of 20\%.
+	
+	The judge was a large language model, DeepSeek V4 Flash with reasoning enabled, and we ran 1,000 trials at each level. The prompt casts the model as a research librarian and tells it that four of the five papers share a research topic and one does not. It asks for a single pass: name each paper's topic in a few words, state the topic of the majority, and name the paper that does not fit, ending with a fixed verdict line. It forbids revisiting papers or weighing alternatives against each other, and it requires exactly one answer. We fixed this wording in small pilot runs before the final trials. Some responses stopped at the token limit before the model had written its verdict (between 37 and 103 per level). For these, a second, non-reasoning model read the truncated reasoning and extracted the answer the judge had been converging on, without seeing the documents itself. No trial was resolved by guessing, and every trial was scored. Appendix Table~\ref{tab:intrusion} reports the details, and the transcripts of all 3,000 trials are part of the research compendium \parencite{pfundstein2026compendium}.
+	
+	\subsection{Measuring citation shares}
+	\label{sec:impact_method}
+	
+	Several indicators could in principle measure the blocs' research impact within each cluster. We considered two alternatives and set them aside. The first are centrality measures derived from citation or co-authorship networks. In exploratory analyses on institutional co-authorship graphs, they reflected the structure of the network more than the impact of the work. PageRank and eigenvector centrality rewarded dense networks with little external linkage: Chinese institutions came out on top, although research usually reads this kind of insularity as a weakness of a research system, not as a strength. Betweenness centrality avoided this problem, but it could not separate institutions by their impact in any meaningful way. The second are field-normalized indicators such as the field-weighted citation impact, which compare each paper with the average of its field and year. Their results depend on the field classification that defines the baseline, and very specific fields make a poor baseline \parencite{waltman2019field}. Our taxonomy contains many small and young clusters, in which a handful of papers can shift the expected citation rate, so these indicators would be unstable at exactly the level of detail we care about.
+	
+	We therefore use the fractional citation sum. Its main strength is that it is plain: one knows exactly what it tells, and its biases are well known and have been discussed extensively in the literature (we return to them in Section~\ref{sec:limitations}). A work's citations are divided among the countries that produced it, in proportion to its country shares, and summed within a cluster. For a cluster $c$ and a bloc $b$,
+	\begin{equation}
+		F_{b,c} = \sum_{i \in c} \mathit{cit}_i \sum_{k \in b} s_{ik}, \qquad S_{b,c} = \frac{F_{b,c}}{\sum_{i \in c} \mathit{cit}_i},
+		\label{eq:fcs}
+	\end{equation}
+	where $\mathit{cit}_i$ is the number of citations of work $i$ in July 2025 and $s_{ik}$ is the share of the work's authors at institutions in country $k$. $S_{b,c}$ is the bloc's citation share in the cluster. Because each work's country shares sum to one, the shares of the three blocs and the rest of the world sum to 100\% in every cluster. This is an author-level variant of fractional counting \parencite{waltman2015field}. It is simple and transparent, and it uses a variable that is complete for every record; outgoing references, by contrast, are missing for 7.8\% of records. Shares at the meso and macro levels are computed from the summed citations of their micro-clusters, not by averaging micro-level shares. To describe how evenly a bloc's citations are spread across the taxonomy, we add three summary measures that build directly on these shares. The first is the standard deviation of a bloc's citation shares across the 106 research fronts: a low value means that the bloc holds similar shares across research fronts, a high value that its strength is concentrated in some of them. The other two are counts that make the same point in concrete terms: the number of research fronts in which a bloc's share falls below 10\%, and the number it leads among the three blocs.
+	
+	\paragraph{Definition of the blocs.} We assign each work to the blocs through the countries of its authors' institutions (Section~\ref{sec:quality}), so a bloc's share is simply the sum of its member countries' shares. For China, we count the mainland together with Hong Kong and Macao, since their universities form part of one Chinese research system. Taiwan's research system is separate, and we count it in the rest of the world. The line is drawn by research system, not by political status. The rest of the world is what remains of each cluster once the three blocs are counted, so the four shares always add up to 100\%. It also shows where the three blocs together are strongest and where others hold more of the field.
+	
+	% ===================================================================
 	\section{Findings}
 	\label{sec:findings}
+	% ===================================================================
 	
-	Findings follow the research questions. RQ1 is addressed by the hierarchical clustering of the corpus and its external validation; RQ2 by measuring the three blocs' citation impact within the resulting subdisciplines.
+	With every publication placed in the taxonomy and every citation assigned to a bloc, the corpus can be read twice: first as a map of AI research, then as a record of whose work is cited where on that map. We begin with the map, its subdisciplines, how they relate to one another, and whether they hold together for a reader who has not seen how they were made, and then turn to the blocs.
 	
-	\subsection{Subdiscipline Landscape}
-	\label{subdiscipline_landscape}
+	\subsection{The structure of AI research}
 	
-	The pipeline yielded 5 macro-clusters, 31 meso-clusters, and 106 micro-clusters, forming a strict tree in which every micro-cluster belongs to exactly one meso- and one macro-cluster. The five macro-clusters are a methodological core, \textbf{\texttt{Computer Science}} \microC{0}, and four application domains --- \textbf{\texttt{Health Science}} \microH{1}, \textbf{\texttt{Social Science}} \microS{2}, \textbf{\texttt{Natural Science}} \microN{3}, and \textbf{\texttt{Engineering}} \microE{4} --- whose semantic distance from the core grows with their degree of domain specialization. Assignment at each level turns on whether a cluster's top TF-IDF terms are purely methodological or already domain-specific. That domains grade continuously into one another rather than separating into discrete islands is why no single cluster count is natural: the granularity at which one cuts the space is an analytical choice, which is exactly what the expert-consolidation step formalizes.
+	The clustering arrives at 5 domains, 31 fields, and 106 research fronts. Together they form a strict tree: every research front belongs to exactly one field and, through it, to exactly one domain. The five domains are \cl{Computer Science}{C}{0}, \cl{Health Science}{H}{1}, \cl{Social Science}{S}{2}, \cl{Natural Science}{N}{3}, and \cl{Engineering}{E}{4}. They are not divided equally finely: \cl{Social Science}{S}{2} splits into 25 research fronts, more than any other domain.
 	
-	Throughout, clusters are written in typewriter font with a color-coded identifier, e.g.\ \textbf{\texttt{International Politics \& Law}} \microS{220}: the color encodes the macro-cluster --- \microC{\textit{purple}} for computer science, \microH{\textit{blue}} for health science, \microS{\textit{teal}} for social science, \microN{\textit{yellow}} for natural science, and \microE{\textit{orange}} for engineering --- and the number of digits encodes the hierarchical level. A single path illustrates the descent: a publication performing cancer detection with convolutional neural networks is labeled \textbf{\texttt{Health Science}} \microH{1} at the macro-level (its domain terms \textit{patient}, \textit{cell}, and \textit{cancer} dominate, while shared methodological terms such as \textit{segmentation} carry no domain signal), \textbf{\texttt{Medical Imaging \& Radiology}} \microH{10} at the meso-level (\textit{image}, \textit{segmentation}, \textit{CNN}), and \textbf{\texttt{Cancer Detection \& Screening}} \microH{102} at the micro-level (\textit{tumor}, \textit{breast}, \textit{MRI}). All three levels are analytically useful, and observation typically moves from broad domains down to specific research fronts.
+	Throughout the paper, we write cluster names in sans-serif type, followed by a colored code. The color gives the domain: \idC{purple} for computer science, \idH{blue} for health science, \idS{teal} for social science, \idN{yellow} for natural science, and \idE{orange} for engineering. The number of digits gives the level. \cl{International Politics \& Law}{S}{220}, for example, is a research front within the field \cl{Politics \& Governance}{S}{22}, which in turn belongs to \cl{Social Science}{S}{2}.
 	
-	Figure~\ref{fig:cluster_summarization_umap} projects all 106 micro-clusters onto a density-summarized UMAP, where cluster size reflects semantic spread rather than publication volume and the layout's rotation is arbitrary. The projection makes the core--periphery structure visible: \textbf{\texttt{Computer Science}} \microC{0} occupies the center and the four application domains radiate outward. Clusters that share methods sit adjacent across domain boundaries: \textbf{\texttt{Computer Vision \& Image Processing}} \microC{00} borders \textbf{\texttt{Medical Imaging \& Radiology}} \microH{10} and earth-observation clusters through a common \textit{segmentation}/\textit{CNN} vocabulary, while \textbf{\texttt{Natural Language Processing}} \microC{01} adjoins \textbf{\texttt{Digital Media \& Communication}} \microS{21} through shared text input. Within \textbf{\texttt{Machine Learning Foundations}} \microC{04}, the large internal spread places \textbf{\texttt{Neural Network Architectures}} \microC{041} at the very center, underscoring both the ubiquity of neural networks and the volume of research devoted to optimizing learning architectures themselves.
+	How the three levels relate is easiest to see by following a single paper down the hierarchy (Table~\ref{tab:tfidf_path}). Take a study that uses convolutional neural networks to detect breast tumors in MRI scans. At the top, it belongs to \cl{Health Science}{H}{1}. What distinguishes this domain from its siblings are words about its subject, such as \textit{patient}, \textit{cell}, and \textit{cancer}. Methodological terms such as \textit{segmentation} are shared with the other domains, so at this level they say nothing. One level down, the picture turns. Among the fields of health science, it is the method that sets \cl{Medical Imaging \& Radiology}{H}{10} apart, and terms such as \textit{image}, \textit{segmentation}, and \textit{CNN} come to the fore. At the bottom, in \cl{Cancer Detection \& Screening}{H}{102}, the subject returns in finer grain, with terms such as \textit{tumor}, \textit{breast}, and \textit{MRI}. Each level thus answers a different question about the same paper, and the analysis below moves between them, usually from domains down to research fronts.
 	
-	The peripheries are equally informative. In \textbf{\texttt{Health Science}} \microH{1} --- the least dense domain --- biology-heavy fields such as \textbf{\texttt{Molecular Biology \& Drug Discovery}} \microH{13}, \textbf{\texttt{Microbial \& Immune System Biology}} \microH{14}, and \textbf{\texttt{Genetics \& Genomics}} \microH{15} sit farthest out, with no AI-specific terms in their TF-IDF rankings, a semantic signature of AI's auxiliary role there. \textbf{\texttt{Social Science}} \microS{2} is the most finely subdivided domain (25 micro-clusters). In \textbf{\texttt{Engineering}} \microE{4}, \textbf{\texttt{Autonomous Mobility}} \microE{44} and \textbf{\texttt{Robotics \& Mechatronics}} \microE{45} lie at the outer edge, their vocabulary of \textit{actuation}, \textit{sensor}, \textit{kinematics}, and \textit{control} emphasizing physical embodiment over the software-oriented language of the core.
+	\begin{table}[tb]
+		\centering
+		\begin{threeparttable}
+			\caption{Top ten TF-IDF terms along one path through the hierarchy}
+			\label{tab:tfidf_path}
+			\small
+			\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}r >{\raggedright\arraybackslash}p{0.22\columnwidth} >{\raggedright\arraybackslash}p{0.27\columnwidth} >{\raggedright\arraybackslash}p{0.27\columnwidth}@{}}
+				\toprule
+				Rank & \textsf{Health Science} & \textsf{Medical Imaging \& Radiology} & \textsf{Cancer Detection \& Screening} \\
+				\midrule
+				ID   & \idH{1} & \idH{10} & \idH{102} \\
+				\midrule
+				1  & patient   & image          & tumor \\
+				2  & cell      & segmentation   & cancer \\
+				3  & cancer    & deep           & breast \\
+				4  & disease   & detection      & brain \\
+				5  & clinical  & propose        & segmentation \\
+				6  & protein   & network        & feature \\
+				7  & gene      & classification & mri \\
+				8  & brain     & learn          & classification \\
+				9  & treatment & cnn            & liver \\
+				10 & tumor     & medical        & prostate \\
+				\bottomrule
+			\end{tabular*}
+			\begin{tablenotes}[flushleft]
+				\footnotesize
+				\item \textit{Note.} Terms are lemmatized. Each column's scores are computed against the cluster's siblings at the same level.
+			\end{tablenotes}
+		\end{threeparttable}
+	\end{table}
 	
-	\twocolumn[{%
-		\begin{center}
-			\vspace{-3em}
-			\captionof{figure}{Summarized UMAP and Taxonomy of AI Subdisciplines}
-			\label{fig:cluster_summarization_umap}
-			\vspace{1em}
-			\includegraphics[width=\linewidth]{cluster_umap_with_legend_2025_10_09_bigger_clusters.pdf}
-			\vspace{1em}
-			\caption*{\small\textit{Density-summarized UMAP of the 106 micro-clusters identified in the SPECTER embedding space. Cluster sizes represent semantic spread, not publication volume. The legend displays the full taxonomy of expert-consolidated clusters across the three hierarchies.}}
-		\end{center}
-	}]
+	Figure~\ref{fig:umap} lays the taxonomy out as a map, and the map shows a core and a periphery. \cl{Computer Science}{C}{0}, whose distinguishing terms are methodological, sits at the center, and the four domains in which these methods are applied extend outward from it. Neighbors on the map tend to share methods, even when they belong to different domains. \cl{Computer Vision \& Image Processing}{C}{00} borders \cl{Medical Imaging \& Radiology}{H}{10} and the earth-observation fronts of natural science, because all of them speak the language of segmentation and convolutional networks, whether their images are MRI scans, satellite pictures, or traffic footage. \cl{Natural Language Processing}{C}{01} borders \cl{Digital Media \& Communication}{S}{21}, because both work with text. And at the very center of the map lies \cl{Neural Network Architectures}{C}{041}: neural networks run through much of the corpus, and a large body of research is devoted to the architectures themselves.
 	
-	\paragraph{External Validation via Document Intrusion.}
-	\label{intrusion_validation}
+	The margins of the map are just as telling. In \cl{Health Science}{H}{1}, the least dense domain, the biology-oriented fields lie farthest out: \cl{Molecular Biology \& Drug Discovery}{H}{13}, \cl{Microbial and Immune Systems Biology}{H}{14}, and \cl{Genetics \& Genomics}{H}{15}. None of their distinguishing terms is specific to AI. Since the terms are contrastive, this does not mean that these papers do without AI vocabulary; methods that all fields of health science share simply cancel out. It does mean that what sets these fields apart is their subject, not their method. Together with their position at the margin, where they border other biology fronts rather than the methods of the core, this suggests that AI serves these fields as one tool among many rather than as their topic. \cl{Engineering}{E}{4} has an outer edge of its own. \cl{Autonomous Mobility}{E}{44} and \cl{Robotics \& Mechatronics}{E}{45} sit there, and their distinguishing terms, such as \textit{actuation}, \textit{sensors}, \textit{kinematics}, and \textit{control}, describe physical systems rather than software.
 	
-	To test whether the clusters capture coherent semantic units rather than analytical artifacts, the taxonomy was validated with an intrusion-detection protocol adapted from the ``reading tea leaves'' paradigm \cite{chang2009reading}. In each trial a large language model (DeepSeek v4 Flash Thinking) is shown a panel of four genuine member documents from a target cluster together with one intruder drawn from another cluster at the same level, in randomized order, and must identify the intruder; a coherent cluster makes the intruder conspicuous. Nothing about the cluster --- its label, its TF-IDF terms, the expert's reasoning --- is shown, only the documents themselves. The protocol was run for 1,000 trials per hierarchy level, and detection accuracy is the share of correctly identified intruders. Full per-run results are given in the Supplementary Information.
+	\paragraph{External validation.} The intrusion test suggests that the taxonomy holds together. At every level, the DeepSeek judge found the intruder well above chance: in 40.5\% of trials among domains, 64.7\% among fields, and 77.8\% among research fronts, against 20\% for random guessing (Table~\ref{tab:intrusion}). With 1,000 trials per level, each figure has a 95\% confidence interval of at most about $\pm$3 percentage points, so the differences between the levels are far larger than the noise. That accuracy rises as the clusters get narrower is what one would expect. Spotting the intruder depends on how far apart clusters are compared with how spread out they are inside, and broad domains are heterogeneous by design. A panel from \cl{Computer Science}{C}{0} can mix computer vision, language processing, and graph learning, so a single paper from another domain hardly stands out. A research front has a tight vocabulary, and an outsider is easy to see. It is reassuring, then, that the level on which the citation analysis relies most, the research fronts, also scores best.
 	
-	Accuracy rises as the clustering becomes finer: 40.5\% at the macro-level (h1), 64.7\% at the meso-level (h2), and 77.8\% at the micro-level (h3), all well above the 20\% random-guess baseline of the five-document panel. This gradient is expected: intrusion detection depends on the ratio of within-cluster spread to between-cluster separation, and broad macro-domains are internally heterogeneous by construction --- \textbf{\texttt{Computer Science}} \microC{0}, for instance, spans computer vision, natural language processing, and graph learning --- so an intruder is less conspicuous there than among narrow, lexically distinctive micro-clusters. The results thus indicate a hierarchy that is coherent at every level, with separability increasing toward the finer granularities the analysis relies on most.
+	\begin{table}[!ht]
+		\centering
+		\begin{threeparttable}
+			\caption{Document-intrusion validation: results by level}
+			\label{tab:intrusion}
+			\footnotesize
+			\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}l r r r@{}}
+				\toprule
+				& Domains & Fields & Fronts \\
+				\midrule
+				Clusters                                  & 5     & 31    & 106 \\
+				Trials                                    & 1,000 & 1,000 & 1,000 \\
+				Correct                                   & 405   & 647   & 778 \\
+				Accuracy (\%)                             & 40.5  & 64.7  & 77.8 \\
+				\addlinespace
+				Cut off at token limit                    & 125   & 81    & 44 \\
+				\quad stated in reasoning\tnote{a}        & 22    & 11    & 7 \\
+				\quad inferred from reasoning\tnote{b}    & 103   & 70    & 37 \\
+				\bottomrule
+			\end{tabular*}
+			\begin{tablenotes}[flushleft]
+				\footnotesize
+				\item \textit{Note.} Judge: DeepSeek V4 Flash with reasoning, token limit 8,000; seed 20250628. Source: run manifests in the research compendium \parencite{pfundstein2026compendium}.
+				\item[a] An explicit verdict was read from the truncated reasoning.
+				\item[b] A second, non-reasoning model (DeepSeek Chat) read the truncated reasoning and inferred the answer without seeing the documents.
+			\end{tablenotes}
+		\end{threeparttable}
+	\end{table}
 	
-	\subsection{Subdiscipline Citation Shares}
+	\begin{figure*}[p]
+		\centering
+		\includegraphics[width=0.97\textwidth]{cluster_umap_with_legend_2025_10_09_bigger_clusters.pdf}
+		\caption{Map of AI research: the taxonomy of 5 domains, 31 fields, and 106 research fronts. The map is a UMAP projection of the SPECTER embeddings. Each shape is the smallest kernel-density contour that encloses 80\% of a research front's documents, so shape size reflects semantic spread, not publication volume; the orientation of the map is arbitrary. Numbers are cluster codes, colors mark the five domains, and the legend below the map lists the full taxonomy.}
+		\label{fig:umap}
+	\end{figure*}
 	
-	At the entity level, each bloc's share of the fractional citation sum is computed within every cluster of the taxonomy (Figure~\ref{fig:topic_modeling_heatmap}). To limit redundancy, shares are reported at the macro-level and then only for clusters that diverge from their parent; full cluster-level tables are provided in the Supplementary Information.
+	\subsection{The blocs' citation shares}
+	\label{sec:shares}
 	
-	\textbf{China} (24.1\% of global citations) concentrates its lead in \textbf{\texttt{Computer Science}} \microC{0} (32.8\%) and \textbf{\texttt{Engineering}} \microE{4} (30.0\%), holds a thin lead in \textbf{\texttt{Natural Science}} \microN{3} (23.6\% vs the EU-27's 23.4\%), and trails in \textbf{\texttt{Health Science}} \microH{1} (18.3\%) and \textbf{\texttt{Social Science}} \microS{2} (13.8\%). It leads 17 of 31 meso- and 44 of 106 micro-clusters, exceeding 40\% thirteen times, with peaks in \textbf{\texttt{Fault Detection}} \microE{422} (57.3\%), \textbf{\texttt{Control Systems \& Fuzzy Logic}} \microE{453} (52.2\%), and \textbf{\texttt{Object Detection \& Classification}} \microC{003} (48.9\%). Its blind spots are equally sharp: \textbf{\texttt{Politics \& Governance}} \microS{22} (5.6\%), \textbf{\texttt{Ethical \& Creative AI}} \microS{26} (6.5\%), and \textbf{\texttt{Astrophysics \& Quantum Physics}} \microN{34} (7.4\%). This discontinuity yields the highest cross-subdiscipline standard deviation of the three blocs (11.77\%).
+	Seen from a distance, the three blocs look remarkably alike. Together they account for 57.4\% of the corpus's publications and 62.3\% of its citations, and their individual shares lie within a few percentage points of one another: China holds 23.0\% of all citations, the EU-27 20.8\%, and the United States 18.5\%, while the rest of the world accounts for the remaining 37.7\%. A ranking built on these totals would have little to report. Moving closer changes the picture. Across the taxonomy, each bloc distributes its citations in its own way, with strengths and gaps in different places, and behind the similar totals lie three strikingly different profiles.
 	
-	\textbf{The US} (18.60\%) leads \textbf{\texttt{Health Science}} \microH{1} (23.36\%), ranks second in \textbf{\texttt{Computer Science}} \microC{0} (19.38\%) and \textbf{\texttt{Social Science}} \microS{2} (15.56\%), and last among the blocs in \textbf{\texttt{Natural Science}} \microN{3} (16.83\%) and \textbf{\texttt{Engineering}} \microE{4} (13.65\%). Its strengths cluster in legacy fields --- \textbf{\texttt{Natural Language Processing}} \microC{01} (30.10\%), machine learning, neuroscience, probabilistic modeling, and game theory --- while it falls to single digits in 16 micro-clusters and ranks last in 55 of 106.
+	Figure~\ref{fig:heatmap} shows these profiles in full, with each bloc's share in every domain and research front, and Table~\ref{tab:bloc_summary} condenses them into a few numbers. The shares for the 31 fields are listed in Appendix Table~\ref{tab:field_shares}, and the research compendium holds all three levels \parencite{pfundstein2026compendium}. In what follows, we take the blocs one at a time, moving from domains down to research fronts. Below the domain level, we mention only clusters that depart from their parent, since these are where a profile takes its shape.
 	
-	\textbf{The EU-27} (20.79\%) shows the most comprehensive coverage. It leads \textbf{\texttt{Social Science}} \microS{2} (25.38\%), follows closely in \textbf{\texttt{Health Science}} \microH{1} (22.87\%) and \textbf{\texttt{Natural Science}} \microN{3} (23.45\%), and trails more clearly only in \textbf{\texttt{Computer Science}} \microC{0} (15.28\%) and \textbf{\texttt{Engineering}} \microE{4} (16.83\%). Only four micro-clusters fall below 10\% (against 14 for China and 16 for the US), and its micro-level standard deviation is the lowest (7.02\%, vs the US's 7.94\% and China's 11.77\%). Its one systematic weakness is the visual-data region: \textbf{\texttt{Computer Vision \& Image Processing}} \microC{00} (12.57\%) and related clusters in supervised and graph learning.
+	\begin{table}[tb]
+		\centering
+		\begin{threeparttable}
+			\caption{Summary of the three blocs' positions across the taxonomy}
+			\label{tab:bloc_summary}
+			\footnotesize
+			\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}l r r r@{}}
+				\toprule
+				& China & US & EU-27 \\
+				\midrule
+				Publications (\%) & 24.1 & 15.0 & 18.2 \\
+				Citations (\%) & 23.0 & 18.5 & 20.8 \\
+				\addlinespace
+				Domains led (of 5)\tnote{a} & 2 & 1 & 2 \\
+				Fields led (of 31)\tnote{a} & 17 & 5 & 9 \\
+				Fronts led (of 106)\tnote{a} & 42 & 21 & 43 \\
+				\addlinespace
+				Fronts with share $>$ 40\% & 10 & 0 & 1 \\
+				Fronts with share $>$ 30\% & 23 & 10 & 16 \\
+				Fronts with share $<$ 10\% & 17 & 15 & 3 \\
+				SD across fronts (pp)\tnote{b} & 11.7 & 8.0 & 7.0 \\
+				\bottomrule
+			\end{tabular*}
+			\begin{tablenotes}[flushleft]
+				\footnotesize
+				\item \textit{Note.} Shares are fractional; fronts are the 106 research fronts.
+				\item[a] Highest share among the three blocs; the rest of the world is not counted.
+				\item[b] Standard deviation of a bloc's citation shares across research fronts, in percentage points.
+			\end{tablenotes}
+		\end{threeparttable}
+	\end{table}
 	
-	The residual \textbf{RoW} category (36.51\%) lacks institutional cohesion but usefully indicates where the blocs are most consolidated. It would lead four of five macro-clusters and 77 of 106 micro-clusters; its lowest shares --- and thus the strongest bloc consolidation --- fall in the resource-intensive \textbf{\texttt{Genetics \& Genomics}} \microH{15} (24.52\%), \textbf{\texttt{Astrophysics \& Quantum Physics}} \microN{34} (27.47\%), and \textbf{\texttt{Robotics \& Mechatronics}} \microE{45} (30.16\%).
+	\paragraph{China.} China's citations are concentrated in two domains. It holds 31.5\% of citations in \cl{Computer Science}{C}{0} and 29.3\% in \cl{Engineering}{E}{4}, well ahead of the other two blocs. Its strongest field is \cl{Anomaly \& Fault Detection}{E}{42}, where it holds nearly half of all citations (48.1\%), and its highest shares in research fronts are in \cl{Fault Detection}{E}{422} (56.5\%), \cl{Control Systems \& Fuzzy Logic}{E}{453} (51.5\%), and \cl{Object Detection \& Classification}{C}{003} (45.9\%). China holds more than 40\% of citations in 10 research fronts; the EU-27 reaches this level once, the United States never. One field carries particular weight. \cl{Computer Vision \& Image Processing}{C}{00}, the largest field of the corpus, in which China holds 42.2\% of citations, alone supplies 17.9\% of all citations China receives. For the United States, the corresponding figure is 8.6\%, and for the EU-27 6.0\%.
 	
-	\twocolumn[{%
-		\begin{center}
-			\vspace{-3em}
-			\captionof{figure}{Fractional Citation Shares of the Blocs and RoW across Hierarchical AI Subdisciplines}
-			\vspace{1em}
-			\includegraphics[width=\linewidth]{bloc_citation_shares_across_subdisciplines.pdf}
-			\vspace{1em}
-			\caption*{\small\textit{Each bloc's share of fractional citation sums across the 106 micro-clusters. Columns correspond to macro-domains, grouped into meso- and micro-clusters by numeric identifier. Mini-heatmaps give the fractional citation shares of the blocs and the residual RoW category; color intensity encodes shares from zero to 50\%.}}
-			\label{fig:topic_modeling_heatmap}
-			\vspace{2em}
-		\end{center}
-	}]
+	Beyond these two domains, China's lead thins out. In all, it leads 17 of the 31 fields: all six in engineering, four of the five in computer science, five of the seven in natural science, two of the six in health science, and none in social science. In \cl{Natural Science}{N}{3} as a whole, it trails the EU-27 (23.0\% against 23.6\%). In \cl{Health Science}{H}{1} (17.5\%) and \cl{Social Science}{S}{2} (13.0\%), it trails both other blocs. The one striking exception in the social sciences is \cl{Psychographic Profiling \& Personalization}{S}{245}, where China holds 42.6\% of citations.
 	
+	Its weak spots are as pronounced as its strengths. China holds 5.3\% of citations in \cl{Politics \& Governance}{S}{22}, 6.2\% in \cl{Ethical \& Creative AI}{S}{26}, and 7.1\% in \cl{Astrophysics \& Quantumphysics}{N}{34}. In health science, it holds about 11\% in both \cl{Neuroscience \& Mental Health}{H}{11} (11.3\%) and \cl{Clinical Informatics \& Public Health}{H}{12} (11.4\%). The result is a polarized profile: China leads 42 of the 106 research fronts but ranks last among the three blocs in 40, and comes second in only 24. Its standard deviation of 11.7 percentage points across research fronts, the highest of the three blocs, puts a number on this unevenness.
+	
+	\paragraph{The United States.} The United States has its center of gravity in health science. It leads \cl{Health Science}{H}{1} with 23.5\% of citations, narrowly ahead of the EU-27 (23.0\%), and this domain alone supplies 34.1\% of all citations the United States receives. Of the five fields it leads overall, three lie here: \cl{Molecular Biology \& Drug Discovery}{H}{13} (26.7\%), \cl{Clinical Informatics \& Public Health}{H}{12} (23.7\%), and, by about one percentage point over China, \cl{Genetics \& Genomics}{H}{15} (26.1\% against 24.9\%). Its highest shares in any research front lie in genetics as well, in \cl{Gene Regulation}{H}{151} (36.1\%) and \cl{Mutation \& Evolutionary Genetics}{H}{152} (34.2\%).
+	
+	Outside health science, many of its strengths lie in fields with a long history in AI research \parencite{nilsson_2009_quest_ai}. In \cl{Computer Science}{C}{0}, where it ranks second (19.5\%), it leads \cl{Natural Language Processing}{C}{01} (30.2\%) and holds high shares in \cl{Neural Network Architectures}{C}{041} (29.9\%) and \cl{Probabilistic Modeling}{C}{043} (32.0\%). In \cl{Social Science}{S}{2}, where it also ranks second (15.7\%), it leads \cl{Digital Media \& Communication}{S}{21} (21.0\%) and holds 31.2\% in \cl{Game Theory \& Decision Making}{S}{222}. A further group of strengths lies close to physics and hardware: \cl{Computational Quantum Systems}{N}{341} (34.3\%), \cl{Circuit Architecture for Neural Systems}{N}{351} (32.6\%), and \cl{Hardware - Software Interaction}{E}{402} (32.0\%). What the profile lacks are peaks. The highest US share in any research front is 36.1\%, whereas China exceeds 40\% in 10 of them. Nor does any single field dominate: the largest contributor, \cl{Clinical Informatics \& Public Health}{H}{12}, supplies 8.7\% of all US citations, about half of what computer vision supplies for China.
+	
+	The weak spots lie in applied engineering and natural science, the two domains in which the United States ranks last (16.9\% in \cl{Natural Science}{N}{3}, 13.7\% in \cl{Engineering}{E}{4}). It holds 7.5\% of citations in \cl{Anomaly \& Fault Detection}{E}{42}, 9.1\% in \cl{Energy \& Thermodynamics}{N}{32}, 9.2\% in \cl{Energy Technologies}{E}{43}, and just under 11\% in \cl{IoT \& Edge Computing}{E}{41} (10.8\%) and \cl{Agriculture \& Forestry}{N}{33} (10.9\%). Its lowest shares in research fronts are in \cl{Tourism}{S}{251} (3.5\%) and \cl{Crop Disease \& Species Classifier}{N}{332} (4.9\%). In engineering, the United States ranks last among the three blocs in 18 of the 22 research fronts. Across the whole taxonomy, it leads 21 fronts, comes second in 35, and ranks last in 50. Its standard deviation of 8.0 percentage points is far below China's, yet it has nearly as many research fronts below 10\% (15, against China's 17). Its profile is flatter not because it has fewer gaps, but because it has fewer peaks.
+	
+	\paragraph{The EU-27.} The EU-27 has its center of gravity in the social sciences. It leads \cl{Social Science}{S}{2} with 25.6\% of citations and six of the domain's seven fields, from \cl{Education \& Learning Science}{S}{20} to \cl{Finance \& Stock Market}{S}{23}. Its strongest fields are \cl{Urban Development}{S}{25} (34.5\%), \cl{Ethical \& Creative AI}{S}{26} (33.5\%), \cl{Politics \& Governance}{S}{22} (31.5\%), and \cl{Business \& Management}{S}{24} (29.3\%). Some of its highest shares in research fronts lie here as well, in \cl{Smart Manufacturing}{S}{241} (37.8\%), \cl{Virtual Reality}{S}{262} (35.0\%), and \cl{Sustainable Development}{S}{250} (34.8\%).
+	
+	What sets the EU-27 apart, however, is less any single strength than the absence of large gaps. In \cl{Health Science}{H}{1} (23.0\%) it comes within a fraction of a percentage point of the leader, in \cl{Natural Science}{N}{3} (23.6\%) it leads, and in \cl{Engineering}{E}{4} (17.0\%), it ranks second, ahead of the United States. Beyond the social sciences, it leads \cl{Neuroscience \& Mental Health}{H}{11} (28.9\%), \cl{Astrophysics \& Quantumphysics}{N}{34} (33.6\%), and \cl{Construction \& City Planning}{N}{36} (28.7\%), and its highest share in any research front is 40.5\%, in \cl{Experimental Particle \& Nuclear Physics}{N}{342}. In all, it leads 9 of the 31 fields and 43 of the 106 research fronts. It ranks last among the three blocs in only 16 research fronts, against 40 for China and 50 for the United States, and its share falls below 10\% in only three. No single field supplies more than 7.3\% of its citations. With a standard deviation of 7.0 percentage points across research fronts, the EU-27 has the most even profile of the three blocs.
+	
+	Its weakness lies in the methodological core. In \cl{Computer Science}{C}{0}, the EU-27 holds 15.5\% of citations and ranks last in four of the five fields, most clearly in \cl{Computer Vision \& Image Processing}{C}{00} (12.7\%). Outside computer science, its share is equally low in \cl{Anomaly \& Fault Detection}{E}{42} (12.8\%). Its three lowest shares in research fronts are in \cl{Graph Learning \& Network Modeling}{C}{045} (8.4\%), \cl{Multimodal Vision \& Transformer}{C}{002} (8.5\%), and \cl{Fault Detection}{E}{422} (9.7\%), the only fronts in which it falls below 10\%. These are among China's strongest fronts, so where the European profile dips, the Chinese one peaks.
+	
+	\paragraph{The rest of the world.} The remaining 37.7\% of citations go to the rest of the world, a residual of about 200 countries led by the United Kingdom (6.1\%) and India (4.4\%). It is not a bloc, but its share shows how far a part of AI research is concentrated in the three blocs and how far it is contested globally. The blocs come closest to holding a field among themselves in the methodological core and in the large-scale life and physical sciences: together they hold more than 70\% of citations in \cl{Genetics \& Genomics}{H}{15}, \cl{Computer Vision \& Image Processing}{C}{00}, \cl{Astrophysics \& Quantumphysics}{N}{34}, and \cl{Natural Language Processing}{C}{01}. At the other end, the RoW holds more than half of all citations in \cl{Energy \& Thermodynamics}{N}{32} and \cl{Education \& Learning Science}{S}{20}, and up to 62.6\% in applied research fronts such as \cl{Clinical Decision Support}{H}{124}, where India alone holds 18.1\%.
+	
+	\begin{figure*}[p]
+		\centering
+		\includegraphics[width=\textwidth]{bloc_citation_shares_across_subdisciplines.pdf}
+		\caption{Fractional citation shares of China, the United States, the EU-27, and the rest of the world (RoW) in every cluster of the taxonomy. Each column is one domain; boxes within a column are fields, and each row within a box is a research front. The top row of each column gives the shares for the domain as a whole. The four values in a row sum to 100\%, and shading encodes the share from 0\% to 50\% and above. The percentage after each cluster name is that cluster's share of all fractional citations in the corpus.}
+		\label{fig:heatmap}
+	\end{figure*}
+	
+	% ===================================================================
+	\section{Discussion}
+	\label{sec:discussion}
+	% ===================================================================
+	
+	The findings raise questions of interpretation that the numbers alone do not settle. We first ask what the structure of AI research implies for national comparisons, then why three blocs with similar citation shares have such different profiles, and then how large these shares are relative to the economies behind them. We close with what the results mean for comparing national AI capacity.
+	
+	\subsection{A core of methods and its applications}
+	\label{sec:disc_structure}
+	
+	The taxonomy describes AI research as a methodological core surrounded by the fields that apply it. \cl{Computer Science}{C}{0} holds the methods, and it receives less than a quarter of all citations (22.5\%). The remaining three quarters go to work in which AI is put to use, in health, in the social and natural sciences, and in engineering. This is the pattern one would expect of a general method of invention \parencite{bianchini2022artificial,crafts2021artificial}, and it matches the spread of AI across nearly all areas of research that earlier studies have reported \parencite{klinger2021deep,hajkowicz2023artificial,gao2024quantifying}. What our data add is a picture of how this spread is organized.
+	
+	\textcite{gargiulo2022cartography} found that those who develop AI and those who apply it rarely collaborate. Our map suggests that the boundary between the two is not a single line but runs through the whole hierarchy. Where an application shares its method with the core, it sits right next to it: computer vision, medical imaging, and earth observation form one neighborhood, held together by the vocabulary of segmentation. Within a domain, method and subject take turns in setting clusters apart, as the path from \cl{Health Science}{H}{1} through \cl{Medical Imaging \& Radiology}{H}{10} to \cl{Cancer Detection \& Screening}{H}{102} shows (Table~\ref{tab:tfidf_path}). And at the margins, in the biology-oriented fields of health science, the subject takes over entirely, and AI becomes one tool among many. The divide between developing and applying AI is thus graded rather than binary.
+	
+	This also sets the taxonomy apart from earlier divisions of AI. The 15 specialties of \textcite{gargiulo2022cartography} were reconstructed from AI vocabulary and therefore describe the field from the side of its methods, and studies of national specialization have worked with a limited set of categories \parencite{righi2020ai,yu2023discovering}. Our taxonomy resolves both the core and the four application domains, down to research fronts built around recent model families such as transformers (\cl{Multimodal Vision \& Transformer}{C}{002}, \cl{Text to Text Transformer}{C}{010}). The intrusion test shows that these units are coherent, most clearly at the level of research fronts. It does not show that they are the only possible division. Several valid classifications of the same body of research can coexist \parencite{rafols_2025_multiple_ontologies}, and ours should be judged, as argued in Section~\ref{sec:lit_taxonomy}, by whether its units are coherent and useful for comparing research systems.
+	
+	\subsection{Three routes to a similar share}
+	\label{sec:disc_profiles}
+	
+	The three blocs arrive at similar totals by different routes, and two of these routes are not new. Earlier work found China strongest in visual and autonomous systems and the United States in software and language \parencite{righi2020ai,yu2023discovering}. Our data, covering a later period, show both countries strong in much the same areas. Europe is different. Earlier work found it specialized in automation and robotics, whereas in our data China leads \cl{Robotics \& Mechatronics}{E}{45}, and the EU-27 holds 16.8\% of the field's citations, less than its share of AI research as a whole. Its strengths now lie in the social sciences. Since these studies used other categories, periods, and measures of specialization, the comparison is rough, but it suggests that the European profile has changed more than the other two.
+	
+	China's profile is concentrated in research close to manufacturing and to machines that act in the physical world: computer vision, fault detection, control systems, and robotics. This matches the priorities of China's national AI strategy \parencite{roberts2021chinese,khanal2024development} and its large industrial base, although our data cannot show that the strategy caused the pattern. The concentration also means that China's overall lead rests on a narrow base. Computer vision alone, which supplies nearly a fifth of China's citations, carries much of it: without this one field, China's share of all AI citations would fall from 23.0\% to 21.0\%, below that of the EU-27 (21.6\%). China's citation share also lies slightly below its publication share (24.1\%), which is consistent with studies that find China ahead on volume but not yet on every measure of impact \parencite{min2026has}.
+	
+	The United States presents the opposite puzzle. By most accounts, it leads the development of frontier AI: in 2024, US-based institutions produced 40 notable AI models, against 15 from China and 3 from Europe \parencite{maslej2025artificial}. Yet in our data, it holds the smallest citation share of the three blocs and ranks last in about half of the research fronts. Its strengths lie in health science, in genomics, and in method fields with a long history in AI research, not in the applied engineering in which China is strong. One explanation is that much of the country's frontier work happens in companies. Firms control growing shares of the computing power, data, and researchers that AI depends on \parencite{ahmed2023growing}, they produced nearly 90\% of the notable models of 2024 \parencite{maslej2025artificial}, and they publish selectively. A publication-based measure sees this work only in part. Citation shares and model counts therefore measure different things, and the gap between them says something about where US AI research takes place.
+	
+	The EU-27 takes a third route. Its profile is the most even of the three, and its one clear weakness lies in the methodological core. Its strength in the fields that study governance and ethics is consistent with the EU's emphasis on regulating AI and its social consequences \parencite{bradford2023digital,balcioglu2025turning}. Part of the evenness, however, may be an aggregation effect. The EU-27 is a union of 27 national research systems, each with its own specializations, and adding them up can produce a flatter profile than any of its members has on its own. Whether the balance reflects a European pattern or the arithmetic of aggregation is a question for an analysis at the level of member states. The same arithmetic places the United Kingdom, the largest contributor to the rest of the world, outside the bloc, although its research is closely tied to that of the EU. Balance is therefore not automatically a strength, nor concentration a weakness: a concentrated profile such as China's may reflect deliberate priority-setting, and a balanced one may partly reflect aggregation.
+	
+	Taken together, the three blocs hold the methodological core most firmly. The rest of the world receives 33.4\% of citations in \cl{Computer Science}{C}{0}, less than in any other domain, and 45.7\% in \cl{Social Science}{S}{2}, more than in any other. The social sciences are thus the part of AI research most open to contributions from outside the three blocs.
+	
+	
+	% ===================================================================
 	\section{Limitations}
-	\label{conclusion_limitations}
+	\label{sec:limitations}
+	% ===================================================================
 	
-	Several constraints bound the interpretation of these results. \textit{Zero-sum by design:} because citation shares sum to 100\% within each cluster, one bloc's gain is mechanically another's loss; this is a property of the measure and not an endorsement of a realist, zero-sum reading of AI competition. \textit{Scientometric caveats:} citation-based indicators are distorted by goal-setting and evaluation incentives \cite{baccini2019citation, fire2018over}, encode heterogeneous and ambiguous citing functions \cite{adler2009citation, waltman2016review}, reflect visibility and prestige as much as intellectual contribution \cite{waltman2016review}, carry systematic Anglophone and legacy bias \cite{Maddi2025GeographicalDisciplinaryCoverage, gomez2022leading}, and are subject to cumulative advantage \cite{wang2013quantifying, lariviere2009impact}. \textit{Topic modeling:} clusters are interpretive abstractions whose boundaries depend on embedding choice, dimensionality reduction, and random seeds, with errors propagating across the hierarchy (a per-layer precision of 90\% implies roughly 72.9\% reliability over three levels); the document-intrusion validation in Section~\ref{intrusion_validation} mitigates but does not eliminate this concern. \textit{Temporal coverage:} a contemporary corpus offers immediacy at the cost of depth, and with the youngest papers only six months old, citation indicators are informed conjecture rather than settled assessment. No dataset or method is neutral; within these boundaries, the study offers a systematic and transparent approximation of global AI research dynamics.
+	Several limitations bound these results, and some of them affect the blocs differently.
 	
+	\paragraph{The corpus reflects OpenAlex and our query.} OpenAlex covers more of the world's research than the proprietary databases, but its metadata are less complete. A country of origin could be derived for only 64.3\% of the retrieved records, and missing institutional information is not spread evenly across records \parencite{zhang2024missing}, so the removed records may have shifted the blocs' shares in ways we cannot measure. The corpus is also defined by our 279 search terms. OpenAlex's search covers titles, abstracts, and, where available, full texts, so some works entered the corpus through a term in their full text. The English-language restriction removes about 1.11\% of citations.
+	
+	\paragraph{Publications capture only part of AI research.} Publication data record industrial research only where companies publish it \parencite{ahmed2023growing}, which matters most for the United States (Section~\ref{sec:disc_profiles}). Citation shares also describe research systems, not the use of AI in the economy, which may matter more for long-run technological power \parencite{ding2024diffusion}. Our profiles are therefore best read next to indicators of industrial research, computing capacity, and adoption.
+	
+	\paragraph{The taxonomy reflects design choices.} Cluster boundaries depend on the embedding model, the clustering algorithm, the random seed, and the judgement of a single labeler. Another analyst would probably have drawn some boundaries differently. Because clustering ran on samples, the full corpus was labeled by assignment to reference documents, which agrees with the K-Means labels, after consolidation, in 84\% to 88\% of held-out cases. Errors at one level propagate to the levels below: if each level assigned 90\% of documents correctly, only about 72.9\% would be correct at all three levels.
+	
+	\paragraph{The validation has limits of its own.} The intrusion test shows that the clusters are coherent. Because intruders are drawn from any cluster at the same level, not specifically from neighboring ones, it shows less about whether a cluster is distinct from its siblings. The judge was a language model, whose judgements may differ from those of human experts, and its prompt was fixed in pilot runs on the same corpus.
+	
+	\paragraph{The measure is zero-sum by design.} Because the shares in each cluster sum to 100\%, one bloc's gain is mechanically another's loss. This is a property of the indicator, not a claim that AI research is a zero-sum competition. Papers that researchers from two blocs write together are split between them, and both blocs benefit from the collaboration.
+	
+	\paragraph{Citations are an imperfect measure of impact.} Citation counts can be distorted by evaluation incentives \parencite{baccini2019citation,fire2018over}. Citations serve heterogeneous functions \parencite{adler2009citation,bornmann2008what} and reflect visibility and prestige as well as intellectual contribution \parencite{waltman2016review}. They favor work from highly active, central countries over similar work from the periphery \parencite{gomez2022leading} and accumulate faster for work that is already well cited \parencite{Merton1968,lariviere2009impact,wang2013quantifying}. Nor do our shares distinguish between citations from abroad and citations from within the same bloc, which favors large research systems whose researchers cite each other; the United States, for instance, draws a larger share of its citations from abroad than China \parencite{min2026has}. Our shares inherit all of these problems.
+	
+	\paragraph{The citation window is short.} The youngest publications had about six months to be cited before we retrieved the data, and the speed at which citations accumulate varies strongly between fields \parencite{wang2013citation}. Because we use raw citation counts, not counts normalized by publication year, fields and blocs with a larger share of recent work are likely to be underrepresented relative to their eventual impact. This applies above all to China, whose AI output grew by 23.3\% per year between 2020 and 2023, against 4.4\% for the United States. Our findings describe early attention, not settled impact.
+	
+	\paragraph{Blocs are defined by institutional location.} Attributing papers to countries through author affiliations treats all authors as equal contributors and ignores migration and multiple affiliations. The definition of the blocs also matters. Restricting China to the mainland lowers its overall share from 23.0\% to 21.8\%, which is still the largest of the three, but it shifts several counts: the EU-27 then leads more research fronts (45, against 39 for China), and the number of fields China leads falls from 17 to 13. Counting Taiwan as part of China raises its share to 24.0\% and gives it back the lead in \cl{Natural Science}{N}{3} and in the number of research fronts led (44, against 41 for the EU-27). The EU-27, in turn, is an aggregate of 27 national systems, and its profile may be flatter than those of its members (Section~\ref{sec:disc_profiles}).
+	
+	\paragraph{The data are a cross-section.} Our results describe the positions of the blocs over 2020--2024 as a whole. They cannot show whether these profiles are converging or drifting apart.
+	
+	% ===================================================================
 	\section{Conclusion}
+	\label{sec:conclusion}
+	% ===================================================================
 	
-	This study mapped the global landscape of AI research from 2020 to 2025 and the relative impact of its three leading actors. The key findings are summarized by research question.
+	This study set out to describe how current AI research is organized and where China, the United States, and the EU-27 stand within it.
 	
-	\vspace{1em}
-	\rule{\linewidth}{0.4pt}
-	\begin{enumerate}
-		\item[\textbf{RQ1}]\hspace*{2em}\parbox[t]{\dimexpr\linewidth-2em}{
-			\textit{Which subdisciplines structure the contemporary AI research landscape?}
-		}
-	\end{enumerate}
-	\vspace{0.25em}
-	\rule{\linewidth}{0.4pt}
-	\vspace{1em}
+	On RQ1, AI research forms a methodological core surrounded by four application domains, and the boundary between developing and applying AI runs through the whole hierarchy rather than along a single line. Our taxonomy divides the field into 5 domains, 31 fields, and 106 research fronts, and an intrusion test shows these units to be coherent at every level, most clearly among research fronts. Most of the field's citations go to applications rather than to the core.
 	
-	The hierarchical topic model subdivided the corpus into 5 domains, 31 fields, and 106 research fronts, with a clear core--periphery structure: a methodological computer-science core --- machine learning, neural networks, computer vision --- encircled by four application domains whose semantic distance from the core grows with their specialization. The document-intrusion validation confirmed coherent clusters at every level (77.8\% detection at the micro-level, 64.7\% at the meso-level, 40.5\% at the macro-level, against a 20\% random baseline), with the lower macro score reflecting the inherent diffuseness of broad domains. This diversity exposes the limits of treating AI as a uniform field and helps explain the wide cross-subdiscipline variation in bloc impact. Two further patterns stand out: research concentrates where commercial application already exists, leaving governance and ethics at just 2.7\% of the corpus despite their public salience; and the periphery outgrows the core (22.15\% overall against 14.74\% for computer science), consistent with AI functioning as a general-purpose technology whose lowest-hanging fruit now lies in fields historically distant from it.
+	On RQ2, the three blocs together hold more than three fifths of all citations, in similar shares but with sharply different profiles. China's strength is concentrated in computer science and engineering, above all in computer vision, fault detection, control systems, and robotics, and its overall lead rests on a narrow base. The United States has its center of gravity in health science and in method fields with a long history in AI, and its profile is flat because it lacks peaks, not because it lacks gaps. The EU-27 has the most even profile, leads the social sciences, and is weak mainly in the methodological core. Across all three, the core is the part of AI research the blocs hold most firmly, and the social sciences are the part most open to research from elsewhere. In the spirit of the Leiden Manifesto, which asks that research be assessed against the missions of the system in question \parencite{hicks2015bibliometrics}, the question of who leads therefore has no single answer. It depends on which parts of AI one weighs, and the total hides the profile in which the three research systems differ.
 	
-	\vspace{1em}
-	\rule{\linewidth}{0.4pt}
-	\begin{enumerate}
-		\item[\textbf{RQ2}]\hspace*{2em}\parbox[t]{\dimexpr\linewidth-2em}{
-			\textit{How are the three blocs positioned within these subdisciplines in terms of their relative research impact?}
-		}
-	\end{enumerate}
-	\vspace{0.25em}
-	\rule{\linewidth}{0.4pt}
-	\vspace{1em}
+	Three extensions would sharpen these results. Separating methodological from domain vocabulary, for example with two embedding models, could clarify the boundary between core and applications. Measuring citations received from outside a bloc would remove the advantage that large systems gain from citing their own work. And an analysis at the level of EU member states could show whether the EU-27's balance is a European pattern or a product of aggregation.
 	
-	Across the corpus, China, the EU-27, and the US together account for 58.9\% of publications and 63.5\% of citations. Within the subdisciplines, however, their profiles diverge sharply. The \textbf{EU-27} (20.79\%) is the most balanced: it leads the social sciences, is strong in the health and natural sciences, and has the fewest blind spots --- the lowest cross-subdiscipline standard deviation and only four single-digit micro-clusters. \textbf{China} (24.1\%) holds the largest share but the most focused profile, dominating computer science and engineering --- computer vision, anomaly detection, robotics --- while trailing in the social and health sciences, a high standard deviation that points to strategic specialization. The \textbf{US} (18.60\%) leads in health science and in legacy computer-science fields but ranks last among the blocs in engineering and natural science --- a profile that contrasts sharply with the dominance of its proprietary models and technology firms and underscores how multi-layered AI development is.
+	% ===================================================================
+	% End matter (QSS: at the end of the manuscript)
+	% ===================================================================
+	\section*{Acknowledgments}
+	We thank the OpenAlex team for open access to their data and API, which made the collection of the publication metadata for this study possible.
 	
-	These findings also point to further work. Disentangling methodological from domain-specific vocabulary (for example through dual-embedding models) could sharpen the cluster topology; measuring impact through citations attracted from outside an entity's own bloc would reduce intra-system inflation; and the proximity of several Australian and East Asian institutions to the Chinese cluster invites systematic study of how geography, trade, and migration --- beyond cultural and political ties --- predict international collaboration.
+	\section*{Author contributions}
+	Julius Pfundstein: Conceptualization, Data curation, Formal analysis, Investigation, Methodology, Software, Visualization, Writing -- original draft, Writing -- review \& editing. Thomas Efer: Conceptualization, Supervision, Validation, Writing -- review \& editing. Manuel Burghardt: Supervision, Validation, Writing -- review \& editing.
 	
-	\section*{Data and Code}
+	\section*{Competing interests}
+	The authors have no competing interests.
 	
-	The research compendium for this study --- the full pipeline (OpenAlex retrieval, quality control, hierarchical topic modeling, citation analysis, visualization, and LLM-based cluster validation), the complete record of all 3,000 validation trials, the cluster-level citation-share tables, and the manuscript sources --- is archived on Zenodo and developed at \url{https://github.com/Pigeon-Effect/qss_publication}. The labelled corpus of 1,986,659 OpenAlex records is deposited alongside it; the underlying source metadata is released by OurResearch under CC0.
+	\section*{Funding information}
+	The publication of this work is supported by the Open Access Publishing Fund of Leipzig University.
 	
-	\section*{Declarations}
+	\section*{Data availability}
+	The labeled corpus is openly available on Zenodo \parencite{pfundstein2026dataset}, \url{https://doi.org/10.5281/zenodo.22791585}, under a CC BY 4.0 license. It contains all 1,986,659 publications with their OpenAlex IDs, citation counts as of July 2025, country shares, and cluster labels at all three levels. The research compendium is available on Zenodo \parencite{pfundstein2026compendium}, \url{https://doi.org/10.5281/zenodo.22230663}, under the MIT license. It contains the code for every stage of the pipeline, the records and transcripts of all 3,000 validation trials, and the citation-share tables for every cluster at all three levels. The source metadata from OpenAlex are available under CC0.
 	
-	\textbf{Funding} The authors received no specific funding for this work.
+	\printbibliography[title=References]
 	
-	\textbf{Competing interests} The authors declare that they have no competing interests.
+	% ===================================================================
+	\appendix
+	\clearpage
+	\section*{Appendix}
+	\setcounter{figure}{0}
+	\setcounter{table}{0}
+	\renewcommand{\thefigure}{A\arabic{figure}}
+	\renewcommand{\thetable}{A\arabic{table}}
 	
+	\noindent This appendix documents the two pipelines behind the analysis and the results on which the findings draw. Figure~\ref{fig:pipeline_corpus} summarizes how the corpus was built (Section~\ref{sec:data}), and Figure~\ref{fig:search_terms} lists the 279 search terms that define it. Figure~\ref{fig:pipeline_clustering} summarizes the hierarchical, semi-supervised clustering and its validation by document intrusion (Sections~\ref{sec:clustering} and~\ref{sec:intrusion_method}). Table~\ref{tab:field_shares} reports the citation shares of the three blocs and the rest of the world for all 5 domains and 31 fields (Section~\ref{sec:shares}).
 	
-	\section*{Acknowledgements}
+	\begin{figure*}[p]
+		\centering
+		\includegraphics[width=\textwidth]{dataset_construction_pipeline_2026.pdf}
+		\caption{Construction of the corpus: compilation of 24 AI subdisciplines, extraction of candidate terms from 125 survey papers and their curation into 279 search terms, and download and filtering of the OpenAlex records into the final corpus of 1,986,659 publications.}
+		\label{fig:pipeline_corpus}
+	\end{figure*}
 	
-	The authors thank the OpenAlex team for open access to their API, which enabled the collection of the publication metadata central to this study.
+	\begin{figure*}[p]
+		\centering
+		\includegraphics[width=\textwidth]{logarithmic_bar_graph_seach_term_document_count.pdf}
+		\caption{The 279 search terms used to build the corpus, with the number of OpenAlex works each term retrieves on its own (logarithmic scale), sorted by count. The corpus is smaller than the sum of the bars because many documents contain several terms.}
+		\label{fig:search_terms}
+	\end{figure*}
 	
-	\section*{References}
+	\begin{figure*}[p]
+		\centering
+		\includegraphics[width=\textwidth]{clustering_pipeline_llm_validation.pdf}
+		\caption{Hierarchical, semi-supervised document clustering and its validation. At each level, K-Means over-segments a sample of the corpus, the labeler consolidates the clusters on the basis of contrastive terms and an interactive map, and the full corpus is labeled through reference documents; the procedure is repeated within every consolidated cluster. The example path through the three levels is the one shown in Table~\ref{tab:tfidf_path}. The bottom panel shows the document-intrusion test.}
+		\label{fig:pipeline_clustering}
+	\end{figure*}
 	
-	\printbibliography[heading=none]
+	\begin{table*}[p]
+		\centering
+		\begin{threeparttable}
+			\caption{Fractional citation shares of the three blocs and the rest of the world by domain and field}
+			\label{tab:field_shares}
+			\footnotesize
+			\begin{tabular}{@{}l l r r r r r@{}}
+				\toprule
+				Code & Domain / field & Citations (\%) & China & US & EU-27 & RoW \\
+				\midrule
+				\idC{0} & \textbf{Computer Science} & \textbf{22.48} & \textbf{31.54} & 19.54 & 15.50 & 33.43 \\
+				\idC{00} & \quad Computer Vision \& Image Processing & 9.76 & \textbf{42.23} & 16.34 & 12.75 & 28.68 \\
+				\idC{01} & \quad Natural Language Processing & 2.38 & 22.37 & \textbf{30.22} & 17.95 & 29.46 \\
+				\idC{02} & \quad Speech Recognition \& Audio Processing & 1.42 & \textbf{20.51} & 20.47 & 18.50 & 40.42 \\
+				\idC{03} & \quad Biomarkers for Health \& Performance & 2.85 & \textbf{22.72} & 12.98 & 19.58 & 44.72 \\
+				\idC{04} & \quad Machine Learning Foundations & 6.06 & \textbf{24.64} & 23.36 & 16.32 & 35.68 \\
+				\addlinespace
+				\idH{1} & \textbf{Health Science} & \textbf{26.91} & 17.52 & \textbf{23.49} & 23.00 & 36.00 \\
+				\idH{10} & \quad Medical Imaging \& Radiology & 5.33 & \textbf{20.60} & 17.47 & 18.89 & 43.04 \\
+				\idH{11} & \quad Neuroscience \& Mental Health & 4.49 & 11.34 & 25.38 & \textbf{28.90} & 34.38 \\
+				\idH{12} & \quad Clinical Informatics \& Public Health & 6.75 & 11.36 & \textbf{23.73} & 22.28 & 42.63 \\
+				\idH{13} & \quad Molecular Biology \& Drug Discovery & 2.87 & 16.99 & \textbf{26.69} & 21.60 & 34.72 \\
+				\idH{14} & \quad Microbial and Immune Systems Biology & 2.12 & \textbf{24.43} & 22.93 & 22.23 & 30.41 \\
+				\idH{15} & \quad Genetics \& Genomics & 5.34 & 24.94 & \textbf{26.11} & 24.10 & 24.85 \\
+				\addlinespace
+				\idS{2} & \textbf{Social Science} & \textbf{15.07} & 12.97 & 15.72 & \textbf{25.60} & 45.71 \\
+				\idS{20} & \quad Education \& Learning Science & 3.60 & 11.53 & 15.36 & \textbf{20.40} & 52.71 \\
+				\idS{21} & \quad Digital Media \& Communication & 2.26 & 15.39 & \textbf{21.03} & 16.33 & 47.25 \\
+				\idS{22} & \quad Politics \& Governance & 0.89 & 5.31 & 22.02 & \textbf{31.52} & 41.15 \\
+				\idS{23} & \quad Finance \& Stock Market & 1.01 & 15.84 & 15.00 & \textbf{22.16} & 47.00 \\
+				\idS{24} & \quad Business \& Management & 5.06 & 14.91 & 12.16 & \textbf{29.31} & 43.62 \\
+				\idS{25} & \quad Urban Development & 1.27 & 13.34 & 10.52 & \textbf{34.55} & 41.59 \\
+				\idS{26} & \quad Ethical \& Creative AI & 0.98 & 6.21 & 24.99 & \textbf{33.45} & 35.35 \\
+				\addlinespace
+				\idN{3} & \textbf{Natural Science} & \textbf{17.99} & 23.05 & 16.86 & \textbf{23.58} & 36.51 \\
+				\idN{30} & \quad Climate \& Hydrology & 5.00 & \textbf{25.08} & 16.77 & 23.70 & 34.45 \\
+				\idN{31} & \quad Material Science & 4.84 & \textbf{25.74} & 17.00 & 22.26 & 34.99 \\
+				\idN{32} & \quad Energy \& Thermodynamics & 0.95 & \textbf{19.98} & 9.11 & 18.78 & 52.13 \\
+				\idN{33} & \quad Agriculture \& Forestry & 3.48 & \textbf{24.15} & 10.90 & 23.13 & 41.82 \\
+				\idN{34} & \quad Astrophysics \& Quantumphysics & 1.63 & 7.07 & 31.82 & \textbf{33.59} & 27.53 \\
+				\idN{35} & \quad Neuromorphic Hardware Accelerators & 1.11 & \textbf{30.51} & 22.76 & 15.05 & 31.67 \\
+				\idN{36} & \quad Construction \& City Planning & 0.97 & 16.55 & 13.74 & \textbf{28.74} & 40.97 \\
+				\addlinespace
+				\idE{4} & \textbf{Engineering} & \textbf{17.56} & \textbf{29.29} & 13.69 & 16.97 & 40.06 \\
+				\idE{40} & \quad Cybersecurity \& Privacy & 4.98 & \textbf{19.68} & 19.11 & 15.79 & 45.42 \\
+				\idE{41} & \quad IoT \& Edge Computing & 3.39 & \textbf{33.41} & 10.85 & 16.88 & 38.86 \\
+				\idE{42} & \quad Anomaly \& Fault Detection & 1.15 & \textbf{48.07} & 7.55 & 12.75 & 31.63 \\
+				\idE{43} & \quad Energy Technologies & 3.64 & \textbf{25.31} & 9.22 & 19.52 & 45.95 \\
+				\idE{44} & \quad Autonomous Mobility & 1.99 & \textbf{34.16} & 13.37 & 18.10 & 34.37 \\
+				\idE{45} & \quad Robotics \& Mechatronics & 2.42 & \textbf{36.39} & 16.39 & 16.75 & 30.48 \\
+				\bottomrule
+			\end{tabular}
+			\begin{tablenotes}[flushleft]
+				\footnotesize
+				\item \textit{Note.} Codes are colored by domain, as throughout the paper. Bloc columns give each bloc's share (\%) of a cluster's fractional citations and sum to 100 in every row. \textit{Citations} gives the cluster's share of all fractional citations in the corpus. Bold marks the highest share among the three blocs; the rest of the world is not counted. Domain rows are aggregated from their fields' summed citations. Source: research compendium \parencite{pfundstein2026compendium}, Tables S1 and S2.
+			\end{tablenotes}
+		\end{threeparttable}
+	\end{table*}
 	
 \end{document}

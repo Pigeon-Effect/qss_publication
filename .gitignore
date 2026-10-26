@@ -1,8 +1,9 @@
 # ---------------------------------------------------------------
 # Data
 # ---------------------------------------------------------------
-# merged_works_labeled.db is a ~20 GB SQLite corpus and is deposited on
-# Zenodo rather than carried in git. Ignore the directory contents but keep
+# The working database is a ~22 GB SQLite file; its published subset (4.3 GB,
+# 1.2 GB gzipped) is deposited on Zenodo rather than carried in git. Ignore the
+# directory contents but keep
 # its README (which documents the schema and how to obtain the file) and the
 # two small stage-05 outputs that stage 06 and the Supplementary Information
 # read. `data/*` rather than `data/` so git still descends into the directory
@@ -20,6 +21,7 @@ data/interim/*
 data/published_dataset/*
 !data/published_dataset/README.md
 !data/published_dataset/SHA256SUMS.txt
+!data/published_dataset/taxonomy.csv
 
 # ---------------------------------------------------------------
 # Databases
@@ -131,3 +133,18 @@ results/**/.*.pid
 results/**/.chain_*.log
 paper/*.bbl
 supplementary/*.bbl
+
+# Local copy of the publication PDF
+paper/publication_version_2026-10-25.pdf
+
+# Local reference-check notes for the paper
+paper/reference_check.local.md
+
+# Literature PDFs collected for the reference check (copyrighted, keep local)
+paper/literature/
+
+# Local working material for the manuscript: earlier manuscript versions and the
+# thesis, and the full figure stash. The figures the manuscript uses are copied
+# to paper/figures/, which is tracked.
+paper/archive/
+paper/resources/

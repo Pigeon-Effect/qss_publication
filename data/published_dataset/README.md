@@ -2,7 +2,8 @@
 
 **Zenodo data record: [10.5281/zenodo.22791584](https://doi.org/10.5281/zenodo.22791584)**
 (that DOI always resolves to the latest version). The database itself is not
-carried in git — only this README and `SHA256SUMS.txt` are.
+carried in git; this README, `taxonomy.csv` and `SHA256SUMS.txt` are, and the
+latter two are byte-identical to the files in the Zenodo record.
 
 The labelled corpus behind the manuscript: 1,986,659 AI-related publications
 from 2020–2024, each with its citation count, its country composition and its
@@ -12,13 +13,14 @@ working database that the analyses need, and nothing more.
 | File | Size | Contents |
 |---|---|---|
 | `merged_works_labeled_published.db.gz` | 1.2 GB | gzip-compressed SQLite database |
-| `SHA256SUMS.txt` | | checksums for the compressed and uncompressed file |
+| `taxonomy.csv` | 9 KB | the names of all 106 research fronts, their fields and domains, with the number of works in each |
+| `SHA256SUMS.txt` | | SHA-256 checksums for the compressed and uncompressed database and for `taxonomy.csv` |
 
 ## Usage
 
 ```bash
-gunzip merged_works_labeled_published.db.gz   # → 4.3 GB SQLite file
-sha256sum -c SHA256SUMS.txt                   # optional integrity check
+gunzip -k merged_works_labeled_published.db.gz   # → 4.3 GB SQLite file, keeps the .gz
+sha256sum -c SHA256SUMS.txt                      # optional integrity check
 python -m clustervalidation inspect --level h3 --db merged_works_labeled_published.db
 ```
 
@@ -49,8 +51,18 @@ One table, `works_labeled`, one row per work, with a unique index on `id`.
 The three labels form a path and are only meaningful together:
 `h2_cluster = 4` means different fields in different domains. Concatenate them
 to get a unique identifier — 5 domains, 31 fields and 106 research fronts in
-total. [`code/05_impact_analysis/taxonomy.csv`](../../code/05_impact_analysis/taxonomy.csv)
-maps each `h1‖h2‖h3` code (e.g. `011`) to its name.
+total. [`taxonomy.csv`](taxonomy.csv) names every path. It carries the three
+labels as separate integer columns, so it joins to the database directly:
+
+```sql
+-- in the sqlite3 shell, opened on the database:
+.import --csv taxonomy.csv taxonomy
+SELECT t.code, t.research_front, count(*) AS works
+FROM works_labeled AS w
+JOIN taxonomy AS t
+  ON t.h1_cluster = w.h1_cluster AND t.h2_cluster = w.h2_cluster AND t.h3_cluster = w.h3_cluster
+GROUP BY t.code;
+```
 
 | `h1_cluster` | Domain | Works |
 |---|---|---:|

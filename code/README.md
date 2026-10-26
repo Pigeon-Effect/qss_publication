@@ -7,13 +7,13 @@ reads and writes.
 
 | # | Stage | Manuscript section |
 |---|---|---|
-| [01](01_keyword_construction/) | Keyword construction | §2.2 Dataset Extraction Pipeline |
-| [02](02_data_collection/) | Data collection (OpenAlex retrieval) | §2.1–2.2 |
-| [03](03_data_processing/) | Data processing (quality control) | §2.3 Quality Control and Postprocessing |
-| [04](04_subdiscipline_clustering/) | Subdiscipline clustering (embedding → over-segmentation → expert consolidation) | §3.1 Hierarchical Topic Modeling |
-| [05](05_impact_analysis/) | Impact analysis (fractional citation sum) | §3.2 Assessment of Research Impact |
-| [06](06_visualization/) | Visualization (semantic landscape; citation-share heatmap) | §4 Findings |
-| [07](07_llm_validation/) | LLM-based cluster validation | §4.1 External Validation via Document Intrusion |
+| [01](01_keyword_construction/) | Keyword construction | §3.2 Building the corpus |
+| [02](02_data_collection/) | Data collection (OpenAlex retrieval) | §3.1–3.2 |
+| [03](03_data_processing/) | Data processing (quality control) | §3.3 Quality control |
+| [04](04_subdiscipline_clustering/) | Subdiscipline clustering (embedding → over-segmentation → expert consolidation) | §4.1 Hierarchical, semi-supervised document clustering |
+| [05](05_impact_analysis/) | Impact analysis (fractional citation sum) | §4.3 Measuring citation shares |
+| [06](06_visualization/) | Visualization (semantic landscape; citation-share heatmap) | §5 Findings |
+| [07](07_llm_validation/) | LLM-based cluster validation | §4.2 External validation by document intrusion |
 
 ## How the pipeline fits together
 
@@ -28,7 +28,7 @@ reads and writes.
                                                                           │
 04  SPECTER embeddings ─▶ K-Means k=50 (over-segment) ─▶ TF-IDF + UMAP
                                         │
-                          expert consolidation ─▶ remap dict ─▶ labels
+                          expert consolidation ─▶ lookup dict ─▶ labels
                           repeated at h1 → h2 → h3
     5 domains · 31 fields · 106 research fronts
                     │                                    │
@@ -82,9 +82,9 @@ assembled locally. The vocabulary they produced —
 so every stage from 02 onwards runs without them.
 
 The **taxonomy** (stage 04) is the product of an expert consolidating an
-over-segmented K-Means partition, recorded as plain remapping dictionaries and
-applied by nearest reference abstract, so each labelling step is an inspectable
-lookup rather than an unrepeatable act. Clustering and projection still depend
+over-segmented K-Means partition, recorded as plain lookup dictionaries and
+applied by nearest reference abstract. Applying a decision is an inspectable
+lookup; the decisions themselves rest on one labeler's judgement. Clustering and projection still depend
 on random seeds, so a re-run reproduces the procedure and the structure it
 finds, not an identical set of boundaries. The labels deposited with the corpus
 are the authoritative version of the taxonomy, and every downstream stage reads

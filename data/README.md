@@ -124,7 +124,7 @@ Rebuilding it from OpenAlex instead is possible — the retrieval and
 topic-modeling pipeline is [`code/`](../code/README.md) stages 01–04, each
 stage's inputs and outputs documented in its own README — but it will not
 reproduce the same cluster identifiers. Clustering depends on random seeds, and
-the expert-consolidation step was recorded only in part. A rebuild yields a
+the expert consolidation rests on one labeler's judgement. A rebuild yields a
 similar taxonomy, not this one.
 
 ## Using a different path

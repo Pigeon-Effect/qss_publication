@@ -1,7 +1,7 @@
 # 01 — Keyword construction
 
 Builds the 279-term search vocabulary that stage 02 uses to query OpenAlex
-(manuscript §2.2, *Dataset Extraction Pipeline*).
+(manuscript §3.2, *Building the corpus*, and Appendix Figures A1–A2).
 
 ## Why this stage exists
 

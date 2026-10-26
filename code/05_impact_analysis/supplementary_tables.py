@@ -15,6 +15,9 @@ Outputs (all under ``supplementary/``):
     citation_shares_h1.csv   5 domains
     citation_shares_h2.csv   31 fields
     citation_shares_h3.csv   106 research fronts
+    citation_shares_all_levels.csv
+                             the three levels stacked in one file, with a
+                             ``level`` column (h1 / h2 / h3)
     tables.tex               the three tables as LaTeX, \input by
                              supplementary_information.tex
 
@@ -69,8 +72,8 @@ def aggregate(rows: list[dict], key) -> list[dict]:
     return out
 
 
-def write_csv(records: list[dict], path: Path) -> None:
-    fields = (["code", "cluster", "total_citations", "corpus_share"]
+def write_csv(records: list[dict], path: Path, leading: list[str] = ()) -> None:
+    fields = (list(leading) + ["code", "cluster", "total_citations", "corpus_share"]
               + [f"{b}_cits" for b in BLOCS] + [f"{b}_share" for b in BLOCS])
     with path.open("w", encoding="utf-8", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=fields)
@@ -132,11 +135,16 @@ def main() -> None:
     ]
 
     tex_parts = []
+    stacked = []
     for level, key, label, caption in levels:
         records = aggregate(rows, key)
         write_csv(records, OUT_DIR / f"citation_shares_{level}.csv")
+        stacked += [{"level": level, **r} for r in records]
         tex_parts.append(tex_table(records, caption, f"tab:{label.lower()}"))
         print(f"{level}: {len(records)} clusters -> citation_shares_{level}.csv")
+
+    write_csv(stacked, OUT_DIR / "citation_shares_all_levels.csv", leading=["level"])
+    print(f"all levels: {len(stacked)} rows -> citation_shares_all_levels.csv")
 
     (OUT_DIR / "tables.tex").write_text("\n".join(tex_parts), encoding="utf-8")
     print(f"wrote {OUT_DIR / 'tables.tex'}")

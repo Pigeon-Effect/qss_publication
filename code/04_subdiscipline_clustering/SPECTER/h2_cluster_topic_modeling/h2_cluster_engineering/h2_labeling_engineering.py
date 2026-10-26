@@ -10,8 +10,7 @@ TF-IDF terms. Every document is assigned to its nearest reference abstract by
 cosine similarity and inherits that reference's meso code, so the step is a
 deterministic lookup.
 
-Meso codes (manuscript Figure 1, macro-domain 4 - Engineering). This is the
-one domain whose recorded mapping matches the published taxonomy exactly:
+Meso codes (manuscript Figure 1, macro-domain 4 - Engineering):
 
     0 : Cybersecurity & Privacy
     1 : IoT & Edge Computing

@@ -1,11 +1,10 @@
 # 04 — Subdiscipline clustering (semi-supervised hierarchical topic model)
 
 Builds the taxonomy of **5 domains, 31 fields and 106 research fronts** that the
-rest of the study is organised around (manuscript §3.1, *Hierarchical Topic
-Modeling*). Corresponds to
-[`topic_modeling_pipeline_diagram_clean.pdf`](../../paper/figures/topic_modeling_pipeline_diagram_clean.pdf)
-and
-[`exemplar_clustering_hierarchies_cancer_detection_clean_002.pdf`](../../paper/figures/exemplar_clustering_hierarchies_cancer_detection_clean_002.pdf).
+rest of the study is organised around (manuscript §4.1, *Hierarchical,
+semi-supervised document clustering*). Corresponds to Appendix Figure A3,
+[`clustering_pipeline_llm_validation.pdf`](../../paper/figures/clustering_pipeline_llm_validation.pdf),
+and to Table 2, which follows one path through the hierarchy.
 
 ## The problem this stage solves
 
@@ -43,11 +42,15 @@ itself. The expert (an author) makes it with two complementary views:
 Neither alone suffices. Adjacency in a UMAP can be a projection artefact; TF-IDF
 terms can be ambiguous across fields. Read together they are usually decisive.
 
-**Why the result is still deterministic.** The expert's decision is recorded as
-a plain `remap` / `H2_MAP` / `H3_MAP` dictionary — fine cluster id → super-cluster.
-Labelling then assigns each document to its nearest *reference abstract* by
-cosine similarity and inherits that reference's code. So the human judgement is
-a lookup table, inspectable and re-runnable, not an unrepeatable act.
+**What is mechanical and what is not.** Inside each labeling script, the
+expert's decision takes the form of a plain `remap` / `H2_MAP` / `H3_MAP`
+dictionary — fine cluster id → super-cluster. Labelling then assigns each
+document to its nearest *reference abstract* by cosine similarity and inherits
+that reference's code, so applying a decision is mechanical. The decision
+itself is not reproducible: it rests on the judgement of one labeler, and
+another analyst would draw some boundaries differently. The manuscript
+therefore validates the result from outside, by document intrusion
+([stage 07](../07_llm_validation/)).
 
 ## The two-script rhythm
 
@@ -57,7 +60,7 @@ important thing to understand about this folder:
 ```
    ALGORITHMIC PRE-CLUSTERING              →  EXPERT CONSOLIDATION
    (embed → k=50 KMeans → TF-IDF →            (read the artefacts → write the
-    export UMAP + abstracts)                   remap dict → propagate labels)
+    export UMAP + abstracts)                   lookup dict → propagate labels)
 
 h1 specter_embedding_with_central_          specter_embedding_with_curated_
    abstract_extraction.py                      cluster_mapping.py
@@ -226,17 +229,10 @@ variants used for the visualisations).
 `h3_cluster`, consumed by [stage 05](../05_impact_analysis/),
 [stage 06](../06_visualization/) and [stage 07](../07_llm_validation/).
 
-## These scripts and the published taxonomy
+## The deposited taxonomy
 
-Consolidation is human judgement, and it was exercised level by level: each
-script here records the mapping the expert settled on for the level and domain
-it labels, at the point that level was labelled. Later passes over the whole
-taxonomy refined groupings further, including across macro-domains, which a
-script that writes one label column inside one subset does not express.
-
-The taxonomy in its final form is therefore the **label set deposited with the
-corpus** — `h1_cluster`, `h2_cluster` and `h3_cluster` in
-`merged_works_labeled.db`, named in
+The taxonomy is the **label set deposited with the corpus** — `h1_cluster`,
+`h2_cluster` and `h3_cluster` in `merged_works_labeled.db`, named in
 [`taxonomy.csv`](../05_impact_analysis/taxonomy.csv). That is what stages 05, 06
 and 07 read, and what the manuscript reports. The scripts in this folder are the
 record of the method that produced it: over-segment, read the two views,

@@ -2,8 +2,8 @@
 
 Tests whether the clusters produced by
 [stage 04](../04_subdiscipline_clustering/) capture coherent semantic units
-rather than analytical artefacts (manuscript §4.1, *External Validation via
-Document Intrusion*).
+rather than analytical artefacts (manuscript §4.2, *External validation by
+document intrusion*; results in §5.1 and Table 3).
 
 ## Why an external validation is needed at all
 

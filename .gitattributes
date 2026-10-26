@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Uploaded to Zenodo byte for byte: keep LF on every platform, so that
+# `sha256sum -c SHA256SUMS.txt` works and the taxonomy's checksum stays valid.
+data/published_dataset/SHA256SUMS.txt text eol=lf
+data/published_dataset/taxonomy.csv text eol=lf

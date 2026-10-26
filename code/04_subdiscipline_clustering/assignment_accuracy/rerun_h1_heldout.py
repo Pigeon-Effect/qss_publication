@@ -14,8 +14,8 @@ Also reported:
                  computed on this run's random references; it should match
                  the held-out figure, which validates the h2/h3 numbers
 
-Consolidated accuracy uses a reconstructed mapping: each K-Means cluster maps
-to the most common deposited h1 code among its members.
+Consolidated accuracy reads the consolidation from the deposited labels: each
+K-Means cluster maps to the most common deposited h1 code among its members.
 
 Deviations from the original run: K-Means uses 3 instead of 10 random
 initializations (numpy implementation, k-means++), and the 1 % LOF outlier
@@ -37,7 +37,7 @@ import specter_onnx as S
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
 DB_PATH = Path(os.environ.get(
-    "QSS_DB_PATH", PROJECT_ROOT / "data" / "original_dataset" / "merged_works_labeled.db"))
+    "QSS_DB_PATH", PROJECT_ROOT / "data" / "merged_works_labeled.db"))
 OUT = Path(__file__).resolve().parent / "output" / "h1_rerun"
 RESULTS = PROJECT_ROOT / "results" / "assignment_accuracy"
 OUT.mkdir(parents=True, exist_ok=True)
@@ -153,7 +153,7 @@ for variant, refs in (("as_implemented", R_raw), ("preprocessed_both", X[ref_idx
         "loo_consolidated": float(sum(sizes[j] * (to_cons(p[t == j]) == mapping[j]).mean()
                                       for j in range(K)) / sizes.sum()),
     }
-# context: how well the reconstructed consolidation of K-Means matches the deposit
+# context: how well the derived consolidation of K-Means matches the deposit
 result["kmeans_consolidated_vs_deposited_h1"] = float((to_cons(L) == deposited).mean())
 
 json.dump(result, open(RESULTS / "h1_rerun.json", "w"), indent=2)

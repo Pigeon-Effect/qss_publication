@@ -1,10 +1,7 @@
 # 03 — Data processing
 
-Turns the raw retrieval into the analysis corpus (manuscript §2.3, *Quality
-Control and Postprocessing*). Corresponds to
-[`initial_dataset_completeness_clean.pdf`](../../paper/figures/initial_dataset_completeness_clean.pdf)
-and
-[`final_dataset_completeness_clean.pdf`](../../paper/figures/final_dataset_completeness_clean.pdf).
+Turns the raw retrieval into the analysis corpus (manuscript §3.3, *Quality
+control*).
 
 ## Why this stage exists
 

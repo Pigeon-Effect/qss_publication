@@ -1,7 +1,8 @@
 # 02 — Data collection
 
-Retrieves the raw corpus from OpenAlex (manuscript §2.1–2.2). Corresponds to
-[`data_extraction_pipeline_diagram.pdf`](../../paper/figures/data_extraction_pipeline_diagram.pdf).
+Retrieves the raw corpus from OpenAlex (manuscript §3.1–3.2). Corresponds to
+Appendix Figure A1,
+[`dataset_construction_pipeline_2026.pdf`](../../paper/figures/dataset_construction_pipeline_2026.pdf).
 
 ## Why OpenAlex
 
